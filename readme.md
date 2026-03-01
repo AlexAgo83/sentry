@@ -21,6 +21,9 @@ Sentry includes:
 - Leaderboard (virtual score) and changelog feed (GitHub commits).
 - PWA support with service worker caching and update prompt.
 
+<img width="1004" height="818" alt="image" src="https://github.com/user-attachments/assets/5d21dfb8-63fe-41ec-af9f-bcb33f87e61a" />
+<img width="371" height="665" alt="image" src="https://github.com/user-attachments/assets/6c47e374-5c2e-4490-bd64-d4d6c0e8bdca" />
+
 ## Key Systems
 
 ### Gameplay
