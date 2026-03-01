@@ -9,6 +9,7 @@ export type {
     DungeonArenaFloatingText,
     DungeonArenaFrame,
     DungeonArenaMagicCue,
+    DungeonArenaMovementState,
     DungeonArenaUnit,
     DungeonReplayJumpMarks
 } from "./types";

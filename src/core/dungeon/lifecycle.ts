@@ -335,6 +335,17 @@ export const initializeFloor = (
     nextInventory.items.food = availableFood - cost;
     addItemDelta(itemDeltas, "food", -cost);
 
+    const cadenceByPlayerId = new Map(
+        (run.cadenceSnapshot ?? []).map((entry) => [entry.playerId, entry.resolvedAttackIntervalMs])
+    );
+    run.party.forEach((member) => {
+        const cadenceInterval = cadenceByPlayerId.get(member.playerId);
+        const attackIntervalMs = Number.isFinite(cadenceInterval) && (cadenceInterval ?? 0) > 0
+            ? Math.max(1, Math.round(cadenceInterval as number))
+            : DUNGEON_BASE_ATTACK_MS;
+        member.attackCooldownMs = attackIntervalMs;
+    });
+
     run.enemies = createEnemyWave(definition, run.floor, run.seed, run.runIndex);
     run.targetEnemyId = run.enemies[0]?.id ?? null;
     run.targetHeroId = null;

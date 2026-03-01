@@ -17,6 +17,7 @@ import {
     MAGIC_PULSE_OFFSET_Y,
     RANGED_RECOIL_DISTANCE,
     RANGED_RECOIL_MS,
+    FLOOR_REPOSITION_BLEND_MS
 } from "./constants";
 import {
     createUnitNode,
@@ -54,6 +55,22 @@ export const updateFrame = (runtime: PixiRuntime, frame: DungeonArenaFrame) => {
     // timeline cursor is mid-run. Use time to decide whether combat animations
     // (shake/lunge) should run, while still allowing an explicit "paused" state to freeze.
     const combatActive = statusLabel !== "paused" && (statusLabel === "running" || frame.atMs < frame.totalMs);
+    const currentFloorLabel = frame.floorLabel ?? null;
+    const previousFloorLabel = runtime.lastFloorLabel ?? null;
+    if (currentFloorLabel !== previousFloorLabel) {
+        runtime.floorTransitionUntilMs = frame.atMs + FLOOR_REPOSITION_BLEND_MS;
+        runtime.lastFloorLabel = currentFloorLabel;
+        runtime.unitNodes.forEach((node) => {
+            node.attackMotionX = 0;
+            node.attackMotionY = 0;
+            node.attackMotionAtMs = frame.atMs;
+        });
+    }
+    const floorTransitionUntilMs = Number(runtime.floorTransitionUntilMs);
+    const floorTransitionActive = Number.isFinite(floorTransitionUntilMs) && frame.atMs < floorTransitionUntilMs;
+    const floorTransitionProgress = floorTransitionActive
+        ? clamp(1 - ((floorTransitionUntilMs - frame.atMs) / FLOOR_REPOSITION_BLEND_MS), 0, 1)
+        : 1;
     if (runtime.phaseLabel.parent !== runtime.app.stage) {
         runtime.phaseLabel.parent?.removeChild(runtime.phaseLabel);
         runtime.app.stage.addChild(runtime.phaseLabel);
@@ -108,7 +125,11 @@ export const updateFrame = (runtime: PixiRuntime, frame: DungeonArenaFrame) => {
                 node.enemySprite.texture = unit.isBoss ? runtime.entityTextures.enemyBoss : runtime.entityTextures.enemyMob;
                 // Match the approximate footprint of the previous Graphics icons.
                 const scale = unit.isBoss ? 0.5 : 0.425;
-                node.enemySprite.scale.set(scale);
+                const facingX = Number(unit.facingX);
+                const facingSign = Number.isFinite(facingX) && Math.abs(facingX) > 0.03
+                    ? (facingX < 0 ? -1 : 1)
+                    : 1;
+                node.enemySprite.scale.set(scale * facingSign, scale);
                 node.enemySprite.alpha = unit.alive ? 1 : 0.5;
                 node.enemySprite.tint = 0xffffff;
             }
@@ -130,7 +151,7 @@ export const updateFrame = (runtime: PixiRuntime, frame: DungeonArenaFrame) => {
                 const dir = outlineDirections[i] ?? outlineDirections[0];
                 sprite.visible = Boolean(node.enemySprite?.visible);
                 sprite.texture = node.enemySprite?.texture;
-                sprite.scale?.set?.(node.enemySprite?.scale?.x ?? 1);
+                sprite.scale?.set?.(node.enemySprite?.scale?.x ?? 1, Math.abs(node.enemySprite?.scale?.y ?? 1));
                 sprite.alpha = outlineAlpha;
                 sprite.tint = ENTITY_OUTLINE_COLOR;
                 sprite.position.set(dir[0] * outlineOffset, dir[1] * outlineOffset);
@@ -174,7 +195,14 @@ export const updateFrame = (runtime: PixiRuntime, frame: DungeonArenaFrame) => {
                 node.magicPulse.endFill();
             }
         }
-        drawAttackCharge(node, unit.attackCharge ?? 0, unit.weaponType ?? "Melee", unit.isEnemy, unit.alive);
+        drawAttackCharge(
+            node,
+            unit.attackCharge ?? 0,
+            unit.weaponType ?? "Melee",
+            unit.isEnemy,
+            unit.alive,
+            unit.movementState
+        );
         drawHp(node, unit.hp, unit.hpMax);
         drawTargetAndDeath(node, frame.targetEnemyId === unit.id, unit.alive);
         const baseAlpha = unit.alive ? 1 : 0.6;
@@ -224,12 +252,19 @@ export const updateFrame = (runtime: PixiRuntime, frame: DungeonArenaFrame) => {
         const offsetX = Math.sin(shakeTime) * shakeAmplitude;
         const offsetY = Math.cos(shakeTime * 1.1) * shakeAmplitude;
 
-        let attackMotionX = 0;
-        let attackMotionY = 0;
+        let desiredAttackMotionX = 0;
+        let desiredAttackMotionY = 0;
         const attackCue = attackBySource.get(unit.id);
         if (combatActive && attackCue) {
             const age = frame.atMs - attackCue.atMs;
             const kind = resolveAttackVfxKind(unit.weaponType);
+            const hasMovementChoreo = typeof unit.movementState === "string";
+            const choreographyMultiplier = hasMovementChoreo
+                ? (kind === "melee_arc" ? 0.42 : kind === "ranged_projectile" ? 0.3 : 0.24)
+                : 1;
+            const transitionAttackDampen = floorTransitionActive
+                ? (0.35 + floorTransitionProgress * 0.65)
+                : 1;
             const motionMs = kind === "magic_beam"
                 ? MAGIC_SPIRAL_MS
                 : kind === "ranged_projectile"
@@ -247,9 +282,12 @@ export const updateFrame = (runtime: PixiRuntime, frame: DungeonArenaFrame) => {
                         const dx = targetX - baseX;
                         const dy = targetY - baseY;
                         const length = Math.hypot(dx, dy) || 1;
-                        const distance = ATTACK_LUNGE_DISTANCE * (unit.isBoss ? 1.15 : 1);
-                        attackMotionX = (dx / length) * distance * ease;
-                        attackMotionY = (dy / length) * distance * ease;
+                        const distance = ATTACK_LUNGE_DISTANCE
+                            * choreographyMultiplier
+                            * transitionAttackDampen
+                            * (unit.isBoss ? 1.15 : 1);
+                        desiredAttackMotionX = (dx / length) * distance * ease;
+                        desiredAttackMotionY = (dy / length) * distance * ease;
                     }
                 } else if (kind === "ranged_projectile") {
                     // Ranged: slight recoil away from the target.
@@ -259,9 +297,12 @@ export const updateFrame = (runtime: PixiRuntime, frame: DungeonArenaFrame) => {
                         const dx = targetX - baseX;
                         const dy = targetY - baseY;
                         const length = Math.hypot(dx, dy) || 1;
-                        const distance = RANGED_RECOIL_DISTANCE * (unit.isBoss ? 1.1 : 1);
-                        attackMotionX = -(dx / length) * distance * ease;
-                        attackMotionY = -(dy / length) * distance * ease;
+                        const distance = RANGED_RECOIL_DISTANCE
+                            * choreographyMultiplier
+                            * transitionAttackDampen
+                            * (unit.isBoss ? 1.1 : 1);
+                        desiredAttackMotionX = -(dx / length) * distance * ease;
+                        desiredAttackMotionY = -(dy / length) * distance * ease;
                     }
                 } else {
                     // Magic: swirl in a small spiral, oriented toward the target (when available).
@@ -269,7 +310,10 @@ export const updateFrame = (runtime: PixiRuntime, frame: DungeonArenaFrame) => {
                     const angle = phase * Math.PI * 2 * turns;
                     // Make it feel like a spiral rather than a vibration:
                     // start at 0, expand to max, then return to 0.
-                    const radius = MAGIC_SPIRAL_RADIUS * Math.sin(Math.PI * phase);
+                    const radius = MAGIC_SPIRAL_RADIUS
+                        * choreographyMultiplier
+                        * transitionAttackDampen
+                        * Math.sin(Math.PI * phase);
                     const c = Math.cos(angle);
                     const s = Math.sin(angle);
                     if (target) {
@@ -282,17 +326,80 @@ export const updateFrame = (runtime: PixiRuntime, frame: DungeonArenaFrame) => {
                         const ny = dy / length;
                         const px = -ny;
                         const py = nx;
-                        attackMotionX = (nx * c + px * s) * radius;
-                        attackMotionY = (ny * c + py * s) * radius;
+                        desiredAttackMotionX = (nx * c + px * s) * radius;
+                        desiredAttackMotionY = (ny * c + py * s) * radius;
                     } else {
-                        attackMotionX = c * radius;
-                        attackMotionY = s * radius;
+                        desiredAttackMotionX = c * radius;
+                        desiredAttackMotionY = s * radius;
                     }
                 }
             }
         }
 
-        node.container.position.set(baseX + offsetX + attackMotionX, baseY + offsetY + attackMotionY);
+        const previousAttackMotionX = Number(node.attackMotionX);
+        const previousAttackMotionY = Number(node.attackMotionY);
+        const previousAttackMotionAtMs = Number(node.attackMotionAtMs);
+        const hasAttackMotionHistory = Number.isFinite(previousAttackMotionX)
+            && Number.isFinite(previousAttackMotionY)
+            && Number.isFinite(previousAttackMotionAtMs);
+        let attackMotionX = desiredAttackMotionX;
+        let attackMotionY = desiredAttackMotionY;
+        if (hasAttackMotionHistory) {
+            const deltaMs = clamp(frame.atMs - previousAttackMotionAtMs, 0, 260);
+            if (deltaMs <= 0) {
+                attackMotionX = previousAttackMotionX;
+                attackMotionY = previousAttackMotionY;
+            } else {
+                const desiredMagnitude = Math.hypot(desiredAttackMotionX, desiredAttackMotionY);
+                const timeConstantMs = desiredMagnitude > 0.02 ? 56 : 190;
+                const blend = 1 - Math.exp(-deltaMs / Math.max(1, timeConstantMs));
+                attackMotionX = previousAttackMotionX + (desiredAttackMotionX - previousAttackMotionX) * blend;
+                attackMotionY = previousAttackMotionY + (desiredAttackMotionY - previousAttackMotionY) * blend;
+                if (desiredMagnitude <= 0.02 && Math.hypot(attackMotionX, attackMotionY) < 0.02) {
+                    attackMotionX = 0;
+                    attackMotionY = 0;
+                }
+            }
+        }
+        node.attackMotionX = attackMotionX;
+        node.attackMotionY = attackMotionY;
+        node.attackMotionAtMs = frame.atMs;
+
+        const targetPosX = baseX + offsetX + attackMotionX;
+        const targetPosY = baseY + offsetY + attackMotionY;
+        const previousX = Number(node.motionX);
+        const previousY = Number(node.motionY);
+        const previousAtMs = Number(node.motionAtMs);
+        const canInterpolate = wasVisible
+            && Number.isFinite(previousX)
+            && Number.isFinite(previousY)
+            && Number.isFinite(previousAtMs);
+
+        if (!canInterpolate) {
+            node.motionX = targetPosX;
+            node.motionY = targetPosY;
+            node.motionAtMs = frame.atMs;
+        } else {
+            const deltaMs = clamp(frame.atMs - previousAtMs, 0, 260);
+            const jumpDistance = Math.hypot(targetPosX - previousX, targetPosY - previousY);
+            const shouldSnap = floorTransitionActive
+                ? (jumpDistance > 320 || deltaMs > 420)
+                : (jumpDistance > 140 || deltaMs > 240);
+            if (shouldSnap) {
+                node.motionX = targetPosX;
+                node.motionY = targetPosY;
+            } else {
+                // Smooth motion toward the target to avoid visible frame-to-frame teleporting.
+                const t = clamp(deltaMs / 120, 0, 1);
+                const blend = floorTransitionActive
+                    ? (0.11 + t * 0.23)
+                    : (0.24 + t * 0.36);
+                node.motionX = previousX + (targetPosX - previousX) * blend;
+                node.motionY = previousY + (targetPosY - previousY) * blend;
+            }
+            node.motionAtMs = frame.atMs;
+        }
+        node.container.position.set(Number(node.motionX) || targetPosX, Number(node.motionY) || targetPosY);
     });
 
     renderAttackVfx(runtime, frame, unitById, {
@@ -308,6 +415,12 @@ export const updateFrame = (runtime: PixiRuntime, frame: DungeonArenaFrame) => {
             node.damageAtMs = undefined;
             node.damageRatio = undefined;
             node.spawnAtMs = undefined;
+            node.motionX = undefined;
+            node.motionY = undefined;
+            node.motionAtMs = undefined;
+            node.attackMotionX = undefined;
+            node.attackMotionY = undefined;
+            node.attackMotionAtMs = undefined;
             node.magicPulse.clear();
             node.magicPulse.visible = false;
             if (node.enemySprite) {

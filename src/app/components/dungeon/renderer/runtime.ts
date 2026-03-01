@@ -87,7 +87,9 @@ export const createPixiRuntime = async (hostElement: HTMLDivElement): Promise<Pi
         attackVfxPool: [],
         attackVfxByKey: new Map(),
         resizeObserver,
-        lastSeen: new Set()
+        lastSeen: new Set(),
+        lastFloorLabel: null,
+        floorTransitionUntilMs: undefined
     };
 };
 

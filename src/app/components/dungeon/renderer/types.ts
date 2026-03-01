@@ -30,6 +30,12 @@ export type UnitNode = {
     damageRatio?: number;
     spawnAtMs?: number;
     shakeSeed?: number;
+    motionX?: number;
+    motionY?: number;
+    motionAtMs?: number;
+    attackMotionX?: number;
+    attackMotionY?: number;
+    attackMotionAtMs?: number;
 };
 
 export type PixiRuntime = {
@@ -55,4 +61,6 @@ export type PixiRuntime = {
     attackVfxByKey: Map<string, any>;
     resizeObserver: ResizeObserver | null;
     lastSeen: Set<string>;
+    lastFloorLabel?: string | null;
+    floorTransitionUntilMs?: number;
 };

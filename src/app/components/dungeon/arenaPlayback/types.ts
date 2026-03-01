@@ -75,11 +75,27 @@ export type DungeonArenaUnit = {
     x: number;
     y: number;
     attackCharge?: number;
+    velocityX?: number;
+    velocityY?: number;
+    facingX?: number;
+    facingY?: number;
+    targetId?: string | null;
+    movementState?: DungeonArenaMovementState;
+    preferredRangeMin?: number;
+    preferredRangeMax?: number;
     skinColor?: string;
     hairColor?: string;
     helmetVisible?: boolean;
     weaponType?: WeaponType;
 };
+
+export type DungeonArenaMovementState =
+    | "idle"
+    | "approach"
+    | "orbit"
+    | "attack"
+    | "recover"
+    | "reposition";
 
 export type DungeonArenaFrame = {
     atMs: number;

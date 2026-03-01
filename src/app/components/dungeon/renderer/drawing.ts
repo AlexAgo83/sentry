@@ -105,10 +105,28 @@ const drawOutlinePass = (
     });
 };
 
+const resolveFacing = (unit: NonNullable<DungeonArenaFrame>["units"][number]) => {
+    const x = Number(unit.facingX);
+    const y = Number(unit.facingY);
+    const length = Math.hypot(x, y);
+    if (!Number.isFinite(length) || length <= 1e-4) {
+        return { x: unit.isEnemy ? -1 : 1, y: 0 };
+    }
+    return {
+        x: x / length,
+        y: y / length
+    };
+};
+
 export const drawHeroBody = (node: UnitNode, unit: NonNullable<DungeonArenaFrame>["units"][number]) => {
     const alpha = unit.alive ? 1 : 0.5;
     const skin = parseHexColor(unit.skinColor, 0xe2be95);
     const hair = parseHexColor(unit.hairColor, 0x5a402f);
+    const facing = resolveFacing(unit);
+    const px = -facing.y;
+    const py = facing.x;
+    const eyeForward = 4.2;
+    const eyeSpread = 4.3;
     drawOutlinePass(node.silhouette, alpha, (target, offsetX, offsetY) => {
         target.drawCircle(offsetX, offsetY, HERO_BODY_RADIUS + 0.6);
         if (unit.helmetVisible) {
@@ -124,8 +142,8 @@ export const drawHeroBody = (node: UnitNode, unit: NonNullable<DungeonArenaFrame
     node.body.endFill();
 
     node.body.beginFill(0x131722, 0.8);
-    node.body.drawCircle(-5, -2, 1.6);
-    node.body.drawCircle(5, -2, 1.6);
+    node.body.drawCircle((facing.x * eyeForward) + (px * eyeSpread), (facing.y * eyeForward) + (py * eyeSpread), 1.6);
+    node.body.drawCircle((facing.x * eyeForward) - (px * eyeSpread), (facing.y * eyeForward) - (py * eyeSpread), 1.6);
     node.body.endFill();
 
     if (unit.helmetVisible) {
@@ -138,6 +156,10 @@ export const drawHeroBody = (node: UnitNode, unit: NonNullable<DungeonArenaFrame
         node.body.drawEllipse(0, -9, 13, 7);
         node.body.endFill();
     }
+
+    node.body.beginFill(0xffffff, unit.alive ? 0.28 : 0.16);
+    node.body.drawCircle(facing.x * (HERO_BODY_RADIUS - 3.2), facing.y * (HERO_BODY_RADIUS - 3.2), 2.2);
+    node.body.endFill();
 };
 
 // Enemy bodies are now SVG sprites (see `runtime.entityTextures`).
@@ -166,7 +188,8 @@ export const drawAttackCharge = (
     ratio: number,
     weaponType: WeaponType | undefined,
     isEnemy: boolean,
-    isAlive: boolean
+    isAlive: boolean,
+    movementState?: NonNullable<DungeonArenaFrame>["units"][number]["movementState"]
 ) => {
     const clamped = Math.max(0, Math.min(1, ratio));
     const width = 44;
@@ -180,13 +203,22 @@ export const drawAttackCharge = (
         ? 0xd24a4a
         : parseHexColor(getSkillIconColor(getCombatSkillIdForWeaponType(weaponType ?? "Melee")), 0xf2c14e);
 
+    const isAttackPhase = movementState === "attack";
+    const isRecoverPhase = movementState === "recover";
+    const accentColor = isAttackPhase ? 0xf4b942 : isRecoverPhase ? 0x6bb8ff : 0x0e1220;
+    const accentAlpha = isAttackPhase ? 0.55 : isRecoverPhase ? 0.4 : 0.22;
+
     node.attackBack.clear();
     node.attackBack.beginFill(0x0e1220, 0.65 * alpha);
     node.attackBack.drawRoundedRect(left, top, width, height, 2);
     node.attackBack.endFill();
+    if (isAttackPhase || isRecoverPhase) {
+        node.attackBack.lineStyle(1, accentColor, accentAlpha * alpha);
+        node.attackBack.drawRoundedRect(left - 0.5, top - 0.5, width + 1, height + 1, 2);
+    }
 
     node.attackFill.clear();
-    node.attackFill.beginFill(fillColor, 0.85 * alpha);
+    node.attackFill.beginFill(fillColor, (isAttackPhase ? 0.95 : isRecoverPhase ? 0.9 : 0.85) * alpha);
     node.attackFill.drawRoundedRect(left + 1, top + 1, Math.max(0, (width - 2) * clamped), height - 2, 2);
     node.attackFill.endFill();
 };

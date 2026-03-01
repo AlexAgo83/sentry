@@ -623,7 +623,8 @@ export const applyDungeonTick = (
                 }
             });
 
-            const heroStepCache = createHeroStepCache(mutable.players, aliveHeroIds, timestamp);
+            const simulationTimestamp = mutable.run.startedAt + nowMs;
+            const heroStepCache = createHeroStepCache(mutable.players, aliveHeroIds, simulationTimestamp);
 
             const heroPhase = applyHeroAttackPhase(
                 mutable.run,

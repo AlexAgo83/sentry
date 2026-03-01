@@ -1525,6 +1525,78 @@ describe("dungeon flow", () => {
         ).toBe(true);
     });
 
+    it("resets hero attack cooldown to a full first-charge window on each new floor", () => {
+        let state = createInitialGameState("0.4.0");
+        state.players["2"] = createPlayerState("2", "Mara");
+        state.players["3"] = createPlayerState("3", "Iris");
+        state.players["4"] = createPlayerState("4", "Kai");
+        state.inventory.items.food = 20;
+
+        state = gameReducer(state, {
+            type: "dungeonStartRun",
+            dungeonId: "dungeon_ruines_humides",
+            playerIds: ["1", "2", "3", "4"],
+            timestamp: 1_000
+        });
+
+        const run = getActiveDungeonRun(state.dungeon);
+        expect(run).toBeTruthy();
+        if (!run) {
+            return;
+        }
+        run.enemies = [{
+            id: "floor-clear-dummy-cooldown",
+            name: "Floor Dummy",
+            hp: 1,
+            hpMax: 1,
+            damage: 1,
+            isBoss: false,
+            mechanic: null,
+            spawnIndex: 0
+        }];
+        run.targetEnemyId = "floor-clear-dummy-cooldown";
+        run.party.forEach((member, index) => {
+            member.hp = member.hpMax;
+            member.attackCooldownMs = index === 0 ? 0 : 9_999;
+        });
+
+        const cleared = applyDungeonTick(state, 100, 1_100).state;
+        const pendingFloorRun = getActiveDungeonRun(cleared.dungeon);
+        expect(pendingFloorRun?.floorPauseMs).toBeGreaterThan(0);
+        if (!pendingFloorRun) {
+            return;
+        }
+
+        // Simulate stale/negative cooldowns accumulated during pause.
+        pendingFloorRun.party.forEach((member) => {
+            member.attackCooldownMs = -5_000;
+        });
+
+        const next = applyDungeonTick(cleared, 800, 1_900).state;
+        const nextRun = getActiveDungeonRun(next.dungeon);
+        expect(nextRun?.floor).toBe(2);
+        if (!nextRun) {
+            return;
+        }
+        const cadenceByPlayerId = new Map(
+            nextRun.cadenceSnapshot.map((entry) => [entry.playerId, entry.resolvedAttackIntervalMs])
+        );
+        nextRun.party.forEach((member) => {
+            expect(member.attackCooldownMs).toBe(cadenceByPlayerId.get(member.playerId));
+        });
+        let floorStartIndex = -1;
+        for (let index = nextRun.events.length - 1; index >= 0; index -= 1) {
+            const event = nextRun.events[index];
+            if (event.type === "floor_start" && event.label === "Floor 2") {
+                floorStartIndex = index;
+                break;
+            }
+        }
+        expect(floorStartIndex).toBeGreaterThanOrEqual(0);
+        const floor2Events = floorStartIndex >= 0 ? nextRun.events.slice(floorStartIndex) : [];
+        expect(floor2Events.some((event) => event.type === "attack")).toBe(false);
+    });
+
     it("uses party order as tie-breaker for magic heal target selection", () => {
         let state = createInitialGameState("0.4.0");
         state.players["2"] = createPlayerState("2", "Mara");

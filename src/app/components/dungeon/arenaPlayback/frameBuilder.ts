@@ -3,6 +3,7 @@ import {
     buildFloatingTexts,
     clamp,
     createHeroSeed,
+    applyCombatMovementChoreography,
     getBossPhaseLabel,
     getReplayEventsUntil,
     getReplayJumpMarksFromEvents,
@@ -31,10 +32,53 @@ type BuildFrameInput = {
     partySeeds: HeroSeed[];
     totalMs: number;
     atMs: number;
+    previousAtMs?: number;
     cadenceSnapshot?: DungeonCadenceSnapshotEntry[];
     floatingAtMs?: number;
     overrideTargetEnemyId?: string | null;
     overrideStatusLabel?: string | null;
+    previousUnitsById?: Map<string, DungeonArenaFrame["units"][number]>;
+};
+
+type MovementCacheEntry = {
+    atMs: number;
+    unitsById: Map<string, DungeonArenaFrame["units"][number]>;
+};
+
+const LIVE_MOVEMENT_CACHE_LIMIT = 24;
+const LIVE_MOVEMENT_CACHE_MAX_DELTA_MS = 12_000;
+const liveMovementCache = new Map<string, MovementCacheEntry>();
+const replayMovementCache = new Map<string, MovementCacheEntry>();
+
+const toUnitsById = (units: DungeonArenaFrame["units"]) => new Map(units.map((unit) => [unit.id, { ...unit }]));
+
+const pruneMovementCache = (cache: Map<string, MovementCacheEntry>) => {
+    while (cache.size > LIVE_MOVEMENT_CACHE_LIMIT) {
+        const firstKey = cache.keys().next().value;
+        if (!firstKey) {
+            break;
+        }
+        cache.delete(firstKey);
+    }
+};
+
+const resolvePreviousMovementEntry = (
+    cache: Map<string, MovementCacheEntry>,
+    key: string,
+    atMs: number,
+    maxDeltaMs = 1_200
+) => {
+    const current = cache.get(key);
+    if (!current) {
+        return null;
+    }
+    if (!Number.isFinite(current.atMs) || atMs <= current.atMs) {
+        return null;
+    }
+    if (atMs - current.atMs > maxDeltaMs) {
+        return null;
+    }
+    return current;
 };
 
 const buildFrameFromEvents = ({
@@ -42,10 +86,12 @@ const buildFrameFromEvents = ({
     partySeeds,
     totalMs,
     atMs,
+    previousAtMs,
     cadenceSnapshot,
     floatingAtMs,
     overrideTargetEnemyId,
-    overrideStatusLabel
+    overrideStatusLabel,
+    previousUnitsById
 }: BuildFrameInput): DungeonArenaFrame => {
     const partyIds = new Set(partySeeds.map((seed) => seed.id));
     const scopedEvents = getReplayEventsUntil(events, atMs);
@@ -211,7 +257,7 @@ const buildFrameFromEvents = ({
         (cadenceSnapshot ?? []).map((entry) => [entry.playerId, entry])
     );
     const baseAttackMs = cadenceSnapshot?.[0]?.baseAttackMs ?? 700;
-    const units = toUnitPositionMap(toSortedEntities(states)).map((unit) => {
+    const anchoredUnits = toUnitPositionMap(toSortedEntities(states)).map((unit) => {
         const cadence = unit.isEnemy ? null : cadenceByPlayerId.get(unit.id) ?? null;
         const intervalMs = Math.max(
             1,
@@ -222,6 +268,16 @@ const buildFrameFromEvents = ({
         const sinceMs = Math.max(0, atMs - baselineAt);
         const attackCharge = intervalMs > 0 ? clamp(sinceMs / intervalMs, 0, 1) : 1;
         return { ...unit, attackCharge };
+    });
+    const units = applyCombatMovementChoreography({
+        units: anchoredUnits,
+        atMs,
+        floorStartAtMs,
+        previousAtMs,
+        targetEnemyId,
+        latestAttacks,
+        attackWindowMs: ATTACK_LUNGE_WINDOW_MS,
+        previousUnitsById
     });
     const boss = units.find((unit) => unit.id === bossId) ?? units.find((unit) => unit.isBoss);
     const floatingTime = Number.isFinite(floatingAtMs) ? Math.max(0, floatingAtMs ?? atMs) : atMs;
@@ -262,15 +318,24 @@ export const buildDungeonArenaLiveFrame = (
     // Preserve that overrun so renderer-only VFX can age out (similar to floating texts).
     const overrunCapMs = totalMs + DUNGEON_FLOAT_WINDOW_MS * 2;
     const boundedAtMs = clamp(atMs, 0, run.restartAt ? overrunCapMs : totalMs);
+    const cacheKey = `${run.id}:${run.startedAt}:${run.runIndex}`;
+    const previousMovementEntry = resolvePreviousMovementEntry(
+        liveMovementCache,
+        cacheKey,
+        boundedAtMs,
+        LIVE_MOVEMENT_CACHE_MAX_DELTA_MS
+    );
     const frame = buildFrameFromEvents({
         events: run.events,
         partySeeds,
         totalMs,
         atMs: boundedAtMs,
+        previousAtMs: previousMovementEntry?.atMs,
         cadenceSnapshot: run.cadenceSnapshot,
         floatingAtMs: floatingAtMs ?? atMs,
         overrideTargetEnemyId: run.targetEnemyId,
-        overrideStatusLabel: run.status
+        overrideStatusLabel: run.status,
+        previousUnitsById: previousMovementEntry?.unitsById
     });
 
     if (frame.units.length === 0) {
@@ -305,7 +370,16 @@ export const buildDungeonArenaLiveFrame = (
                 spawnOrder: partySeeds.length + index
             };
         });
-        frame.units = toUnitPositionMap(toSortedEntities(fallbackStates)).map((unit) => ({ ...unit, attackCharge: 0 }));
+        const fallbackAttackMap = new Map(frame.attackCues.map((cue) => [cue.sourceId, cue]));
+        frame.units = applyCombatMovementChoreography({
+            units: toUnitPositionMap(toSortedEntities(fallbackStates)).map((unit) => ({ ...unit, attackCharge: 0 })),
+            atMs: boundedAtMs,
+            floorStartAtMs: 0,
+            previousAtMs: previousMovementEntry?.atMs,
+            targetEnemyId: run.targetEnemyId,
+            latestAttacks: fallbackAttackMap,
+            attackWindowMs: ATTACK_LUNGE_WINDOW_MS
+        });
     }
 
     if (boundedAtMs >= run.elapsedMs) {
@@ -339,6 +413,11 @@ export const buildDungeonArenaLiveFrame = (
         frame.bossPhaseLabel = getBossPhaseLabel(bossUnit);
     }
 
+    liveMovementCache.set(cacheKey, {
+        atMs: boundedAtMs,
+        unitsById: toUnitsById(frame.units)
+    });
+    pruneMovementCache(liveMovementCache);
     return frame;
 };
 
@@ -353,14 +432,25 @@ export const buildDungeonArenaReplayFrame = (
         return createHeroSeed(playerId, player, snapshot?.name, player?.hpMax, snapshot?.equipment);
     });
     const totalMs = Math.max(replay.elapsedMs, replay.events.at(-1)?.atMs ?? 0);
-    return buildFrameFromEvents({
+    const boundedAtMs = clamp(atMs, 0, totalMs);
+    const cacheKey = `${replay.runId}:${replay.startedAt}:${replay.runIndex}`;
+    const previousMovementEntry = resolvePreviousMovementEntry(replayMovementCache, cacheKey, boundedAtMs);
+    const frame = buildFrameFromEvents({
         events: replay.events,
         partySeeds,
         totalMs,
-        atMs: clamp(atMs, 0, totalMs),
+        atMs: boundedAtMs,
+        previousAtMs: previousMovementEntry?.atMs,
         cadenceSnapshot: replay.cadenceSnapshot,
-        overrideStatusLabel: replay.status
+        overrideStatusLabel: replay.status,
+        previousUnitsById: previousMovementEntry?.unitsById
     });
+    replayMovementCache.set(cacheKey, {
+        atMs: boundedAtMs,
+        unitsById: toUnitsById(frame.units)
+    });
+    pruneMovementCache(replayMovementCache);
+    return frame;
 };
 
 export const getDungeonReplayJumpMarks = (replay: DungeonReplayState | null): DungeonReplayJumpMarks => {
