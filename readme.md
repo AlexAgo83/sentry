@@ -2,7 +2,12 @@
 
 Sentry is a TypeScript + React idle RPG focused on roster progression, dungeon runs, and offline continuity.
 
-[![CI](https://github.com/AlexAgo83/Sentry/actions/workflows/ci.yml/badge.svg)](https://github.com/AlexAgo83/Sentry/actions/workflows/ci.yml) [![License](https://img.shields.io/github/license/AlexAgo83/Sentry)](LICENSE)
+[![CI](https://github.com/AlexAgo83/Sentry/actions/workflows/ci.yml/badge.svg)](https://github.com/AlexAgo83/Sentry/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/AlexAgo83/Sentry)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/live%20demo-Render-46E3B7?logo=render&logoColor=white)](https://sentry-idle.onrender.com/)
+![Version](https://img.shields.io/badge/version-v0.9.38-4C8BF5)
+![Vite](https://img.shields.io/badge/Vite-7.3.1-646CFF?logo=vite&logoColor=white)
+![React](https://img.shields.io/badge/React-19.1.0-61DAFB?logo=react&logoColor=black)
 
 ## Overview
 
@@ -15,6 +20,9 @@ Sentry includes:
 - Cloud save sync (auth, conflict view, profile username).
 - Leaderboard (virtual score) and changelog feed (GitHub commits).
 - PWA support with service worker caching and update prompt.
+
+<img width="1004" height="818" alt="image" src="https://github.com/user-attachments/assets/5d21dfb8-63fe-41ec-af9f-bcb33f87e61a" />
+<img width="371" height="665" alt="image" src="https://github.com/user-attachments/assets/6c47e374-5c2e-4490-bd64-d4d6c0e8bdca" />
 
 ## Key Systems
 
