@@ -89,6 +89,30 @@ describe("GameRuntime", () => {
         console.info("[runtime.test] startup offline catch-up - end");
     });
 
+    it("runs non-blocking startup bootstrap with progress and completes ready", async () => {
+        const initial = createInitialGameState("0.4.0");
+        const save = toGameSave(initial);
+        save.lastTick = 1000;
+        const store = createGameStore(initial);
+        const persistence = buildPersistence(save);
+        const runtime = new GameRuntime(store, persistence, "0.4.0");
+        runtimes.push(runtime);
+        vi.spyOn(Date, "now").mockReturnValue(10000);
+
+        runtime.start({ nonBlockingStartup: true });
+
+        expect(store.getState().startupBootstrap.progressPct).toBeGreaterThan(0);
+        expect(store.getState().startupBootstrap.isRunning).toBe(true);
+
+        await vi.waitFor(() => {
+            expect(store.getState().startupBootstrap.stage).toBe("ready");
+        });
+
+        expect(store.getState().startupBootstrap.progressPct).toBe(100);
+        expect(store.getState().startupBootstrap.isRunning).toBe(false);
+        expect(store.getState().offlineSummary).not.toBeNull();
+    });
+
     it("skips startup recap when away duration is too short", () => {
         const initial = createInitialGameState("0.4.0");
         const save = toGameSave(initial);

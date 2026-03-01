@@ -1,8 +1,8 @@
 ## item_190_req057_define_startup_bootstrap_stage_and_progress_contract - req057 define startup bootstrap stage and progress contract
 > From version: 0.9.38
-> Understanding: 95%
-> Confidence: 91%
-> Progress: 0%
+> Understanding: 98%
+> Confidence: 95%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Architecture / Startup
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -38,3 +38,7 @@ Startup currently has no typed stage/progress contract. UI can only infer readin
   - `src/core/state.ts`
   - `src/core/reducer.ts`
   - `src/app/AppContainer.tsx`
+- Delivered:
+  - Added typed startup bootstrap contract (`StartupBootstrapStage`, `StartupBootstrapState`) in `src/core/types.ts`.
+  - Added idle/ready bootstrap state factories and wired state defaults/hydration in `src/core/state.ts`.
+  - Added reducer action `setStartupBootstrap` and hydrate preservation semantics while bootstrap is running.

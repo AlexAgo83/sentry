@@ -1,6 +1,7 @@
 import { applyTick } from "./loop";
 import {
     createActionProgress,
+    createIdleStartupBootstrapState,
     createPlayerState,
     getNextPlayerId,
     hydrateGameState,
@@ -71,6 +72,7 @@ const formatDungeonEndReason = (reason: string | null | undefined) => {
 
 export type GameAction =
     | { type: "hydrate"; save: GameSave | null; version: string }
+    | { type: "setStartupBootstrap"; bootstrap: Partial<GameState["startupBootstrap"]>; replace?: boolean }
     | { type: "tick"; deltaMs: number; timestamp: number }
     | { type: "setHiddenAt"; hiddenAt: number | null }
     | { type: "setPerf"; perf: Partial<PerformanceState> }
@@ -105,8 +107,32 @@ export type GameAction =
 
 export const gameReducer = (state: GameState, action: GameAction): GameState => {
     switch (action.type) {
-        case "hydrate":
-            return hydrateGameState(action.version, action.save);
+        case "hydrate": {
+            const hydrated = hydrateGameState(action.version, action.save);
+            if (!state.startupBootstrap.isRunning) {
+                return hydrated;
+            }
+            return {
+                ...hydrated,
+                startupBootstrap: state.startupBootstrap
+            };
+        }
+        case "setStartupBootstrap": {
+            const base = action.replace
+                ? createIdleStartupBootstrapState()
+                : state.startupBootstrap;
+            const merged = {
+                ...base,
+                ...action.bootstrap
+            };
+            return {
+                ...state,
+                startupBootstrap: {
+                    ...merged,
+                    progressPct: Math.max(0, Math.min(100, Number(merged.progressPct) || 0))
+                }
+            };
+        }
         case "uiInventoryBadgesSet": {
             return {
                 ...state,

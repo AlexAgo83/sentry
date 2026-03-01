@@ -1,8 +1,8 @@
 ## item_193_req057_add_startup_responsiveness_regression_coverage_and_perf_guardrails - req057 add startup responsiveness regression coverage and perf guardrails
 > From version: 0.9.38
-> Understanding: 93%
-> Confidence: 90%
-> Progress: 0%
+> Understanding: 97%
+> Confidence: 93%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Quality / Performance
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -41,3 +41,7 @@ Without dedicated startup responsiveness tests and guardrails, future changes ca
   - `tests/app/startupSplashScreen.test.tsx`
   - `tests/app/App.test.tsx`
   - `tests/app/offlineRecapModal.test.tsx`
+- Delivered:
+  - Added runtime regression ensuring non-blocking startup bootstrap progresses and finishes in `ready` state.
+  - Added startup splash regression asserting progress/stage/detail rendering.
+  - Full validation battery passed (`lint`, `typecheck`, `typecheck:tests`, `test:ci`, `build`).

@@ -16,4 +16,20 @@ describe("StartupSplashScreen", () => {
         const dialog = screen.getByRole("dialog", { name: "Loading" });
         expect(document.activeElement).toBe(dialog);
     });
+
+    it("renders progress metadata while loading", () => {
+        render(
+            <StartupSplashScreen
+                isReady={false}
+                progressPct={42}
+                stageLabel="Simulating offline progression"
+                detail="Processing tick 12 / 100"
+                onContinue={vi.fn()}
+            />
+        );
+
+        expect(screen.getByRole("progressbar", { name: "Startup progress" })).toBeTruthy();
+        expect(screen.getByText("42% - Simulating offline progression")).toBeTruthy();
+        expect(screen.getByText("Processing tick 12 / 100")).toBeTruthy();
+    });
 });

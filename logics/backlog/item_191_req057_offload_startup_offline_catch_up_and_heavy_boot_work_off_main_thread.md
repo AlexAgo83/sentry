@@ -1,8 +1,8 @@
 ## item_191_req057_offload_startup_offline_catch_up_and_heavy_boot_work_off_main_thread - req057 offload startup offline catch-up and heavy boot work off main thread
 > From version: 0.9.38
-> Understanding: 94%
-> Confidence: 90%
-> Progress: 0%
+> Understanding: 98%
+> Confidence: 94%
+> Progress: 100%
 > Complexity: High
 > Theme: Runtime / Performance
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -40,3 +40,8 @@ Startup offline catch-up currently runs synchronously and can block the main thr
   - `src/core/runtime/offlineCatchUp.ts`
   - `src/app/hooks/useGameRuntimeLifecycle.ts`
   - `tests/core/runtime.test.ts`
+- Delivered:
+  - Added startup non-blocking mode via `gameRuntime.start({ nonBlockingStartup: true })`.
+  - Implemented chunked startup offline catch-up loop with yielding to the main thread (`setTimeout(0)`), bounded by chunk budget and max ticks per chunk.
+  - Preserved deterministic tick stepping and recap semantics while publishing incremental startup progress.
+  - Added regression coverage for non-blocking bootstrap completion in `tests/core/runtime.test.ts`.

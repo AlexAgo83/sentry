@@ -3,9 +3,8 @@ import { gameRuntime } from "../game";
 
 export const useGameRuntimeLifecycle = (refreshLoadReport: () => void) => {
     useEffect(() => {
-        gameRuntime.start();
+        gameRuntime.start({ nonBlockingStartup: true });
         refreshLoadReport();
         return () => gameRuntime.stop();
     }, [refreshLoadReport]);
 };
-

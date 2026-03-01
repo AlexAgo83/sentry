@@ -311,9 +311,32 @@ export interface ActionJournalEntry {
     label: string;
 }
 
+export type StartupBootstrapStage =
+    | "idle"
+    | "loadSave"
+    | "hydrateState"
+    | "offlineCatchUp"
+    | "assetWarmup"
+    | "finalizeReady"
+    | "ready"
+    | "error";
+
+export interface StartupBootstrapState {
+    stage: StartupBootstrapStage;
+    stageLabel: string;
+    progressPct: number;
+    isRunning: boolean;
+    detail: string | null;
+    processedTicks: number;
+    totalTicks: number;
+    processedMs: number;
+    totalMs: number;
+}
+
 export interface GameState {
     version: string;
     appReady: boolean;
+    startupBootstrap: StartupBootstrapState;
     actionJournal: ActionJournalEntry[];
     lastNonDungeonActionByPlayer: LastNonDungeonActionByPlayer;
     players: Record<PlayerId, PlayerState>;

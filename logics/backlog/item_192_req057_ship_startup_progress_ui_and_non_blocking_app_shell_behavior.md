@@ -1,8 +1,8 @@
 ## item_192_req057_ship_startup_progress_ui_and_non_blocking_app_shell_behavior - req057 ship startup progress UI and non-blocking app shell behavior
 > From version: 0.9.38
-> Understanding: 95%
-> Confidence: 91%
-> Progress: 0%
+> Understanding: 98%
+> Confidence: 95%
+> Progress: 100%
 > Complexity: Medium
 > Theme: UI / UX
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -43,3 +43,7 @@ The startup splash currently shows a static status and disabled continue control
   - `src/app/styles/startup.css`
   - `tests/app/startupSplashScreen.test.tsx`
   - `tests/app/App.test.tsx`
+- Delivered:
+  - Startup splash now shows progress bar + percent + stage label + detail while loading.
+  - App readiness gating now uses `appReady && !startupBootstrap.isRunning`.
+  - Added startup progress rendering regression test in `tests/app/startupSplashScreen.test.tsx`.

@@ -35,6 +35,7 @@ export const AppContainer = () => {
 
     const version = useGameStore((state) => state.version);
     const appReady = useGameStore((state) => state.appReady);
+    const startupBootstrap = useGameStore((state) => state.startupBootstrap);
     const offlineSummary = useGameStore((state) => state.offlineSummary);
     const inventoryItems = useGameStore((state) => state.inventory.items);
     const playerCount = useGameStore((state) => Object.keys(state.players).length);
@@ -80,8 +81,10 @@ export const AppContainer = () => {
     const cloudLoginPromptShownThisSessionRef = useRef(false);
     const isOnboardingOpen = dungeonOnboardingRequired && playerCount < 4;
 
+    const isStartupReady = appReady && !startupBootstrap.isRunning;
+
     useEffect(() => {
-        if (!appReady || hasContinued) {
+        if (!isStartupReady || hasContinued) {
             return;
         }
         const autoContinueDelayMs = (import.meta.env.MODE === "test" || import.meta.env.VITE_E2E)
@@ -95,7 +98,7 @@ export const AppContainer = () => {
             setHasContinued(true);
         }, autoContinueDelayMs);
         return () => window.clearTimeout(timeoutId);
-    }, [appReady, hasContinued]);
+    }, [hasContinued, isStartupReady]);
 
     useEffect(() => {
         if (import.meta.env.DEV || import.meta.env.MODE === "test" || import.meta.env.VITE_E2E) {
@@ -382,7 +385,10 @@ export const AppContainer = () => {
             <EnsureSelectedRecipeEffect />
             {!hasContinued ? (
                 <StartupSplashScreen
-                    isReady={appReady}
+                    isReady={isStartupReady}
+                    stageLabel={startupBootstrap.stageLabel}
+                    progressPct={startupBootstrap.progressPct}
+                    detail={startupBootstrap.detail}
                     onContinue={() => setHasContinued(true)}
                 />
             ) : null}

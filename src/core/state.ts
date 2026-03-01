@@ -15,7 +15,8 @@ import {
     QuestProgressState,
     RecipeState,
     SkillId,
-    SkillState
+    SkillState,
+    StartupBootstrapState
 } from "./types";
 import {
     DEFAULT_GOLD,
@@ -48,6 +49,30 @@ export const createActionProgress = (): ActionProgressState => ({
     currentInterval: 0,
     progressPercent: 0,
     lastExecutionTime: null
+});
+
+export const createIdleStartupBootstrapState = (): StartupBootstrapState => ({
+    stage: "idle",
+    stageLabel: "Idle",
+    progressPct: 0,
+    isRunning: false,
+    detail: null,
+    processedTicks: 0,
+    totalTicks: 0,
+    processedMs: 0,
+    totalMs: 0
+});
+
+export const createReadyStartupBootstrapState = (): StartupBootstrapState => ({
+    stage: "ready",
+    stageLabel: "Ready",
+    progressPct: 100,
+    isRunning: false,
+    detail: null,
+    processedTicks: 0,
+    totalTicks: 0,
+    processedMs: 0,
+    totalMs: 0
 });
 
 const normalizeBoolean = (value: unknown, fallback: boolean): boolean => {
@@ -326,6 +351,7 @@ export const createInitialGameState = (version: string, options: InitialGameStat
     return {
         version,
         appReady: false,
+        startupBootstrap: createIdleStartupBootstrapState(),
         actionJournal: [],
         lastNonDungeonActionByPlayer: {},
         players: player ? { [playerId]: player } : {},
@@ -550,6 +576,7 @@ export const hydrateGameState = (version: string, save?: GameSave | null): GameS
         return {
             ...baseState,
             appReady: true,
+            startupBootstrap: createReadyStartupBootstrapState(),
             actionJournal: []
         };
     }
@@ -615,6 +642,7 @@ export const hydrateGameState = (version: string, save?: GameSave | null): GameS
         lastTickSummary: null,
         dungeon,
         appReady: true,
+        startupBootstrap: createReadyStartupBootstrapState(),
         actionJournal: normalizeActionJournal(save.actionJournal)
     };
 };
