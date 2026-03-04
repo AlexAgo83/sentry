@@ -20,10 +20,21 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+      - name: Logics doc lint (require status)
+        run: python3 logics/skills/logics-doc-linter/scripts/logics_lint.py --require-status
+      - name: Logics flow sync (close eligible requests)
+        run: python3 logics/skills/logics-flow-manager/scripts/logics_flow.py sync close-eligible-requests
+      - name: Ensure no request drift after sync
+        run: git diff --exit-code -- logics/request
+      - name: Workflow audit (group by doc, blocking)
+        run: python3 logics/skills/logics-flow-manager/scripts/workflow_audit.py --legacy-cutoff-version 1.1.0 --group-by-doc
+      - name: Workflow audit (json, non blocking)
+        continue-on-error: true
+        run: python3 logics/skills/logics-flow-manager/scripts/workflow_audit.py --format json
+      - name: Logics kit Python tests
+        run: python3 -m unittest discover -s logics/skills/tests -p "test_*.py" -v
       - name: Lint
         run: npm run lint
-      - name: Logics doc lint
-        run: python3 logics/skills/logics-doc-linter/scripts/logics_lint.py
       - name: Typecheck
         run: npm run typecheck
       - name: Typecheck (tests)
