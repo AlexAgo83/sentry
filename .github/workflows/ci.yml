@@ -13,6 +13,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
+          fetch-depth: 0
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
@@ -22,13 +23,31 @@ jobs:
         run: npm ci
       - name: Detect Logics doc changes
         id: logics_docs
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PUSH_BEFORE_SHA: ${{ github.event.before }}
+          PUSH_AFTER_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
-          if git rev-parse --verify HEAD^ >/dev/null 2>&1; then
-            changed="$(git diff --name-only HEAD^ HEAD -- logics/request logics/backlog logics/tasks)"
+
+          if [ "$EVENT_NAME" = "pull_request" ] && [ -n "${PR_BASE_SHA:-}" ] && [ -n "${PR_HEAD_SHA:-}" ]; then
+            range="${PR_BASE_SHA}...${PR_HEAD_SHA}"
+          elif [ -n "${PUSH_BEFORE_SHA:-}" ] && [ "$PUSH_BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
+            range="${PUSH_BEFORE_SHA}...${PUSH_AFTER_SHA}"
+          else
+            range=""
+          fi
+
+          if [ -n "$range" ]; then
+            changed="$(git diff --name-only "$range" -- logics/request logics/backlog logics/tasks)"
+            echo "Git range: $range"
           else
             changed="$(git ls-files logics/request logics/backlog logics/tasks)"
+            echo "No comparable base SHA found; defaulting to existing Logics docs list."
           fi
+
           if [ -n "$changed" ]; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
             echo "$changed"
