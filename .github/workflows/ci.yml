@@ -20,15 +20,36 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
+      - name: Detect Logics doc changes
+        id: logics_docs
+        run: |
+          set -euo pipefail
+          if git rev-parse --verify HEAD^ >/dev/null 2>&1; then
+            changed="$(git diff --name-only HEAD^ HEAD -- logics/request logics/backlog logics/tasks)"
+          else
+            changed="$(git ls-files logics/request logics/backlog logics/tasks)"
+          fi
+          if [ -n "$changed" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "$changed"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No Logics workflow docs changed."
+          fi
       - name: Logics doc lint (require status)
+        if: steps.logics_docs.outputs.changed == 'true'
         run: python3 logics/skills/logics-doc-linter/scripts/logics_lint.py --require-status
       - name: Logics flow sync (close eligible requests)
+        if: steps.logics_docs.outputs.changed == 'true'
         run: python3 logics/skills/logics-flow-manager/scripts/logics_flow.py sync close-eligible-requests
       - name: Ensure no request drift after sync
+        if: steps.logics_docs.outputs.changed == 'true'
         run: git diff --exit-code -- logics/request
       - name: Workflow audit (group by doc, blocking)
+        if: steps.logics_docs.outputs.changed == 'true'
         run: python3 logics/skills/logics-flow-manager/scripts/workflow_audit.py --legacy-cutoff-version 1.1.0 --group-by-doc
       - name: Workflow audit (json, non blocking)
+        if: steps.logics_docs.outputs.changed == 'true'
         continue-on-error: true
         run: python3 logics/skills/logics-flow-manager/scripts/workflow_audit.py --format json
       - name: Logics kit Python tests
