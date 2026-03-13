@@ -21,6 +21,65 @@ Sentry includes:
 - Leaderboard (virtual score) and changelog feed (GitHub commits).
 - PWA support with service worker caching and update prompt.
 
+```mermaid
+flowchart TD
+    S[Sentry]
+    S --> R[Roster Progression]
+    S --> D[Dungeon]
+    S --> P[Persistence]
+    S --> O[Online Services]
+    S --> U[Platform UX]
+
+    R --> R1[Heroes]
+    R --> R2[Actions and Crafting]
+    R --> R3[Equipment and Inventory]
+    R --> R4[Economy and Quests]
+
+    D --> D1[Party Runs]
+    D --> D2[Live Arena Rendering]
+    D --> D3[Replay Controls]
+    D --> D4[Boss Phases]
+
+    P --> P1[Offline Catch-up]
+    P --> P2[Local Save Import Export Reset]
+    P --> P3[Save Migration and Recovery]
+
+    O --> O1[Cloud Save Sync]
+    O --> O2[Leaderboard]
+    O --> O3[Changelog Feed]
+    O --> O4[Profile Username]
+
+    U --> U1[PWA Caching]
+    U --> U2[Update Prompt]
+    U --> U3[System Modals and Telemetry]
+```
+
+```mermaid
+flowchart LR
+    A[Launch or Return] --> B[Load Save]
+    B --> C{Time Away?}
+    C -- No --> D[Resume Loop]
+    C -- Yes --> E[Replay Offline Ticks]
+    E --> F[Apply Action Progress]
+    E --> G[Apply Dungeon Progress]
+    E --> H[Aggregate Rewards and XP]
+    F --> I[Update State]
+    G --> I
+    H --> I
+    I --> J[Show Offline Recap]
+    J --> D
+    D --> K[Player Manages Roster and Build]
+    K --> L[Choose Action or Dungeon]
+    L --> M[Run Deterministic Ticks]
+    M --> N[Gain Items XP and Progress]
+    N --> O[Persist Local Save]
+    O --> P{Cloud Sync Enabled?}
+    P -- Yes --> Q[Sync Cloud Save]
+    P -- No --> R[Continue Playing]
+    Q --> R
+    R --> M
+```
+
 <img width="1004" height="818" alt="image" src="https://github.com/user-attachments/assets/5d21dfb8-63fe-41ec-af9f-bcb33f87e61a" />
 <img width="371" height="665" alt="image" src="https://github.com/user-attachments/assets/6c47e374-5c2e-4490-bd64-d4d6c0e8bdca" />
 

@@ -20,10 +20,13 @@ import { StartupSplashScreen } from "./components/StartupSplashScreen";
 import { startSilentBackendWarmup } from "./backendWarmup";
 import { resolveAutoDungeonOpenDecision } from "./autoDungeonOpen";
 import { useCloudSave } from "./hooks/useCloudSave";
+import { OFFLINE_SUMMARY_PREVIEW, shouldForceOfflineSummaryPreview } from "./offlineSummaryPreview";
 import {
     resolveActiveDungeonRunIdForPlayer,
     resolveRosterSelectionDungeonNavigation
 } from "./rosterSelectionNavigation";
+
+const DEV_FORCE_OFFLINE_SUMMARY_PREVIEW = shouldForceOfflineSummaryPreview(import.meta.env);
 
 export const AppContainer = () => {
     useRenderCount("AppContainer");
@@ -78,8 +81,14 @@ export const AppContainer = () => {
     const [isRosterDrawerOpen, setRosterDrawerOpen] = useState(false);
     const [hasContinued, setHasContinued] = useState(false);
     const [isCloudLoginPromptOpen, setCloudLoginPromptOpen] = useState(false);
+    const [isOfflineSummaryPreviewDismissed, setOfflineSummaryPreviewDismissed] = useState(false);
     const cloudLoginPromptShownThisSessionRef = useRef(false);
     const isOnboardingOpen = dungeonOnboardingRequired && playerCount < 4;
+    const effectiveOfflineSummary = offlineSummary ?? (
+        DEV_FORCE_OFFLINE_SUMMARY_PREVIEW && !isOfflineSummaryPreviewDismissed
+            ? OFFLINE_SUMMARY_PREVIEW
+            : null
+    );
 
     const isStartupReady = appReady && !startupBootstrap.isRunning;
 
@@ -207,7 +216,7 @@ export const AppContainer = () => {
     });
 
     useCloseOverlaysOnOfflineSummary({
-        offlineSummary,
+        offlineSummary: effectiveOfflineSummary,
         closeActionSelection,
         closeDungeonScreen,
         closeAllHeroNameModals,
@@ -304,6 +313,16 @@ export const AppContainer = () => {
         closeSafeMode,
     });
 
+    const handleCloseOfflineSummary = useCallback(() => {
+        if (offlineSummary) {
+            closeOfflineSummary();
+            return;
+        }
+        if (DEV_FORCE_OFFLINE_SUMMARY_PREVIEW) {
+            setOfflineSummaryPreviewDismissed(true);
+        }
+    }, [closeOfflineSummary, offlineSummary]);
+
     const isAnyModalOpen = Boolean(
         isSystemOpen
         || isDevToolsOpen
@@ -313,7 +332,7 @@ export const AppContainer = () => {
         || isOnboardingOpen
         || isRecruitOpen
         || isRenameOpen
-        || offlineSummary
+        || effectiveOfflineSummary
         || swUpdate
         || isSafeModeOpen
         || !hasContinued
@@ -327,7 +346,7 @@ export const AppContainer = () => {
         || isOnboardingOpen
         || isRecruitOpen
         || isRenameOpen
-        || offlineSummary
+        || effectiveOfflineSummary
         || swUpdate
         || isSafeModeOpen
         || !hasContinued
@@ -484,8 +503,8 @@ export const AppContainer = () => {
                 onboardingHeroName={onboardingHeroName}
                 onOnboardingHeroNameChange={setOnboardingHeroName}
                 onCreateOnboardingHero={handleCreateOnboardingHero}
-                onCloseOfflineSummary={closeOfflineSummary}
-                offlineSummary={offlineSummary}
+                onCloseOfflineSummary={handleCloseOfflineSummary}
+                offlineSummary={effectiveOfflineSummary}
                 swUpdate={swUpdate}
                 onReloadSwUpdate={reloadSwUpdate}
                 onCloseSwUpdate={closeSwUpdate}
