@@ -4,5 +4,6 @@ dist
 .env
 coverage
 test-results
+output/playwright
 scripts/db/dumps
 perf-trace-*.json
