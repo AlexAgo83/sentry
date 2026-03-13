@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { getDungeonDefinition } from "../../src/data/dungeons";
+import { getDungeonBossGoldReward } from "../../src/core/rewards";
 import { createInitialGameState, createPlayerState } from "../../src/core/state";
 import {
     applyDungeonTick,
@@ -9,6 +11,7 @@ import {
     getActiveDungeonRun,
     getActiveDungeonRunIds,
     getActiveDungeonRuns,
+    getFloorCombatXp,
     isPlayerAssignedToActiveDungeonRun
 } from "../../src/core/dungeon";
 import { gameReducer } from "../../src/core/reducer";
@@ -125,6 +128,32 @@ describe("dungeon flow", () => {
         partyIds.forEach((playerId) => {
             expect(result.state.players[playerId].skills.CombatMelee.xp).toBe(expectedTotalXp);
         });
+    });
+
+    it("makes higher-tier dungeon definitions pay out more combat xp and boss gold than starter dungeons", () => {
+        const tierOneDefinition = getDungeonDefinition("dungeon_ruines_humides");
+        const tierEightDefinition = getDungeonDefinition("dungeon_trone_braise");
+
+        expect(tierOneDefinition).toBeTruthy();
+        expect(tierEightDefinition).toBeTruthy();
+        if (!tierOneDefinition || !tierEightDefinition) {
+            return;
+        }
+
+        expect(
+            getFloorCombatXp(
+                tierEightDefinition.tier,
+                tierEightDefinition.floorCount,
+                tierEightDefinition.rewardProfile
+            )
+        ).toBeGreaterThan(
+            getFloorCombatXp(
+                tierOneDefinition.tier,
+                tierOneDefinition.floorCount,
+                tierOneDefinition.rewardProfile
+            )
+        );
+        expect(getDungeonBossGoldReward(tierEightDefinition)).toBeGreaterThan(getDungeonBossGoldReward(tierOneDefinition));
     });
 
     it("grants exactly one non-gold loot reward on victory and marks it as discovered", () => {

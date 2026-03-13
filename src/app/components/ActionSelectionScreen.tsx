@@ -39,6 +39,7 @@ type RecipeChoice = {
     ownedEntries: ItemEntry[];
     ownedLabel: string;
     ownedFullLabel: string;
+    rewardLabel: string;
 };
 
 type SkillChoice = {
@@ -301,6 +302,10 @@ export const ActionSelectionScreen = memo(({
                 const ownedFullLabel = ownedEntries.length > 0
                     ? formatItemListEntriesFull(ownedEntries)
                     : ownedLabel;
+                const rewardProfile = recipeDef.rewardProfile;
+                const rewardLabel = rewardProfile
+                    ? `Reward T${rewardProfile.tier} · Skill XP +${rewardProfile.skillXpBonus} · Recipe XP +${rewardProfile.recipeXpBonus}`
+                    : "Reward T1";
                 return {
                     recipeDef,
                     unlockLevel,
@@ -319,7 +324,8 @@ export const ActionSelectionScreen = memo(({
                     productionFullLabel,
                     ownedEntries,
                     ownedLabel,
-                    ownedFullLabel
+                    ownedFullLabel,
+                    rewardLabel
                 };
             });
     }, [inventoryItems, pendingSkill, pendingSkillId]);
@@ -375,6 +381,7 @@ export const ActionSelectionScreen = memo(({
                 ) : (
                     <div className="ts-choice-subtitle">{choice.recipeXpLabel} · Lv {choice.recipeLevel}/{choice.recipeMax}</div>
                 )}
+                <div className="ts-choice-subtitle">{choice.rewardLabel}</div>
                 <div className="ts-choice-details" aria-hidden="true">
                     <div className="ts-choice-detail-row">
                         <span className="ts-choice-detail-label">

@@ -249,6 +249,53 @@ describe("core loop", () => {
         expect(next.inventory.items.food ?? 0).toBe(state.inventory.items.food ?? 0);
     });
 
+    it("makes higher-tier recipes grant more progression than trivial roaming recipes", () => {
+        const createRoamingState = (recipeId: string) => {
+            const initial = createInitialGameState("0.9.39");
+            const playerId = initial.activePlayerId ?? "1";
+            let state: GameState = {
+                ...initial,
+                inventory: {
+                    ...initial.inventory,
+                    items: {
+                        ...initial.inventory.items,
+                        food: 3
+                    }
+                }
+            };
+            state.players[playerId].skills.Roaming.level = 30;
+            state = gameReducer(state, {
+                type: "selectAction",
+                playerId,
+                actionId: "Roaming"
+            });
+            return gameReducer(state, {
+                type: "selectRecipe",
+                playerId,
+                skillId: "Roaming",
+                recipeId
+            });
+        };
+
+        const lowTierState = createRoamingState("roaming_skirmish");
+        const highTierState = createRoamingState("roaming_heroic_siege");
+        const playerId = lowTierState.activePlayerId ?? "1";
+        const baseInterval = Math.ceil(
+            lowTierState.players[playerId].skills.Roaming.baseInterval * (1 - DEFAULT_STAT_BASE * STAT_PERCENT_PER_POINT)
+        );
+        const actionInterval = Math.max(MIN_ACTION_INTERVAL_MS, baseInterval);
+
+        const lowTierResult = applyTick(lowTierState, actionInterval, Date.now());
+        const highTierResult = applyTick(highTierState, actionInterval, Date.now());
+
+        expect(highTierResult.players[playerId].skills.Roaming.xp).toBeGreaterThan(
+            lowTierResult.players[playerId].skills.Roaming.xp
+        );
+        expect(highTierResult.players[playerId].skills.Roaming.recipes.roaming_heroic_siege.xp).toBeGreaterThan(
+            lowTierResult.players[playerId].skills.Roaming.recipes.roaming_skirmish.xp
+        );
+    });
+
     it("adds herbalism items to the global inventory", () => {
         const initial = createInitialGameState("0.4.0");
         const playerId = initial.activePlayerId ?? "1";

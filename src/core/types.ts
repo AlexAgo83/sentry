@@ -369,6 +369,7 @@ export interface RecipeDefinition {
     description?: string;
     media?: string;
     unlockLevel?: number;
+    rewardProfile?: RecipeRewardProfile;
     goldReward?: number;
     itemCosts?: ItemDelta;
     itemRewards?: ItemDelta;
@@ -388,6 +389,22 @@ export interface ActionDefinition {
     rareRewards?: ItemDelta;
 }
 
+export interface RecipeRewardProfile {
+    tier: number;
+    skillXpBonus: number;
+    recipeXpBonus: number;
+    trivialityStartOffset: number;
+    trivialityPenaltyStep: number;
+    trivialityPenaltyPerStep: number;
+    minTrivialityMultiplier: number;
+}
+
+export interface DungeonRewardProfile {
+    tier: number;
+    combatXpMultiplier: number;
+    bossGoldMultiplier: number;
+}
+
 export interface DungeonDefinition {
     id: DungeonId;
     name: string;
@@ -396,6 +413,7 @@ export interface DungeonDefinition {
     recommendedPower: number;
     bossName: string;
     bossMechanic: DungeonBossMechanicId;
+    rewardProfile?: DungeonRewardProfile;
     lootTable: DungeonLootTable;
 }
 

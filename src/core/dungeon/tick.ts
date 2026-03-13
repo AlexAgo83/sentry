@@ -3,6 +3,7 @@ import { getDungeonDefinition } from "../../data/dungeons";
 import { ITEM_DEFINITIONS } from "../../data/definitions/items";
 import { appendActionJournalEntry } from "../actionJournal";
 import { mergeDiscoveredItemIdsFromDelta } from "../inventory";
+import { getDungeonBossGoldReward } from "../rewards";
 import { hashStringToSeed } from "../rng";
 import type {
     CombatSkillId,
@@ -641,7 +642,7 @@ export const applyDungeonTick = (
             }
 
             if (!heroPhase.targetEnemy) {
-                const floorCombatXp = getFloorCombatXp(definition.tier, mutable.run.floor);
+                const floorCombatXp = getFloorCombatXp(definition.tier, mutable.run.floor, definition.rewardProfile);
                 const bossBonusCombatXp = mutable.run.floor >= mutable.run.floorCount ? floorCombatXp * 2 : 0;
                 mutable.players = grantCombatXpToParty(
                     mutable.players,
@@ -651,7 +652,7 @@ export const applyDungeonTick = (
                 );
 
                 if (mutable.run.floor >= mutable.run.floorCount) {
-                    const bossGold = Math.max(25, definition.tier * 75);
+                    const bossGold = getDungeonBossGoldReward(definition);
                     mutable.inventory.items.gold = normalizeInventoryCount(mutable.inventory.items.gold) + bossGold;
                     addItemDelta(itemDeltas, "gold", bossGold);
                     const completionIndex = mutable.completionCounts[mutable.run.dungeonId] ?? 0;

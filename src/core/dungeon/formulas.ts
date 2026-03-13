@@ -1,4 +1,4 @@
-import type { DungeonDefinition, WeaponType } from "../types";
+import type { DungeonDefinition, DungeonRewardProfile, WeaponType } from "../types";
 import {
     ARMOR_DAMAGE_REDUCTION_MAX,
     ARMOR_DAMAGE_REDUCTION_PER_POINT,
@@ -122,6 +122,10 @@ export const applySkillLevelUps = (xp: number, level: number, xpNext: number, ma
     };
 };
 
-export const getFloorCombatXp = (tier: number, floor: number) => {
-    return COMBAT_XP_BASE + (tier * COMBAT_XP_TIER_FACTOR) + floor;
+export const getFloorCombatXp = (tier: number, floor: number, rewardProfile?: DungeonRewardProfile) => {
+    const baseCombatXp = COMBAT_XP_BASE + (tier * COMBAT_XP_TIER_FACTOR) + floor;
+    if (!rewardProfile) {
+        return baseCombatXp;
+    }
+    return Math.max(1, Math.round(baseCombatXp * rewardProfile.combatXpMultiplier));
 };

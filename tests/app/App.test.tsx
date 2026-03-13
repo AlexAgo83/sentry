@@ -195,6 +195,40 @@ describe("App", () => {
         expect(startButton.disabled).toBe(true);
     });
 
+    it("surfaces higher-tier progression payoff in the action selection summary", async () => {
+        Object.defineProperty(window, "innerWidth", { value: 1200, writable: true });
+        const state = buildState({ food: 6 });
+        state.players["1"].skills.Roaming.level = 30;
+        testStore = createGameStore(state);
+        testRuntime = {
+            start: vi.fn(),
+            stop: vi.fn(),
+            simulateOffline: vi.fn(),
+            reset: vi.fn()
+        };
+
+        render(<App />);
+        const user = userEvent.setup();
+
+        await user.click(screen.getByRole("button", { name: "Change" }));
+        await user.click(screen.getByRole("button", { name: "Select skill" }));
+        const skillGroup = await screen.findByRole("radiogroup", { name: "Select skill" });
+        await user.click(within(skillGroup).getByRole("radio", { name: /Roaming/i }));
+        await waitFor(() => {
+            expect(screen.queryByRole("dialog")).toBeNull();
+        });
+
+        await user.click(screen.getByRole("button", { name: "Select recipe" }));
+        const recipeGroup = await screen.findByRole("radiogroup", { name: "Select recipe" });
+        await user.click(within(recipeGroup).getByRole("radio", { name: /Heroic Siege/i }));
+        await waitFor(() => {
+            expect(screen.queryByRole("dialog")).toBeNull();
+        });
+
+        expect(screen.getByText("T4 · Skill +3 / Recipe +5")).toBeTruthy();
+        expect(screen.getByText("Reward T4 · Skill XP +2 · Recipe XP +3")).toBeTruthy();
+    });
+
     it("shows a dungeon summary on the action screen when the active hero is in a dungeon", async () => {
         Object.defineProperty(window, "innerWidth", { value: 1200, writable: true });
         let state = buildState({ food: 20, rosterLimit: 4 });

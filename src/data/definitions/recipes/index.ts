@@ -1,3 +1,4 @@
+import { createRecipeRewardProfile } from "../../../core/rewards";
 import type { RecipeDefinition, RecipeId, SkillId } from "../../../core/types";
 
 const [
@@ -28,22 +29,27 @@ const [
     import("./tailoring")
 ]);
 
+const normalizeRecipeDefinition = (recipe: RecipeDefinition): RecipeDefinition => ({
+    ...recipe,
+    rewardProfile: recipe.rewardProfile ?? createRecipeRewardProfile(recipe.unlockLevel ?? 1)
+});
+
 const RECIPES_BY_SKILL: Record<SkillId, RecipeDefinition[]> = {
     CombatMelee: [],
     CombatRanged: [],
     CombatMagic: [],
-    Roaming: roamingRecipes,
-    Hunting: huntingRecipes,
-    Cooking: cookingRecipes,
-    Excavation: excavationRecipes,
-    MetalWork: metalworkRecipes,
-    Alchemy: alchemyRecipes,
-    Herbalism: herbalismRecipes,
-    Tailoring: tailoringRecipes,
-    Fishing: fishingRecipes,
-    Carpentry: carpentryRecipes,
-    Leatherworking: leatherworkingRecipes,
-    Invocation: invocationRecipes
+    Roaming: roamingRecipes.map(normalizeRecipeDefinition),
+    Hunting: huntingRecipes.map(normalizeRecipeDefinition),
+    Cooking: cookingRecipes.map(normalizeRecipeDefinition),
+    Excavation: excavationRecipes.map(normalizeRecipeDefinition),
+    MetalWork: metalworkRecipes.map(normalizeRecipeDefinition),
+    Alchemy: alchemyRecipes.map(normalizeRecipeDefinition),
+    Herbalism: herbalismRecipes.map(normalizeRecipeDefinition),
+    Tailoring: tailoringRecipes.map(normalizeRecipeDefinition),
+    Fishing: fishingRecipes.map(normalizeRecipeDefinition),
+    Carpentry: carpentryRecipes.map(normalizeRecipeDefinition),
+    Leatherworking: leatherworkingRecipes.map(normalizeRecipeDefinition),
+    Invocation: invocationRecipes.map(normalizeRecipeDefinition)
 };
 
 const RECIPE_DEFINITIONS = Object.values(RECIPES_BY_SKILL).flat();

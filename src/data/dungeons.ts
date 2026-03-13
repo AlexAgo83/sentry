@@ -1,3 +1,4 @@
+import { createDungeonRewardProfile } from "../core/rewards";
 import { validateDungeonDefinitionsLootTables } from "../core/dungeon/loot";
 import type { DungeonDefinition, DungeonId, ItemId } from "../core/types";
 import { ITEM_DEFINITIONS } from "./definitions/items";
@@ -28,6 +29,7 @@ export const DUNGEON_DEFINITIONS: DungeonDefinition[] = [
         recommendedPower: 1,
         bossName: "Fenwatch Brute",
         bossMechanic: "burst",
+        rewardProfile: createDungeonRewardProfile(1),
         lootTable: createDungeonLootTable(
             "traveler_cape",
             "simple_boots",
@@ -44,6 +46,7 @@ export const DUNGEON_DEFINITIONS: DungeonDefinition[] = [
         recommendedPower: 5,
         bossName: "Bone Warden",
         bossMechanic: "poison",
+        rewardProfile: createDungeonRewardProfile(2),
         lootTable: createDungeonLootTable(
             "hide_hood",
             "linen_tunic",
@@ -60,6 +63,7 @@ export const DUNGEON_DEFINITIONS: DungeonDefinition[] = [
         recommendedPower: 10,
         bossName: "Ash Forgemaster",
         bossMechanic: "shield",
+        rewardProfile: createDungeonRewardProfile(3),
         lootTable: createDungeonLootTable(
             "iron_helm",
             "iron_greaves",
@@ -76,6 +80,7 @@ export const DUNGEON_DEFINITIONS: DungeonDefinition[] = [
         recommendedPower: 15,
         bossName: "Night Herald",
         bossMechanic: "summon",
+        rewardProfile: createDungeonRewardProfile(4),
         lootTable: createDungeonLootTable(
             "iron_cuirass",
             "iron_boots",
@@ -92,6 +97,7 @@ export const DUNGEON_DEFINITIONS: DungeonDefinition[] = [
         recommendedPower: 20,
         bossName: "Crimson Warden",
         bossMechanic: "enrage",
+        rewardProfile: createDungeonRewardProfile(5),
         lootTable: createDungeonLootTable(
             "forged_gauntlets",
             "hardened_jerkin",
@@ -108,6 +114,7 @@ export const DUNGEON_DEFINITIONS: DungeonDefinition[] = [
         recommendedPower: 25,
         bossName: "Cinder Sovereign",
         bossMechanic: "burst",
+        rewardProfile: createDungeonRewardProfile(6),
         lootTable: createDungeonLootTable(
             "rusty_blade_refined",
             "simple_bow_refined",
@@ -124,6 +131,7 @@ export const DUNGEON_DEFINITIONS: DungeonDefinition[] = [
         recommendedPower: 30,
         bossName: "Abyssal Reaper",
         bossMechanic: "poison",
+        rewardProfile: createDungeonRewardProfile(7),
         lootTable: createDungeonLootTable(
             "rusty_blade_masterwork",
             "simple_bow_masterwork",
@@ -140,6 +148,7 @@ export const DUNGEON_DEFINITIONS: DungeonDefinition[] = [
         recommendedPower: 35,
         bossName: "Ashen Monarch",
         bossMechanic: "shield",
+        rewardProfile: createDungeonRewardProfile(8),
         lootTable: createDungeonLootTable(
             "apprentice_staff_refined",
             "iron_cuirass",
@@ -156,6 +165,7 @@ export const DUNGEON_DEFINITIONS: DungeonDefinition[] = [
         recommendedPower: 40,
         bossName: "Umbral Choir",
         bossMechanic: "summon",
+        rewardProfile: createDungeonRewardProfile(9),
         lootTable: createDungeonLootTable(
             "apprentice_staff_masterwork",
             "forged_gauntlets",
@@ -172,6 +182,7 @@ export const DUNGEON_DEFINITIONS: DungeonDefinition[] = [
         recommendedPower: 45,
         bossName: "Glacier Tyrant",
         bossMechanic: "enrage",
+        rewardProfile: createDungeonRewardProfile(10),
         lootTable: createDungeonLootTable(
             "apprentice_staff_masterwork",
             "iron_boots",

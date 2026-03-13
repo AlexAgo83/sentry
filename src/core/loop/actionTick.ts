@@ -10,6 +10,7 @@ import {
     XP_NEXT_MULTIPLIER
 } from "../constants";
 import { mergeDiscoveredItemIdsFromDelta } from "../inventory";
+import { getActionProgressionGains } from "../rewards";
 import { hashStringToSeed, seededRandom } from "../rng";
 import { createActionProgress } from "../state";
 import { resolveEffectiveStats } from "../stats";
@@ -214,6 +215,7 @@ export const applyActionTick = (
     let nextInventory = inventory;
     const itemDeltas: ItemDelta = {};
     let completedCount = 0;
+    let totalXpGained = 0;
     let shouldStop = false;
 
     const rareSeed = hashStringToSeed(`${player.id}-${timestamp}-${actionDef.skillId}-${recipe.id}`);
@@ -239,10 +241,17 @@ export const applyActionTick = (
                 nextInventory = applyItemDelta(nextInventory, rareRewards, 1, itemDeltas);
             }
             stamina -= staminaCost;
-            nextSkill = { ...nextSkill, xp: nextSkill.xp + actionDef.xpSkill * xpMultiplier };
-            nextRecipe = { ...nextRecipe, xp: nextRecipe.xp + actionDef.xpRecipe * xpMultiplier };
+            const progressionGains = getActionProgressionGains({
+                actionDef,
+                recipeDef,
+                skillLevel: nextSkill.level,
+                xpMultiplier
+            });
+            nextSkill = { ...nextSkill, xp: nextSkill.xp + progressionGains.skillXp };
+            nextRecipe = { ...nextRecipe, xp: nextRecipe.xp + progressionGains.recipeXp };
             nextSkill = applyLevelUps(nextSkill);
             nextRecipe = applyLevelUps(nextRecipe);
+            totalXpGained += progressionGains.totalXp;
             completedCount += 1;
         }
 
@@ -292,10 +301,8 @@ export const applyActionTick = (
         }
     };
 
-    const xpPerAction = (actionDef.xpSkill + actionDef.xpRecipe) * xpMultiplier;
-    const xpGained = completedCount * xpPerAction;
     const activeResultBase = {
-        xpGained,
+        xpGained: totalXpGained,
         activeMs: deltaMs,
         idleMs: 0,
         skillId: actionDef.skillId

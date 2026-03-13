@@ -2,7 +2,7 @@
 > From version: 0.9.38
 > Understanding: 96%
 > Confidence: 93%
-> Progress: 0%
+> Progress: 100%
 > Complexity: High
 > Theme: Balance / Progression / Architecture
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc.
@@ -37,20 +37,20 @@ This task restructures progression rewards so higher-tier recipes and dungeons p
 - Regression coverage locks intended ordering so the system does not drift back to flat rewards.
 
 # Plan
-- [ ] 1. Execute `item_204` (reward profile contracts):
+- [x] 1. Execute `item_204` (reward profile contracts):
   - Define recipe and dungeon reward profile metadata in core/data contracts.
   - Update definitions with the minimum metadata needed for scaling.
-- [ ] 2. Execute `item_205` (action/recipe progression scaling):
+- [x] 2. Execute `item_205` (action/recipe progression scaling):
   - Add centralized progression reward calculators for action loops.
   - Make higher-tier recipes yield better progression payoff on intended axes.
   - Add soft triviality handling if needed.
-- [ ] 3. Execute `item_206` (dungeon progression scaling):
+- [x] 3. Execute `item_206` (dungeon progression scaling):
   - Centralize dungeon reward formulas and make higher-tier dungeons pay off more clearly.
   - Keep deterministic live/offline/recap behavior.
-- [ ] 4. Execute `item_207` (UI cues + regression coverage):
+- [x] 4. Execute `item_207` (UI cues + regression coverage):
   - Surface lightweight reward-value cues in relevant UI.
   - Add progression-ordering tests and validation coverage.
-- [ ] FINAL: Update related Logics docs (request/backlog/task alignment)
+- [x] FINAL: Update related Logics docs (request/backlog/task alignment)
 
 # Validation
 Final gate (mandatory at task end):

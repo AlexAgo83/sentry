@@ -8,6 +8,7 @@ import {
     ITEM_DEFINITIONS
 } from "../../data/definitions";
 import { MIN_ACTION_INTERVAL_MS, STAT_PERCENT_PER_POINT } from "../../core/constants";
+import { getActionProgressionGains } from "../../core/rewards";
 import type { ActionDefinition, ActionId, SkillId, SkillState } from "../../core/types";
 import { computeEffectiveStats, createPlayerStatsState, resolveEffectiveStats } from "../../core/stats";
 import { getEquipmentModifiers } from "../../data/equipment";
@@ -102,18 +103,27 @@ export const ActionSelectionScreenContainer = ({
         return formatActionDuration(interval);
     }, [effectiveStats.Agility, formatActionDuration]);
 
-    const getActionXpLabel = useCallback((actionDef: ActionDefinition | null): string => {
-        if (!actionDef) {
+    const getActionXpLabel = useCallback((
+        actionDef: ActionDefinition | null,
+        recipeId: string,
+        skillLevel: number
+    ): string => {
+        if (!actionDef || !pendingSkillId || !recipeId) {
             return "None";
         }
         const intellect = effectiveStats.Intellect ?? 0;
         const xpMultiplier = INTELLECT_SKILLS.has(actionDef.skillId)
             ? 1 + intellect * STAT_PERCENT_PER_POINT
             : 1;
-        const skillXp = actionDef.xpSkill * xpMultiplier;
-        const recipeXp = actionDef.xpRecipe * xpMultiplier;
-        return `Skill +${formatXpGain(skillXp)} / Recipe +${formatXpGain(recipeXp)}`;
-    }, [effectiveStats.Intellect, formatXpGain]);
+        const recipeDef = getRecipeDefinition(pendingSkillId, recipeId);
+        const progressionGains = getActionProgressionGains({
+            actionDef,
+            recipeDef,
+            skillLevel,
+            xpMultiplier
+        });
+        return `T${progressionGains.rewardProfile.tier} · Skill +${formatXpGain(progressionGains.skillXp)} / Recipe +${formatXpGain(progressionGains.recipeXp)}`;
+    }, [effectiveStats.Intellect, formatXpGain, pendingSkillId]);
 
     useEffect(() => {
         const state = gameStore.getState();
@@ -274,7 +284,9 @@ export const ActionSelectionScreenContainer = ({
         ? (getActionDefinition(pendingSkillId) ?? null)
         : null;
     const pendingActionDurationLabel = getActionIntervalLabel(pendingSkill, pendingActionDef);
-    const pendingActionXpLabel = getActionXpLabel(pendingActionDef);
+    const pendingActionXpLabel = hasPendingSelection && pendingSkill
+        ? getActionXpLabel(pendingActionDef, pendingRecipeId, pendingSkill.level)
+        : "None";
     const speedBonusPercent = (effectiveStats.Agility ?? 0) * STAT_PERCENT_PER_POINT * 100;
     const pendingSpeedBonusLabel = hasPendingSelection && speedBonusPercent > 0
         ? `-${formatBonusPercent(speedBonusPercent)} time`

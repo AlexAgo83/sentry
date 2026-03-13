@@ -54,6 +54,9 @@ export const DungeonSetupView = ({
     const selectedDungeon = definitions.find((definition) => definition.id === selectedDungeonId) ?? null;
     const lootEntries = selectedDungeon?.lootTable.entries ?? [];
     const totalLootWeight = lootEntries.reduce((sum, entry) => sum + Math.max(0, entry.weight), 0);
+    const formatRewardMultiplier = (value: number | undefined) => (
+        Number.isFinite(value) ? `x${(value as number).toFixed(2)}` : "x1.00"
+    );
 
     return (
         <div className="ts-dungeon-setup-grid">
@@ -88,6 +91,13 @@ export const DungeonSetupView = ({
                                         </span>
                                     ) : null}
                                 </div>
+                                <span className="ts-dungeon-option-subtitle">
+                                    Reward T{definition.rewardProfile?.tier ?? definition.tier}
+                                    {" · "}
+                                    Combat XP {formatRewardMultiplier(definition.rewardProfile?.combatXpMultiplier)}
+                                    {" · "}
+                                    Boss gold {formatRewardMultiplier(definition.rewardProfile?.bossGoldMultiplier)}
+                                </span>
                                 {completionCount > 0 ? (
                                     <span className="ts-dungeon-completion-badge">x{completionCount}</span>
                                 ) : null}

@@ -1,8 +1,9 @@
 import { useCallback, useMemo } from "react";
 import type { CSSProperties } from "react";
-import { getActionDefinition, ITEM_DEFINITIONS } from "../../data/definitions";
+import { getActionDefinition, getRecipeDefinition, ITEM_DEFINITIONS } from "../../data/definitions";
 import { getCombatSkillIdForWeaponType, getEquippedWeaponType, getEquipmentModifiers } from "../../data/equipment";
 import { MIN_ACTION_INTERVAL_MS, RECIPE_MAX_LEVEL, SKILL_MAX_LEVEL, STAT_PERCENT_PER_POINT } from "../../core/constants";
+import { getActionProgressionGains } from "../../core/rewards";
 import { isPlayerAssignedToActiveDungeonRun } from "../../core/dungeon";
 import type { ActionDefinition, SkillId, SkillState } from "../../core/types";
 import { computeEffectiveStats, createPlayerStatsState, resolveEffectiveStats } from "../../core/stats";
@@ -113,18 +114,27 @@ export const ActionPanelContainer = ({
         return formatActionDuration(interval);
     }, [effectiveStats.Agility, formatActionDuration, isStunned]);
 
-    const getActionXpLabel = useCallback((actionDef: ActionDefinition | null): string => {
-        if (!actionDef) {
+    const getActionXpLabel = useCallback((
+        actionDef: ActionDefinition | null,
+        recipeId: string | null,
+        skillLevel: number
+    ): string => {
+        if (!actionDef || !activeSkillId || !recipeId) {
             return "None";
         }
         const intellect = effectiveStats.Intellect ?? 0;
         const xpMultiplier = INTELLECT_SKILLS.has(actionDef.skillId)
             ? 1 + intellect * STAT_PERCENT_PER_POINT
             : 1;
-        const skillXp = actionDef.xpSkill * xpMultiplier;
-        const recipeXp = actionDef.xpRecipe * xpMultiplier;
-        return `Skill +${formatXpGain(skillXp)} / Recipe +${formatXpGain(recipeXp)}`;
-    }, [effectiveStats.Intellect, formatXpGain]);
+        const recipeDef = getRecipeDefinition(activeSkillId as SkillId, recipeId);
+        const progressionGains = getActionProgressionGains({
+            actionDef,
+            recipeDef,
+            skillLevel,
+            xpMultiplier
+        });
+        return `T${progressionGains.rewardProfile.tier} · Skill +${formatXpGain(progressionGains.skillXp)} / Recipe +${formatXpGain(progressionGains.recipeXp)}`;
+    }, [activeSkillId, effectiveStats.Intellect, formatXpGain]);
 
     const activeRecipeLabel = hasActiveRecipeSelection && activeSkillId
         ? getRecipeLabel(activeSkillId as SkillId, activeRecipeId)
@@ -153,7 +163,9 @@ export const ActionPanelContainer = ({
     const resourceHint = hasActiveRecipeSelection ? null : "Select a recipe to see resource flow.";
     const activeActionDef = activeSkillId ? (getActionDefinition(activeSkillId as SkillId) ?? null) : null;
     const actionIntervalLabel = getActionIntervalLabel(activeSkill, activeActionDef, true);
-    const actionXpLabel = hasActiveRecipeSelection ? getActionXpLabel(activeActionDef) : "None";
+    const actionXpLabel = hasActiveRecipeSelection && activeSkill
+        ? getActionXpLabel(activeActionDef, activeRecipeId, activeSkill.level)
+        : "None";
     const speedBonusPercent = (effectiveStats.Agility ?? 0) * STAT_PERCENT_PER_POINT * 100;
     const actionSpeedBonusLabel = hasActiveRecipeSelection && speedBonusPercent > 0
         ? `-${formatBonusPercent(speedBonusPercent)} time`
