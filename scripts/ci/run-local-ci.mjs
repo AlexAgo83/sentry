@@ -71,6 +71,10 @@ const parsePathList = (output) => output
     .map((line) => line.trim())
     .filter(Boolean);
 
+const getCurrentBranch = () => process.env.GITHUB_REF_NAME
+    ?? getGitOutput(["rev-parse", "--abbrev-ref", "HEAD"])
+    ?? "";
+
 const listLogicsDocs = () => {
     const output = getGitOutput(["ls-files", "logics/request", "logics/backlog", "logics/tasks"]);
     return parsePathList(output);
@@ -167,6 +171,13 @@ const lintChangedLogicsStatuses = (paths) => {
 };
 
 const runLogicsGates = () => {
+    const eventName = process.env.EVENT_NAME ?? "";
+    const currentBranch = getCurrentBranch();
+    if (eventName === "push" && currentBranch === "release") {
+        log("\n[ci:local] Skipping strict Logics workflow gates on release promotion push.");
+        return;
+    }
+
     const changedLogicsDocs = detectChangedLogicsDocs();
     if (changedLogicsDocs.length === 0) {
         log("\n[ci:local] No Logics workflow docs changed.");
