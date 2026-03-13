@@ -1,8 +1,8 @@
 ## item_214_req063_add_regression_coverage_for_action_screen_dungeon_summary_and_fallbacks - req063 add regression coverage for the action-screen dungeon summary and fallbacks
-> From version: 0.9.38
+> From version: 0.9.39
 > Understanding: 97%
 > Confidence: 95%
-> Progress: 0%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Tests / UX reliability
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -41,3 +41,6 @@ This change depends on contextual UI substitution and derived dungeon state. Wit
   - `tests/app/panels.test.tsx`
   - `tests/app/*dungeon*.test.tsx`
   - `tests/app/selectors/*`
+- Implemented via:
+  - `tests/app/App.test.tsx`
+  - `tests/app/selectors/actionDungeonSummary.test.ts`

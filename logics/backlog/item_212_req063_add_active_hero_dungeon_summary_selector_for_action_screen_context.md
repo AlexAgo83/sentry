@@ -1,8 +1,8 @@
 ## item_212_req063_add_active_hero_dungeon_summary_selector_for_action_screen_context - req063 add an active-hero dungeon summary selector for action-screen context
-> From version: 0.9.38
+> From version: 0.9.39
 > Understanding: 97%
 > Confidence: 95%
-> Progress: 0%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Architecture / Selectors
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -40,3 +40,6 @@ The hero `ACTION` screen currently knows whether the active hero is in a dungeon
   - `src/core/dungeon/*`
   - `src/core/types.ts`
   - `src/data/dungeons.ts`
+- Implemented via:
+  - `src/app/selectors/actionDungeonSummary.ts`
+  - `tests/app/selectors/actionDungeonSummary.test.ts`

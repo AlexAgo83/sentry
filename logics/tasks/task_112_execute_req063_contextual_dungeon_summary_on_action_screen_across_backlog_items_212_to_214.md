@@ -1,8 +1,8 @@
 ## task_112_execute_req063_contextual_dungeon_summary_on_action_screen_across_backlog_items_212_to_214 - Execute req063 contextual dungeon summary on the action screen across backlog items 212 to 214
-> From version: 0.9.38
+> From version: 0.9.39
 > Understanding: 96%
 > Confidence: 94%
-> Progress: 0%
+> Progress: 100%
 > Complexity: Medium
 > Theme: UX / Dungeon / Action screen
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc.
@@ -37,16 +37,16 @@ This task fills the empty combat-mode area of the hero `ACTION` page by deriving
   - add focused tests for dungeon-mode rendering, ordinary action behavior, and fallback safety.
 
 # Plan
-- [ ] 1. Execute `item_212` (selector/view-model):
+- [x] 1. Execute `item_212` (selector/view-model):
   - Add the active-hero dungeon summary derivation layer.
   - Keep it safe against partial state and easy to consume from the action panel.
-- [ ] 2. Execute `item_213` (panel rendering):
+- [x] 2. Execute `item_213` (panel rendering):
   - Render the contextual dungeon summary in combat/dungeon mode.
   - Preserve normal action summary behavior for non-dungeon actions.
-- [ ] 3. Execute `item_214` (regression coverage):
+- [x] 3. Execute `item_214` (regression coverage):
   - Add app/selector tests covering dungeon summary rendering and fallbacks.
   - Validate that non-dungeon behavior is unchanged.
-- [ ] FINAL: Update related Logics docs (request/backlog/task alignment)
+- [x] FINAL: Update related Logics docs (request/backlog/task alignment)
 
 # Validation
 Final gate (mandatory at task end):
@@ -54,3 +54,5 @@ Final gate (mandatory at task end):
 - `npm run typecheck`
 - `npm run typecheck:tests`
 - `npm run test:ci`
+
+Validation completed successfully during implementation.

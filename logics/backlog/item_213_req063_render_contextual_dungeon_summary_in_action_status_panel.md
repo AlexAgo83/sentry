@@ -1,8 +1,8 @@
 ## item_213_req063_render_contextual_dungeon_summary_in_action_status_panel - req063 render a contextual dungeon summary in the action status panel
-> From version: 0.9.38
+> From version: 0.9.39
 > Understanding: 96%
 > Confidence: 94%
-> Progress: 0%
+> Progress: 100%
 > Complexity: Medium
 > Theme: UX / Action screen
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -43,3 +43,6 @@ In combat/dungeon mode, `ActionStatusPanel` hides the normal action summary beca
   - `src/app/components/ActionStatusPanel.tsx`
   - `src/app/styles/panels/action.css`
   - `src/app/styles/responsive.css`
+- Implemented via:
+  - `src/app/containers/ActionPanelContainer.tsx`
+  - `src/app/components/ActionStatusPanel.tsx`
