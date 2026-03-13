@@ -1,7 +1,8 @@
 ## req_024_weapon_rework_staff_bow_sword - Weapon rework (staff, bow, sword)
 > From version: 0.9.9
-> Understanding: 96%
-> Confidence: 93%
+> Understanding: 97%
+> Confidence: 94%
+> Status: Done
 
 # Needs
 - Apply the new modifiers primarily at the weapon category level (Melee/Ranged/Magic).

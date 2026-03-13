@@ -1,10 +1,11 @@
 ## req_040_settings_leaderboard_modal_and_cloud_username - Add leaderboard modal and editable cloud username
 > From version: 0.9.26
-> Understanding: 96%
-> Confidence: 93%
+> Understanding: 97%
+> Confidence: 94%
 > Complexity: Medium
 > Theme: Feature
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Add a `Leaderboard` button in `Settings`.

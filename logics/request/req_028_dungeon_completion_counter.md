@@ -1,7 +1,8 @@
 ## req_028_dungeon_completion_counter - Track and display dungeon completion count
 > From version: 0.9.9
-> Understanding: 92%
-> Confidence: 86%
+> Understanding: 93%
+> Confidence: 87%
+> Status: Done
 
 # Needs
 - Track how many times each dungeon has been completed.

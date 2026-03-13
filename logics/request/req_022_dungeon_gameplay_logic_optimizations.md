@@ -1,7 +1,8 @@
 ## req_022_dungeon_gameplay_logic_optimizations - Dungeon gameplay logic optimizations
 > From version: 0.9.8
-> Understanding: 97%
-> Confidence: 95%
+> Understanding: 98%
+> Confidence: 96%
+> Status: Done
 
 # Needs
 - Reduce CPU cost and memory growth in the dungeon combat loop, especially during offline catch-up.

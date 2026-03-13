@@ -1,7 +1,8 @@
 ## req_023_dungeon_threat_based_targeting - Dungeon threat-based targeting
 > From version: 0.9.8
-> Understanding: 97%
-> Confidence: 94%
+> Understanding: 98%
+> Confidence: 95%
+> Status: Done
 
 # Needs
 - Replace the current “lowest HP then first hero” targeting with a more natural, readable enemy targeting model.

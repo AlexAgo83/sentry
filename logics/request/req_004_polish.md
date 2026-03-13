@@ -1,7 +1,8 @@
 ## req_004_polish - Global polish
 > From version: 0.8.9
-> Understanding: 90%
-> Confidence: 80%
+> Understanding: 91%
+> Confidence: 81%
+> Status: Done
 
 # Needs
 A few good next moves in this repo (based on `logics/backlog/`):

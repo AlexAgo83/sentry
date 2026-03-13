@@ -1,10 +1,11 @@
 ## req_050_startup_login_prompt_when_backend_online_with_dismiss_option - Prompt login when backend is online, with user-dismissable option
 > From version: 0.9.31
-> Understanding: 94%
-> Confidence: 88%
+> Understanding: 95%
+> Confidence: 89%
 > Complexity: Medium
 > Theme: UX / Cloud
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - When the backend is reachable (online) and the user is **not logged in**, prompt the user with a modal suggesting to log in.
@@ -105,4 +106,3 @@
 
 # Backlog
 - Backlog items should be generated next (preference persistence, modal, routing wiring, tests).
-

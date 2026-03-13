@@ -1,10 +1,11 @@
 ## req_047_security_pwa_offline_ci_hardening_and_maintainability - Hardening security, PWA updates, offline runtime, CI determinism, and maintainability
 > From version: 0.9.31
-> Understanding: 96%
-> Confidence: 90%
+> Understanding: 97%
+> Confidence: 91%
 > Complexity: High
 > Theme: Security / Reliability / Refactor
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Reduce account-compromise risk in Cloud Save auth flows (token storage, CORS, auth middleware correctness).

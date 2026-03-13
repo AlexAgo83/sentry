@@ -1,7 +1,8 @@
 ## req_014_quests_screen - Quests screen with craft/skill milestones
 > From version: 0.8.17
-> Understanding: 90%
-> Confidence: 85%
+> Understanding: 91%
+> Confidence: 86%
+> Status: Done
 
 # Needs
 - Add a **Quests** screen.

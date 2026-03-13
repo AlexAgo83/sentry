@@ -1,7 +1,8 @@
 ## req_007_invocation_tablets_skill - New skill to craft Invocation Tablets
 > From version: 0.8.10
-> Understanding: 85%
-> Confidence: 75%
+> Understanding: 86%
+> Confidence: 76%
+> Status: Done
 
 # Needs
 - Add a new skill (action) dedicated to crafting **Invocation Tablets** (tablettes d'invocation).

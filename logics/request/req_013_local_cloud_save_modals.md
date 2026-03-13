@@ -1,7 +1,8 @@
 ## req_013_local_cloud_save_modals - Split Local/Cloud save modals
 > From version: 0.8.14
-> Understanding: 85%
-> Confidence: 75%
+> Understanding: 86%
+> Confidence: 76%
+> Status: Done
 
 # Needs
 - Add two new modals: **Local Save** and **Cloud Save**.

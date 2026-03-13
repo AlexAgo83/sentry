@@ -1,7 +1,8 @@
 ## req_006_improve_skill_recipe_selection - Action Selection screen — improve skill & recipe selection UI (desktop + mobile)
 > From version: 0.8.9
-> Understanding: 90%
-> Confidence: 90%
+> Understanding: 91%
+> Confidence: 91%
+> Status: Done
 
 # Needs
 - The Action Selection screen should offer a more visual, scannable way to pick:

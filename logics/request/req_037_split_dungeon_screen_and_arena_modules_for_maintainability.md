@@ -1,10 +1,11 @@
 ## req_037_split_dungeon_screen_and_arena_modules_for_maintainability - Split dungeon screen and arena modules for maintainability
 > From version: 0.9.24
-> Understanding: 95%
-> Confidence: 92%
+> Understanding: 96%
+> Confidence: 93%
 > Complexity: High
 > Theme: Architecture
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Split oversized dungeon UI/renderer files into smaller, focused modules.

@@ -1,7 +1,8 @@
 ## req_032_warmup_render_backend - Non-blocking warmup call on startup
 > From version: 0.9.10
-> Understanding: 72%
-> Confidence: 64%
+> Understanding: 73%
+> Confidence: 65%
+> Status: Done
 
 # Needs
 - On app launch, fire a non-blocking, best-effort request to `PROD_RENDER_API_BASE` if defined.

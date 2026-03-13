@@ -1,7 +1,8 @@
 ## req_030_recent_action_journal - Add a simple journal of the last 10 actions
 > From version: 0.9.10
-> Understanding: 64%
-> Confidence: 58%
+> Understanding: 65%
+> Confidence: 59%
+> Status: Done
 
 # Needs
 - Keep a simple journal of the last 10 actions for readability and debugging.

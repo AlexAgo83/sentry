@@ -1,10 +1,11 @@
 ## req_039_settings_changelogs_modal_with_paginated_github_commits - Add a Settings changelogs modal backed by GitHub commits
 > From version: 0.9.24
-> Understanding: 97%
-> Confidence: 94%
+> Understanding: 98%
+> Confidence: 95%
 > Complexity: Medium
 > Theme: Feature
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Add a `Changelogs` entry in `Settings`.

@@ -1,10 +1,11 @@
 ## req_045_tooltips_for_all_clickable_controls - Ensure every clickable control has a hover description
 > From version: 0.9.29
-> Understanding: 93%
-> Confidence: 90%
+> Understanding: 94%
+> Confidence: 91%
 > Complexity: Medium
 > Theme: UX / Accessibility
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Any clickable control in the app must expose a short description on hover.

@@ -1,7 +1,8 @@
 ## req_011_economy_action_inventory_cloud_qol - Economy caps + action/inventory/cloud QoL
 > From version: 0.8.13
-> Understanding: 92%
-> Confidence: 88%
+> Understanding: 93%
+> Confidence: 89%
+> Status: Done
 
 # Goals (best suggestions)
 ## Economy / Shop

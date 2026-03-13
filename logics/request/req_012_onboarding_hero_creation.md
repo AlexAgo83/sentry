@@ -1,7 +1,8 @@
 ## req_012_onboarding_hero_creation - Onboarding hero creation
 > From version: 0.8.14
-> Understanding: 70%
-> Confidence: 60%
+> Understanding: 71%
+> Confidence: 61%
+> Status: Done
 
 # Needs
 - Replace the default auto-created hero on first launch with a lightweight onboarding/tutorial.

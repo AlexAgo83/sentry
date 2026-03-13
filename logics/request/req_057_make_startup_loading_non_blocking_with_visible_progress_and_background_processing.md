@@ -1,10 +1,11 @@
 ## req_057_make_startup_loading_non_blocking_with_visible_progress_and_background_processing - Make startup loading non-blocking with visible progress and background processing
 > From version: 0.9.38
-> Understanding: 95%
-> Confidence: 91%
+> Understanding: 96%
+> Confidence: 92%
 > Complexity: High
 > Theme: Performance / Startup UX
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Startup must stay responsive when the app shows "Preparing your save and assets...".

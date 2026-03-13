@@ -1,7 +1,8 @@
 ## req_009_offline_roster_tablets - Offline roster & tablets updates
 > From version: 0.8.11
-> Understanding: 94%
-> Confidence: 85%
+> Understanding: 95%
+> Confidence: 86%
+> Status: Done
 
 # Needs
 - Increase the offline time limit to 7 days across all platforms (cap the processed window; keep recap messaging for capped time).

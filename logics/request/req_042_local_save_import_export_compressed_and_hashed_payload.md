@@ -1,10 +1,11 @@
 ## req_042_local_save_import_export_compressed_and_hashed_payload - Compress and hash local save import/export payloads
 > From version: 0.9.28
-> Understanding: 98%
-> Confidence: 95%
+> Understanding: 99%
+> Confidence: 96%
 > Complexity: Medium
 > Theme: Feature
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - When users export local save, the generated text must be compressed and hashed.

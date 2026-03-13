@@ -1,7 +1,8 @@
 ## req_036_roster_reorder - Enable roster drag reordering (desktop + mobile)
 > From version: 0.9.12
-> Understanding: 94%
-> Confidence: 92%
+> Understanding: 95%
+> Confidence: 93%
+> Status: Done
 
 # Needs
 - Reorder roster entries by drag-and-drop on desktop (click-and-hold, then drag).

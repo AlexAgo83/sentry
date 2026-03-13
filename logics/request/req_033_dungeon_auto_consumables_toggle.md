@@ -1,7 +1,8 @@
 ## req_033_dungeon_auto_consumables_toggle - Add auto consumables toggle near auto restart
 > From version: 0.9.10
-> Understanding: 92%
-> Confidence: 90%
+> Understanding: 93%
+> Confidence: 91%
+> Status: Done
 
 # Needs
 - Add an "Auto consumables" toggle next to the dungeon auto-restart toggle.

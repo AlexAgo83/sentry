@@ -1,10 +1,11 @@
 ## req_053_accessibility_compliance_hardening_for_dialogs_tabs_and_keyboard_flows - Accessibility compliance hardening for dialogs tabs and keyboard flows
 > From version: 0.9.36
-> Understanding: 96%
-> Confidence: 90%
+> Understanding: 97%
+> Confidence: 91%
 > Complexity: Medium
 > Theme: Accessibility / UX quality
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Resolve accessibility gaps identified in the latest UI accessibility review.

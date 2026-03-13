@@ -1,10 +1,11 @@
 ## req_044_dungeon_weighted_loot_tables_with_dungeon_exclusive_rare_items - Add weighted dungeon loot tables with dungeon-exclusive rare items
 > From version: 0.9.28
-> Understanding: 98%
-> Confidence: 95%
+> Understanding: 99%
+> Confidence: 96%
 > Complexity: High
 > Theme: Feature
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Add a probable/weighted loot table for each dungeon.

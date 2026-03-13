@@ -1,7 +1,8 @@
 ## req_027_weapon_tiers_and_new_components - Add two weapon tiers per weapon
 > From version: 0.9.9
-> Understanding: 84%
-> Confidence: 76%
+> Understanding: 85%
+> Confidence: 77%
+> Status: Done
 
 # Needs
 - Add 2 new tiers for each weapon type.

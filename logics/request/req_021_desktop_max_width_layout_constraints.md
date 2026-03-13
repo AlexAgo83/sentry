@@ -1,7 +1,8 @@
 ## req_021_desktop_max_width_layout_constraints - Desktop max-width layout + centered header
 > From version: 0.9.6
-> Understanding: 95%
-> Confidence: 90%
+> Understanding: 96%
+> Confidence: 91%
+> Status: Done
 
 # Needs
 - Add a max-width constraint on desktop when viewport exceeds a threshold (target: 1200px).

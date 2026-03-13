@@ -1,10 +1,11 @@
 ## req_043_bundle_performance_leaderboard_scalability_and_ci_flaky_hardening - Improve bundle performance, leaderboard scalability, and CI flaky resilience
 > From version: 0.9.28
-> Understanding: 98%
-> Confidence: 95%
+> Understanding: 99%
+> Confidence: 96%
 > Complexity: High
 > Theme: Refactor
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Reduce initial app payload and remove recurring `chunks > 500kb` warning pressure.

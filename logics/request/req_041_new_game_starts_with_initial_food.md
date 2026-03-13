@@ -1,7 +1,8 @@
 ## req_041_new_game_starts_with_initial_food - Start new games with an initial 10 food
 > From version: 0.9.26
-> Understanding: 97%
-> Confidence: 95%
+> Understanding: 98%
+> Confidence: 96%
+> Status: Done
 
 # Needs
 - New games should start with `10` units of `food`.

@@ -1,10 +1,11 @@
 ## req_058_make_startup_offline_catch_up_atomic_and_prevent_partial_save_persistence - Make startup offline catch-up atomic and prevent partial save persistence
 > From version: 0.9.38
-> Understanding: 95%
-> Confidence: 93%
+> Understanding: 96%
+> Confidence: 94%
 > Complexity: Medium
 > Theme: Reliability / Persistence
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Startup offline catch-up must not partially overwrite the persisted save while replaying missed ticks.

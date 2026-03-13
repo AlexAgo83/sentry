@@ -1,10 +1,11 @@
 ## req_038_split_core_dungeon_module_into_domain_focused_files - Split core dungeon module into domain-focused files
 > From version: 0.9.24
-> Understanding: 96%
-> Confidence: 93%
+> Understanding: 97%
+> Confidence: 94%
 > Complexity: High
 > Theme: Architecture
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Split `src/core/dungeon.ts` into smaller domain-focused files to reduce complexity and regression risk.

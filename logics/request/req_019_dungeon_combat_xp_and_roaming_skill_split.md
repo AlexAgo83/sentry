@@ -1,7 +1,8 @@
 ## req_019_dungeon_combat_xp_and_roaming_skill_split - Dungeon Combat XP + Roaming skill split
 > From version: 0.9.2
-> Understanding: 98%
-> Confidence: 93%
+> Understanding: 99%
+> Confidence: 94%
+> Status: Done
 
 # Needs
 - Heroes must gain **Combat** XP during dungeon runs.

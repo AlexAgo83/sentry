@@ -1,10 +1,11 @@
 ## req_046_dungeon_attack_vfx_arc_projectile_spell_beam - Add lightweight attack VFX in the dungeon renderer
 > From version: 0.9.30
-> Understanding: 92%
-> Confidence: 88%
+> Understanding: 93%
+> Confidence: 89%
 > Complexity: Medium
 > Theme: UX / Visuals
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Add a visual effect for each attack in the dungeon arena renderer:

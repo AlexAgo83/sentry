@@ -1,10 +1,11 @@
 ## req_060_show_away_duration_on_startup_loading_screen - Show away duration on the startup loading screen
 > From version: 0.9.38
-> Understanding: 97%
-> Confidence: 94%
+> Understanding: 98%
+> Confidence: 95%
 > Complexity: Low
 > Theme: UX / Startup
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - The startup loading screen should explain why offline catch-up is happening.

@@ -1,7 +1,8 @@
 ## req_034_action_resume_last_recipe - Offer a one-tap resume for last non-dungeon action
 > From version: 0.9.10
-> Understanding: 94%
-> Confidence: 91%
+> Understanding: 95%
+> Confidence: 92%
+> Status: Done
 
 # Needs
 - Remember the last non-dungeon action (skill + recipe) when no action is running.

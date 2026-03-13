@@ -1,7 +1,8 @@
 ## req_016_reduce_static_bundle_weight_recipes_payload_inline_svg_icons - Reduce static bundle weight (recipes payload + inline SVG icons)
 > From version: 0.8.18
-> Understanding: 75%
-> Confidence: 65%
+> Understanding: 76%
+> Confidence: 66%
+> Status: Done
 
 # Needs
 - Reduce the static bundle size driven by large recipe data and inline SVG icon payloads.

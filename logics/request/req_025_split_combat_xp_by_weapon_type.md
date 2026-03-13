@@ -1,7 +1,8 @@
 ## req_025_split_combat_xp_by_weapon_type - Split combat XP by weapon type
 > From version: 0.9.9
-> Understanding: 95%
-> Confidence: 92%
+> Understanding: 96%
+> Confidence: 93%
+> Status: Done
 
 # Needs
 - Split Combat progression into three skills: `CombatMelee`, `CombatRanged`, `CombatMagic`.

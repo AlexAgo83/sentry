@@ -1,7 +1,8 @@
 ## req_029_dungeon_risk_tier_indicator - Show per-dungeon risk tier based on player power
 > From version: 0.9.10
-> Understanding: 68%
-> Confidence: 60%
+> Understanding: 69%
+> Confidence: 61%
+> Status: Done
 
 # Needs
 - Show a visible difficulty tier per dungeon to guide selection.

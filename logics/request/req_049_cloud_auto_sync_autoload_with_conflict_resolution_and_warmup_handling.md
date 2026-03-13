@@ -1,10 +1,11 @@
 ## req_049_cloud_auto_sync_autoload_with_conflict_resolution_and_warmup_handling - Add optional cloud auto-save/auto-load with conflict detection and warmup resilience
 > From version: 0.9.31
-> Understanding: 92%
-> Confidence: 85%
+> Understanding: 93%
+> Confidence: 86%
 > Complexity: High
 > Theme: Feature / Reliability
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Add an **optional** cloud auto-sync mode (auto-save + auto-load) that can be enabled/disabled in Cloud Save options.
@@ -172,4 +173,3 @@
 
 # Backlog
 - Backlog items should be generated next (backend token+409, frontend toggle+orchestrator, conflict UX, tests).
-

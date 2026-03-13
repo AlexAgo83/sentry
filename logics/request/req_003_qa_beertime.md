@@ -1,7 +1,8 @@
 ## req_003_qa_beertime - Global feedbacks
 > From version: 0.7.1
-> Understanding: ??%
-> Confidence: ??%
+> Understanding: 70%
+> Confidence: 70%
+> Status: Done
 
 # Needs
 QA give me those feedbacks :

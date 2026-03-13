@@ -1,10 +1,11 @@
 ## req_061_make_higher_tier_skills_recipes_and_dungeons_provide_meaningfully_better_progression - Make higher-tier skills, recipes, and dungeons provide meaningfully better progression
 > From version: 0.9.38
-> Understanding: 95%
-> Confidence: 92%
+> Understanding: 96%
+> Confidence: 93%
 > Complexity: High
 > Theme: Balance / Progression / Architecture
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Higher-level recipes and harder dungeons should provide a clear gameplay benefit versus lower-tier content.

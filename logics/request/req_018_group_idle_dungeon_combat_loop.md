@@ -1,7 +1,8 @@
 ## req_018_group_idle_dungeon_combat_loop - Group idle dungeon combat loop
 > From version: 0.8.22
 > Understanding: 99%
-> Confidence: 95%
+> Confidence: 96%
+> Status: Done
 
 # Needs
 - Add a new gameplay loop based on **party-based idle dungeon combat**.

@@ -1,7 +1,8 @@
 ## req_005_action_selection_screen - Replace action selection modal with a dedicated screen
 > From version: 0.8.9
-> Understanding: 90%
-> Confidence: 80%
+> Understanding: 91%
+> Confidence: 81%
+> Status: Done
 
 # Needs
 - Clicking **Change** currently opens a modal for skill/recipe selection (loadout).

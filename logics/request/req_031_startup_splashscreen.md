@@ -1,7 +1,8 @@
 ## req_031_startup_splashscreen - Startup splashscreen with gated Continue button
 > From version: 0.9.10
-> Understanding: 70%
-> Confidence: 62%
+> Understanding: 71%
+> Confidence: 63%
+> Status: Done
 
 # Needs
 - Show a simple splashscreen on app launch.

@@ -1,10 +1,11 @@
 ## req_056_top_down_combat_movement_natural_choreography - Make top-down combat movement feel natural and readable
 > From version: 0.9.38
-> Understanding: 97%
-> Confidence: 92%
+> Understanding: 98%
+> Confidence: 93%
 > Complexity: High
 > Theme: UX / Combat Feel
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Improve dungeon combat movement so heroes and enemies feel like they are actively dueling in a top-down arena, instead of mostly static units with short hit motions.

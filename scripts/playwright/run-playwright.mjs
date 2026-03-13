@@ -1,15 +1,19 @@
 #!/usr/bin/env node
 import { spawnSync } from "node:child_process";
+import { createRequire } from "node:module";
 
-const npxCmd = process.platform === "win32" ? "npx.cmd" : "npx";
+const require = createRequire(import.meta.url);
+const nodeCmd = process.execPath;
+const playwrightCli = require.resolve("@playwright/test/cli");
 const args = process.argv.slice(2);
 const env = { ...process.env };
 
-if (env.FORCE_COLOR && env.NO_COLOR) {
+if (env.NO_COLOR) {
     delete env.NO_COLOR;
+    delete env.FORCE_COLOR;
 }
 
-const result = spawnSync(npxCmd, ["playwright", ...args], {
+const result = spawnSync(nodeCmd, [playwrightCli, ...args], {
     stdio: "inherit",
     env,
 });

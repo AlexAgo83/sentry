@@ -1,10 +1,11 @@
 ## req_055_cloud_sync_causal_watermark_and_deterministic_conflict_resolution - Replace score/time freshness heuristics with causal sync watermark and deterministic conflict handling
 > From version: 0.9.36
-> Understanding: 95%
-> Confidence: 90%
+> Understanding: 96%
+> Confidence: 91%
 > Complexity: High
 > Theme: Reliability / Data integrity
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Prevent false "local is newer" or "cloud is newer" decisions caused by delayed backend wakeup and heuristic comparisons.

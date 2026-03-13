@@ -1,7 +1,8 @@
 ## req_017_stats_dashboard_progression_tracking - Stats dashboard progression tracking
 > From version: 0.8.18
-> Understanding: 92%
-> Confidence: 90%
+> Understanding: 93%
+> Confidence: 91%
+> Status: Done
 
 # Needs
 - Track XP and gold progression for the last 7 days (rolling window) so the Stats screen can show a clear trend.

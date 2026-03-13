@@ -1,7 +1,8 @@
 ## req_002_inventory - Inventory
 > From version: 0.3.1
-> Understanding: 92%
-> Confidence: 88%
+> Understanding: 93%
+> Confidence: 89%
+> Status: Done
 
 # Needs
 1. Add a global inventory shared across all players.

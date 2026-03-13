@@ -1,10 +1,11 @@
 ## req_059_unify_startup_local_import_and_cloud_load_bootstrap_with_shared_loading_flow - Unify startup, local import, and cloud load bootstrap with a shared loading flow
 > From version: 0.9.38
-> Understanding: 95%
-> Confidence: 92%
+> Understanding: 96%
+> Confidence: 93%
 > Complexity: High
 > Theme: Architecture / UX / Reliability
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Loading a save from local import or cloud load should be able to show the same loading/bootstrap UI as app startup when offline catch-up is required.

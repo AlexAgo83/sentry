@@ -1,10 +1,11 @@
 ## req_063_show_contextual_dungeon_summary_on_hero_action_screen_when_action_summary_is_hidden - Show a contextual dungeon summary on the hero action screen when the action summary is hidden
 > From version: 0.9.38
-> Understanding: 97%
-> Confidence: 94%
+> Understanding: 98%
+> Confidence: 95%
 > Complexity: Medium
 > Theme: UX / Dungeon / Hero actions
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - The hero `ACTION` screen currently feels sparse when the selected hero is engaged in a dungeon run.

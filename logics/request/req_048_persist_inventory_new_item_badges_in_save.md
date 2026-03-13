@@ -1,10 +1,11 @@
 ## req_048_persist_inventory_new_item_badges_in_save - Persist inventory "NEW item" badge state inside the save (not local-only)
 > From version: 0.9.31
-> Understanding: 95%
-> Confidence: 88%
+> Understanding: 96%
+> Confidence: 89%
 > Complexity: Medium
 > Theme: UX / Persistence
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
+> Status: Done
 
 # Needs
 - Persist the inventory "NEW item" badge state in the game save so it survives:
@@ -103,4 +104,3 @@
 
 # Backlog
 - Backlog items should be generated next (schema/state plumbing, migrations, tests, cleanup of legacy localStorage reliance).
-

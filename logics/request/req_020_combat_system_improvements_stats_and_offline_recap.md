@@ -1,7 +1,8 @@
 ## req_020_combat_system_improvements_stats_and_offline_recap - Combat visibility + attack cadence improvements
 > From version: 0.9.5
-> Understanding: 98%
-> Confidence: 94%
+> Understanding: 99%
+> Confidence: 95%
+> Status: Done
 
 # Needs
 - Improve combat system readability for players, especially around combat progression and effective combat power.
