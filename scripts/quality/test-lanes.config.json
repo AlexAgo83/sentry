@@ -1,0 +1,21 @@
+{
+  "lanes": {
+    "app-integration": [
+      "tests/app/App.test.tsx",
+      "tests/app/systemModal.test.tsx",
+      "tests/app/tooltipCoverage.test.tsx",
+      "tests/app/cloudSavePanel.test.tsx",
+      "tests/app/hooks/useSaveManagement.test.tsx"
+    ],
+    "backend-runtime": [
+      "tests/backend/cloudApi.test.ts",
+      "tests/backend/changelogApi.test.ts",
+      "tests/core/runtime.test.ts"
+    ],
+    "save-bootstrap-compat": [
+      "tests/compat/saveBootstrapCompatibility.test.ts",
+      "tests/offlineLoop.test.ts",
+      "tests/offlinePersistence.test.ts"
+    ]
+  }
+}

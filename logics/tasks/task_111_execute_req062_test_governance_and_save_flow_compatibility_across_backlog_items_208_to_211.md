@@ -2,7 +2,7 @@
 > From version: 0.9.38
 > Understanding: 95%
 > Confidence: 93%
-> Progress: 0%
+> Progress: 100%
 > Complexity: High
 > Theme: Quality / CI / Reliability
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc.
@@ -42,19 +42,19 @@ This task strengthens `Sentry`'s test architecture by making the heavy parts of 
   - add at least one informative suite-health report.
 
 # Plan
-- [ ] 1. Execute `item_208` (explicit lane contract):
+- [x] 1. Execute `item_208` (explicit lane contract):
   - Define the first set of explicit non-E2E lanes for `Sentry`.
   - Add segmented execution and lane validation commands.
-- [ ] 2. Execute `item_209` (timeout governance):
+- [x] 2. Execute `item_209` (timeout governance):
   - Add a targeted timeout-governance quality gate.
   - Introduce a narrow documented allowlist path for temporary exceptions.
-- [ ] 3. Execute `item_210` (save/bootstrap compatibility suite):
+- [x] 3. Execute `item_210` (save/bootstrap compatibility suite):
   - Create an explicit compatibility regression surface for save/bootstrap/import/cloud flows.
   - Ensure the suite is deterministic and runnable independently.
-- [ ] 4. Execute `item_211` (CI/reporting integration):
+- [x] 4. Execute `item_211` (CI/reporting integration):
   - Wire lane validation, timeout governance, and compatibility execution into CI/local commands.
   - Add at least one informative suite-health report.
-- [ ] FINAL: Update related Logics docs (request/backlog/task alignment)
+- [x] FINAL: Update related Logics docs (request/backlog/task alignment)
 
 # Validation
 Final gate (mandatory at task end):

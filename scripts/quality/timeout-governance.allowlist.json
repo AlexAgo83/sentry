@@ -1,0 +1,5 @@
+{
+  "allowedPatterns": [
+    "tests/build.test.ts"
+  ]
+}

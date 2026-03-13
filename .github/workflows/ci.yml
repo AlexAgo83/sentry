@@ -79,6 +79,14 @@ jobs:
         run: npm run typecheck
       - name: Typecheck (tests)
         run: npm run typecheck:tests
+      - name: Validate test lane contract
+        run: npm run test:lanes:validate
+      - name: Validate timeout governance
+        run: npm run test:timeouts:validate
+      - name: Compatibility suite
+        run: npm run test:lane:compat
+      - name: Test lane summary
+        run: npm run test:lanes:report
       - name: Flaky gate (save envelope)
         run: npm run test:flaky
       - name: Tests (CI config)
