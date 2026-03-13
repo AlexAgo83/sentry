@@ -224,6 +224,8 @@ flowchart LR
 - `npm run typecheck:tests`
 - `npm run tests`: local Vitest runner via `scripts/run-tests.js`.
 - `npm run test:ci`: CI Vitest config.
+- `npm run ci:local:fast`: fast local mirror of the blocking CI workflow.
+- `npm run ci:local`: full local mirror of the blocking CI workflow.
 - `npm run coverage`
 - `npm run coverage:ci`
 - `npm run test:e2e`: Playwright smoke tests.
@@ -256,17 +258,12 @@ flowchart LR
 GitHub Actions CI on `push`/`pull_request` to `main` runs:
 
 1. `npm ci`
-2. `npm run lint`
-3. logics doc lint
-4. `npm run typecheck`
-5. `npm run typecheck:tests`
-6. `npm run test:ci`
-7. `npm run coverage:ci`
-8. Playwright install + `npm run test:e2e`
-9. `npm audit --audit-level=high`
-10. `npm run build`
-11. `npm run bundle:check`
-12. offline recap smoke test
+2. `npm run ci:local`
+
+Local parity commands:
+
+- `npm run ci:local:fast`: fast repo gate for day-to-day checks.
+- `npm run ci:local`: full blocking mirror, including Logics gates, lane validation, compatibility coverage, Playwright, audit, build, bundle budgets, and offline recap smoke.
 
 Security note:
 

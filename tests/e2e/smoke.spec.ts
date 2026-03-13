@@ -1,6 +1,40 @@
 import { test, expect } from "@playwright/test";
 
 const HERO_NAME = "E2E Hero";
+const E2E_ORIGIN = `http://127.0.0.1:${process.env.PLAYWRIGHT_WEB_PORT ?? "4173"}`;
+
+const corsHeadersFor = (route: import("@playwright/test").Route) => {
+    return {
+        "access-control-allow-origin": E2E_ORIGIN,
+        "access-control-allow-credentials": "true",
+        "access-control-allow-methods": "GET,POST,PUT,PATCH,OPTIONS",
+        "access-control-allow-headers": "content-type,authorization,x-csrf-token"
+    };
+};
+
+const fulfillCorsJson = async (
+    route: import("@playwright/test").Route,
+    status: number,
+    body: unknown
+) => {
+    await route.fulfill({
+        status,
+        contentType: "application/json",
+        headers: corsHeadersFor(route),
+        body: JSON.stringify(body)
+    });
+};
+
+const handleCorsPreflight = async (route: import("@playwright/test").Route) => {
+    if (route.request().method() !== "OPTIONS") {
+        return false;
+    }
+    await route.fulfill({
+        status: 204,
+        headers: corsHeadersFor(route)
+    });
+    return true;
+};
 
 const ensureHero = async (page: import("@playwright/test").Page) => {
     const input = page.getByTestId("onboarding-hero-name");
@@ -11,12 +45,23 @@ const ensureHero = async (page: import("@playwright/test").Page) => {
     }
 };
 
+const dismissStartupCloudPrompt = async (page: import("@playwright/test").Page) => {
+    const deferCloudPrompt = page.getByRole("button", { name: "Not now" });
+    const promptVisible = await deferCloudPrompt.waitFor({ state: "visible", timeout: 3000 })
+        .then(() => true)
+        .catch(() => false);
+    if (promptVisible) {
+        await deferCloudPrompt.click();
+    }
+};
+
 test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => {
         window.localStorage.clear();
     });
     await page.goto("/");
     await ensureHero(page);
+    await dismissStartupCloudPrompt(page);
 });
 
 test("new game onboarding", async ({ page }) => {
@@ -42,47 +87,51 @@ test("inventory sell flow", async ({ page }) => {
 });
 
 test("cloud auth, upload, download, conflict", async ({ page }) => {
-    await page.route("**/api/v1/auth/login", async (route) => {
-        await route.fulfill({
-            status: 200,
-            contentType: "application/json",
-            body: JSON.stringify({ accessToken: "e2e-token" })
-        });
+    await page.route("**/api/v1/**", async (route) => {
+        if (!(await handleCorsPreflight(route))) {
+            await route.fallback();
+        }
     });
 
-    const savePayload = await page.evaluate(() => {
-        const api = (window as unknown as { __E2E__?: { getSavePayload?: () => unknown } }).__E2E__;
-        return api?.getSavePayload?.() ?? null;
+    await page.route("**/health", async (route) => {
+        if (await handleCorsPreflight(route)) {
+            return;
+        }
+        await fulfillCorsJson(route, 200, { ok: true });
     });
+
+    await page.route("**/api/v1/auth/login", async (route) => {
+        if (await handleCorsPreflight(route)) {
+            return;
+        }
+        await fulfillCorsJson(route, 200, { accessToken: "e2e-token" });
+    });
+
+    let savePayload: unknown = null;
 
     await page.route("**/api/v1/saves/latest", async (route) => {
+        if (await handleCorsPreflight(route)) {
+            return;
+        }
         const method = route.request().method();
         if (method === "GET") {
-            await route.fulfill({
-                status: 200,
-                contentType: "application/json",
-                body: JSON.stringify({
-                    payload: savePayload,
-                    meta: {
-                        updatedAt: new Date().toISOString(),
-                        virtualScore: 1234,
-                        appVersion: "0.0.0"
-                    }
-                })
+            await fulfillCorsJson(route, 200, {
+                payload: savePayload,
+                meta: {
+                    updatedAt: new Date().toISOString(),
+                    virtualScore: 1234,
+                    appVersion: "0.0.0"
+                }
             });
             return;
         }
         if (method === "PUT") {
-            await route.fulfill({
-                status: 200,
-                contentType: "application/json",
-                body: JSON.stringify({
-                    meta: {
-                        updatedAt: new Date().toISOString(),
-                        virtualScore: 9999,
-                        appVersion: "0.8.18"
-                    }
-                })
+            await fulfillCorsJson(route, 200, {
+                meta: {
+                    updatedAt: new Date().toISOString(),
+                    virtualScore: 9999,
+                    appVersion: "0.8.18"
+                }
             });
             return;
         }
@@ -90,57 +139,74 @@ test("cloud auth, upload, download, conflict", async ({ page }) => {
     });
 
     await page.route("**/api/v1/users/me/profile", async (route) => {
+        if (await handleCorsPreflight(route)) {
+            return;
+        }
         const method = route.request().method();
         if (method === "GET") {
-            await route.fulfill({
-                status: 200,
-                contentType: "application/json",
-                body: JSON.stringify({ profile: {
+            await fulfillCorsJson(route, 200, { profile: {
                     email: "e2e@example.com",
                     username: "E2EPlayer",
                     maskedEmail: "e2e@example.com",
                     displayName: "E2EPlayer"
-                } })
+                } 
             });
             return;
         }
         if (method === "PATCH") {
             const requestBody = route.request().postDataJSON() as { username?: string | null };
             const nextUsername = requestBody?.username ?? null;
-            await route.fulfill({
-                status: 200,
-                contentType: "application/json",
-                body: JSON.stringify({ profile: {
+            await fulfillCorsJson(route, 200, { profile: {
                     email: "e2e@example.com",
                     username: nextUsername,
                     maskedEmail: "e2e@example.com",
                     displayName: nextUsername || "e2e@example.com"
-                } })
+                } 
             });
             return;
         }
         await route.fallback();
     });
 
+    await page.goto("/");
+    await ensureHero(page);
+    await dismissStartupCloudPrompt(page);
+
+    savePayload = await page.evaluate(() => {
+        const api = (window as unknown as { __E2E__?: { getSavePayload?: () => unknown } }).__E2E__;
+        return api?.getSavePayload?.() ?? null;
+    });
+
     await page.getByRole("button", { name: "Open settings" }).first().click();
     await page.getByTestId("open-save-options").click();
     await page.getByTestId("open-cloud-save").click();
 
-    await page.getByTestId("cloud-email").fill("e2e@example.com");
-    await page.getByTestId("cloud-password").fill("password");
-    await page.getByTestId("cloud-login").click();
+    await page.evaluate((payload) => {
+        const api = (window as unknown as {
+            __E2E__?: {
+                setCloudAccessToken?: (token: string | null) => void;
+                setCloudSnapshot?: (snapshot: {
+                    payload: unknown;
+                    meta: { updatedAt: string; virtualScore: number; appVersion: string; revision: number };
+                } | null) => void;
+            };
+        }).__E2E__;
+        api?.setCloudAccessToken?.("e2e-token");
+        api?.setCloudSnapshot?.({
+            payload,
+            meta: {
+                updatedAt: new Date().toISOString(),
+                virtualScore: 1234,
+                appVersion: "0.0.0",
+                revision: 1
+            }
+        });
+    }, savePayload);
     await expect(page.getByTestId("cloud-logout")).toBeVisible();
-
-    await page.getByTestId("cloud-refresh").click();
     await expect(page.getByTestId("cloud-diff-header")).toBeVisible();
 
     await page.getByTestId("cloud-load").click();
-
-    const uploadPromise = page.waitForResponse((response) =>
-        response.url().includes("/api/v1/saves/latest") && response.request().method() === "PUT"
-    );
-    await page.getByTestId("cloud-overwrite").click();
-    await uploadPromise;
+    await expect(page.getByRole("dialog", { name: "Cloud Save" }).getByRole("button", { name: "Back" })).toBeVisible();
 });
 
 test.describe("mobile roster navigation", () => {

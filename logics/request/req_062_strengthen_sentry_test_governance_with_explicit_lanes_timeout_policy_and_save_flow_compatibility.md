@@ -1,7 +1,8 @@
 ## req_062_strengthen_sentry_test_governance_with_explicit_lanes_timeout_policy_and_save_flow_compatibility - Strengthen Sentry test governance with explicit lanes, timeout policy, and save-flow compatibility coverage
 > From version: 0.9.38
-> Understanding: 94%
-> Confidence: 93%
+> Status: Done
+> Understanding: 95%
+> Confidence: 94%
 > Complexity: Medium
 > Theme: Quality / CI / Reliability
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
@@ -125,6 +126,13 @@
 # Technical references likely impacted
 - `package.json`
 - `.github/workflows/ci.yml`
+- `scripts/ci/run-local-ci.mjs`
+- `scripts/quality/test-lanes.config.json`
+- `scripts/quality/validate-test-lanes.mjs`
+- `scripts/quality/run-vitest-lane.mjs`
+- `scripts/quality/report-test-lanes.mjs`
+- `scripts/quality/check-timeout-governance.mjs`
+- `scripts/quality/timeout-governance.allowlist.json`
 - `vitest.ci.mjs`
 - `playwright.config.ts`
 - `scripts/flaky-check.js`
@@ -158,6 +166,8 @@
 
 # Test expectations
 - Mandatory validation:
+  - `npm run ci:local:fast`
+  - `npm run ci:local`
   - `npm run lint`
   - `npm run typecheck`
   - `npm run typecheck:tests`

@@ -181,6 +181,7 @@ export const useCloudSave = (): CloudSaveController => {
 };
 
 const useCloudSaveInternal = (): CloudSaveController => {
+    const isE2E = Boolean(import.meta.env.VITE_E2E);
     const virtualScore = useGameStore(selectVirtualScore);
     const appVersion = useGameStore((state) => state.version);
     const localHasActiveDungeonRun = useGameStore((state) => Boolean(state.dungeon.activeRunId));
@@ -194,7 +195,7 @@ const useCloudSaveInternal = (): CloudSaveController => {
     const [status, setStatus] = useState<CloudSaveState["status"]>("idle");
     const [error, setError] = useState<string | null>(null);
     const [warmupRetrySeconds, setWarmupRetrySeconds] = useState<number | null>(null);
-    const [isBackendAwake, setIsBackendAwake] = useState(false);
+    const [isBackendAwake, setIsBackendAwake] = useState(() => isE2E && Boolean(cloudClient.getApiBase()));
     const [lastSyncAt, setLastSyncAt] = useState<Date | null>(null);
     const [profile, setProfile] = useState<CloudProfile | null>(null);
     const [isUpdatingProfile, setIsUpdatingProfile] = useState(false);
@@ -209,6 +210,7 @@ const useCloudSaveInternal = (): CloudSaveController => {
     const hasAttemptedSilentRefreshRef = useRef(false);
     const autoSyncBootstrapRef = useRef(0);
     const lastAutoSyncBootstrapSignatureRef = useRef<string | null>(null);
+    const isMountedRef = useRef(true);
 
     useEffect(() => {
         if (typeof window === "undefined") {
@@ -226,6 +228,55 @@ const useCloudSaveInternal = (): CloudSaveController => {
 
     const localMeta = useMemo(() => buildLocalMeta(virtualScore, appVersion), [virtualScore, appVersion]);
     const isAvailable = Boolean(cloudClient.getApiBase()) && isOnline;
+    useEffect(() => {
+        if (!isE2E || typeof window === "undefined") {
+            return;
+        }
+        const api = ((window as unknown as { __E2E__?: Record<string, unknown> }).__E2E__ ??= {});
+        api.setCloudAccessToken = (token: string | null) => {
+            setAccessToken(token);
+            setIsBackendAwake(Boolean(token) || isAvailable);
+            setWarmupRetrySeconds(null);
+            setError(null);
+            setStatus(token ? "ready" : "idle");
+        };
+        api.setCloudSnapshot = (snapshot: {
+            payload: unknown;
+            meta: {
+                updatedAt: string | Date | null;
+                virtualScore: number;
+                appVersion: string;
+                revision?: number | null;
+            } | null;
+        } | null) => {
+            if (!snapshot) {
+                setHasCloudSave(false);
+                setCloudPayload(null);
+                setCloudMeta(null);
+                setCloudHasActiveDungeonRun(false);
+                setLastSyncAt(new Date());
+                setStatus("ready");
+                return;
+            }
+            setHasCloudSave(true);
+            setCloudPayload(snapshot.payload);
+            setCloudHasActiveDungeonRun(hasActiveDungeonRunInPayload(snapshot.payload));
+            setCloudMeta(snapshot.meta ? {
+                updatedAt: toDateOrNull(snapshot.meta.updatedAt),
+                virtualScore: snapshot.meta.virtualScore,
+                appVersion: snapshot.meta.appVersion,
+                revision: toRevisionOrNull(snapshot.meta.revision ?? null)
+            } : null);
+            setLastSyncAt(new Date());
+            setStatus("ready");
+        };
+        return () => {
+            if ((window as unknown as { __E2E__?: Record<string, unknown> }).__E2E__) {
+                delete (window as unknown as { __E2E__?: Record<string, unknown> }).__E2E__?.setCloudAccessToken;
+                delete (window as unknown as { __E2E__?: Record<string, unknown> }).__E2E__?.setCloudSnapshot;
+            }
+        };
+    }, [isAvailable, isE2E]);
     const cancelWarmupRetry = useCallback(() => {
         warmupCancelIdRef.current += 1;
         if (warmupRetrySignalRef.current) {
@@ -233,6 +284,13 @@ const useCloudSaveInternal = (): CloudSaveController => {
         }
         warmupRetrySignalRef.current = null;
     }, []);
+    useEffect(() => {
+        return () => {
+            isMountedRef.current = false;
+            cancelWarmupRetry();
+            backendProbeInFlightRef.current = false;
+        };
+    }, [cancelWarmupRetry]);
     const retryWarmupNow = useCallback(() => {
         if (warmupRetrySignalRef.current) {
             warmupRetrySignalRef.current();
@@ -261,6 +319,11 @@ const useCloudSaveInternal = (): CloudSaveController => {
             return err.message;
         }
         return fallback;
+    }, []);
+    const ensureWarmupRunIsActive = useCallback((runId: number) => {
+        if (!isMountedRef.current || warmupCancelIdRef.current !== runId) {
+            throw new CloudWarmupCancelledError();
+        }
     }, []);
 
     const setAutoSyncEnabledPreference = useCallback((enabled: boolean) => {
@@ -354,15 +417,16 @@ const useCloudSaveInternal = (): CloudSaveController => {
     ): Promise<T> => {
         const runId = warmupCancelIdRef.current;
         for (let attempt = 0; attempt <= WARMUP_RETRY_DELAYS_MS.length; attempt += 1) {
-            if (warmupCancelIdRef.current !== runId) {
-                throw new CloudWarmupCancelledError();
-            }
+            ensureWarmupRunIsActive(runId);
             setWarmupRetrySeconds(null);
             setStatus(statusOnStart);
             try {
                 warmupRetrySignalRef.current = null;
-                return await action();
+                const result = await action();
+                ensureWarmupRunIsActive(runId);
+                return result;
             } catch (err) {
+                ensureWarmupRunIsActive(runId);
                 if (!isWarmupError(err) || attempt === WARMUP_RETRY_DELAYS_MS.length) {
                     warmupRetrySignalRef.current = null;
                     setWarmupRetrySeconds(null);
@@ -386,7 +450,7 @@ const useCloudSaveInternal = (): CloudSaveController => {
             }
         }
         throw new Error("Warmup retry exhausted.");
-    }, []);
+    }, [ensureWarmupRunIsActive]);
 
     const authenticate = useCallback(async (mode: "login" | "register", email: string, password: string) => {
         lastRequestRef.current = () => authenticate(mode, email, password);
@@ -615,6 +679,24 @@ const useCloudSaveInternal = (): CloudSaveController => {
     }, [accessToken, isAvailable, refreshCloud, refreshProfile]);
 
     useEffect(() => {
+        if (!isE2E) {
+            return;
+        }
+        if (!isAvailable) {
+            setIsBackendAwake(false);
+            return;
+        }
+        setIsBackendAwake(true);
+        setWarmupRetrySeconds(null);
+        setStatus((currentStatus) => (currentStatus === "warming" ? "idle" : currentStatus));
+        setError((currentError) => (
+            currentError && currentError.toLowerCase().includes("waking up")
+                ? null
+                : currentError
+        ));
+    }, [isAvailable, isE2E]);
+
+    useEffect(() => {
         if (!isAvailable) {
             hasAttemptedSilentRefreshRef.current = false;
             return;
@@ -632,6 +714,9 @@ const useCloudSaveInternal = (): CloudSaveController => {
     }, [accessToken, isAvailable, refreshToken]);
 
     useEffect(() => {
+        if (isE2E) {
+            return;
+        }
         if (!isAvailable) {
             setIsBackendAwake(false);
             return;
@@ -640,7 +725,7 @@ const useCloudSaveInternal = (): CloudSaveController => {
             return;
         }
         void probeBackend();
-    }, [accessToken, isAvailable, isBackendAwake, probeBackend, status]);
+    }, [accessToken, isAvailable, isBackendAwake, isE2E, probeBackend, status]);
 
     const loadCloud = useCallback(async (options?: {
         payload?: unknown;

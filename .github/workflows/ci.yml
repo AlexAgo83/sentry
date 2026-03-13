@@ -21,88 +21,11 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
-      - name: Detect Logics doc changes
-        id: logics_docs
+      - name: Blocking CI mirror
         env:
           EVENT_NAME: ${{ github.event_name }}
           PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
           PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           PUSH_BEFORE_SHA: ${{ github.event.before }}
           PUSH_AFTER_SHA: ${{ github.sha }}
-        run: |
-          set -euo pipefail
-
-          if [ "$EVENT_NAME" = "pull_request" ] && [ -n "${PR_BASE_SHA:-}" ] && [ -n "${PR_HEAD_SHA:-}" ]; then
-            range="${PR_BASE_SHA}...${PR_HEAD_SHA}"
-          elif [ -n "${PUSH_BEFORE_SHA:-}" ] && [ "$PUSH_BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
-            range="${PUSH_BEFORE_SHA}...${PUSH_AFTER_SHA}"
-          else
-            range=""
-          fi
-
-          if [ -n "$range" ]; then
-            changed="$(git diff --name-only "$range" -- logics/request logics/backlog logics/tasks)"
-            echo "Git range: $range"
-          else
-            changed="$(git ls-files logics/request logics/backlog logics/tasks)"
-            echo "No comparable base SHA found; defaulting to existing Logics docs list."
-          fi
-
-          if [ -n "$changed" ]; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-            echo "$changed"
-          else
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "No Logics workflow docs changed."
-          fi
-      - name: Logics doc lint (require status)
-        if: steps.logics_docs.outputs.changed == 'true'
-        run: python3 logics/skills/logics-doc-linter/scripts/logics_lint.py --require-status
-      - name: Logics flow sync (close eligible requests)
-        if: steps.logics_docs.outputs.changed == 'true'
-        run: python3 logics/skills/logics-flow-manager/scripts/logics_flow.py sync close-eligible-requests
-      - name: Ensure no request drift after sync
-        if: steps.logics_docs.outputs.changed == 'true'
-        run: git diff --exit-code -- logics/request
-      - name: Workflow audit (group by doc, blocking)
-        if: steps.logics_docs.outputs.changed == 'true'
-        run: python3 logics/skills/logics-flow-manager/scripts/workflow_audit.py --legacy-cutoff-version 1.1.0 --group-by-doc
-      - name: Workflow audit (json, non blocking)
-        if: steps.logics_docs.outputs.changed == 'true'
-        continue-on-error: true
-        run: python3 logics/skills/logics-flow-manager/scripts/workflow_audit.py --format json
-      - name: Logics kit Python tests
-        run: python3 -m unittest discover -s logics/skills/tests -p "test_*.py" -v
-      - name: Lint
-        run: npm run lint
-      - name: Typecheck
-        run: npm run typecheck
-      - name: Typecheck (tests)
-        run: npm run typecheck:tests
-      - name: Validate test lane contract
-        run: npm run test:lanes:validate
-      - name: Validate timeout governance
-        run: npm run test:timeouts:validate
-      - name: Compatibility suite
-        run: npm run test:lane:compat
-      - name: Test lane summary
-        run: npm run test:lanes:report
-      - name: Flaky gate (save envelope)
-        run: npm run test:flaky
-      - name: Tests (CI config)
-        run: npm run test:ci
-      - name: Coverage (CI config)
-        run: npm run coverage:ci
-      - name: Playwright browsers
-        run: npx playwright install --with-deps
-      - name: E2E smoke tests
-        run: npm run test:e2e
-      - name: Audit production deps (fail on high+)
-        run: |
-          npm audit --omit=dev --audit-level=high
-      - name: Preview build
-        run: npm run build
-      - name: Bundle budgets
-        run: npm run bundle:check
-      - name: Smoke (offline recap)
-        run: npm run test:ci -- tests/app/offlineRecapModal.test.tsx
+        run: npm run ci:local

@@ -1,5 +1,9 @@
 import { defineConfig } from "@playwright/test";
 
+const webHost = process.env.PLAYWRIGHT_WEB_HOST ?? "127.0.0.1";
+const webPort = process.env.PLAYWRIGHT_WEB_PORT ?? "5173";
+const baseURL = `http://${webHost}:${webPort}`;
+
 export default defineConfig({
     testDir: "tests/e2e",
     timeout: 60_000,
@@ -9,7 +13,7 @@ export default defineConfig({
     retries: process.env.CI ? 1 : 0,
     workers: 1,
     use: {
-        baseURL: "http://127.0.0.1:5173",
+        baseURL,
         testIdAttribute: "data-testid",
         trace: "retain-on-failure",
         screenshot: "only-on-failure",
@@ -17,8 +21,8 @@ export default defineConfig({
         serviceWorkers: "block"
     },
     webServer: {
-        command: "npm run dev -- --host 127.0.0.1 --port 5173 --strictPort",
-        url: "http://127.0.0.1:5173",
+        command: `npm run dev -- --host ${webHost} --port ${webPort} --strictPort`,
+        url: baseURL,
         reuseExistingServer: !process.env.CI,
         env: {
             VITE_E2E: "true",
