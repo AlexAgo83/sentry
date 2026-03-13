@@ -9,6 +9,7 @@ import { ResumeIcon } from "../ui/resumeIcon";
 import { ItemIcon } from "../ui/itemIcon";
 import { TabIcon } from "../ui/tabIcons";
 import { formatNumberCompact, formatNumberFull } from "../ui/numberFormatters";
+import type { ActionDungeonSummary } from "../selectors/actionDungeonSummary";
 
 type ItemEntry = {
     id: string;
@@ -49,6 +50,7 @@ type ActionStatusPanelProps = {
     activeSkillMax: number;
     activeRecipeMax: number;
     isCombatMode?: boolean;
+    dungeonSummary?: ActionDungeonSummary | null;
     combatHpCurrent?: number;
     combatHpMax?: number;
     combatHpStyle?: CSSProperties;
@@ -101,6 +103,7 @@ export const ActionStatusPanel = memo(({
     activeSkillMax,
     activeRecipeMax,
     isCombatMode = false,
+    dungeonSummary = null,
     combatHpCurrent = 0,
     combatHpMax = 0,
     combatHpStyle = {},
@@ -346,6 +349,16 @@ export const ActionStatusPanel = memo(({
                     </>
                 ) : isCombatMode ? (
                     <>
+                        {dungeonSummary ? (
+                            <div className="ts-action-summary ts-action-summary--dungeon">
+                                {dungeonSummary.rows.map((row) => (
+                                    <div key={row.label} className="ts-action-summary-row">
+                                        <span className="ts-action-summary-label">{row.label}</span>
+                                        <span className="ts-action-summary-value">{formatSummaryValue(row.value)}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : null}
                         <div
                             className="generic-field panel progress-row ts-progress-row ts-progress-hp"
                             style={combatHpStyle}

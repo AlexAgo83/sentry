@@ -9,6 +9,7 @@ import { computeEffectiveStats, createPlayerStatsState, resolveEffectiveStats } 
 import { useGameStore } from "../hooks/useGameStore";
 import { usePersistedCollapse } from "../hooks/usePersistedCollapse";
 import { selectActivePlayer } from "../selectors/gameSelectors";
+import { selectActivePlayerDungeonSummary } from "../selectors/actionDungeonSummary";
 import { useActionStatus } from "../hooks/useActionStatus";
 import { usePendingActionSelection } from "../hooks/usePendingActionSelection";
 import { formatItemListEntries, getItemListEntries } from "../ui/itemFormatters";
@@ -69,6 +70,7 @@ export const ActionPanelContainer = ({
     } = useActionStatus(activePlayer);
     const inventoryItems = useGameStore((state) => state.inventory.items);
     const lastNonDungeonActionByPlayer = useGameStore((state) => state.lastNonDungeonActionByPlayer);
+    const dungeonSummary = useGameStore(selectActivePlayerDungeonSummary);
     const isInDungeon = useGameStore((state) => (
         activePlayer?.id ? isPlayerAssignedToActiveDungeonRun(state, activePlayer.id) : false
     ));
@@ -263,6 +265,7 @@ export const ActionPanelContainer = ({
                 activeSkillMax={displaySkillMax}
                 activeRecipeMax={activeRecipe?.maxLevel ?? RECIPE_MAX_LEVEL}
                 isCombatMode={isCombatDisplayMode}
+                dungeonSummary={isCombatDisplayMode ? dungeonSummary : null}
                 combatHpCurrent={activePlayer?.hp ?? 0}
                 combatHpMax={activePlayer?.hpMax ?? 0}
                 combatHpStyle={combatHpStyle}

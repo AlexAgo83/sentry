@@ -2,6 +2,7 @@ import { render, screen, within, fireEvent, waitFor } from "@testing-library/rea
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { App } from "../../src/app/App";
+import { startDungeonRun } from "../../src/core/dungeon";
 import { createInitialGameState, createPlayerState } from "../../src/core/state";
 import { createGameStore } from "../../src/store/gameStore";
 import type { GameStore } from "../../src/store/gameStore";
@@ -192,6 +193,42 @@ describe("App", () => {
         expect(missingHint).toBeTruthy();
         const startButton = screen.getByRole("button", { name: "Start action" }) as HTMLButtonElement;
         expect(startButton.disabled).toBe(true);
+    });
+
+    it("shows a dungeon summary on the action screen when the active hero is in a dungeon", async () => {
+        Object.defineProperty(window, "innerWidth", { value: 1200, writable: true });
+        let state = buildState({ food: 20, rosterLimit: 4 });
+        state.players["3"] = createPlayerState("3", "Lyra");
+        state.players["4"] = createPlayerState("4", "Orin");
+        state.rosterLimit = 4;
+        state = startDungeonRun(
+            state,
+            "dungeon_ruines_humides",
+            ["1", "2", "3", "4"],
+            12345
+        );
+        testStore = createGameStore(state);
+        testRuntime = {
+            start: vi.fn(),
+            stop: vi.fn(),
+            simulateOffline: vi.fn(),
+            reset: vi.fn()
+        };
+
+        render(<App />);
+        await userEvent.setup().click(screen.getByRole("tab", { name: "Hero" }));
+
+        const summary = await screen.findByText("Dungeon", { selector: ".ts-action-summary-label" });
+        const summaryPanel = summary.closest(".ts-action-summary") as HTMLElement | null;
+        expect(summaryPanel).toBeTruthy();
+        if (summaryPanel) {
+            expect(within(summaryPanel).getByText("Damp Ruins")).toBeTruthy();
+            expect(within(summaryPanel).getByText("1 / 10")).toBeTruthy();
+            expect(within(summaryPanel).getByText(/In combat:/)).toBeTruthy();
+            expect(within(summaryPanel).getByText("Ready")).toBeTruthy();
+        }
+        expect(screen.getByText("HP")).toBeTruthy();
+        expect(screen.queryByText(/Recipe Lv/)).toBeNull();
     });
 
     it("starts and pauses an action", async () => {
