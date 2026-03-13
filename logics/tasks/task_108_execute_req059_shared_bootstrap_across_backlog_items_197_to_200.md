@@ -2,7 +2,7 @@
 > From version: 0.9.38
 > Understanding: 96%
 > Confidence: 93%
-> Progress: 0%
+> Progress: 100%
 > Complexity: High
 > Theme: Architecture / UX / Reliability
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc.
@@ -36,21 +36,21 @@ This task unifies save application around one reusable bootstrap pipeline so sta
 - Regression coverage must exercise all origins because this is a cross-cutting refactor, not a startup-only change.
 
 # Plan
-- [ ] 1. Execute `item_197` (shared runtime bootstrap extraction):
+- [x] 1. Execute `item_197` (shared runtime bootstrap extraction):
   - Generalize startup bootstrap into a reusable runtime save-application pipeline.
   - Keep deterministic catch-up, recap, and final commit semantics centralized there.
-- [ ] 2. Execute `item_198` (origin-aware state + shared loading surface):
+- [x] 2. Execute `item_198` (origin-aware state + shared loading surface):
   - Extend bootstrap state with origin metadata.
   - Reuse/generalize the loading surface and define overlay behavior for non-startup origins.
-- [ ] 3. Execute `item_199` (local/cloud integration):
+- [x] 3. Execute `item_199` (local/cloud integration):
   - Rewire local import to the shared bootstrap entry point.
   - Rewire cloud load to the shared bootstrap entry point.
   - Preserve existing parsing/auth/conflict behavior around those integrations.
-- [ ] 4. Execute `item_200` (regression + validation):
+- [x] 4. Execute `item_200` (regression + validation):
   - Add runtime and app-level regressions for startup/local/cloud shared bootstrap behavior.
   - Validate recap/progress/atomic persistence consistency across origins.
   - Run validation suite and fix failures.
-- [ ] FINAL: Update related Logics docs (request/backlog/task alignment)
+- [x] FINAL: Update related Logics docs (request/backlog/task alignment)
 
 # Validation
 Final gate (mandatory at task end):

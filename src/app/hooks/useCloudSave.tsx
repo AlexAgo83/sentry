@@ -654,7 +654,7 @@ const useCloudSaveInternal = (): CloudSaveController => {
         }
         try {
             const resolvedCloudFingerprint = options?.cloudFingerprint ?? buildSaveFingerprint(resolvedPayload);
-            gameRuntime.importSave(resolvedPayload as any);
+            await gameRuntime.importSave(resolvedPayload as any, { origin: "cloudLoad" });
             setError(null);
             setStatus("ready");
             setLastSyncAt(new Date());

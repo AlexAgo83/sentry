@@ -321,7 +321,13 @@ export type StartupBootstrapStage =
     | "ready"
     | "error";
 
+export type StartupBootstrapOrigin =
+    | "startup"
+    | "localImport"
+    | "cloudLoad";
+
 export interface StartupBootstrapState {
+    origin: StartupBootstrapOrigin | null;
     stage: StartupBootstrapStage;
     stageLabel: string;
     progressPct: number;

@@ -211,6 +211,78 @@ describe("GameRuntime", () => {
         expect(persistence.save).not.toHaveBeenCalled();
     });
 
+    it("reuses the shared bootstrap pipeline for local imports", async () => {
+        let resolveCatchUp: ((value: any) => void) | null = null;
+        const initial = createInitialGameState("0.4.0");
+        const store = createGameStore(initial);
+        const persistence = buildPersistence(null);
+        const runtime = new GameRuntime(store, persistence, "0.4.0");
+        runtimes.push(runtime);
+        vi.spyOn(Date, "now").mockReturnValue(10000);
+        runtime.start();
+        persistence.save.mockClear();
+
+        const importedSave = toGameSave(initial);
+        importedSave.lastTick = 1000;
+        vi.spyOn(runtime as never, "runOfflineCatchUpChunked" as never).mockImplementation(() => (
+            new Promise((resolve) => {
+                resolveCatchUp = resolve;
+            })
+        ));
+
+        const importPromise = runtime.importSave(importedSave, { origin: "localImport" });
+        await vi.waitFor(() => {
+            expect(store.getState().startupBootstrap.origin).toBe("localImport");
+            expect(store.getState().startupBootstrap.isRunning).toBe(true);
+        });
+        expect(persistence.save).not.toHaveBeenCalled();
+
+        if (!resolveCatchUp) {
+            throw new Error("Expected deferred local import catch-up resolver");
+        }
+        const completeLocalImportCatchUp = resolveCatchUp as (value: any) => void;
+        completeLocalImportCatchUp({
+            processedMs: 9000,
+            ticks: 2,
+            capped: false,
+            totalItemDeltas: {},
+            playerItemDeltas: {},
+            dungeonItemDeltasByPlayer: {},
+            dungeonCombatXpByPlayer: {}
+        });
+        await importPromise;
+
+        expect(store.getState().startupBootstrap.stage).toBe("ready");
+        expect(store.getState().startupBootstrap.origin).toBe("localImport");
+        expect(store.getState().offlineSummary).not.toBeNull();
+        expect(persistence.save).toHaveBeenCalledTimes(1);
+    });
+
+    it("reuses the shared bootstrap pipeline for cloud loads", async () => {
+        const initial = createInitialGameState("0.4.0");
+        const store = createGameStore(initial);
+        const persistence = buildPersistence(null);
+        const runtime = new GameRuntime(store, persistence, "0.4.0");
+        runtimes.push(runtime);
+        vi.spyOn(Date, "now").mockReturnValue(10000);
+
+        runtime.start({ nonBlockingStartup: true });
+        await vi.waitFor(() => {
+            expect(store.getState().startupBootstrap.stage).toBe("ready");
+        });
+        persistence.save.mockClear();
+
+        const importedSave = toGameSave(initial);
+        importedSave.lastTick = 1000;
+
+        await runtime.importSave(importedSave, { origin: "cloudLoad" });
+
+        expect(store.getState().startupBootstrap.origin).toBe("cloudLoad");
+        expect(store.getState().startupBootstrap.stageLabel).toBe("Cloud save ready");
+        expect(store.getState().offlineSummary).not.toBeNull();
+        expect(persistence.save).toHaveBeenCalledTimes(1);
+    });
+
     it("skips startup recap when away duration is too short", () => {
         const initial = createInitialGameState("0.4.0");
         const save = toGameSave(initial);

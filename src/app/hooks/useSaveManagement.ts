@@ -70,7 +70,7 @@ export const useSaveManagement = ({
         const parsed = parsedV3.status === "corrupt" ? parseSaveEnvelopeOrLegacy(raw) : parsedV3;
         if (parsed.status === "ok" || parsed.status === "migrated" || parsed.status === "recovered_last_good") {
             clearCloudSyncWatermark();
-            gameRuntime.importSave(parsed.save);
+            void gameRuntime.importSave(parsed.save, { origin: "localImport" });
             refreshLoadReport();
             return;
         }

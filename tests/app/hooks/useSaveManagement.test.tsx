@@ -260,6 +260,10 @@ describe("useSaveManagement", () => {
         expect(prompt).toHaveBeenCalledTimes(1);
         expect(alert).not.toHaveBeenCalled();
         expect(testRuntime.importSave).toHaveBeenCalledTimes(1);
+        expect(testRuntime.importSave).toHaveBeenCalledWith(
+            { version: "0.1.0", players: {}, lastTick: null },
+            { origin: "localImport" }
+        );
         expect(refreshLoadReport).toHaveBeenCalledTimes(1);
         expect(parseLegacySpy).not.toHaveBeenCalled();
     });
@@ -322,6 +326,10 @@ describe("useSaveManagement", () => {
         (api as unknown as SaveManagementApi).importSave();
         expect(parseLegacySpy).toHaveBeenCalledTimes(1);
         expect(testRuntime.importSave).toHaveBeenCalledTimes(1);
+        expect(testRuntime.importSave).toHaveBeenCalledWith(
+            { version: "0.1.0", players: { "1": {} }, lastTick: null },
+            { origin: "localImport" }
+        );
         expect(alert).not.toHaveBeenCalled();
         expect(refreshLoadReport).toHaveBeenCalledTimes(1);
     });

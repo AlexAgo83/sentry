@@ -265,6 +265,32 @@ describe("App", () => {
         expect(screen.queryByText(/Recipe Lv/)).toBeNull();
     });
 
+    it("shows the shared bootstrap overlay again when a local import bootstrap starts after startup", async () => {
+        renderApp({ food: 2 });
+
+        await waitFor(() => {
+            expect(screen.queryByRole("dialog", { name: "Loading" })).toBeNull();
+        });
+
+        testStore.dispatch({
+            type: "setStartupBootstrap",
+            bootstrap: {
+                origin: "localImport",
+                stage: "offlineCatchUp",
+                stageLabel: "Simulating offline progression",
+                progressPct: 42,
+                isRunning: true,
+                detail: "Processing tick 12 / 100",
+                awayDurationMs: 3_661_000
+            }
+        });
+
+        expect(await screen.findByRole("dialog", { name: "Loading" })).toBeTruthy();
+        expect(screen.getByText("Applying your imported save...")).toBeTruthy();
+        expect(screen.getByText("Away for 1h 1m")).toBeTruthy();
+        expect(screen.queryByRole("button", { name: "Continue" })).toBeNull();
+    });
+
     it("starts and pauses an action", async () => {
         const { user } = renderApp({ food: 2 });
         await user.click(screen.getByRole("button", { name: "Change" }));

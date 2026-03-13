@@ -91,6 +91,7 @@ export const AppContainer = () => {
     );
 
     const isStartupReady = appReady && !startupBootstrap.isRunning;
+    const isBootstrapOverlayOpen = startupBootstrap.isRunning || !hasContinued;
 
     useEffect(() => {
         if (!isStartupReady || hasContinued) {
@@ -335,7 +336,7 @@ export const AppContainer = () => {
         || effectiveOfflineSummary
         || swUpdate
         || isSafeModeOpen
-        || !hasContinued
+        || isBootstrapOverlayOpen
     );
 
     const isAnyBlockingModalOpen = Boolean(
@@ -349,7 +350,7 @@ export const AppContainer = () => {
         || effectiveOfflineSummary
         || swUpdate
         || isSafeModeOpen
-        || !hasContinued
+        || isBootstrapOverlayOpen
     );
 
     useEffect(() => {
@@ -402,13 +403,15 @@ export const AppContainer = () => {
     return (
         <div className={`app-shell${isAnyModalOpen ? " is-modal-open" : ""}`}>
             <EnsureSelectedRecipeEffect />
-            {!hasContinued ? (
+            {isBootstrapOverlayOpen ? (
                 <StartupSplashScreen
                     isReady={isStartupReady}
+                    origin={startupBootstrap.origin}
                     stageLabel={startupBootstrap.stageLabel}
                     progressPct={startupBootstrap.progressPct}
                     detail={startupBootstrap.detail}
                     awayDurationMs={startupBootstrap.awayDurationMs}
+                    showContinueButton={!startupBootstrap.isRunning && !hasContinued}
                     onContinue={() => setHasContinued(true)}
                 />
             ) : null}

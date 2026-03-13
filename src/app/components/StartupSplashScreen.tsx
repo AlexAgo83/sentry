@@ -1,22 +1,27 @@
 import { memo, useId, useRef } from "react";
+import type { StartupBootstrapOrigin } from "../../core/types";
 import { useDialogFocusManagement } from "../hooks/useDialogFocusManagement";
 import { formatTimeAway } from "../ui/timeAway";
 
 type StartupSplashScreenProps = {
     isReady: boolean;
+    origin?: StartupBootstrapOrigin | null;
     stageLabel?: string;
     progressPct?: number;
     detail?: string | null;
     awayDurationMs?: number | null;
+    showContinueButton?: boolean;
     onContinue: () => void;
 };
 
 export const StartupSplashScreen = memo(({
     isReady,
+    origin = null,
     stageLabel,
     progressPct = 0,
     detail = null,
     awayDurationMs = null,
+    showContinueButton = true,
     onContinue
 }: StartupSplashScreenProps) => {
     const dialogRef = useRef<HTMLDivElement | null>(null);
@@ -26,6 +31,13 @@ export const StartupSplashScreen = memo(({
     const progressId = useId();
     const clampedProgress = Math.max(0, Math.min(100, Number(progressPct) || 0));
     const shouldShowAwayDuration = !isReady && Number.isFinite(awayDurationMs) && (awayDurationMs ?? 0) >= 5000;
+    const statusCopy = isReady
+        ? "Ready to continue."
+        : origin === "cloudLoad"
+            ? "Applying your cloud save..."
+            : origin === "localImport"
+                ? "Applying your imported save..."
+                : "Preparing your save and assets...";
 
     useDialogFocusManagement({
         dialogRef,
@@ -48,7 +60,7 @@ export const StartupSplashScreen = memo(({
                 <span className="ts-startup-kicker">Sentry</span>
                 <h1 id={titleId} className="ts-startup-title">Loading</h1>
                 <p id={statusId} className="ts-startup-status" aria-live="polite">
-                    {isReady ? "Ready to continue." : "Preparing your save and assets..."}
+                    {statusCopy}
                 </p>
                 {!isReady ? (
                     <>
@@ -79,17 +91,19 @@ export const StartupSplashScreen = memo(({
                         ) : null}
                     </>
                 ) : null}
-                <div className="ts-startup-actions">
-                    <button
-                        ref={continueButtonRef}
-                        type="button"
-                        className="generic-field button ts-startup-button ts-focusable"
-                        onClick={onContinue}
-                        disabled={!isReady}
-                    >
-                        Continue
-                    </button>
-                </div>
+                {showContinueButton ? (
+                    <div className="ts-startup-actions">
+                        <button
+                            ref={continueButtonRef}
+                            type="button"
+                            className="generic-field button ts-startup-button ts-focusable"
+                            onClick={onContinue}
+                            disabled={!isReady}
+                        >
+                            Continue
+                        </button>
+                    </div>
+                ) : null}
             </div>
         </div>
     );

@@ -52,6 +52,7 @@ export const createActionProgress = (): ActionProgressState => ({
 });
 
 export const createIdleStartupBootstrapState = (): StartupBootstrapState => ({
+    origin: null,
     stage: "idle",
     stageLabel: "Idle",
     progressPct: 0,
@@ -65,6 +66,7 @@ export const createIdleStartupBootstrapState = (): StartupBootstrapState => ({
 });
 
 export const createReadyStartupBootstrapState = (): StartupBootstrapState => ({
+    origin: null,
     stage: "ready",
     stageLabel: "Ready",
     progressPct: 100,

@@ -6,7 +6,8 @@ import {
     OfflinePlayerSummary,
     OfflineSummaryState,
     PerformanceState,
-    PlayerId
+    PlayerId,
+    StartupBootstrapOrigin
 } from "./types";
 import { isPlayerAssignedToActiveDungeonRun } from "./dungeon";
 import { createInitialGameState } from "./state";
@@ -82,91 +83,10 @@ export class GameRuntime {
             return;
         }
         this.hasStarted = true;
-        const runToken = ++this.startupRunToken;
-        this.setStartupBootstrap(
-            {
-                stage: "loadSave",
-                stageLabel: "Loading save data",
-                progressPct: 4,
-                isRunning: true,
-                detail: null,
-                awayDurationMs: null,
-                processedTicks: 0,
-                totalTicks: 0,
-                processedMs: 0,
-                totalMs: 0
-            },
-            true
-        );
         try {
             const save = this.persistence.load();
-            if (!this.isStartupRunActive(runToken)) {
-                return;
-            }
-            this.setStartupBootstrap({
-                stage: "hydrateState",
-                stageLabel: "Hydrating state",
-                progressPct: 16,
-                detail: null
-            });
-            this.store.dispatch({ type: "hydrate", save, version: this.version });
-            if (!this.isStartupRunActive(runToken)) {
-                return;
-            }
-            this.bindVisibility();
-            this.bindUnload();
-            if (!this.isDocumentVisible()) {
-                const lastTick = this.store.getState().loop.lastTick;
-                const hiddenAt = lastTick ?? Date.now();
-                this.hiddenAt = hiddenAt;
-                this.store.dispatch({ type: "setHiddenAt", hiddenAt });
-                this.setStartupBootstrap({
-                    stage: "ready",
-                    stageLabel: "Ready",
-                    progressPct: 100,
-                    isRunning: false,
-                    detail: null
-                });
-                return;
-            }
-            await this.runStartupOfflineCatchUpNonBlocking(runToken);
-            if (!this.isStartupRunActive(runToken)) {
-                return;
-            }
-            this.setStartupBootstrap({
-                stage: "assetWarmup",
-                stageLabel: "Preparing assets",
-                progressPct: 96,
-                detail: "Finalizing startup"
-            });
-            await this.yieldToMainThread();
-            if (!this.isStartupRunActive(runToken)) {
-                return;
-            }
-            this.setStartupBootstrap({
-                stage: "finalizeReady",
-                stageLabel: "Finalizing",
-                progressPct: 99,
-                detail: null
-            });
-            this.startLoop();
-            this.setStartupBootstrap({
-                stage: "ready",
-                stageLabel: "Ready",
-                progressPct: 100,
-                isRunning: false,
-                detail: null
-            });
+            await this.applySaveWithBootstrap(save, { origin: "startup", bindLifecycle: true });
         } catch (error) {
-            if (this.isStartupRunActive(runToken)) {
-                this.setStartupBootstrap({
-                    stage: "error",
-                    stageLabel: "Startup error",
-                    progressPct: 100,
-                    isRunning: false,
-                    detail: error instanceof Error ? error.message : "Failed to complete startup bootstrap"
-                });
-            }
             this.hasStarted = false;
             console.error("Startup bootstrap failed", error);
         }
@@ -231,9 +151,11 @@ export class GameRuntime {
         this.store.dispatch({ type: "hydrate", save, version: this.version });
     };
 
-    importSave = (save: GameSave) => {
-        this.persist({ force: true, save });
-        this.store.dispatch({ type: "hydrate", save, version: this.version });
+    importSave = async (save: GameSave, options?: { origin?: Exclude<StartupBootstrapOrigin, "startup"> }) => {
+        await this.applySaveWithBootstrap(save, {
+            origin: options?.origin ?? "localImport",
+            bindLifecycle: false
+        });
     };
 
     retryPersistence = () => {
@@ -403,6 +325,148 @@ export class GameRuntime {
 
     private isStartupRunActive = (runToken: number) => {
         return this.hasStarted && this.startupRunToken === runToken;
+    };
+
+    private getBootstrapStageLabels = (origin: StartupBootstrapOrigin) => {
+        if (origin === "localImport") {
+            return {
+                loading: "Loading imported save",
+                hydrating: "Applying imported save",
+                assets: "Preparing imported save",
+                finalizing: "Finalizing import",
+                ready: "Import ready",
+                error: "Import error"
+            };
+        }
+        if (origin === "cloudLoad") {
+            return {
+                loading: "Loading cloud save",
+                hydrating: "Applying cloud save",
+                assets: "Preparing cloud save",
+                finalizing: "Finalizing cloud load",
+                ready: "Cloud save ready",
+                error: "Cloud load error"
+            };
+        }
+        return {
+            loading: "Loading save data",
+            hydrating: "Hydrating state",
+            assets: "Preparing assets",
+            finalizing: "Finalizing",
+            ready: "Ready",
+            error: "Startup error"
+        };
+    };
+
+    private applySaveWithBootstrap = async (
+        save: GameSave | null,
+        options: {
+            origin: StartupBootstrapOrigin;
+            bindLifecycle: boolean;
+        }
+    ) => {
+        const runToken = ++this.startupRunToken;
+        const labels = this.getBootstrapStageLabels(options.origin);
+        const shouldResumeLoopAfterBootstrap = this.hasStarted && this.isDocumentVisible();
+
+        this.pauseLoop();
+        this.setStartupBootstrap(
+            {
+                origin: options.origin,
+                stage: "loadSave",
+                stageLabel: labels.loading,
+                progressPct: 4,
+                isRunning: true,
+                detail: null,
+                awayDurationMs: null,
+                processedTicks: 0,
+                totalTicks: 0,
+                processedMs: 0,
+                totalMs: 0
+            },
+            true
+        );
+
+        try {
+            if (!this.isStartupRunActive(runToken)) {
+                return;
+            }
+            this.setStartupBootstrap({
+                origin: options.origin,
+                stage: "hydrateState",
+                stageLabel: labels.hydrating,
+                progressPct: 16,
+                detail: null
+            });
+            this.store.dispatch({ type: "hydrate", save, version: this.version });
+            if (!this.isStartupRunActive(runToken)) {
+                return;
+            }
+            if (options.bindLifecycle) {
+                this.bindVisibility();
+                this.bindUnload();
+            }
+            if (!this.isDocumentVisible()) {
+                const lastTick = this.store.getState().loop.lastTick;
+                const hiddenAt = lastTick ?? Date.now();
+                this.hiddenAt = hiddenAt;
+                this.store.dispatch({ type: "setHiddenAt", hiddenAt });
+                this.setStartupBootstrap({
+                    origin: options.origin,
+                    stage: "ready",
+                    stageLabel: labels.ready,
+                    progressPct: 100,
+                    isRunning: false,
+                    detail: null
+                });
+                return;
+            }
+            await this.runStartupOfflineCatchUpNonBlocking(runToken);
+            if (!this.isStartupRunActive(runToken)) {
+                return;
+            }
+            this.setStartupBootstrap({
+                origin: options.origin,
+                stage: "assetWarmup",
+                stageLabel: labels.assets,
+                progressPct: 96,
+                detail: options.origin === "startup" ? "Finalizing startup" : "Finalizing save application"
+            });
+            await this.yieldToMainThread();
+            if (!this.isStartupRunActive(runToken)) {
+                return;
+            }
+            this.setStartupBootstrap({
+                origin: options.origin,
+                stage: "finalizeReady",
+                stageLabel: labels.finalizing,
+                progressPct: 99,
+                detail: null
+            });
+            if (shouldResumeLoopAfterBootstrap) {
+                this.startLoop();
+            }
+            this.setStartupBootstrap({
+                origin: options.origin,
+                stage: "ready",
+                stageLabel: labels.ready,
+                progressPct: 100,
+                isRunning: false,
+                detail: null
+            });
+        } catch (error) {
+            if (this.isStartupRunActive(runToken)) {
+                this.setStartupBootstrap({
+                    origin: options.origin,
+                    stage: "error",
+                    stageLabel: labels.error,
+                    progressPct: 100,
+                    isRunning: false,
+                    detail: error instanceof Error ? error.message : "Failed to complete save bootstrap"
+                });
+            }
+            throw error;
+        }
     };
 
     private yieldToMainThread = async () => {
