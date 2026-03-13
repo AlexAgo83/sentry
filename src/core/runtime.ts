@@ -344,8 +344,11 @@ export class GameRuntime {
         });
     };
 
-    private persist = (options?: { force?: boolean; save?: GameSave; allowDisabled?: boolean }) => {
+    private persist = (options?: { force?: boolean; save?: GameSave; allowDisabled?: boolean; allowDuringStartup?: boolean }) => {
         const now = Date.now();
+        if (!options?.allowDuringStartup && this.store.getState().startupBootstrap.isRunning) {
+            return;
+        }
         if (this.persistenceDisabled && !options?.allowDisabled) {
             if (!this.persistenceRetryAt || now < this.persistenceRetryAt) {
                 return;
@@ -840,7 +843,7 @@ export class GameRuntime {
             lastOfflineTicks: result.ticks,
             lastOfflineDurationMs: diff
         });
-        this.persist({ force: true });
+        this.persist({ force: true, allowDuringStartup: true });
         this.setStartupBootstrap({
             progressPct: 92,
             detail: "Offline catch-up complete",

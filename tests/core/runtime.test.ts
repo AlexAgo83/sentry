@@ -14,9 +14,11 @@ const buildPersistence = (save: GameSave | null = null) => ({
 
 describe("GameRuntime", () => {
     const documentListeners: Record<string, Array<(event?: { type: string }) => void>> = {};
+    const windowListeners: Record<string, Array<(event?: { type: string }) => void>> = {};
     const runtimes: GameRuntime[] = [];
     beforeEach(() => {
         documentListeners.visibilitychange = [];
+        windowListeners.beforeunload = [];
         const documentStub = {
             visibilityState: "visible",
             addEventListener: vi.fn((type: string, handler: (event?: { type: string }) => void) => {
@@ -34,8 +36,13 @@ describe("GameRuntime", () => {
         const windowStub = {
             setInterval: vi.fn(() => 0),
             clearInterval: vi.fn(),
-            addEventListener: vi.fn(),
-            removeEventListener: vi.fn()
+            addEventListener: vi.fn((type: string, handler: (event?: { type: string }) => void) => {
+                windowListeners[type] = windowListeners[type] ?? [];
+                windowListeners[type].push(handler);
+            }),
+            removeEventListener: vi.fn((type: string, handler: (event?: { type: string }) => void) => {
+                windowListeners[type] = (windowListeners[type] ?? []).filter((fn) => fn !== handler);
+            })
         };
 
         (globalThis as any).document = documentStub;
@@ -111,6 +118,96 @@ describe("GameRuntime", () => {
         expect(store.getState().startupBootstrap.progressPct).toBe(100);
         expect(store.getState().startupBootstrap.isRunning).toBe(false);
         expect(store.getState().offlineSummary).not.toBeNull();
+        expect(persistence.save).toHaveBeenCalledTimes(1);
+    });
+
+    it("does not persist while non-blocking startup bootstrap is still running", async () => {
+        let resolveCatchUp: ((value: any) => void) | null = null;
+        const initial = createInitialGameState("0.4.0");
+        const save = toGameSave(initial);
+        save.lastTick = 1000;
+        const store = createGameStore(initial);
+        const persistence = buildPersistence(save);
+        const runtime = new GameRuntime(store, persistence, "0.4.0");
+        runtimes.push(runtime);
+        vi.spyOn(Date, "now").mockReturnValue(10000);
+        vi.spyOn(runtime as never, "runOfflineCatchUpChunked" as never).mockImplementation(() => (
+            new Promise((resolve) => {
+                resolveCatchUp = resolve;
+            })
+        ));
+
+        runtime.start({ nonBlockingStartup: true });
+
+        await vi.waitFor(() => {
+            expect(store.getState().startupBootstrap.isRunning).toBe(true);
+        });
+
+        // @ts-expect-error accessing private method for persistence gate verification
+        runtime.persist({ force: true });
+        expect(persistence.save).not.toHaveBeenCalled();
+
+        if (!resolveCatchUp) {
+            throw new Error("Expected deferred startup catch-up resolver");
+        }
+        const completeCatchUp = resolveCatchUp as (value: any) => void;
+        completeCatchUp({
+            processedMs: 9000,
+            ticks: 2,
+            capped: false,
+            totalItemDeltas: {},
+            playerItemDeltas: {},
+            dungeonItemDeltasByPlayer: {},
+            dungeonCombatXpByPlayer: {}
+        });
+        await vi.waitFor(() => {
+            expect(store.getState().startupBootstrap.stage).toBe("ready");
+        });
+        expect(persistence.save).toHaveBeenCalledTimes(1);
+    });
+
+    it("ignores beforeunload persistence while startup bootstrap is still running", async () => {
+        const initial = createInitialGameState("0.4.0");
+        const save = toGameSave(initial);
+        save.lastTick = 1000;
+        const store = createGameStore(initial);
+        const persistence = buildPersistence(save);
+        const runtime = new GameRuntime(store, persistence, "0.4.0");
+        runtimes.push(runtime);
+        vi.spyOn(Date, "now").mockReturnValue(10000);
+        vi.spyOn(runtime as never, "runOfflineCatchUpChunked" as never).mockImplementation(() => new Promise(() => {}));
+
+        runtime.start({ nonBlockingStartup: true });
+
+        await vi.waitFor(() => {
+            expect(store.getState().startupBootstrap.isRunning).toBe(true);
+        });
+
+        windowListeners.beforeunload[0]?.({ type: "beforeunload" });
+        expect(persistence.save).not.toHaveBeenCalled();
+    });
+
+    it("ignores visibility-hide persistence while startup bootstrap is still running", async () => {
+        const initial = createInitialGameState("0.4.0");
+        const save = toGameSave(initial);
+        save.lastTick = 1000;
+        const store = createGameStore(initial);
+        const persistence = buildPersistence(save);
+        const runtime = new GameRuntime(store, persistence, "0.4.0");
+        runtimes.push(runtime);
+        vi.spyOn(Date, "now").mockReturnValue(10000);
+        vi.spyOn(runtime as never, "runOfflineCatchUpChunked" as never).mockImplementation(() => new Promise(() => {}));
+
+        runtime.start({ nonBlockingStartup: true });
+
+        await vi.waitFor(() => {
+            expect(store.getState().startupBootstrap.isRunning).toBe(true);
+        });
+
+        (document as any).visibilityState = "hidden";
+        (document as any).dispatchEvent({ type: "visibilitychange" });
+
+        expect(persistence.save).not.toHaveBeenCalled();
     });
 
     it("skips startup recap when away duration is too short", () => {
