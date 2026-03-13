@@ -2,6 +2,7 @@ import { memo } from "react";
 import type { OfflinePlayerSummary, OfflineSummaryState, SkillId } from "../../core/types";
 import { ITEM_DEFINITIONS } from "../../data/definitions";
 import { formatItemDeltaEntries, formatItemDeltaEntriesFull, getItemDeltaEntries } from "../ui/itemFormatters";
+import { formatTimeAway } from "../ui/timeAway";
 import { ModalShell } from "./ModalShell";
 
 type OfflineSummaryModalProps = {
@@ -19,20 +20,6 @@ export const OfflineSummaryModal = memo(({
     getSkillLabel,
     getRecipeLabel
 }: OfflineSummaryModalProps) => {
-    const formatTimeAway = (seconds: number): string => {
-        const safeSeconds = Math.max(0, Math.floor(seconds));
-        if (safeSeconds < 60) {
-            return `${safeSeconds}s`;
-        }
-        if (safeSeconds < 3600) {
-            const minutes = Math.floor(safeSeconds / 60);
-            const remainderSeconds = safeSeconds % 60;
-            return `${minutes}m ${remainderSeconds}s`;
-        }
-        const hours = Math.floor(safeSeconds / 3600);
-        const minutes = Math.floor((safeSeconds % 3600) / 60);
-        return `${hours}h ${minutes}m`;
-    };
     const formatXp = (value: number): string => {
         if (!Number.isFinite(value)) {
             return "0";
@@ -47,17 +34,15 @@ export const OfflineSummaryModal = memo(({
         ? formatItemDeltaEntriesFull(summaryEntries)
         : summaryLabel;
 
-    const awaySeconds = Math.round(summary.durationMs / 1000);
-    const processedSeconds = Math.round(summary.processedMs / 1000);
-    const showProcessed = summary.capped || processedSeconds !== awaySeconds;
+    const showProcessed = summary.capped || Math.round(summary.processedMs / 1000) !== Math.round(summary.durationMs / 1000);
 
     return (
         <ModalShell kicker="Offline recap" title="Your party" onClose={onClose}>
             <ul className="ts-list">
-                <li>Time away: {formatTimeAway(awaySeconds)}</li>
+                <li>Time away: {formatTimeAway(summary.durationMs)}</li>
                 {showProcessed ? (
                     <li>
-                        Processed: {formatTimeAway(processedSeconds)}
+                        Processed: {formatTimeAway(summary.processedMs)}
                         {summary.capped ? " (capped)" : ""}
                     </li>
                 ) : null}

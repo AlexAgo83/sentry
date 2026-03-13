@@ -1,11 +1,13 @@
 import { memo, useId, useRef } from "react";
 import { useDialogFocusManagement } from "../hooks/useDialogFocusManagement";
+import { formatTimeAway } from "../ui/timeAway";
 
 type StartupSplashScreenProps = {
     isReady: boolean;
     stageLabel?: string;
     progressPct?: number;
     detail?: string | null;
+    awayDurationMs?: number | null;
     onContinue: () => void;
 };
 
@@ -14,6 +16,7 @@ export const StartupSplashScreen = memo(({
     stageLabel,
     progressPct = 0,
     detail = null,
+    awayDurationMs = null,
     onContinue
 }: StartupSplashScreenProps) => {
     const dialogRef = useRef<HTMLDivElement | null>(null);
@@ -22,6 +25,7 @@ export const StartupSplashScreen = memo(({
     const statusId = useId();
     const progressId = useId();
     const clampedProgress = Math.max(0, Math.min(100, Number(progressPct) || 0));
+    const shouldShowAwayDuration = !isReady && Number.isFinite(awayDurationMs) && (awayDurationMs ?? 0) >= 5000;
 
     useDialogFocusManagement({
         dialogRef,
@@ -48,6 +52,11 @@ export const StartupSplashScreen = memo(({
                 </p>
                 {!isReady ? (
                     <>
+                        {shouldShowAwayDuration ? (
+                            <p className="ts-startup-status ts-startup-status-detail">
+                                Away for {formatTimeAway(awayDurationMs ?? 0)}
+                            </p>
+                        ) : null}
                         <div
                             id={progressId}
                             className="ts-startup-progress"

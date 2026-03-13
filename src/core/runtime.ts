@@ -90,6 +90,7 @@ export class GameRuntime {
                 progressPct: 4,
                 isRunning: true,
                 detail: null,
+                awayDurationMs: null,
                 processedTicks: 0,
                 totalTicks: 0,
                 processedMs: 0,
@@ -736,6 +737,7 @@ export class GameRuntime {
             this.setStartupBootstrap({
                 progressPct: 92,
                 detail: "No offline catch-up needed",
+                awayDurationMs: null,
                 processedTicks: 0,
                 totalTicks: 0,
                 processedMs: 0,
@@ -753,6 +755,7 @@ export class GameRuntime {
             this.setStartupBootstrap({
                 progressPct: 92,
                 detail: "No offline catch-up needed",
+                awayDurationMs: null,
                 processedTicks: 0,
                 totalTicks: 0,
                 processedMs: 0,
@@ -767,6 +770,7 @@ export class GameRuntime {
         const expectedTicks = expectedProcessedMs > 0 ? Math.ceil(expectedProcessedMs / Math.max(1, stepMs)) : 0;
         this.setStartupBootstrap({
             detail: expectedTicks > 0 ? `0 / ${expectedTicks} ticks` : "Preparing catch-up",
+            awayDurationMs: diff,
             processedTicks: 0,
             totalTicks: expectedTicks,
             processedMs: 0,

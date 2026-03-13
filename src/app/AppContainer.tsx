@@ -408,6 +408,7 @@ export const AppContainer = () => {
                     stageLabel={startupBootstrap.stageLabel}
                     progressPct={startupBootstrap.progressPct}
                     detail={startupBootstrap.detail}
+                    awayDurationMs={startupBootstrap.awayDurationMs}
                     onContinue={() => setHasContinued(true)}
                 />
             ) : null}

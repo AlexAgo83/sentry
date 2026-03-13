@@ -2,7 +2,7 @@
 > From version: 0.9.38
 > Understanding: 97%
 > Confidence: 94%
-> Progress: 0%
+> Progress: 100%
 > Complexity: Low
 > Theme: UX / Startup
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc.
@@ -31,16 +31,16 @@ This task adds a concise “away duration” context line to the startup loading
 - Regression coverage should verify both the state contract and the final rendering behavior.
 
 # Plan
-- [ ] 1. Execute `item_201` (bootstrap metadata):
+- [x] 1. Execute `item_201` (bootstrap metadata):
   - Add a dedicated away-duration field to startup bootstrap state.
   - Populate/clear it appropriately during startup bootstrap.
-- [ ] 2. Execute `item_202` (splash rendering):
+- [x] 2. Execute `item_202` (splash rendering):
   - Render and format the away-duration line in the splash.
   - Keep spacing/hierarchy aligned with the current loading layout.
-- [ ] 3. Execute `item_203` (regression + validation):
+- [x] 3. Execute `item_203` (regression + validation):
   - Add runtime/UI regression coverage for visible and hidden cases.
   - Run validation suite and fix failures.
-- [ ] FINAL: Update related Logics docs (request/backlog/task alignment)
+- [x] FINAL: Update related Logics docs (request/backlog/task alignment)
 
 # Validation
 Final gate (mandatory at task end):

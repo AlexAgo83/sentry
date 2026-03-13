@@ -117,6 +117,7 @@ describe("GameRuntime", () => {
 
         expect(store.getState().startupBootstrap.progressPct).toBe(100);
         expect(store.getState().startupBootstrap.isRunning).toBe(false);
+        expect(store.getState().startupBootstrap.awayDurationMs).toBe(9000);
         expect(store.getState().offlineSummary).not.toBeNull();
         expect(persistence.save).toHaveBeenCalledTimes(1);
     });
@@ -223,6 +224,7 @@ describe("GameRuntime", () => {
         runtime.start();
 
         expect(store.getState().offlineSummary).toBeNull();
+        expect(store.getState().startupBootstrap.awayDurationMs).toBeNull();
         runtime.stop();
     });
 

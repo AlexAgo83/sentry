@@ -327,6 +327,7 @@ export interface StartupBootstrapState {
     progressPct: number;
     isRunning: boolean;
     detail: string | null;
+    awayDurationMs: number | null;
     processedTicks: number;
     totalTicks: number;
     processedMs: number;

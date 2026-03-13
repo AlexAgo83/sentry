@@ -24,12 +24,28 @@ describe("StartupSplashScreen", () => {
                 progressPct={42}
                 stageLabel="Simulating offline progression"
                 detail="Processing tick 12 / 100"
+                awayDurationMs={3_661_000}
                 onContinue={vi.fn()}
             />
         );
 
         expect(screen.getByRole("progressbar", { name: "Startup progress" })).toBeTruthy();
+        expect(screen.getByText("Away for 1h 1m")).toBeTruthy();
         expect(screen.getByText("42% - Simulating offline progression")).toBeTruthy();
         expect(screen.getByText("Processing tick 12 / 100")).toBeTruthy();
+    });
+
+    it("hides away duration when startup has no meaningful catch-up context", () => {
+        render(
+            <StartupSplashScreen
+                isReady={false}
+                progressPct={12}
+                stageLabel="Loading save data"
+                awayDurationMs={2000}
+                onContinue={vi.fn()}
+            />
+        );
+
+        expect(screen.queryByText(/Away for/)).toBeNull();
     });
 });
