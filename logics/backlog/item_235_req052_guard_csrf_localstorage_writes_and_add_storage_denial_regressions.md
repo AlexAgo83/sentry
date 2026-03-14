@@ -1,9 +1,9 @@
 ## item_235_req052_guard_csrf_localstorage_writes_and_add_storage_denial_regressions - req052 guard CSRF localStorage writes and add storage-denial regressions
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 98%
-> Confidence: 95%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 98%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Security / Reliability / Frontend
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -38,5 +38,4 @@ Cloud auth read paths already treat browser storage as fallible, but CSRF token 
 - Derived from `logics/request/req_052_post_global_review_security_and_cloud_reliability_hardening.md`.
 - Likely touch points:
   - `src/app/api/cloudClient.ts`
-  - `tests/app/cloudSavePanel.test.tsx`
-  - `tests/app/cloudSaveModal.test.tsx`
+  - `tests/app/api/cloudClient.storage.test.ts`

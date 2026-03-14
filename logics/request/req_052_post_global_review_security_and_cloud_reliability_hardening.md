@@ -1,8 +1,8 @@
 ## req_052_post_global_review_security_and_cloud_reliability_hardening - Post global review security and cloud reliability hardening
 > From version: 0.9.40
-> Status: Ready
+> Status: Done
 > Understanding: 100%
-> Confidence: 96%
+> Confidence: 98%
 > Complexity: Medium
 > Theme: Security / Reliability
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
@@ -105,3 +105,9 @@
 
 # Task
 - `logics/tasks/task_118_execute_req052_residual_security_and_cloud_reliability_hardening_across_backlog_items_234_to_237.md`
+
+# Completion notes
+- Auth rate limiting now ignores raw `x-forwarded-for` by default and only trusts forwarding headers when `AUTH_RATE_LIMIT_TRUST_PROXY=1` is set explicitly.
+- CSRF token persistence/removal is now best-effort on write paths as well as read paths, with dedicated storage-denial regressions.
+- Refresh-token lifecycle cleanup is implemented as a bounded stale-row cleanup during token issuance.
+- The historical `qs` advisory is considered resolved in the current dependency graph and was re-validated during this task with a clean production audit.

@@ -93,15 +93,27 @@ const loadCsrfToken = (): string | null => {
     }
 };
 
+const safeStorageWrite = (operation: () => void) => {
+    try {
+        operation();
+    } catch {
+        // Storage is best-effort only.
+    }
+};
+
 const saveCsrfToken = (token: string | null) => {
     if (typeof localStorage === "undefined") {
         return;
     }
     if (!token) {
-        localStorage.removeItem(CSRF_TOKEN_KEY);
+        safeStorageWrite(() => {
+            localStorage.removeItem(CSRF_TOKEN_KEY);
+        });
         return;
     }
-    localStorage.setItem(CSRF_TOKEN_KEY, token);
+    safeStorageWrite(() => {
+        localStorage.setItem(CSRF_TOKEN_KEY, token);
+    });
 };
 
 const clearCsrfToken = () => saveCsrfToken(null);

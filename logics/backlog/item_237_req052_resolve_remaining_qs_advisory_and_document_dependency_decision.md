@@ -1,9 +1,9 @@
 ## item_237_req052_resolve_remaining_qs_advisory_and_document_dependency_decision - req052 resolve remaining qs advisory and document dependency decision
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 96%
-> Confidence: 93%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 98%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Security / Dependencies / CI
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -39,3 +39,6 @@
   - `package-lock.json`
   - `.github/workflows/ci.yml`
   - `changelogs/*` or request notes if a temporary decision is needed
+- Resolution note:
+  - The `qs` advisory was cleared by the dependency refresh already landed in `0.9.40`.
+  - This item is closed by re-validating the current repository state with `npm audit --omit=dev --json` returning `0` vulnerabilities and by keeping the decision recorded in `req_052`.

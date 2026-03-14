@@ -1,9 +1,9 @@
 ## item_236_req052_add_refresh_token_lifecycle_cleanup_policy_and_backend_coverage - req052 add refresh-token lifecycle cleanup policy and backend coverage
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 95%
-> Confidence: 92%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 97%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Reliability / Backend / Operations
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -38,6 +38,6 @@ Refresh-token rotation exists, but there is no explicit cleanup policy for revok
 # Notes
 - Derived from `logics/request/req_052_post_global_review_security_and_cloud_reliability_hardening.md`.
 - Likely touch points:
+  - `backend/routes/auth.js`
   - `backend/server.js`
-  - `prisma/*`
-  - `tests/backend/*auth*`
+  - `tests/backend/cloudApi.test.ts`
