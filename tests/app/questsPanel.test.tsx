@@ -76,7 +76,9 @@ describe("QuestsPanel", () => {
         expect(screen.getAllByText("1/4")).toHaveLength(2);
         expect(screen.getByText("Milestones")).toBeTruthy();
         expect(screen.getByText("Town Charter")).toBeTruthy();
-        expect(screen.getByText("Unlock: +1 roster slot")).toBeTruthy();
+        expect(screen.getByText("Unlock: -15% roster expansion cost")).toBeTruthy();
+        expect(screen.getByText("Quest Ledger")).toBeTruthy();
+        expect(screen.getByText("Unlocked milestones")).toBeTruthy();
         expect(screen.getByText("Tutorial Quests")).toBeTruthy();
         expect(screen.getByText("Skill Quests")).toBeTruthy();
         expect(screen.getByText("Craft Quests")).toBeTruthy();
@@ -88,6 +90,6 @@ describe("QuestsPanel", () => {
         const { container } = render(<QuestsPanel {...baseProps} />);
         const completedTile = container.querySelector(".ts-quest-tile.is-completed");
         expect(completedTile).toBeTruthy();
-        expect(screen.getByText("Completed")).toBeTruthy();
+        expect(screen.getByText("Town Charter")).toBeTruthy();
     });
 });

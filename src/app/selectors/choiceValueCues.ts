@@ -31,26 +31,26 @@ export const getDungeonValueCues = (
             const recommendedPower = definition.recommendedPower * 2;
             const riskTier = resolveDungeonRiskTier(currentPower, recommendedPower);
             if (riskTier === "Low") {
-                return createCue("Farm-ready", "good");
+                return createCue("Safe clear", "good");
             }
             if (riskTier === "Medium") {
-                return createCue("On curve", "neutral");
+                return createCue("Ready", "neutral");
             }
             if (riskTier === "High") {
-                return createCue("Stretch clear", "warn");
+                return createCue("Close call", "warn");
             }
-            return createCue("Push later", "danger");
+            return createCue("Underpowered", "danger");
         })()
-        : null;
+        : createCue("Pick 4 heroes", "neutral");
 
     const rewardProfile = resolveDungeonRewardProfile(definition);
     const rewardFocus = definition.tier >= 8
         ? createCue("Apex loot", "danger")
         : definition.tier >= 5
-            ? createCue("Rare drops + XP", "warn")
+            ? createCue("Rare drops", "warn")
             : rewardProfile.combatXpMultiplier >= 1.2
                 ? createCue("Combat XP", "neutral")
-                : createCue("Starter progression", "good");
+                : createCue("Warm-up tier", "good");
 
     return {
         readiness,
@@ -84,9 +84,9 @@ export const getRecipeValueCues = (
         ? createCue("Gear craft", "good")
         : rewardProfile.tier >= 4
             ? createCue("High XP", "warn")
-            : rewardProfile.tier >= 3
-                ? createCue("Strong XP", "neutral")
-                : createCue("Basic output", "neutral");
+        : rewardProfile.tier >= 3
+            ? createCue("Strong XP", "neutral")
+            : createCue("Basic output", "neutral");
 
     return {
         progressionFit,

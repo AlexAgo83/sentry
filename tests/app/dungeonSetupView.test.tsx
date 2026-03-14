@@ -31,7 +31,8 @@ describe("DungeonSetupView", () => {
         );
 
         expect(screen.getByText("Reward T5 · Combat XP x1.40 · Boss gold x1.48")).toBeTruthy();
-        expect(screen.getByText("Rare drops + XP")).toBeTruthy();
+        expect(screen.getByText("Pick 4 heroes")).toBeTruthy();
+        expect(screen.getByText("Rare drops")).toBeTruthy();
     });
 
     it("shows readiness cues when party power is available", () => {
@@ -60,7 +61,7 @@ describe("DungeonSetupView", () => {
             />
         );
 
-        expect(screen.getByText("Stretch clear")).toBeTruthy();
+        expect(screen.getByText("Close call")).toBeTruthy();
         expect(screen.getByText("Combat XP")).toBeTruthy();
     });
 });

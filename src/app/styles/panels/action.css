@@ -23,6 +23,13 @@
     gap: var(--m4);
 }
 
+.ts-action-summary-row--stacked {
+    align-items: flex-start;
+    flex-direction: column;
+    grid-column: 1 / -1;
+    gap: var(--m2);
+}
+
 .ts-action-summary-label {
     font-size: var(--text-xs-size);
     text-transform: uppercase;
@@ -34,6 +41,13 @@
     font-size: var(--text-s-size);
     color: var(--color-text);
     text-align: right;
+}
+
+.ts-action-summary-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
 }
 
 .ts-progress-row {

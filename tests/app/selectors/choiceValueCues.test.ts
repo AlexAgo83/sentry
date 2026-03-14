@@ -14,7 +14,7 @@ describe("choice value cues", () => {
 
         const cues = getDungeonValueCues(definition, 24, true);
 
-        expect(cues.readiness?.label).toBe("Stretch clear");
+        expect(cues.readiness?.label).toBe("Close call");
         expect(cues.rewardFocus.label).toBe("Combat XP");
     });
 

@@ -75,17 +75,15 @@ const MilestoneTile = ({ milestone }: { milestone: MilestoneEntry }) => (
     <div className={`ts-shop-tile ts-quest-tile ts-milestone-tile${milestone.isCompleted ? " is-completed" : ""}`}>
         <div className="ts-quest-tile-header">
             <div className="ts-quest-tile-title">{milestone.title}</div>
+            <span className={`ts-milestone-status-badge${milestone.isCompleted ? " is-completed" : ""}`}>
+                {milestone.isCompleted ? "Unlocked" : milestone.progressLabel}
+            </span>
         </div>
         <div className="ts-quest-tile-reward-line">
             Unlock: {milestone.rewardLabel}
         </div>
-        <div className="ts-quest-tile-progress-block">
-            <div className="ts-quest-tile-progress">
-                <span className="ts-quest-tile-progress-label">
-                    {milestone.progressLabel}
-                </span>
-                <span className="ts-quest-tile-progress-subtitle">{milestone.subtitle}</span>
-            </div>
+        <div className="ts-quest-tile-progress-block ts-milestone-progress-block">
+            <div className="ts-milestone-subtitle">{milestone.subtitle}</div>
             <div className="ts-quest-tile-bar" aria-hidden="true">
                 <span
                     className="ts-quest-tile-bar-fill"
@@ -112,6 +110,14 @@ export const QuestsPanel = memo(({
     const milestoneCounterLabel = `${completedMilestoneCount}/${totalMilestoneCount}`;
     const [questFilters, setQuestFilters] = usePersistedQuestFilters({ showCompleted: true });
     const showCompleted = questFilters.showCompleted;
+    const activeMilestones = useMemo(
+        () => milestones.filter((milestone) => !milestone.isCompleted),
+        [milestones]
+    );
+    const completedMilestones = useMemo(
+        () => milestones.filter((milestone) => milestone.isCompleted),
+        [milestones]
+    );
     const visibleTutorialQuests = useMemo(
         () => (showCompleted ? tutorialQuests : tutorialQuests.filter((quest) => !quest.isCompleted)),
         [showCompleted, tutorialQuests]
@@ -165,11 +171,29 @@ export const QuestsPanel = memo(({
                 <div className="ts-quests-body">
                     <div className="ts-quest-section">
                         <div className="ts-quest-section-title">Milestones <span className="ts-panel-counter">{milestoneCounterLabel}</span></div>
-                        <div className="ts-shop-grid ts-quest-grid">
-                            {milestones.map((milestone) => (
-                                <MilestoneTile key={milestone.id} milestone={milestone} />
-                            ))}
-                        </div>
+                        {activeMilestones.length > 0 ? (
+                            <div className="ts-shop-grid ts-quest-grid">
+                                {activeMilestones.map((milestone) => (
+                                    <MilestoneTile key={milestone.id} milestone={milestone} />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="ts-milestone-empty">
+                                All current milestones are unlocked.
+                            </div>
+                        )}
+                        {completedMilestones.length > 0 ? (
+                            <div className="ts-milestone-completed-block">
+                                <div className="ts-quest-section-title">Unlocked milestones</div>
+                                <div className="ts-milestone-compact-list">
+                                    {completedMilestones.map((milestone) => (
+                                        <span key={milestone.id} className="ts-milestone-compact-chip">
+                                            {milestone.title}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        ) : null}
                     </div>
                     <div className="ts-quest-section">
                         <div className="ts-quest-section-title">Tutorial Quests</div>

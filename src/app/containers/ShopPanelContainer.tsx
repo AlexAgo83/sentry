@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { ShopPanel } from "../components/ShopPanel";
 import { usePersistedCollapse } from "../hooks/usePersistedCollapse";
 import { useGameStore } from "../hooks/useGameStore";
@@ -11,7 +12,11 @@ export const ShopPanelContainer = () => {
     const gold = useGameStore((state) => state.inventory.items.gold ?? 0);
     const purchasedRosterLimit = useGameStore((state) => state.rosterLimit);
     const rosterLimit = useGameStore((state) => getEffectiveRosterLimit(state));
-    const metaEffects = useGameStore((state) => resolveMetaProgressionEffects(state.metaProgression));
+    const metaProgression = useGameStore((state) => state.metaProgression);
+    const metaEffects = useMemo(
+        () => resolveMetaProgressionEffects(metaProgression),
+        [metaProgression]
+    );
     const rosterSlotDiscountPct = metaEffects.rosterSlotDiscountPct;
     const rosterSlotPrice = getRosterSlotCost(purchasedRosterLimit, rosterSlotDiscountPct);
     const effectiveMaxRosterLimit = MAX_ROSTER_LIMIT + metaEffects.freeRosterSlots;
