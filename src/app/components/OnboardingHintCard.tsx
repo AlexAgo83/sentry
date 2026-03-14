@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { createPortal } from "react-dom";
 
 type OnboardingHintCardProps = {
     title: string;
@@ -7,7 +8,7 @@ type OnboardingHintCardProps = {
 };
 
 export const OnboardingHintCard = memo(({ title, body, onDismiss }: OnboardingHintCardProps) => {
-    return (
+    const content = (
         <aside className="ts-onboarding-hint" role="status" aria-live="polite">
             <div className="ts-onboarding-hint-header">
                 <span className="ts-onboarding-hint-kicker">Guide</span>
@@ -23,6 +24,12 @@ export const OnboardingHintCard = memo(({ title, body, onDismiss }: OnboardingHi
             <p className="ts-onboarding-hint-body">{body}</p>
         </aside>
     );
+
+    if (typeof document === "undefined") {
+        return content;
+    }
+
+    return createPortal(content, document.body);
 });
 
 OnboardingHintCard.displayName = "OnboardingHintCard";
