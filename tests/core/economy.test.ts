@@ -27,4 +27,9 @@ describe("economy", () => {
         expect(getRosterSlotCost(5)).toBe(25000);
         expect(getRosterSlotCost(6)).toBe(62500);
     });
+
+    it("applies roster slot discounts from meta progression effects", () => {
+        expect(getRosterSlotCost(5, 0.15)).toBe(21250);
+        expect(getRosterSlotCost(6, 0.25)).toBe(46875);
+    });
 });

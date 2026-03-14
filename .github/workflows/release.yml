@@ -51,7 +51,20 @@ jobs:
       - name: Package dist
         run: tar -czf "sentry-dist-${{ github.ref_name }}.tgz" dist
 
-      - name: Create GitHub release
+      - name: Resolve curated changelog
+        id: release_changelog
+        run: node scripts/release/resolve-release-changelog.mjs "${{ github.ref_name }}" --github-output "$GITHUB_OUTPUT"
+
+      - name: Create GitHub release (curated changelog)
+        if: steps.release_changelog.outputs.found == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: ${{ steps.release_changelog.outputs.body_path }}
+          generate_release_notes: false
+          files: "sentry-dist-${{ github.ref_name }}.tgz"
+
+      - name: Create GitHub release (generated fallback)
+        if: steps.release_changelog.outputs.found != 'true'
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true

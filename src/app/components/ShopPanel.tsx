@@ -10,6 +10,7 @@ type ShopPanelProps = {
     maxRosterLimit: number;
     rosterSlotPrice: number;
     rosterSlotUpcomingCosts: number[];
+    rosterSlotDiscountPct: number;
     isRosterMaxed: boolean;
     onBuyRosterSlot: () => void;
 };
@@ -22,6 +23,7 @@ export const ShopPanel = memo(({
     maxRosterLimit,
     rosterSlotPrice,
     rosterSlotUpcomingCosts,
+    rosterSlotDiscountPct,
     isRosterMaxed,
     onBuyRosterSlot
 }: ShopPanelProps) => {
@@ -64,6 +66,11 @@ export const ShopPanel = memo(({
                         <div className="ts-shop-tile-meta">
                             Current cap: {rosterLimit} / {maxRosterLimit}
                         </div>
+                        {rosterSlotDiscountPct > 0 ? (
+                            <div className="ts-shop-tile-meta">
+                                Meta discount: -{Math.round(rosterSlotDiscountPct * 100)}%
+                            </div>
+                        ) : null}
                         <div className="ts-shop-tile-footer">
                             <span className="ts-shop-tile-price" title={priceTitle}>
                                 {isRosterMaxed ? "Maxed" : `${formattedRosterSlotPrice} gold`}

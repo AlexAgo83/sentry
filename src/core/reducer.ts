@@ -11,6 +11,13 @@ import {
 import { MAX_ROSTER_LIMIT, RESTED_DURATION_MS, RESTED_ENDURANCE_FLAT } from "./constants";
 import { getRosterSlotCost } from "./economy";
 import {
+    evaluateMetaProgression,
+    getEffectiveRosterLimit,
+    getMetaMilestoneDefinition,
+    pickMetaProgressionSnapshot,
+    resolveMetaProgressionEffects
+} from "./metaProgression";
+import {
     ActionId,
     EquipmentSlotId,
     GameSave,
@@ -70,6 +77,27 @@ const formatDungeonEndReason = (reason: string | null | undefined) => {
         .join(" ");
 };
 
+const applyMetaProgressionUpdate = (state: GameState, timestamp: number): GameState => {
+    const evaluation = evaluateMetaProgression(state.metaProgression, pickMetaProgressionSnapshot(state), timestamp);
+    if (evaluation.newlyCompleted.length === 0) {
+        return state;
+    }
+    const nextState = {
+        ...state,
+        metaProgression: evaluation.metaProgression
+    };
+    return evaluation.newlyCompleted.reduce((acc, milestoneId) => {
+        const definition = getMetaMilestoneDefinition(milestoneId);
+        if (!definition) {
+            return acc;
+        }
+        return appendActionJournalEntry(
+            acc,
+            createJournalEntry(`Milestone unlocked: ${definition.title}`, timestamp)
+        );
+    }, nextState);
+};
+
 export type GameAction =
     | { type: "hydrate"; save: GameSave | null; version: string }
     | { type: "setStartupBootstrap"; bootstrap: Partial<GameState["startupBootstrap"]>; replace?: boolean }
@@ -110,7 +138,7 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
         case "hydrate": {
             const hydrated = hydrateGameState(action.version, action.save);
             if (!state.startupBootstrap.isRunning) {
-                return hydrated;
+                return applyMetaProgressionUpdate(hydrated, Date.now());
             }
             return {
                 ...hydrated,
@@ -232,7 +260,7 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
                 }
             };
         case "tick":
-            return applyTick(state, action.deltaMs, action.timestamp);
+            return applyMetaProgressionUpdate(applyTick(state, action.deltaMs, action.timestamp), action.timestamp);
         case "setHiddenAt":
             return {
                 ...state,
@@ -275,12 +303,13 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
             if (!Number.isFinite(action.timestamp)) {
                 return state;
             }
-            const expiresAt = action.timestamp + RESTED_DURATION_MS;
+            const metaEffects = resolveMetaProgressionEffects(state.metaProgression);
+            const expiresAt = action.timestamp + Math.round(RESTED_DURATION_MS * metaEffects.restedDurationMultiplier);
             const restedMod: StatModifier = {
                 id: "rested",
                 stat: "Endurance",
                 kind: "flat",
-                value: RESTED_ENDURANCE_FLAT,
+                value: RESTED_ENDURANCE_FLAT + metaEffects.restedEnduranceFlatBonus,
                 source: "Rested",
                 expiresAt,
                 stackKey: "rested"
@@ -319,7 +348,7 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
             };
         case "addPlayer": {
             const rosterCount = Object.keys(state.players).length;
-            if (rosterCount >= state.rosterLimit) {
+            if (rosterCount >= getEffectiveRosterLimit(state)) {
                 return state;
             }
             const nextId = getNextPlayerId(state.players);
@@ -333,7 +362,7 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
                 activePlayerId: nextId,
                 rosterOrder: [...state.rosterOrder.filter((id) => id !== nextId), nextId]
             };
-            return updateDungeonOnboardingRequired(nextState);
+            return applyMetaProgressionUpdate(updateDungeonOnboardingRequired(nextState), Date.now());
         }
         case "reorderRoster": {
             const normalized = normalizeRosterOrder(state.players, state.rosterOrder);
@@ -558,7 +587,8 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
             if (state.rosterLimit >= MAX_ROSTER_LIMIT) {
                 return state;
             }
-            const cost = getRosterSlotCost(state.rosterLimit);
+            const metaEffects = resolveMetaProgressionEffects(state.metaProgression);
+            const cost = getRosterSlotCost(state.rosterLimit, metaEffects.rosterSlotDiscountPct);
             if (!Number.isFinite(cost) || cost <= 0) {
                 return state;
             }

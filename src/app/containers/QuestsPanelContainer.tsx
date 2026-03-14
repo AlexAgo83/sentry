@@ -1,7 +1,8 @@
 import { useMemo } from "react";
-import { QuestsPanel, type QuestEntry } from "../components/QuestsPanel";
+import { QuestsPanel, type MilestoneEntry, type QuestEntry } from "../components/QuestsPanel";
 import { usePersistedCollapse } from "../hooks/usePersistedCollapse";
 import { useGameStore } from "../hooks/useGameStore";
+import { buildMetaMilestoneEntries } from "../../core/metaProgression";
 import {
     type QuestDefinition,
     QUEST_DEFINITIONS_BY_KIND,
@@ -47,8 +48,16 @@ export const QuestsPanelContainer = () => {
     const questsState = useGameStore((state) => state.quests);
     const dungeonCompletionCounts = useGameStore((state) => state.dungeon.completionCounts);
     const players = useGameStore((state) => state.players);
-
+    const metaProgression = useGameStore((state) => state.metaProgression);
+    const rosterLimit = useGameStore((state) => state.rosterLimit);
     const skillLevels = useMemo(() => getSharedSkillLevels(players), [players]);
+    const milestoneEntries = useMemo<MilestoneEntry[]>(() => buildMetaMilestoneEntries({
+        players,
+        quests: questsState,
+        dungeonCompletionCounts,
+        metaProgression,
+        rosterLimit
+    }), [dungeonCompletionCounts, metaProgression, players, questsState, rosterLimit]);
 
     const skillEntries = useMemo(
         () => buildEntries(
@@ -95,6 +104,7 @@ export const QuestsPanelContainer = () => {
         + skillEntries.filter((quest) => quest.isCompleted).length
         + craftEntries.filter((quest) => quest.isCompleted).length
     ), [tutorialEntries, skillEntries, craftEntries]);
+    const completedMilestoneCount = milestoneEntries.filter((milestone) => milestone.isCompleted).length;
 
     return (
         <QuestsPanel
@@ -102,6 +112,9 @@ export const QuestsPanelContainer = () => {
             onToggleCollapsed={() => setCollapsed((value) => !value)}
             completedCount={completedCount}
             totalCount={totalCount}
+            completedMilestoneCount={completedMilestoneCount}
+            totalMilestoneCount={milestoneEntries.length}
+            milestones={milestoneEntries}
             tutorialQuests={tutorialEntries}
             skillQuests={skillEntries}
             craftQuests={craftEntries}

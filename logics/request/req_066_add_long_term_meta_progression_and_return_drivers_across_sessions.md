@@ -1,11 +1,11 @@
 ## req_066_add_long_term_meta_progression_and_return_drivers_across_sessions - Add long-term meta progression and return drivers across sessions
 > From version: 0.9.39
-> Understanding: 95%
-> Confidence: 93%
+> Understanding: 97%
+> Confidence: 96%
 > Complexity: High
 > Theme: Product / Progression / Retention
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
-> Status: Ready
+> Status: Done
 
 # Needs
 - The game loop is increasingly solid at the moment-to-moment level, but it still needs stronger reasons for players to return across multiple sessions.
@@ -125,3 +125,6 @@
 - `logics/backlog/item_220_req066_wire_meta_progression_evaluation_unlock_lifecycle_and_persistence.md`
 - `logics/backlog/item_221_req066_ship_initial_meta_progression_ui_and_goal_communication_surfaces.md`
 - `logics/backlog/item_222_req066_add_meta_progression_serialization_migration_and_regression_coverage.md`
+
+# Implemented in
+- `logics/tasks/task_114_execute_req066_meta_progression_across_backlog_items_219_to_222.md`

@@ -17,6 +17,7 @@ import type {
 import type { ProgressionState } from "../../core/types";
 import { normalizeProgressionState } from "../../core/progression";
 import { normalizeDungeonState } from "../../core/dungeon";
+import { normalizeMetaProgressionState } from "../../core/metaProgression";
 import { DEFAULT_SKILL_XP_NEXT, SKILL_MAX_LEVEL, XP_NEXT_MULTIPLIER } from "../../core/constants";
 import {
     mergeDiscoveredItemIds,
@@ -482,6 +483,7 @@ export const migrateAndValidateSave = (input: unknown): MigrateSaveResult => {
         ? input.dungeon as unknown as DungeonState
         : undefined;
     const dungeon = normalizeDungeonState(dungeonInput);
+    const metaProgression = normalizeMetaProgressionState((input as { metaProgression?: GameSave["metaProgression"] }).metaProgression);
     if (!dungeonInput) {
         dungeon.onboardingRequired = false;
     }
@@ -507,7 +509,8 @@ export const migrateAndValidateSave = (input: unknown): MigrateSaveResult => {
             ui,
             ...(quests ? { quests } : {}),
             progression,
-            dungeon
+            dungeon,
+            metaProgression
         }
     };
 };

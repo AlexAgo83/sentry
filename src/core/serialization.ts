@@ -17,6 +17,7 @@ export const toGameSave = (state: GameState): GameSave => {
         inventory: state.inventory,
         ui: state.ui,
         quests: state.quests,
+        metaProgression: state.metaProgression,
         progression: state.progression,
         dungeon: state.dungeon
     };

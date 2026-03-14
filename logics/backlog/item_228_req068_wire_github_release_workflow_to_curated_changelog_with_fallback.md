@@ -2,7 +2,7 @@
 > From version: 0.9.39
 > Understanding: 97%
 > Confidence: 95%
-> Progress: 0%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Release / GitHub Actions
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -34,4 +34,5 @@ Curated changelog resolution only helps if the GitHub release workflow actually 
 - Likely touch points:
   - `.github/workflows/release.yml`
   - release helper scripts
-
+- Delivered via:
+  - `.github/workflows/release.yml`

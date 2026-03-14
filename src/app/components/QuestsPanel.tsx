@@ -13,11 +13,24 @@ export type QuestEntry = {
     isCompleted: boolean;
 };
 
+export type MilestoneEntry = {
+    id: string;
+    title: string;
+    subtitle: string;
+    rewardLabel: string;
+    progressLabel: string;
+    progressPct: number;
+    isCompleted: boolean;
+};
+
 type QuestsPanelProps = {
     isCollapsed: boolean;
     onToggleCollapsed: () => void;
     completedCount: number;
     totalCount: number;
+    completedMilestoneCount: number;
+    totalMilestoneCount: number;
+    milestones: MilestoneEntry[];
     tutorialQuests: QuestEntry[];
     skillQuests: QuestEntry[];
     craftQuests: QuestEntry[];
@@ -58,16 +71,45 @@ const QuestTile = ({ quest }: { quest: QuestEntry }) => {
     );
 };
 
+const MilestoneTile = ({ milestone }: { milestone: MilestoneEntry }) => (
+    <div className={`ts-shop-tile ts-quest-tile ts-milestone-tile${milestone.isCompleted ? " is-completed" : ""}`}>
+        <div className="ts-quest-tile-header">
+            <div className="ts-quest-tile-title">{milestone.title}</div>
+        </div>
+        <div className="ts-quest-tile-reward-line">
+            Unlock: {milestone.rewardLabel}
+        </div>
+        <div className="ts-quest-tile-progress-block">
+            <div className="ts-quest-tile-progress">
+                <span className="ts-quest-tile-progress-label">
+                    {milestone.progressLabel}
+                </span>
+                <span className="ts-quest-tile-progress-subtitle">{milestone.subtitle}</span>
+            </div>
+            <div className="ts-quest-tile-bar" aria-hidden="true">
+                <span
+                    className="ts-quest-tile-bar-fill"
+                    style={{ width: `${milestone.progressPct}%` }}
+                />
+            </div>
+        </div>
+    </div>
+);
+
 export const QuestsPanel = memo(({
     isCollapsed,
     onToggleCollapsed,
     completedCount,
     totalCount,
+    completedMilestoneCount,
+    totalMilestoneCount,
+    milestones,
     tutorialQuests,
     skillQuests,
     craftQuests
 }: QuestsPanelProps) => {
     const counterLabel = `${completedCount}/${totalCount}`;
+    const milestoneCounterLabel = `${completedMilestoneCount}/${totalMilestoneCount}`;
     const [questFilters, setQuestFilters] = usePersistedQuestFilters({ showCompleted: true });
     const showCompleted = questFilters.showCompleted;
     const visibleTutorialQuests = useMemo(
@@ -121,6 +163,14 @@ export const QuestsPanel = memo(({
             </div>
             {!isCollapsed ? (
                 <div className="ts-quests-body">
+                    <div className="ts-quest-section">
+                        <div className="ts-quest-section-title">Milestones <span className="ts-panel-counter">{milestoneCounterLabel}</span></div>
+                        <div className="ts-shop-grid ts-quest-grid">
+                            {milestones.map((milestone) => (
+                                <MilestoneTile key={milestone.id} milestone={milestone} />
+                            ))}
+                        </div>
+                    </div>
                     <div className="ts-quest-section">
                         <div className="ts-quest-section-title">Tutorial Quests</div>
                         <div className="ts-shop-grid ts-quest-grid">

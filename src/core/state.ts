@@ -36,6 +36,7 @@ import { SKILL_DEFINITIONS, getActionDefinition, getRecipeDefinition, getRecipes
 import { createPlayerStatsState, normalizePlayerStats } from "./stats";
 import { createPlayerEquipmentState, normalizePlayerEquipment } from "./equipment";
 import { createProgressionState, normalizeProgressionState } from "./progression";
+import { createMetaProgressionState, normalizeMetaProgressionState } from "./metaProgression";
 import { createDungeonState, normalizeDungeonState } from "./dungeon";
 import { ACTION_JOURNAL_LIMIT } from "./actionJournal";
 import {
@@ -365,6 +366,7 @@ export const createInitialGameState = (version: string, options: InitialGameStat
         inventory,
         ui: normalizeUiState(undefined, inventory),
         quests: createQuestProgressState(),
+        metaProgression: createMetaProgressionState(),
         loop: {
             lastTick: null,
             lastHiddenAt: null,
@@ -635,6 +637,7 @@ export const hydrateGameState = (version: string, save?: GameSave | null): GameS
         inventory,
         ui,
         quests: normalizeQuestProgressState(save.quests),
+        metaProgression: normalizeMetaProgressionState(save.metaProgression),
         loop: {
             ...baseState.loop,
             lastTick: save.lastTick ?? baseState.loop.lastTick,

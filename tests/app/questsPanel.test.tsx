@@ -7,6 +7,28 @@ const baseProps = {
     onToggleCollapsed: () => {},
     completedCount: 1,
     totalCount: 4,
+    completedMilestoneCount: 1,
+    totalMilestoneCount: 4,
+    milestones: [
+        {
+            id: "meta_roster_established",
+            title: "Town Charter",
+            subtitle: "Recruit 4 heroes to stabilize your roster.",
+            rewardLabel: "+1 roster slot",
+            progressLabel: "Unlocked",
+            progressPct: 100,
+            isCompleted: true
+        },
+        {
+            id: "meta_quest_board_regular",
+            title: "Quest Ledger",
+            subtitle: "Complete 6 quests to earn better expansion terms.",
+            rewardLabel: "-15% roster expansion cost",
+            progressLabel: "2/6",
+            progressPct: 33,
+            isCompleted: false
+        }
+    ],
     tutorialQuests: [
         {
             id: "quest:tutorial:collect_meat",
@@ -51,7 +73,10 @@ describe("QuestsPanel", () => {
     it("renders sections and progress labels", () => {
         render(<QuestsPanel {...baseProps} />);
         expect(screen.getByText("Quests")).toBeTruthy();
-        expect(screen.getByText("1/4")).toBeTruthy();
+        expect(screen.getAllByText("1/4")).toHaveLength(2);
+        expect(screen.getByText("Milestones")).toBeTruthy();
+        expect(screen.getByText("Town Charter")).toBeTruthy();
+        expect(screen.getByText("Unlock: +1 roster slot")).toBeTruthy();
         expect(screen.getByText("Tutorial Quests")).toBeTruthy();
         expect(screen.getByText("Skill Quests")).toBeTruthy();
         expect(screen.getByText("Craft Quests")).toBeTruthy();

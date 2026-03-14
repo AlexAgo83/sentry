@@ -2,7 +2,7 @@
 > From version: 0.9.39
 > Understanding: 96%
 > Confidence: 94%
-> Progress: 0%
+> Progress: 100%
 > Complexity: Low
 > Theme: Release / Documentation / Validation
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -31,4 +31,7 @@ Even with workflow support, curated release notes will drift again unless contri
   - `readme.md`
   - `changelogs/README.md`
   - scripts or workflow docs
-
+- Delivered via:
+  - `changelogs/README.md`
+  - `package.json`
+  - `scripts/release/resolve-release-changelog.mjs`

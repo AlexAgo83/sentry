@@ -2,7 +2,7 @@
 > From version: 0.9.39
 > Understanding: 97%
 > Confidence: 95%
-> Progress: 0%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Release / Changelog / Tooling
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc.
@@ -32,16 +32,16 @@ This task aligns GitHub release generation with curated repository changelog fil
 - Documentation and lightweight validation make the convention maintainable for contributors.
 
 # Plan
-- [ ] 1. Execute `item_227` (resolution helper + mapping contract):
+- [x] 1. Execute `item_227` (resolution helper + mapping contract):
   - Define and implement tag-to-changelog resolution behavior.
   - Keep it simple, explicit, and workflow-safe.
-- [ ] 2. Execute `item_228` (workflow wiring):
+- [x] 2. Execute `item_228` (workflow wiring):
   - Update GitHub release automation to prefer curated changelog content with fallback.
   - Preserve current release validation gates.
-- [ ] 3. Execute `item_229` (docs + validation):
+- [x] 3. Execute `item_229` (docs + validation):
   - Document how changelog files participate in the release flow.
   - Add lightweight validation or warning support if appropriate.
-- [ ] FINAL: Update related Logics docs (request/backlog/task alignment)
+- [x] FINAL: Update related Logics docs (request/backlog/task alignment)
 
 # Validation
 Final gate (mandatory at task end):
@@ -49,4 +49,3 @@ Final gate (mandatory at task end):
 - `npm run typecheck`
 - `npm run typecheck:tests`
 - `npm run test:ci`
-

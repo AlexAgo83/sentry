@@ -2,7 +2,7 @@
 > From version: 0.9.39
 > Understanding: 97%
 > Confidence: 95%
-> Progress: 0%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Release / Tooling
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -33,4 +33,6 @@ The release workflow cannot reliably consume curated changelog content until the
   - `scripts/*`
   - `changelogs/*`
   - workflow helper code
-
+- Delivered via:
+  - `scripts/release/resolve-release-changelog.mjs`
+  - `tests/scripts/release/resolveReleaseChangelog.test.ts`

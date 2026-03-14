@@ -2,7 +2,7 @@
 > From version: 0.9.39
 > Understanding: 94%
 > Confidence: 92%
-> Progress: 0%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Progression / Quality / Persistence
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -33,4 +33,8 @@ Meta progression introduces durable player state. Without serialization, migrati
   - `tests/core/*`
   - `tests/app/*`
   - serialization/migration code
-
+- Delivered via:
+  - `tests/core/metaProgression.test.ts`
+  - `tests/core/serialization.test.ts`
+  - `tests/adapters/persistence/saveEnvelope.test.ts`
+  - `tests/app/questsPanel.test.tsx`

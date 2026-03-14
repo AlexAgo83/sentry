@@ -2,7 +2,7 @@
 > From version: 0.9.39
 > Understanding: 94%
 > Confidence: 92%
-> Progress: 0%
+> Progress: 100%
 > Complexity: High
 > Theme: Progression / Runtime / Persistence
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -34,4 +34,8 @@ Meta progression only becomes meaningful once milestones are evaluated from actu
   - `src/core/*`
   - `src/data/*`
   - `tests/core/*`
-
+- Delivered via:
+  - `src/core/reducer.ts`
+  - `src/core/state.ts`
+  - `src/core/serialization.ts`
+  - `src/adapters/persistence/saveMigrations.ts`

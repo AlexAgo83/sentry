@@ -1,11 +1,11 @@
 ## req_068_align_github_release_generation_with_curated_repository_changelogs - Align GitHub release generation with curated repository changelogs
 > From version: 0.9.39
-> Understanding: 97%
-> Confidence: 96%
+> Understanding: 99%
+> Confidence: 98%
 > Complexity: Medium
 > Theme: Release / Tooling / Changelog
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
-> Status: Ready
+> Status: Done
 
 # Needs
 - The repository now maintains versioned changelog artifacts in `changelogs/`, but GitHub releases are still generated separately.
@@ -96,3 +96,6 @@
 - `logics/backlog/item_227_req068_add_release_changelog_resolution_helper_and_version_mapping_contract.md`
 - `logics/backlog/item_228_req068_wire_github_release_workflow_to_curated_changelog_with_fallback.md`
 - `logics/backlog/item_229_req068_document_release_changelog_usage_and_add_validation_checks.md`
+
+# Implemented in
+- `logics/tasks/task_116_execute_req068_release_changelog_alignment_across_backlog_items_227_to_229.md`

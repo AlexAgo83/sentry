@@ -2,7 +2,7 @@
 > From version: 0.9.39
 > Understanding: 94%
 > Confidence: 92%
-> Progress: 0%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Progression / UI / UX
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -36,4 +36,9 @@ Long-term progression only helps retention if the player can see and understand 
   - `src/app/components/*`
   - `src/app/selectors/*`
   - `tests/app/*`
-
+- Delivered via:
+  - `src/app/components/QuestsPanel.tsx`
+  - `src/app/containers/QuestsPanelContainer.tsx`
+  - `src/app/components/ShopPanel.tsx`
+  - `src/app/containers/ShopPanelContainer.tsx`
+  - `src/app/containers/RosterContainer.tsx`

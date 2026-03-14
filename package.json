@@ -11,6 +11,8 @@
     "ci:local": "node scripts/ci/run-local-ci.mjs",
     "ci:local:fast": "node scripts/ci/run-local-ci.mjs --fast",
     "balance:dungeons": "npx vite-node scripts/balance/run-dungeon-balance.ts",
+    "release:changelog:resolve": "node scripts/release/resolve-release-changelog.mjs --validate-current",
+    "release:changelog:validate": "node scripts/release/resolve-release-changelog.mjs --validate-current",
     "tests": "node scripts/run-tests.js",
     "test:lanes:validate": "node scripts/quality/validate-test-lanes.mjs",
     "test:lanes:report": "node scripts/quality/report-test-lanes.mjs",

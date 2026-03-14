@@ -181,6 +181,14 @@ export interface ProgressionState {
     buckets: ProgressionBucket[];
 }
 
+export interface MetaMilestoneState {
+    completedAt: number | null;
+}
+
+export interface MetaProgressionState {
+    milestones: Record<string, MetaMilestoneState>;
+}
+
 export interface DungeonSetupState {
     selectedDungeonId: DungeonId;
     selectedPartyPlayerIds: PlayerId[];
@@ -353,6 +361,7 @@ export interface GameState {
     inventory: InventoryState;
     ui: UiState;
     quests: QuestProgressState;
+    metaProgression: MetaProgressionState;
     loop: LoopState;
     progression: ProgressionState;
     perf: PerformanceState;
@@ -502,6 +511,7 @@ export interface GameSave {
     inventory?: InventoryState;
     ui?: UiState;
     quests?: QuestProgressState;
+    metaProgression?: MetaProgressionState;
     progression?: ProgressionState;
     dungeon?: DungeonState;
 }

@@ -82,6 +82,18 @@ describe("serialization", () => {
         expect(hydratedLegacy.inventory.discoveredItemIds?.warding_amulet).toBe(true);
     });
 
+    it("round-trips meta progression state through save and hydrate", () => {
+        const state = createInitialGameState("0.9.40");
+        state.metaProgression.milestones.meta_roster_established.completedAt = 1_000;
+        state.metaProgression.milestones.meta_warband_training.completedAt = 2_000;
+
+        const save = toGameSave(state);
+        const hydrated = hydrateGameState("0.9.40", save);
+
+        expect(save.metaProgression).toEqual(state.metaProgression);
+        expect(hydrated.metaProgression).toEqual(state.metaProgression);
+    });
+
     it("round-trips UI inventory badge state through save and hydrate (and seeds when missing)", () => {
         const state = createInitialGameState("0.9.31");
         state.inventory.items.wood = 2;

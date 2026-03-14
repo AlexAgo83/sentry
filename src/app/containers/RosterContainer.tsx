@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import type { SkillId } from "../../core/types";
 import { getActiveDungeonRuns } from "../../core/dungeon";
+import { getEffectiveRosterLimit } from "../../core/metaProgression";
 import { gameStore } from "../game";
 import { useGameStore } from "../hooks/useGameStore";
 import { usePersistedCollapse } from "../hooks/usePersistedCollapse";
@@ -30,7 +31,7 @@ export const RosterContainer = ({
     const activePlayerId = useGameStore((state) => state.activePlayerId);
     const playersById = useGameStore((state) => state.players);
     const rosterOrder = useGameStore((state) => state.rosterOrder);
-    const rosterLimit = useGameStore((state) => state.rosterLimit);
+    const rosterLimit = useGameStore((state) => getEffectiveRosterLimit(state));
     const dungeon = useGameStore((state) => state.dungeon);
     const players = useMemo(
         () => selectPlayersSortedFromPlayers(playersById, rosterOrder),

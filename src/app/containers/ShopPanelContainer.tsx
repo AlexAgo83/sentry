@@ -3,17 +3,22 @@ import { usePersistedCollapse } from "../hooks/usePersistedCollapse";
 import { useGameStore } from "../hooks/useGameStore";
 import { gameStore } from "../game";
 import { getRosterSlotCost } from "../../core/economy";
+import { getEffectiveRosterLimit, resolveMetaProgressionEffects } from "../../core/metaProgression";
 import { MAX_ROSTER_LIMIT } from "../../core/constants";
 
 export const ShopPanelContainer = () => {
     const [isCollapsed, setCollapsed] = usePersistedCollapse("shop", false);
     const gold = useGameStore((state) => state.inventory.items.gold ?? 0);
-    const rosterLimit = useGameStore((state) => state.rosterLimit);
-    const rosterSlotPrice = getRosterSlotCost(rosterLimit);
-    const isRosterMaxed = rosterLimit >= MAX_ROSTER_LIMIT;
+    const purchasedRosterLimit = useGameStore((state) => state.rosterLimit);
+    const rosterLimit = useGameStore((state) => getEffectiveRosterLimit(state));
+    const metaEffects = useGameStore((state) => resolveMetaProgressionEffects(state.metaProgression));
+    const rosterSlotDiscountPct = metaEffects.rosterSlotDiscountPct;
+    const rosterSlotPrice = getRosterSlotCost(purchasedRosterLimit, rosterSlotDiscountPct);
+    const effectiveMaxRosterLimit = MAX_ROSTER_LIMIT + metaEffects.freeRosterSlots;
+    const isRosterMaxed = purchasedRosterLimit >= MAX_ROSTER_LIMIT;
     const rosterSlotUpcomingCosts = isRosterMaxed
         ? []
-        : [1, 2, 3].map((offset) => getRosterSlotCost(rosterLimit + offset));
+        : [1, 2, 3].map((offset) => getRosterSlotCost(purchasedRosterLimit + offset, rosterSlotDiscountPct));
 
     return (
         <ShopPanel
@@ -21,9 +26,10 @@ export const ShopPanelContainer = () => {
             onToggleCollapsed={() => setCollapsed((value) => !value)}
             gold={gold}
             rosterLimit={rosterLimit}
-            maxRosterLimit={MAX_ROSTER_LIMIT}
+            maxRosterLimit={effectiveMaxRosterLimit}
             rosterSlotPrice={rosterSlotPrice}
             rosterSlotUpcomingCosts={rosterSlotUpcomingCosts}
+            rosterSlotDiscountPct={rosterSlotDiscountPct}
             isRosterMaxed={isRosterMaxed}
             onBuyRosterSlot={() => gameStore.dispatch({ type: "purchaseRosterSlot" })}
         />

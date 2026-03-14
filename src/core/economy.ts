@@ -51,7 +51,7 @@ export const getSellGoldGain = (itemId: ItemId, count: number): number => {
     return getSellValuePerItem(itemId) * safeCount;
 };
 
-export const getRosterSlotCost = (rosterLimit: number): number => {
+export const getRosterSlotCost = (rosterLimit: number, discountPct = 0): number => {
     const safeLimit = Number.isFinite(rosterLimit) ? Math.max(1, Math.floor(rosterLimit)) : 1;
     const freeSlots = Number.isFinite(ROSTER_SLOT_FREE_SLOTS)
         ? Math.max(0, Math.floor(ROSTER_SLOT_FREE_SLOTS))
@@ -65,5 +65,6 @@ export const getRosterSlotCost = (rosterLimit: number): number => {
     if (!Number.isFinite(rawCost) || rawCost <= 0) {
         return base;
     }
-    return Math.max(1, Math.round(rawCost));
+    const safeDiscountPct = Number.isFinite(discountPct) ? Math.max(0, Math.min(0.95, discountPct)) : 0;
+    return Math.max(1, Math.round(rawCost * (1 - safeDiscountPct)));
 };
