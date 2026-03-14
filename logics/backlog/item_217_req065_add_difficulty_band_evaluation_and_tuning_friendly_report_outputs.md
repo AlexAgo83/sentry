@@ -1,8 +1,8 @@
 ## item_217_req065_add_difficulty_band_evaluation_and_tuning_friendly_report_outputs - req065 add difficulty-band evaluation and tuning-friendly report outputs
 > From version: 0.9.39
-> Understanding: 95%
-> Confidence: 93%
-> Progress: 0%
+> Understanding: 100%
+> Confidence: 96%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Balance / Reporting / Tuning
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -34,6 +34,6 @@ Raw simulator outputs are not enough if they do not clearly indicate whether a d
 # Notes
 - Derived from `logics/request/req_065_add_an_internal_dungeon_balance_simulator_for_difficulty_diagnostics_and_tuning.md`.
 - Likely touch points:
+  - `src/core/dungeonBalance.ts`
   - `scripts/*`
   - `tests/*balance*`
-

@@ -1,11 +1,11 @@
 ## req_065_add_an_internal_dungeon_balance_simulator_for_difficulty_diagnostics_and_tuning - Add an internal dungeon balance simulator for difficulty diagnostics and tuning
 > From version: 0.9.39
-> Understanding: 97%
-> Confidence: 95%
+> Understanding: 100%
+> Confidence: 97%
 > Complexity: High
 > Theme: Gameplay / Balance / Dungeon / Tooling
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
-> Status: Ready
+> Status: Done
 
 # Needs
 - Dungeon difficulty currently has to be judged mostly through manual playtesting and anecdotal runs.
@@ -153,6 +153,17 @@
 - The tool can be used to inspect the global dungeon curve, not only a single dungeon in isolation.
 - The output is structured enough to support future balancing work and before/after tuning comparisons.
 - The design remains narrow enough to implement and maintain without turning into a full-blown generic balancing framework.
+
+# Outcome
+- Implemented in `src/core/dungeonBalance.ts` with:
+  - canonical `standard` and `aggressive` presets,
+  - milestone-aware loadout assumptions,
+  - real lifecycle/tick-based scenario execution,
+  - difficulty-band evaluation,
+  - summary and threshold reports for tuning review.
+- Added repo entrypoint `npm run balance:dungeons` backed by `scripts/balance/run-dungeon-balance.ts`.
+- Added regression coverage in `tests/balance/dungeonBalanceSimulator.test.ts`.
+- The first version is intentionally diagnostic-first and non-blocking; it surfaces curve mismatches rather than enforcing balance gates.
 
 # Test expectations
 - Mandatory validation for implementation slices will likely include:

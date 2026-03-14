@@ -1,8 +1,8 @@
 ## task_113_execute_req065_dungeon_balance_simulator_across_backlog_items_215_to_218 - Execute req065 dungeon balance simulator across backlog items 215 to 218
 > From version: 0.9.39
-> Understanding: 96%
-> Confidence: 94%
-> Progress: 0%
+> Understanding: 100%
+> Confidence: 97%
+> Progress: 100%
 > Complexity: High
 > Theme: Balance / Dungeon / Tooling
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc.
@@ -39,19 +39,19 @@ This task establishes an internal dungeon balance simulator that runs against re
 - Regression coverage keeps presets, runner behavior, and report shape stable enough for iterative balancing.
 
 # Plan
-- [ ] 1. Execute `item_215` (preset/scenario/report contracts):
+- [x] 1. Execute `item_215` (preset/scenario/report contracts):
   - Define simulator preset contracts and milestone-based readiness assumptions.
   - Define explicit difficulty bands and stable report shape.
-- [ ] 2. Execute `item_216` (headless runner):
+- [x] 2. Execute `item_216` (headless runner):
   - Build the internal runner on top of real dungeon lifecycle/tick logic.
   - Ensure deterministic behavior for identical presets and seeds.
-- [ ] 3. Execute `item_217` (evaluation + tuning reports):
+- [x] 3. Execute `item_217` (evaluation + tuning reports):
   - Map simulator outcomes to explicit difficulty bands.
   - Emit reviewable reports that support before/after tuning comparisons.
-- [ ] 4. Execute `item_218` (entrypoints + regression coverage):
+- [x] 4. Execute `item_218` (entrypoints + regression coverage):
   - Add local repository commands for the simulator.
   - Add targeted regression coverage and keep any CI/report integration diagnostic-first.
-- [ ] FINAL: Update related Logics docs (request/backlog/task alignment)
+- [x] FINAL: Update related Logics docs (request/backlog/task alignment)
 
 # Validation
 Final gate (mandatory at task end):
@@ -59,4 +59,3 @@ Final gate (mandatory at task end):
 - `npm run typecheck`
 - `npm run typecheck:tests`
 - `npm run test:ci`
-

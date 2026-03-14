@@ -1,8 +1,8 @@
 ## item_216_req065_build_headless_dungeon_balance_runner_using_real_runtime_logic - req065 build a headless dungeon balance runner using real runtime logic
 > From version: 0.9.39
-> Understanding: 96%
-> Confidence: 94%
-> Progress: 0%
+> Understanding: 100%
+> Confidence: 97%
+> Progress: 100%
 > Complexity: High
 > Theme: Balance / Dungeon / Scripts
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -35,7 +35,7 @@ The simulator is only useful if it runs against the actual dungeon lifecycle and
 - Derived from `logics/request/req_065_add_an_internal_dungeon_balance_simulator_for_difficulty_diagnostics_and_tuning.md`.
 - Likely touch points:
   - `src/core/dungeon/*`
+  - `src/core/dungeonBalance.ts`
   - `src/core/state.ts`
   - `src/core/reducer.ts`
   - `scripts/*`
-
