@@ -1,163 +1,33 @@
 import type { ReactNode } from "react";
 import { createContext, memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
-import { toGameSave } from "../../core/serialization";
-import { buildSaveFingerprint } from "../../core/saveFingerprint";
 import {
     clearCloudSyncWatermark,
     readCloudSyncWatermark,
     writeCloudSyncWatermark,
     type CloudSyncWatermark
 } from "../../adapters/persistence/cloudSyncWatermark";
-import { parseSaveEnvelopeMeta } from "../../adapters/persistence/saveEnvelope";
-import { readRawSave } from "../../adapters/persistence/localStorageKeys";
 import { selectVirtualScore } from "../selectors/gameSelectors";
 import { useGameStore } from "./useGameStore";
-import { gameRuntime, gameStore } from "../game";
+import { gameStore } from "../game";
 import { CloudApiError, cloudClient, type CloudProfile } from "../api/cloudClient";
-import { resolveCloudSyncBootstrapDecision } from "../cloudSyncDecision";
+import { createCloudSaveActions } from "./cloudSave/cloudSaveActions";
+import { createCloudAutosyncActions } from "./cloudSave/cloudSaveAutosync";
+import { attachCloudE2EBridge } from "./cloudSave/cloudSaveBridge";
+import {
+    AUTO_SYNC_FEATURE_ENABLED,
+    CloudWarmupCancelledError,
+    WARMUP_RETRY_DELAYS_MS,
+    buildCurrentLocalSnapshot,
+    buildLocalMeta,
+    isUnauthorizedError,
+    isWarmupError,
+    type CloudSaveController,
+    type CloudSaveMeta,
+    type CloudSaveState,
+    warmupMessage
+} from "./cloudSave/cloudSaveModel";
 
-export type CloudSaveMeta = {
-    updatedAt: Date | null;
-    virtualScore: number;
-    appVersion: string;
-    revision: number | null;
-};
-
-type CloudSaveState = {
-    status: "idle" | "authenticating" | "ready" | "error" | "offline" | "warming";
-    error: string | null;
-    warmupRetrySeconds: number | null;
-    isBackendAwake: boolean;
-    cloudMeta: CloudSaveMeta | null;
-    localMeta: CloudSaveMeta;
-    lastSyncAt: Date | null;
-    hasCloudSave: boolean;
-    localHasActiveDungeonRun: boolean;
-    cloudHasActiveDungeonRun: boolean;
-    isAvailable: boolean;
-    accessToken: string | null;
-    profile: CloudProfile | null;
-    isUpdatingProfile: boolean;
-    autoSyncEnabled: boolean;
-    autoSyncStatus: "idle" | "syncing" | "conflict";
-    autoSyncConflict: { meta: CloudSaveMeta; message: string } | null;
-};
-
-const toDateOrNull = (value: string | Date | null): Date | null => {
-    if (!value) {
-        return null;
-    }
-    if (value instanceof Date) {
-        return value;
-    }
-    const parsed = new Date(value);
-    return Number.isFinite(parsed.getTime()) ? parsed : null;
-};
-
-const toRevisionOrNull = (value: unknown): number | null => {
-    if (!Number.isFinite(value)) {
-        return null;
-    }
-    return Math.floor(Number(value));
-};
-
-const toCloudMetaFromApiMeta = (meta: {
-    updatedAt: string | Date | null;
-    virtualScore: number;
-    appVersion: string;
-    revision?: unknown;
-}): CloudSaveMeta => ({
-    updatedAt: toDateOrNull(meta.updatedAt),
-    virtualScore: meta.virtualScore,
-    appVersion: meta.appVersion,
-    revision: toRevisionOrNull(meta.revision ?? null)
-});
-
-const buildLocalMeta = (virtualScore: number, appVersion: string): CloudSaveMeta => {
-    const raw = readRawSave();
-    const envelopeMeta = raw ? parseSaveEnvelopeMeta(raw) : { savedAt: null };
-    return {
-        updatedAt: envelopeMeta.savedAt ? new Date(envelopeMeta.savedAt) : new Date(),
-        virtualScore,
-        appVersion,
-        revision: null
-    };
-};
-
-const isUnauthorizedError = (err: unknown): err is CloudApiError => (
-    err instanceof CloudApiError && (err.status === 401 || err.status === 403)
-);
-const isConflictError = (err: unknown): err is CloudApiError => (
-    err instanceof CloudApiError && err.status === 409
-);
-const WARMUP_RETRY_DELAYS_MS = [1000, 2000, 4000, 8000, 16000, 30000];
-
-class CloudWarmupCancelledError extends Error {
-    constructor() {
-        super("Cloud warmup cancelled.");
-        this.name = "CloudWarmupCancelledError";
-    }
-}
-
-const isWarmupError = (err: unknown) => {
-    if (err instanceof CloudApiError) {
-        return [502, 503, 504].includes(err.status);
-    }
-    if (err instanceof DOMException && err.name === "AbortError") {
-        return true;
-    }
-    if (err instanceof Error && err.name === "AbortError") {
-        return true;
-    }
-    if (err instanceof TypeError) {
-        return err.message.toLowerCase().includes("fetch");
-    }
-    return false;
-};
-
-const warmupMessage = (seconds?: number) => (
-    seconds
-        ? `Cloud backend is waking up… retrying in ${seconds}s.`
-        : "Cloud backend is still waking up. Please retry in a moment."
-);
-
-const isRecord = (value: unknown): value is Record<string, unknown> => (
-    Boolean(value) && typeof value === "object"
-);
-
-const hasActiveDungeonRunInPayload = (payload: unknown): boolean => {
-    if (!isRecord(payload)) {
-        return false;
-    }
-    const dungeon = payload.dungeon;
-    if (!isRecord(dungeon)) {
-        return false;
-    }
-    const activeRunId = dungeon.activeRunId;
-    return typeof activeRunId === "string" && activeRunId.trim().length > 0;
-};
-
-const LOCAL_CLOUD_DIVERGENCE_MESSAGE = "Both local and cloud saves changed since the last sync. Choose which version to keep.";
-const AUTO_SYNC_FEATURE_ENABLED = false;
-
-type LocalSaveSnapshot = {
-    payload: ReturnType<typeof toGameSave>;
-    fingerprint: string;
-};
-
-export type CloudSaveController = CloudSaveState & {
-    authenticate: (mode: "login" | "register", email: string, password: string) => Promise<void>;
-    refreshCloud: () => Promise<void>;
-    refreshProfile: () => Promise<void>;
-    updateUsername: (usernameInput: string) => Promise<{ ok: true } | { ok: false; error: string }>;
-    loadCloud: (options?: { payload?: unknown; cloudRevision?: number | null; cloudFingerprint?: string | null }) => Promise<boolean>;
-    overwriteCloud: (options?: { expectedRevision?: number | null; localSnapshot?: LocalSaveSnapshot }) => Promise<void>;
-    setAutoSyncEnabled: (enabled: boolean) => void;
-    resolveAutoSyncConflictByLoadingCloud: () => Promise<void>;
-    resolveAutoSyncConflictByOverwritingCloud: () => Promise<void>;
-    logout: () => void;
-    retryWarmupNow: () => void;
-};
+export type { CloudSaveController, CloudSaveMeta } from "./cloudSave/cloudSaveModel";
 
 const CloudSaveContext = createContext<CloudSaveController | null>(null);
 
@@ -229,53 +99,20 @@ const useCloudSaveInternal = (): CloudSaveController => {
     const localMeta = useMemo(() => buildLocalMeta(virtualScore, appVersion), [virtualScore, appVersion]);
     const isAvailable = Boolean(cloudClient.getApiBase()) && isOnline;
     useEffect(() => {
-        if (!isE2E || typeof window === "undefined") {
-            return;
-        }
-        const api = ((window as unknown as { __E2E__?: Record<string, unknown> }).__E2E__ ??= {});
-        api.setCloudAccessToken = (token: string | null) => {
-            setAccessToken(token);
-            setIsBackendAwake(Boolean(token) || isAvailable);
-            setWarmupRetrySeconds(null);
-            setError(null);
-            setStatus(token ? "ready" : "idle");
-        };
-        api.setCloudSnapshot = (snapshot: {
-            payload: unknown;
-            meta: {
-                updatedAt: string | Date | null;
-                virtualScore: number;
-                appVersion: string;
-                revision?: number | null;
-            } | null;
-        } | null) => {
-            if (!snapshot) {
-                setHasCloudSave(false);
-                setCloudPayload(null);
-                setCloudMeta(null);
-                setCloudHasActiveDungeonRun(false);
-                setLastSyncAt(new Date());
-                setStatus("ready");
-                return;
-            }
-            setHasCloudSave(true);
-            setCloudPayload(snapshot.payload);
-            setCloudHasActiveDungeonRun(hasActiveDungeonRunInPayload(snapshot.payload));
-            setCloudMeta(snapshot.meta ? {
-                updatedAt: toDateOrNull(snapshot.meta.updatedAt),
-                virtualScore: snapshot.meta.virtualScore,
-                appVersion: snapshot.meta.appVersion,
-                revision: toRevisionOrNull(snapshot.meta.revision ?? null)
-            } : null);
-            setLastSyncAt(new Date());
-            setStatus("ready");
-        };
-        return () => {
-            if ((window as unknown as { __E2E__?: Record<string, unknown> }).__E2E__) {
-                delete (window as unknown as { __E2E__?: Record<string, unknown> }).__E2E__?.setCloudAccessToken;
-                delete (window as unknown as { __E2E__?: Record<string, unknown> }).__E2E__?.setCloudSnapshot;
-            }
-        };
+        return attachCloudE2EBridge({
+            isEnabled: isE2E,
+            isAvailable,
+            setAccessToken,
+            setIsBackendAwake,
+            setWarmupRetrySeconds,
+            setError,
+            setStatus: (value) => setStatus(value as CloudSaveState["status"]),
+            setHasCloudSave,
+            setCloudPayload,
+            setCloudMeta,
+            setCloudHasActiveDungeonRun,
+            setLastSyncAt
+        });
     }, [isAvailable, isE2E]);
     const cancelWarmupRetry = useCallback(() => {
         warmupCancelIdRef.current += 1;
@@ -377,13 +214,7 @@ const useCloudSaveInternal = (): CloudSaveController => {
         setSyncWatermark(null);
     }, []);
 
-    const buildCurrentLocalSnapshot = useCallback((): LocalSaveSnapshot => {
-        const payload = toGameSave(gameStore.getState());
-        return {
-            payload,
-            fingerprint: buildSaveFingerprint(payload)
-        };
-    }, []);
+    const createLocalSnapshot = useCallback(() => buildCurrentLocalSnapshot(gameStore.getState()), []);
 
     const applyRequestError = useCallback((err: unknown, fallback: string) => {
         if (isWarmupError(err)) {
@@ -452,32 +283,6 @@ const useCloudSaveInternal = (): CloudSaveController => {
         throw new Error("Warmup retry exhausted.");
     }, [ensureWarmupRunIsActive]);
 
-    const authenticate = useCallback(async (mode: "login" | "register", email: string, password: string) => {
-        lastRequestRef.current = () => authenticate(mode, email, password);
-        if (!isAvailable) {
-            setIsBackendAwake(false);
-            setStatus("offline");
-            setError("Cloud sync is unavailable.");
-            return;
-        }
-        setError(null);
-        try {
-            const token = await withWarmupRetry("authenticating", () => (
-                mode === "register"
-                    ? cloudClient.register(email, password)
-                    : cloudClient.login(email, password)
-            ));
-            setIsBackendAwake(true);
-            setAccessToken(token);
-            setStatus("ready");
-        } catch (err) {
-            if (err instanceof CloudWarmupCancelledError) {
-                return;
-            }
-            applyRequestError(err, "Authentication failed.");
-        }
-    }, [applyRequestError, isAvailable, withWarmupRetry]);
-
     const refreshToken = useCallback(async (options?: { silent?: boolean }) => {
         if (!isAvailable) {
             if (!options?.silent) {
@@ -542,106 +347,70 @@ const useCloudSaveInternal = (): CloudSaveController => {
         }
     }, [accessToken, refreshToken]);
 
-    const fetchLatestCloudSave = useCallback(async (): Promise<Awaited<ReturnType<typeof cloudClient.getLatestSave>>> => {
-        lastRequestRef.current = async () => {
-            await fetchLatestCloudSave();
-        };
-        if (!isAvailable) {
-            setIsBackendAwake(false);
-            setStatus("offline");
-            setError("Cloud sync is unavailable.");
-            return null;
+    const {
+        authenticate,
+        fetchLatestCloudSave,
+        refreshCloud,
+        refreshProfile,
+        updateUsername,
+        loadCloud,
+        overwriteCloud,
+        logout
+    } = useMemo(() => createCloudSaveActions({
+        accessToken,
+        appVersion,
+        virtualScore,
+        isAvailable,
+        cloudMeta,
+        cloudPayload,
+        hasCloudSave,
+        syncWatermark
+    }, {
+        setAccessToken,
+        setCloudMeta,
+        setCloudPayload,
+        setHasCloudSave,
+        setCloudHasActiveDungeonRun,
+        setStatus,
+        setError,
+        setIsBackendAwake,
+        setLastSyncAt,
+        setProfile,
+        setIsUpdatingProfile,
+        setAutoSyncStatus,
+        setAutoSyncConflict,
+        setWarmupRetrySeconds
+    }, {
+        cancelWarmupRetry,
+        clearSyncWatermark,
+        persistSyncWatermark,
+        buildCurrentLocalSnapshot: createLocalSnapshot,
+        applyRequestError,
+        resolveErrorMessage,
+        withWarmupRetry,
+        withRefreshRetry
+    }, {
+        setLastRequestRef: (next) => {
+            lastRequestRef.current = next;
         }
-        setError(null);
-        try {
-            const response = await withWarmupRetry("idle", () => withRefreshRetry((token) => cloudClient.getLatestSave(token)));
-            setIsBackendAwake(true);
-            if (!response) {
-                setHasCloudSave(false);
-                setCloudMeta(null);
-                setCloudPayload(null);
-                setCloudHasActiveDungeonRun(false);
-                setLastSyncAt(new Date());
-                setStatus("ready");
-                return null;
-            }
-            setHasCloudSave(true);
-            setCloudPayload(response.payload);
-            setCloudHasActiveDungeonRun(hasActiveDungeonRunInPayload(response.payload));
-            setCloudMeta(toCloudMetaFromApiMeta(response.meta));
-            setLastSyncAt(new Date());
-            setStatus("ready");
-            return response;
-        } catch (err) {
-            if (err instanceof CloudWarmupCancelledError) {
-                return null;
-            }
-            applyRequestError(err, "Failed to fetch cloud save.");
-            return null;
-        }
-    }, [applyRequestError, isAvailable, withRefreshRetry, withWarmupRetry]);
-
-    const refreshCloud = useCallback(async () => {
-        await fetchLatestCloudSave();
-    }, [fetchLatestCloudSave]);
-
-    const refreshProfile = useCallback(async () => {
-        lastRequestRef.current = refreshProfile;
-        if (!isAvailable) {
-            setIsBackendAwake(false);
-            setStatus("offline");
-            setError("Cloud sync is unavailable.");
-            return;
-        }
-        setError(null);
-        try {
-            const profileResponse = await withWarmupRetry("idle", () => withRefreshRetry((token) => cloudClient.getProfile(token)));
-            setIsBackendAwake(true);
-            setProfile(profileResponse);
-            setStatus("ready");
-        } catch (err) {
-            if (err instanceof CloudWarmupCancelledError) {
-                return;
-            }
-            applyRequestError(err, "Failed to fetch cloud profile.");
-        }
-    }, [applyRequestError, isAvailable, withRefreshRetry, withWarmupRetry]);
-
-    const updateUsername = useCallback(async (usernameInput: string): Promise<{ ok: true } | { ok: false; error: string }> => {
-        lastRequestRef.current = async () => {
-            await updateUsername(usernameInput);
-        };
-        if (!isAvailable) {
-            setIsBackendAwake(false);
-            setStatus("offline");
-            const message = "Cloud sync is unavailable.";
-            setError(message);
-            return { ok: false, error: message };
-        }
-        setError(null);
-        setIsUpdatingProfile(true);
-        const normalizedInput = usernameInput.trim();
-        try {
-            const profileResponse = await withWarmupRetry("idle", () => withRefreshRetry((token) => cloudClient.updateProfile(
-                token,
-                normalizedInput.length > 0 ? normalizedInput : null
-            )));
-            setIsBackendAwake(true);
-            setProfile(profileResponse);
-            setStatus("ready");
-            setError(null);
-            return { ok: true };
-        } catch (err) {
-            if (err instanceof CloudWarmupCancelledError) {
-                return { ok: false, error: "Cloud request cancelled." };
-            }
-            const message = resolveErrorMessage(err, "Failed to update username.");
-            applyRequestError(err, message);
-            return { ok: false, error: message };
-        } finally {
-            setIsUpdatingProfile(false);
-        }
-    }, [applyRequestError, isAvailable, resolveErrorMessage, withRefreshRetry, withWarmupRetry]);
+    }), [
+        accessToken,
+        appVersion,
+        virtualScore,
+        isAvailable,
+        cloudMeta,
+        cloudPayload,
+        hasCloudSave,
+        syncWatermark,
+        cancelWarmupRetry,
+        clearSyncWatermark,
+        persistSyncWatermark,
+        createLocalSnapshot,
+        applyRequestError,
+        resolveErrorMessage,
+        withWarmupRetry,
+        withRefreshRetry
+    ]);
 
     const probeBackend = useCallback(async () => {
         if (backendProbeInFlightRef.current) {
@@ -727,150 +496,54 @@ const useCloudSaveInternal = (): CloudSaveController => {
         void probeBackend();
     }, [accessToken, isAvailable, isBackendAwake, isE2E, probeBackend, status]);
 
-    const loadCloud = useCallback(async (options?: {
-        payload?: unknown;
-        cloudRevision?: number | null;
-        cloudFingerprint?: string | null;
-    }): Promise<boolean> => {
-        const resolvedPayload = options?.payload ?? cloudPayload;
-        if (!resolvedPayload) {
-            setError("No cloud save available.");
-            return false;
-        }
-        try {
-            const resolvedCloudFingerprint = options?.cloudFingerprint ?? buildSaveFingerprint(resolvedPayload);
-            await gameRuntime.importSave(resolvedPayload as any, { origin: "cloudLoad" });
-            setError(null);
-            setStatus("ready");
-            setLastSyncAt(new Date());
-            setAutoSyncStatus("idle");
-            setAutoSyncConflict(null);
-            persistSyncWatermark({
-                cloudRevision: options?.cloudRevision ?? cloudMeta?.revision ?? null,
-                localFingerprint: resolvedCloudFingerprint
-            });
-            return true;
-        } catch (err) {
-            applyRequestError(err, "Failed to load cloud save.");
-            return false;
-        }
-    }, [applyRequestError, cloudMeta?.revision, cloudPayload, persistSyncWatermark]);
-
-    const overwriteCloud = useCallback(async (options?: { expectedRevision?: number | null; localSnapshot?: LocalSaveSnapshot }) => {
-        lastRequestRef.current = overwriteCloud;
-        if (!isAvailable) {
-            setIsBackendAwake(false);
-            setStatus("offline");
-            setError("Cloud sync is unavailable.");
-            return;
-        }
-        setError(null);
-        try {
-            const localSnapshot = options?.localSnapshot ?? buildCurrentLocalSnapshot();
-            const payload = localSnapshot.payload;
-            const expectedRevision = options?.expectedRevision ?? cloudMeta?.revision ?? null;
-            const result = await withWarmupRetry("idle", () => withRefreshRetry((token) => cloudClient.putLatestSave(
-                token,
-                payload,
-                virtualScore,
-                appVersion,
-                { expectedRevision }
-            )));
-            const nextCloudMeta = toCloudMetaFromApiMeta(result.meta);
-            setIsBackendAwake(true);
-            setCloudMeta(nextCloudMeta);
-            setCloudPayload(payload);
-            setHasCloudSave(true);
-            setLastSyncAt(new Date());
-            setStatus("ready");
-            setAutoSyncStatus("idle");
-            setAutoSyncConflict(null);
-            persistSyncWatermark({
-                cloudRevision: nextCloudMeta.revision,
-                localFingerprint: localSnapshot.fingerprint
-            });
-        } catch (err) {
-            if (err instanceof CloudWarmupCancelledError) {
-                return;
-            }
-            if (isConflictError(err)) {
-                const message = LOCAL_CLOUD_DIVERGENCE_MESSAGE;
-                const parsed = (() => {
-                    try {
-                        return JSON.parse(err.body) as any;
-                    } catch {
-                        return null;
-                    }
-                })();
-                const metaRaw = parsed?.meta ?? null;
-                const conflictMeta: CloudSaveMeta = {
-                    updatedAt: toDateOrNull(metaRaw?.updatedAt ?? null),
-                    virtualScore: Number.isFinite(metaRaw?.virtualScore) ? Number(metaRaw.virtualScore) : (cloudMeta?.virtualScore ?? 0),
-                    appVersion: typeof metaRaw?.appVersion === "string" ? metaRaw.appVersion : (cloudMeta?.appVersion ?? appVersion),
-                    revision: toRevisionOrNull(metaRaw?.revision ?? null)
-                };
-                setAutoSyncStatus("conflict");
-                setAutoSyncConflict({ meta: conflictMeta, message });
-                setCloudMeta(conflictMeta);
-                setHasCloudSave(true);
-                setStatus("ready");
-                setError(message);
-                return;
-            }
-            applyRequestError(err, "Failed to upload cloud save.");
-        }
-    }, [
-        appVersion,
-        applyRequestError,
-        buildCurrentLocalSnapshot,
-        cloudMeta,
-        isAvailable,
-        persistSyncWatermark,
-        virtualScore,
-        withRefreshRetry,
-        withWarmupRetry
-    ]);
-
-    const autoSyncPushIfNeeded = useCallback(async () => {
-        if (!autoSyncEnabled || autoSyncStatus === "conflict") {
-            return;
-        }
-        if (!isAvailable || !accessToken) {
-            return;
-        }
-        if (!isBackendAwake || status === "warming" || status === "authenticating") {
-            return;
-        }
-
-        const localSnapshot = buildCurrentLocalSnapshot();
-        if (syncWatermark?.localFingerprint && localSnapshot.fingerprint === syncWatermark.localFingerprint) {
-            return;
-        }
-
-        // Ensure we have a concurrency token before pushing (best effort).
-        let expectedRevision = cloudMeta?.revision ?? syncWatermark?.cloudRevision ?? null;
-        if (hasCloudSave && expectedRevision === null) {
-            const refreshed = await fetchLatestCloudSave();
-            expectedRevision = refreshed?.meta ? toRevisionOrNull((refreshed.meta as any).revision) : null;
-        }
-
-        setAutoSyncStatus("syncing");
-        await overwriteCloud({ expectedRevision, localSnapshot });
-        setAutoSyncStatus((current) => (current === "conflict" ? current : "idle"));
-    }, [
+    const {
+        autoSyncPushIfNeeded,
+        runAutoSyncBootstrap,
+        resolveAutoSyncConflictByLoadingCloud,
+        resolveAutoSyncConflictByOverwritingCloud
+    } = useMemo(() => createCloudAutosyncActions({
         accessToken,
         autoSyncEnabled,
         autoSyncStatus,
-        buildCurrentLocalSnapshot,
         cloudMeta,
-        fetchLatestCloudSave,
         hasCloudSave,
         isAvailable,
         isBackendAwake,
+        localHasActiveDungeonRun,
+        status,
+        syncWatermark,
+        autoSyncConflict
+    }, {
+        setAutoSyncStatus,
+        setAutoSyncConflict,
+        setCloudMeta,
+        setHasCloudSave,
+        setError,
+        setStatus
+    }, {
+        buildCurrentLocalSnapshot: createLocalSnapshot,
+        fetchLatestCloudSave,
         overwriteCloud,
-        syncWatermark?.cloudRevision,
-        syncWatermark?.localFingerprint,
-        status
+        loadCloud,
+        gameDispatch: (enabled) => {
+            gameStore.dispatch({ type: "uiSetCloudAutoSyncEnabled", enabled });
+        }
+    }), [
+        accessToken,
+        autoSyncEnabled,
+        autoSyncStatus,
+        cloudMeta,
+        hasCloudSave,
+        isAvailable,
+        isBackendAwake,
+        localHasActiveDungeonRun,
+        status,
+        syncWatermark,
+        autoSyncConflict,
+        createLocalSnapshot,
+        fetchLatestCloudSave,
+        overwriteCloud,
+        loadCloud
     ]);
 
     useEffect(() => {
@@ -918,93 +591,16 @@ const useCloudSaveInternal = (): CloudSaveController => {
         lastAutoSyncBootstrapSignatureRef.current = signature;
 
         setAutoSyncStatus("syncing");
-        void (async () => {
-            const localSnapshot = buildCurrentLocalSnapshot();
-            const latest = await fetchLatestCloudSave();
-            const cloudRevision = latest ? toRevisionOrNull((latest.meta as any).revision) : null;
-            const decision = resolveCloudSyncBootstrapDecision({
-                watermark: syncWatermark,
-                hasCloudSave: Boolean(latest),
-                cloudRevision,
-                localFingerprint: localSnapshot.fingerprint
-            });
-
-            if (!latest && decision === "overwrite_cloud") {
-                await overwriteCloud({ expectedRevision: null, localSnapshot });
-                setAutoSyncStatus((current) => (current === "conflict" ? current : "idle"));
-                return;
-            }
-
-            if (!latest || decision === "noop") {
-                setAutoSyncStatus("idle");
-                return;
-            }
-
-            const cloudMetaSnapshot = toCloudMetaFromApiMeta(latest.meta);
-            const cloudFingerprint = buildSaveFingerprint(latest.payload);
-            if (localHasActiveDungeonRun && decision === "load_cloud") {
-                setAutoSyncStatus("idle");
-                return;
-            }
-
-            if (decision === "load_cloud") {
-                await loadCloud({
-                    payload: latest.payload,
-                    cloudRevision: cloudMetaSnapshot.revision,
-                    cloudFingerprint
-                });
-                setAutoSyncStatus((current) => (current === "conflict" ? current : "idle"));
-                return;
-            }
-
-            if (decision === "overwrite_cloud") {
-                await overwriteCloud({ expectedRevision: cloudMetaSnapshot.revision, localSnapshot });
-                setAutoSyncStatus((current) => (current === "conflict" ? current : "idle"));
-                return;
-            }
-
-            const message = LOCAL_CLOUD_DIVERGENCE_MESSAGE;
-            setAutoSyncStatus("conflict");
-            setAutoSyncConflict({
-                meta: cloudMetaSnapshot,
-                message
-            });
-            setCloudMeta(cloudMetaSnapshot);
-            setError(message);
-            setStatus("ready");
-        })();
+        void runAutoSyncBootstrap();
     }, [
         accessToken,
         autoSyncEnabled,
         autoSyncStatus,
-        buildCurrentLocalSnapshot,
-        fetchLatestCloudSave,
         isAvailable,
         isBackendAwake,
-        loadCloud,
-        localHasActiveDungeonRun,
-        overwriteCloud,
-        syncWatermark,
+        runAutoSyncBootstrap,
         status
     ]);
-
-    const logout = useCallback(() => {
-        cancelWarmupRetry();
-        cloudClient.clearAccessToken();
-        cloudClient.clearCsrfToken();
-        clearSyncWatermark();
-        setAccessToken(null);
-        setCloudMeta(null);
-        setCloudPayload(null);
-        setHasCloudSave(false);
-        setCloudHasActiveDungeonRun(false);
-        setProfile(null);
-        setIsUpdatingProfile(false);
-        setStatus("idle");
-        setError(null);
-        setWarmupRetrySeconds(null);
-        setLastSyncAt(null);
-    }, [cancelWarmupRetry, clearSyncWatermark]);
 
     useEffect(() => {
         if (isAvailable) {
@@ -1029,28 +625,6 @@ const useCloudSaveInternal = (): CloudSaveController => {
         }, 1000);
         return () => clearTimeout(timeout);
     }, [status, warmupRetrySeconds]);
-
-    const resolveAutoSyncConflictByLoadingCloud = useCallback(async () => {
-        setAutoSyncStatus("syncing");
-        const latest = await fetchLatestCloudSave();
-        if (latest) {
-            await loadCloud({
-                payload: latest.payload,
-                cloudRevision: toRevisionOrNull((latest.meta as any).revision),
-                cloudFingerprint: buildSaveFingerprint(latest.payload)
-            });
-        }
-        setAutoSyncStatus((current) => (current === "conflict" ? current : "idle"));
-        setAutoSyncConflict(null);
-    }, [fetchLatestCloudSave, loadCloud]);
-
-    const resolveAutoSyncConflictByOverwritingCloud = useCallback(async () => {
-        const expectedRevision = autoSyncConflict?.meta.revision ?? cloudMeta?.revision ?? null;
-        setAutoSyncStatus("syncing");
-        await overwriteCloud({ expectedRevision });
-        setAutoSyncStatus((current) => (current === "conflict" ? current : "idle"));
-        setAutoSyncConflict(null);
-    }, [autoSyncConflict, cloudMeta, overwriteCloud]);
 
     return {
         status,

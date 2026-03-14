@@ -1,9 +1,9 @@
 ## item_248_req070_extract_autosync_conflict_and_sync_watermark_orchestration - req070 extract autosync conflict and sync watermark orchestration
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 95%
-> Confidence: 92%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 96%
+> Progress: 100%
 > Complexity: High
 > Theme: Frontend / Cloud / Sync / Reliability
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -38,6 +38,8 @@ Autosync push logic, conflict escalation, cloud/local snapshot comparison, and s
 - Derived from `logics/request/req_070_modularize_cloud_save_orchestration_and_reduce_frontend_regression_risk.md`.
 - Likely touch points:
   - `src/app/hooks/useCloudSave.tsx`
+  - `src/app/hooks/cloudSave/cloudSaveAutosync.ts`
+  - `src/app/hooks/cloudSave/cloudSaveBridge.ts`
   - `tests/compat/saveBootstrapCompatibility.test.ts`
-  - `tests/app/*cloud*`
+  - `tests/app/hooks/cloudSave/cloudSaveAutosync.test.ts`
   - `tests/e2e/smoke.spec.ts`

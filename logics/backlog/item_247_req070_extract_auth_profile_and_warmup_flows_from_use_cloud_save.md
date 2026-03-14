@@ -1,9 +1,9 @@
 ## item_247_req070_extract_auth_profile_and_warmup_flows_from_use_cloud_save - req070 extract auth profile and warmup flows from useCloudSave
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 95%
-> Confidence: 92%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 96%
+> Progress: 100%
 > Complexity: High
 > Theme: Frontend / Cloud / Auth / Warmup
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -39,5 +39,6 @@ Authentication/profile lifecycle and backend warmup logic currently live inside 
 - Derived from `logics/request/req_070_modularize_cloud_save_orchestration_and_reduce_frontend_regression_risk.md`.
 - Likely touch points:
   - `src/app/hooks/useCloudSave.tsx`
-  - `src/app/api/cloudClient.ts`
-  - `tests/app/*cloud*`
+  - `src/app/hooks/cloudSave/cloudSaveActions.ts`
+  - `src/app/hooks/cloudSave/cloudSaveModel.ts`
+  - `tests/app/api/cloudClient.storage.test.ts`

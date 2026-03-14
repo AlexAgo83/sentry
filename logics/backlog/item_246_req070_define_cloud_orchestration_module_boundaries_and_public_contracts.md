@@ -1,9 +1,9 @@
 ## item_246_req070_define_cloud_orchestration_module_boundaries_and_public_contracts - req070 define cloud orchestration module boundaries and public contracts
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 96%
-> Confidence: 93%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 97%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Frontend / Cloud / Architecture
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -38,5 +38,7 @@
 - Derived from `logics/request/req_070_modularize_cloud_save_orchestration_and_reduce_frontend_regression_risk.md`.
 - Likely touch points:
   - `src/app/hooks/useCloudSave.tsx`
-  - `src/app/api/cloudClient.ts`
-  - `src/app/types/*`
+  - `src/app/hooks/cloudSave/cloudSaveModel.ts`
+  - `src/app/hooks/cloudSave/cloudSaveActions.ts`
+  - `src/app/hooks/cloudSave/cloudSaveAutosync.ts`
+  - `src/app/hooks/cloudSave/cloudSaveBridge.ts`
