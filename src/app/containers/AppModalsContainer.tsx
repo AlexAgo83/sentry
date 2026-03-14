@@ -10,6 +10,7 @@ import { SafeModeModal } from "../components/SafeModeModal";
 import { ServiceWorkerUpdateModal } from "../components/ServiceWorkerUpdateModal";
 import { OnboardingHeroModal } from "../components/OnboardingHeroModal";
 import { CloudLoginPromptModal } from "../components/CloudLoginPromptModal";
+import { useGameStore } from "../hooks/useGameStore";
 
 const LazySystemModalContainer = lazy(async () => {
     const mod = await import("./SystemModalContainer");
@@ -152,6 +153,8 @@ export const AppModalsContainer = ({
     onRenameHero,
     onCloseRename,
 }: AppModalsContainerProps) => {
+    const onboardingEnabled = useGameStore((state) => state.ui.onboarding.enabled);
+
     return (
         <>
             {isCloudLoginPromptOpen ? (
@@ -233,6 +236,9 @@ export const AppModalsContainer = ({
             {import.meta.env.DEV && isDevToolsOpen ? (
                 <Suspense fallback={<LoadingModal onClose={onCloseDevTools} />}>
                     <LazyDevToolsModal
+                        onboardingEnabled={onboardingEnabled}
+                        onSetOnboardingEnabled={onSetOnboardingEnabled}
+                        onResetOnboarding={onResetOnboarding}
                         onClose={onCloseDevTools}
                         onSimulateOffline={onSimulateOffline}
                         onSimulateOfflineHour={onSimulateOfflineHour}

@@ -6,9 +6,10 @@ import type { WikiRouteState, WikiSectionId } from "../wiki/wikiModel";
 type WikiScreenContainerProps = {
     route: WikiRouteState;
     onChangeRoute: (route: WikiRouteState) => void;
+    onClose: () => void;
 };
 
-export const WikiScreenContainer = ({ route, onChangeRoute }: WikiScreenContainerProps) => {
+export const WikiScreenContainer = ({ route, onChangeRoute, onClose }: WikiScreenContainerProps) => {
     const entries = useMemo(() => buildWikiEntries(), []);
     const [itemFilter, setItemFilter] = useState("all");
     const resolvedRoute = useMemo(() => pickWikiRoute(entries, route), [entries, route]);
@@ -43,6 +44,7 @@ export const WikiScreenContainer = ({ route, onChangeRoute }: WikiScreenContaine
             filters={itemFilters}
             activeFilter={itemFilter}
             onSelectFilter={setItemFilter}
+            onClose={onClose}
             onSelectSection={(section: WikiSectionId) => {
                 onChangeRoute({
                     section,

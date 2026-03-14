@@ -154,6 +154,18 @@ describe("App", () => {
         }
     });
 
+    it("opens wiki from settings and returns to the previous screen via back", async () => {
+        const { user } = renderApp();
+
+        await user.click(screen.getByRole("button", { name: "Open settings" }));
+        await user.click(screen.getByRole("button", { name: "Wiki" }));
+
+        expect(await screen.findByRole("heading", { name: "Wiki" })).toBeTruthy();
+        await user.click(screen.getByRole("button", { name: "Back" }));
+
+        expect(await screen.findByRole("heading", { name: "Action" })).toBeTruthy();
+    });
+
     it("shows loadout summary and missing item hint", async () => {
         const { user } = renderApp({ food: 0 });
         await user.click(screen.getByRole("button", { name: "Change" }));

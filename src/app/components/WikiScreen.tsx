@@ -1,5 +1,6 @@
 import { memo, useMemo } from "react";
 import type { WikiEntry, WikiRouteState, WikiSectionId } from "../wiki/wikiModel";
+import { BackIcon } from "../ui/backIcon";
 
 type WikiScreenProps = {
     route: WikiRouteState;
@@ -8,6 +9,7 @@ type WikiScreenProps = {
     filters?: string[];
     activeFilter?: string;
     onSelectFilter?: (filter: string) => void;
+    onClose: () => void;
     onSelectSection: (section: WikiSectionId) => void;
     onSelectEntry: (entryId: string) => void;
 };
@@ -26,6 +28,7 @@ export const WikiScreen = memo(({
     filters = [],
     activeFilter = "all",
     onSelectFilter,
+    onClose,
     onSelectSection,
     onSelectEntry
 }: WikiScreenProps) => {
@@ -53,6 +56,20 @@ export const WikiScreen = memo(({
                 <div className="ts-panel-heading">
                     <h2 className="ts-panel-title">Wiki</h2>
                     <span className="ts-panel-counter">{SECTION_LABELS[route.section]}</span>
+                </div>
+                <div className="ts-panel-actions">
+                    <button
+                        type="button"
+                        className="ts-collapse-button ts-focusable ts-action-button"
+                        onClick={onClose}
+                        aria-label="Back"
+                        title="Back"
+                    >
+                        <span className="ts-collapse-label">
+                            <BackIcon />
+                        </span>
+                        <span className="ts-action-button-label">Back</span>
+                    </button>
                 </div>
             </div>
             <div className="ts-wiki-body">
@@ -107,8 +124,10 @@ export const WikiScreen = memo(({
                                             onClick={() => onSelectEntry(entry.id)}
                                             title={`${entry.title} - ${entry.subtitle}`}
                                         >
-                                            <span className="ts-wiki-entry-title">{entry.title}</span>
-                                            <span className="ts-wiki-entry-subtitle">{entry.subtitle}</span>
+                                            <span className="ts-wiki-entry-copy">
+                                                <span className="ts-wiki-entry-title">{entry.title}</span>
+                                                <span className="ts-wiki-entry-subtitle">{entry.subtitle}</span>
+                                            </span>
                                         </button>
                                     ))}
                                 </div>
@@ -126,7 +145,7 @@ export const WikiScreen = memo(({
                                     </div>
                                     <div className="ts-wiki-tag-list">
                                         {activeEntry.tags.map((tag) => (
-                                            <span key={tag} className="ts-chip ts-wiki-tag">{tag}</span>
+                                            <span key={tag} className="ts-wiki-tag">{tag}</span>
                                         ))}
                                     </div>
                                 </div>

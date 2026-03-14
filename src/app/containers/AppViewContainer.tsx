@@ -46,6 +46,7 @@ type AppViewContainerProps = {
     getRecipeLabelNonNull: (skillId: SkillId, recipeId: string) => string;
     wikiRoute: WikiRouteState;
     onChangeWikiRoute: (route: WikiRouteState) => void;
+    onCloseWiki: () => void;
 };
 
 export const AppViewContainer = ({
@@ -81,6 +82,7 @@ export const AppViewContainer = ({
     getRecipeLabelNonNull,
     wikiRoute,
     onChangeWikiRoute,
+    onCloseWiki,
 }: AppViewContainerProps) => {
     return (
         <DevProfiler id="AppView">
@@ -185,7 +187,11 @@ export const AppViewContainer = ({
                 )}
                 wikiScreen={(
                     <DevProfiler id="WikiScreen">
-                        <WikiScreenContainer route={wikiRoute} onChangeRoute={onChangeWikiRoute} />
+                        <WikiScreenContainer
+                            route={wikiRoute}
+                            onChangeRoute={onChangeWikiRoute}
+                            onClose={onCloseWiki}
+                        />
                     </DevProfiler>
                 )}
             />

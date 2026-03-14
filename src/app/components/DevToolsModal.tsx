@@ -10,6 +10,9 @@ import {
 } from "../dev/renderDebug";
 
 type DevToolsModalProps = {
+    onboardingEnabled: boolean;
+    onSetOnboardingEnabled: (enabled: boolean) => void;
+    onResetOnboarding: () => void;
     onSimulateOffline: () => void;
     onSimulateOfflineHour: () => void;
     onSimulateOfflineDay: () => void;
@@ -18,6 +21,9 @@ type DevToolsModalProps = {
 };
 
 export const DevToolsModal = memo(({
+    onboardingEnabled,
+    onSetOnboardingEnabled,
+    onResetOnboarding,
     onSimulateOffline,
     onSimulateOfflineHour,
     onSimulateOfflineDay,
@@ -54,6 +60,29 @@ export const DevToolsModal = memo(({
 
     return (
         <ModalShell kicker="Dev" title="Dev tools" onClose={onClose} closeLabel={closeLabel}>
+            <ul className="ts-list">
+                <li>onboarding: {onboardingEnabled ? "on" : "off"}</li>
+            </ul>
+            <div className="ts-action-row ts-system-actions ts-devtools-actions">
+                <button
+                    type="button"
+                    className="generic-field button ts-devtools-button ts-focusable"
+                    onClick={() => onSetOnboardingEnabled(!onboardingEnabled)}
+                    data-testid="toggle-onboarding"
+                    title={onboardingEnabled ? "Disable onboarding" : "Enable onboarding"}
+                >
+                    {onboardingEnabled ? "Disable onboarding" : "Enable onboarding"}
+                </button>
+                <button
+                    type="button"
+                    className="generic-field button ts-devtools-button ts-focusable"
+                    onClick={onResetOnboarding}
+                    data-testid="reset-onboarding"
+                    title="Reset onboarding"
+                >
+                    Reset onboarding
+                </button>
+            </div>
             <ul className="ts-list">
                 <li>renderCounts: {isRenderCountsEnabled ? "on" : "off"}</li>
                 <li>profiler: {isProfilerEnabled ? "on" : "off"}</li>

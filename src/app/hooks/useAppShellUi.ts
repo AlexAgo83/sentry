@@ -9,6 +9,7 @@ import {
 } from "../wiki/wikiModel";
 
 type HeroSidePanel = Extract<AppActiveSidePanel, "action" | "stats" | "equipment">;
+type ReturnScreen = Exclude<AppActiveScreen, "wiki">;
 
 export const useAppShellUi = () => {
     const [activeSidePanel, setActiveSidePanel] = useState<AppActiveSidePanel>("action");
@@ -24,6 +25,8 @@ export const useAppShellUi = () => {
         }
         return parseWikiLocation(window.location).route;
     });
+    const [wikiReturnScreen, setWikiReturnScreen] = useState<ReturnScreen>("main");
+    const [wikiReturnSidePanel, setWikiReturnSidePanel] = useState<AppActiveSidePanel>("action");
     const [returnSidePanel, setReturnSidePanel] = useState<AppActiveSidePanel>("action");
     const [lastHeroSidePanel, setLastHeroSidePanel] = useState<HeroSidePanel>("action");
     const [isSystemOpen, setSystemOpen] = useState(false);
@@ -60,6 +63,10 @@ export const useAppShellUi = () => {
     }, []);
 
     const openWikiScreen = useCallback((route?: Partial<WikiRouteState>) => {
+        if (activeScreen !== "wiki") {
+            setWikiReturnScreen(activeScreen);
+            setWikiReturnSidePanel(activeSidePanel);
+        }
         const nextRoute: WikiRouteState = {
             ...wikiRoute,
             ...route,
@@ -71,7 +78,20 @@ export const useAppShellUi = () => {
         if (typeof window !== "undefined") {
             window.history.pushState({}, "", buildWikiUrl(nextRoute));
         }
-    }, [wikiRoute]);
+    }, [activeScreen, activeSidePanel, wikiRoute]);
+
+    const closeWikiScreen = useCallback(() => {
+        syncMainRoute();
+        setActiveScreen(wikiReturnScreen);
+        setActiveSidePanel(wikiReturnSidePanel);
+        if (
+            wikiReturnSidePanel === "action" ||
+            wikiReturnSidePanel === "stats" ||
+            wikiReturnSidePanel === "equipment"
+        ) {
+            setLastHeroSidePanel(wikiReturnSidePanel);
+        }
+    }, [syncMainRoute, wikiReturnScreen, wikiReturnSidePanel]);
 
     const setWikiRoute = useCallback((route: WikiRouteState) => {
         setWikiRouteState(route);
@@ -198,6 +218,7 @@ export const useAppShellUi = () => {
         showShopPanel,
         showQuestsPanel,
         openWikiScreen,
+        closeWikiScreen,
         setWikiRoute,
         isSystemOpen,
         openSystem,

@@ -9,6 +9,7 @@ describe("WikiScreenContainer", () => {
             <WikiScreenContainer
                 route={{ section: "skills", entryId: null }}
                 onChangeRoute={onChangeRoute}
+                onClose={vi.fn()}
             />
         );
 
@@ -27,6 +28,7 @@ describe("WikiScreenContainer", () => {
             <WikiScreenContainer
                 route={{ section: "items", entryId: null }}
                 onChangeRoute={vi.fn()}
+                onClose={vi.fn()}
             />
         );
 

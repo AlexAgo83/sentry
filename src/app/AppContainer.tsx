@@ -65,6 +65,7 @@ export const AppContainer = () => {
         showShopPanel,
         showQuestsPanel,
         openWikiScreen,
+        closeWikiScreen,
         setWikiRoute,
         wikiRoute,
         isSystemOpen,
@@ -508,6 +509,7 @@ export const AppContainer = () => {
                 getRecipeLabelNonNull={getRecipeLabelNonNull}
                 wikiRoute={wikiRoute}
                 onChangeWikiRoute={setWikiRoute}
+                onCloseWiki={closeWikiScreen}
             />
             <AppModalsContainer
                 version={version}

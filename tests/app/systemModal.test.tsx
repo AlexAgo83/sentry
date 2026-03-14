@@ -85,16 +85,9 @@ describe("SystemModal", () => {
         window.localStorage.removeItem("sentry.cloud.csrfToken");
     });
 
-    it("exposes onboarding controls and the wiki entry", () => {
+    it("opens wiki from settings", () => {
         const props = baseProps();
         render(<SystemModal {...props} />);
-
-        expect(screen.getByText("Onboarding is enabled.")).toBeTruthy();
-        fireEvent.click(screen.getByRole("button", { name: "Disable onboarding" }));
-        expect(props.onSetOnboardingEnabled).toHaveBeenCalledWith(false);
-
-        fireEvent.click(screen.getByRole("button", { name: "Reset onboarding" }));
-        expect(props.onResetOnboarding).toHaveBeenCalledTimes(1);
 
         fireEvent.click(screen.getByRole("button", { name: "Wiki" }));
         expect(props.onOpenWiki).toHaveBeenCalledTimes(1);
