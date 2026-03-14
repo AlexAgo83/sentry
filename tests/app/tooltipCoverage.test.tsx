@@ -139,8 +139,8 @@ describe("Tooltip coverage", () => {
         expect(screen.getByRole("heading", { name: "Save" })).toBeTruthy();
         assertTooltipCoverage();
 
-        await user.click(screen.getByRole("button", { name: "Cloud save" }));
-        expect(await screen.findByRole("heading", { name: "Cloud Save" })).toBeTruthy();
+        await user.click(screen.getByTestId("open-cloud-save"));
+        expect(await screen.findByTestId("cloud-login")).toBeTruthy();
         assertTooltipCoverage();
         await user.click(screen.getByRole("button", { name: "Back" }));
         expect(screen.getByRole("heading", { name: "Save" })).toBeTruthy();

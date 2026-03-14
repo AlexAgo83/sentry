@@ -164,8 +164,8 @@ describe("SystemModal", () => {
         fireEvent.click(screen.getByRole("button", { name: "Back" }));
         expect(screen.getByRole("heading", { name: "Save" })).toBeTruthy();
 
-        fireEvent.click(screen.getByRole("button", { name: "Cloud save" }));
-        expect(await screen.findByRole("heading", { name: "Cloud Save" })).toBeTruthy();
+        fireEvent.click(screen.getByTestId("open-cloud-save"));
+        expect(await screen.findByTestId("cloud-login")).toBeTruthy();
 
         fireEvent.click(screen.getByRole("button", { name: "Back" }));
         expect(screen.getByRole("heading", { name: "Save" })).toBeTruthy();
