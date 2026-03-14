@@ -134,6 +134,18 @@ describe("serialization", () => {
         expect(hydrated.ui.inventoryBadges.legacyImported).toBe(true);
     });
 
+    it("round-trips onboarding UI state through save and hydrate", () => {
+        const state = createInitialGameState("0.9.40");
+        state.ui.onboarding.enabled = false;
+        state.ui.onboarding.introStepIndex = 2;
+        state.ui.onboarding.dismissedHintIds = { action: true, shop: true };
+
+        const save = toGameSave(state);
+        const hydrated = hydrateGameState("0.9.40", save);
+
+        expect(hydrated.ui.onboarding).toEqual(state.ui.onboarding);
+    });
+
     it("hydrates active player from save when available", () => {
         const state = createInitialGameState("0.3.1");
         const save = toGameSave(state);

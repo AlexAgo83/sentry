@@ -89,9 +89,16 @@ export interface CloudUiPreferences {
     loginPromptDisabled?: boolean;
 }
 
+export interface OnboardingUiState {
+    enabled: boolean;
+    introStepIndex: number;
+    dismissedHintIds: Record<string, true>;
+}
+
 export interface UiState {
     inventoryBadges: InventoryBadgeState;
     cloud: CloudUiPreferences;
+    onboarding: OnboardingUiState;
 }
 
 export interface ItemDelta {

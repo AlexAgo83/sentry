@@ -211,16 +211,33 @@ const normalizeCloudUi = (value: unknown): CloudUiPreferences => {
     };
 };
 
+const normalizeOnboardingUi = (value: unknown) => {
+    if (!isObject(value)) {
+        return {
+            enabled: true,
+            introStepIndex: 0,
+            dismissedHintIds: {}
+        };
+    }
+    return {
+        enabled: normalizeBoolean(value.enabled, true),
+        introStepIndex: Math.max(0, Math.floor(Number(value.introStepIndex) || 0)),
+        dismissedHintIds: normalizeSeenIdRecord(value.dismissedHintIds)
+    };
+};
+
 const normalizeUi = (value: unknown, inventory: InventoryState) => {
     if (!isObject(value)) {
         return {
             inventoryBadges: normalizeInventoryBadges(undefined, inventory),
-            cloud: normalizeCloudUi(undefined)
+            cloud: normalizeCloudUi(undefined),
+            onboarding: normalizeOnboardingUi(undefined)
         };
     }
     return {
         inventoryBadges: normalizeInventoryBadges(value.inventoryBadges, inventory),
-        cloud: normalizeCloudUi(value.cloud)
+        cloud: normalizeCloudUi(value.cloud),
+        onboarding: normalizeOnboardingUi(value.onboarding)
     };
 };
 

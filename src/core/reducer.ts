@@ -112,6 +112,10 @@ export type GameAction =
     | { type: "uiInventoryBadgesLegacyImportChecked" }
     | { type: "uiSetCloudLoginPromptDisabled"; disabled: boolean }
     | { type: "uiSetCloudAutoSyncEnabled"; enabled: boolean }
+    | { type: "uiOnboardingAdvanceIntro" }
+    | { type: "uiOnboardingDismissHint"; hintId: string }
+    | { type: "uiOnboardingSetEnabled"; enabled: boolean }
+    | { type: "uiOnboardingReset" }
     | { type: "grantRestedBuff"; timestamp: number }
     | { type: "setActivePlayer"; playerId: PlayerId }
     | { type: "addPlayer"; name?: string }
@@ -256,6 +260,59 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
                     cloud: {
                         ...state.ui.cloud,
                         autoSyncEnabled: action.enabled
+                    }
+                }
+            };
+        case "uiOnboardingAdvanceIntro":
+            return {
+                ...state,
+                ui: {
+                    ...state.ui,
+                    onboarding: {
+                        ...state.ui.onboarding,
+                        introStepIndex: Math.max(0, state.ui.onboarding.introStepIndex) + 1
+                    }
+                }
+            };
+        case "uiOnboardingDismissHint": {
+            const hintId = action.hintId?.trim();
+            if (!hintId || state.ui.onboarding.dismissedHintIds[hintId]) {
+                return state;
+            }
+            return {
+                ...state,
+                ui: {
+                    ...state.ui,
+                    onboarding: {
+                        ...state.ui.onboarding,
+                        dismissedHintIds: {
+                            ...state.ui.onboarding.dismissedHintIds,
+                            [hintId]: true
+                        }
+                    }
+                }
+            };
+        }
+        case "uiOnboardingSetEnabled":
+            return {
+                ...state,
+                ui: {
+                    ...state.ui,
+                    onboarding: {
+                        ...state.ui.onboarding,
+                        enabled: action.enabled
+                    }
+                }
+            };
+        case "uiOnboardingReset":
+            return {
+                ...state,
+                ui: {
+                    ...state.ui,
+                    onboarding: {
+                        enabled: true,
+                        introStepIndex: 0,
+                        dismissedHintIds: {}
                     }
                 }
             };

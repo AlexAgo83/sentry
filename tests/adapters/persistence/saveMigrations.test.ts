@@ -170,4 +170,49 @@ describe("saveMigrations", () => {
         }
         expect(result.save.ui?.inventoryBadges?.legacyImported).toBe(true);
     });
+
+    it("hydrates onboarding UI defaults and preserves explicit onboarding state", () => {
+        const defaulted = migrateAndValidateSave({
+            version: "0.9.40",
+            players: {
+                "1": { id: "1", name: "Mara" },
+            }
+        });
+        expect(defaulted.ok).toBe(true);
+        if (!defaulted.ok) {
+            return;
+        }
+        expect(defaulted.save.ui?.onboarding).toEqual({
+            enabled: true,
+            introStepIndex: 0,
+            dismissedHintIds: {}
+        });
+
+        const explicit = migrateAndValidateSave({
+            version: "0.9.40",
+            players: {
+                "1": { id: "1", name: "Mara" },
+            },
+            ui: {
+                cloud: {
+                    autoSyncEnabled: false,
+                    loginPromptDisabled: false
+                },
+                onboarding: {
+                    enabled: false,
+                    introStepIndex: 2,
+                    dismissedHintIds: { action: true }
+                }
+            }
+        });
+        expect(explicit.ok).toBe(true);
+        if (!explicit.ok) {
+            return;
+        }
+        expect(explicit.save.ui?.onboarding).toEqual({
+            enabled: false,
+            introStepIndex: 2,
+            dismissedHintIds: { action: true }
+        });
+    });
 });

@@ -49,6 +49,9 @@ type AppModalsContainerProps = {
     onSimulateOfflineHour: () => void;
     onSimulateOfflineDay: () => void;
     onResetSave: () => void;
+    onSetOnboardingEnabled: (enabled: boolean) => void;
+    onResetOnboarding: () => void;
+    onOpenWiki: () => void;
     onCloseSystem: () => void;
     isLocalSaveOpen: boolean;
     onCloseLocalSave: () => void;
@@ -104,6 +107,9 @@ export const AppModalsContainer = ({
     onSimulateOfflineHour,
     onSimulateOfflineDay,
     onResetSave,
+    onSetOnboardingEnabled,
+    onResetOnboarding,
+    onOpenWiki,
     onCloseSystem,
     isLocalSaveOpen,
     onCloseLocalSave,
@@ -198,6 +204,9 @@ export const AppModalsContainer = ({
                         onExportSave={onExportSave}
                         onImportSave={onImportSave}
                         onResetSave={onResetSave}
+                        onSetOnboardingEnabled={onSetOnboardingEnabled}
+                        onResetOnboarding={onResetOnboarding}
+                        onOpenWiki={onOpenWiki}
                         onSimulateOffline={onSimulateOffline}
                         onSimulateOfflineHour={onSimulateOfflineHour}
                         onSimulateOfflineDay={onSimulateOfflineDay}

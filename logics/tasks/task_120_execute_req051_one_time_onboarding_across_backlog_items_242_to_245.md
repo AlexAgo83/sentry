@@ -1,9 +1,9 @@
 ## task_120_execute_req051_one_time_onboarding_across_backlog_items_242_to_245 - Execute req051 one-time onboarding across backlog items 242 to 245
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 97%
-> Confidence: 94%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 100%
+> Progress: 100%
 > Complexity: High
 > Theme: UX / Onboarding / Guidance orchestration
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc.
@@ -44,20 +44,20 @@ This task delivers a lightweight onboarding system that helps first-time players
 - Regression coverage protects persistence and one-shot behavior.
 
 # Plan
-- [ ] 1. Execute `item_242` (persisted onboarding contract):
+- [x] 1. Execute `item_242` (persisted onboarding contract):
   - Define the onboarding state model.
   - Wire serialization and migrations.
-- [ ] 2. Execute `item_243` (orchestrator):
+- [x] 2. Execute `item_243` (orchestrator):
   - Implement intro/hint/nudge prioritization.
   - Enforce one-surface-at-a-time behavior.
-- [ ] 3. Execute `item_244` (player-facing UI):
+- [x] 3. Execute `item_244` (player-facing UI):
   - Ship the compact intro flow.
   - Add contextual hints for the agreed key screens.
   - Keep cloud guidance optional and backend-aware.
-- [ ] 4. Execute `item_245` (Settings controls and tests):
+- [x] 4. Execute `item_245` (Settings controls and tests):
   - Add disable/reset controls.
   - Add regression coverage for persistence and one-shot guarantees.
-- [ ] FINAL: Update related Logics docs (request/backlog/task alignment)
+- [x] FINAL: Update related Logics docs (request/backlog/task alignment)
 
 # Validation
 Final gate (mandatory at task end):

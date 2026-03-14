@@ -30,6 +30,7 @@ const buildState = (options?: {
     rosterLimit?: number;
     seedHero?: boolean;
     addSecondHero?: boolean;
+    enableOnboarding?: boolean;
 }) => {
     const seedHero = options?.seedHero ?? true;
     const addSecondHero = options?.addSecondHero ?? true;
@@ -37,6 +38,7 @@ const buildState = (options?: {
     state.appReady = true;
     // Keep this suite deterministic: the startup login prompt is covered by its own tests.
     state.ui.cloud.loginPromptDisabled = true;
+    state.ui.onboarding.enabled = options?.enableOnboarding ?? false;
     if (addSecondHero) {
         state.players["2"] = createPlayerState("2", "Mara");
     }
@@ -54,6 +56,7 @@ const renderApp = (options?: {
     rosterLimit?: number;
     seedHero?: boolean;
     addSecondHero?: boolean;
+    enableOnboarding?: boolean;
 }) => {
     Object.defineProperty(window, "innerWidth", { value: 1200, writable: true });
     testStore = createGameStore(buildState(options));
@@ -118,6 +121,18 @@ describe("App", () => {
         await user.click(screen.getByRole("button", { name: "Create 4th hero" }));
 
         expect(await screen.findByRole("button", { name: "Select skill" })).toBeTruthy();
+    });
+
+    it("shows the first-minutes onboarding flow once and lets the player skip it", async () => {
+        const { user } = renderApp({ addSecondHero: false, enableOnboarding: true });
+
+        expect(screen.getByRole("heading", { name: "Welcome to Sentry" })).toBeTruthy();
+        await user.click(screen.getByRole("button", { name: "Next" }));
+        expect(screen.getByRole("heading", { name: "First priorities" })).toBeTruthy();
+        await user.click(screen.getByRole("button", { name: "Skip tips" }));
+        await waitFor(() => {
+            expect(screen.queryByRole("heading", { name: "First priorities" })).toBeNull();
+        });
     });
 
     it("shows focusable inventory controls and usage labels", async () => {

@@ -64,9 +64,13 @@ const baseProps = () => ({
     virtualScore: 128,
     actionJournal: [],
     crashReports: [] as CrashReport[],
+    onboardingEnabled: true,
     onExportSave: vi.fn().mockResolvedValue("clipboard"),
     onImportSave: vi.fn(),
     onResetSave: vi.fn(),
+    onSetOnboardingEnabled: vi.fn(),
+    onResetOnboarding: vi.fn(),
+    onOpenWiki: vi.fn(),
     onSimulateOffline: vi.fn(),
     onSimulateOfflineHour: vi.fn(),
     onSimulateOfflineDay: vi.fn(),
@@ -79,6 +83,22 @@ describe("SystemModal", () => {
         window.localStorage.removeItem("sentry.graphicsSettings");
         window.localStorage.removeItem("sentry.cloud.accessToken");
         window.localStorage.removeItem("sentry.cloud.csrfToken");
+    });
+
+    it("exposes onboarding controls and the wiki entry", () => {
+        const props = baseProps();
+        render(<SystemModal {...props} />);
+
+        expect(screen.getByText("Onboarding is enabled.")).toBeTruthy();
+        fireEvent.click(screen.getByRole("button", { name: "Disable onboarding" }));
+        expect(props.onSetOnboardingEnabled).toHaveBeenCalledWith(false);
+
+        fireEvent.click(screen.getByRole("button", { name: "Reset onboarding" }));
+        expect(props.onResetOnboarding).toHaveBeenCalledTimes(1);
+
+        fireEvent.click(screen.getByRole("button", { name: "Wiki" }));
+        expect(props.onOpenWiki).toHaveBeenCalledTimes(1);
+        expect(props.onClose).toHaveBeenCalledTimes(1);
     });
 
     it("navigates modal screens without stacking and closes back to previous", async () => {

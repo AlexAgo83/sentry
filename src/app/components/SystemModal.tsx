@@ -83,9 +83,13 @@ type SystemModalProps = {
     virtualScore: number;
     actionJournal: ActionJournalEntry[];
     crashReports: CrashReport[];
+    onboardingEnabled: boolean;
     onExportSave: () => void | Promise<SaveCopyResult>;
     onImportSave: () => void;
     onResetSave: () => void;
+    onSetOnboardingEnabled: (enabled: boolean) => void;
+    onResetOnboarding: () => void;
+    onOpenWiki: () => void;
     onSimulateOffline: () => void;
     onSimulateOfflineHour: () => void;
     onSimulateOfflineDay: () => void;
@@ -109,9 +113,13 @@ export const SystemModal = memo(({
     virtualScore,
     actionJournal,
     crashReports,
+    onboardingEnabled,
     onExportSave,
     onImportSave,
     onResetSave,
+    onSetOnboardingEnabled,
+    onResetOnboarding,
+    onOpenWiki,
     onSimulateOffline,
     onSimulateOfflineHour,
     onSimulateOfflineDay,
@@ -267,6 +275,51 @@ export const SystemModal = memo(({
     return (
         <ModalShell kicker={`System - v${version}`} title="Settings" onClose={onClose}>
             <div className="ts-system-entry-list">
+                <div className="ts-system-entry">
+                    <div className="ts-system-helper">
+                        Onboarding is {onboardingEnabled ? "enabled" : "disabled"}.
+                    </div>
+                    <div className="ts-action-row">
+                        <button
+                            type="button"
+                            className="generic-field button ts-devtools-button ts-focusable"
+                            onClick={() => onSetOnboardingEnabled(!onboardingEnabled)}
+                            data-testid="toggle-onboarding"
+                            title={onboardingEnabled ? "Disable onboarding" : "Enable onboarding"}
+                        >
+                            {onboardingEnabled ? "Disable onboarding" : "Enable onboarding"}
+                        </button>
+                    </div>
+                </div>
+                <div className="ts-system-entry">
+                    <div className="ts-action-row">
+                        <button
+                            type="button"
+                            className="generic-field button ts-devtools-button ts-focusable"
+                            onClick={onResetOnboarding}
+                            data-testid="reset-onboarding"
+                            title="Reset onboarding"
+                        >
+                            Reset onboarding
+                        </button>
+                    </div>
+                </div>
+                <div className="ts-system-entry">
+                    <div className="ts-action-row">
+                        <button
+                            type="button"
+                            className="generic-field button ts-devtools-button ts-focusable"
+                            onClick={() => {
+                                onOpenWiki();
+                                onClose();
+                            }}
+                            data-testid="open-wiki"
+                            title="Wiki"
+                        >
+                            Wiki
+                        </button>
+                    </div>
+                </div>
                 <div className="ts-system-entry">
                     <div className="ts-action-row">
                         <button

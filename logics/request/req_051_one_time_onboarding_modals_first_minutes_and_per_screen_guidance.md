@@ -1,8 +1,8 @@
 ## req_051_one_time_onboarding_modals_first_minutes_and_per_screen_guidance - Add one-time onboarding modals for first minutes and per-screen guidance
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 98%
-> Confidence: 95%
+> Status: Done
+> Understanding: 100%
+> Confidence: 100%
 > Complexity: High
 > Theme: UX / Onboarding
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
