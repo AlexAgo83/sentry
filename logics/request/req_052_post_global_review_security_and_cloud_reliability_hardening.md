@@ -1,8 +1,8 @@
 ## req_052_post_global_review_security_and_cloud_reliability_hardening - Post global review security and cloud reliability hardening
-> From version: 0.9.36
+> From version: 0.9.40
 > Status: Ready
-> Understanding: 96%
-> Confidence: 92%
+> Understanding: 100%
+> Confidence: 96%
 > Complexity: Medium
 > Theme: Security / Reliability
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
@@ -13,12 +13,15 @@
 - Keep implementation incremental and low-risk, with targeted regression tests.
 
 # Context
+- A large portion of the original hardening plan was already absorbed by:
+  - `logics/request/req_047_security_pwa_offline_ci_hardening_and_maintainability.md`
+  - backlog items `152` to `160`
 - The project already has:
   - DB-backed auth rate limiting,
   - memory-only access token storage,
   - CSRF-based refresh flow,
   - broad automated validation (`lint`, `typecheck`, `test:ci`, `build`, `test:e2e`).
-- During the review, four follow-up risks were identified:
+- This request now tracks the residual hardening gaps still confirmed as open:
   - trust boundary issue in auth rate-limit key derivation (client-controlled `x-forwarded-for`),
   - unguarded CSRF token writes to `localStorage`,
   - no lifecycle cleanup for refresh token rows,
@@ -95,8 +98,10 @@
   - `npm run test:e2e`
 
 # Backlog
-- Backlog items to be generated from this request:
-  - auth rate-limit trust-boundary hardening,
-  - CSRF storage write resilience,
-  - refresh-token cleanup policy and implementation,
-  - dependency advisory (`qs`) remediation tracking.
+- `logics/backlog/item_234_req052_harden_auth_rate_limit_key_trust_boundary_and_proxy_awareness.md`
+- `logics/backlog/item_235_req052_guard_csrf_localstorage_writes_and_add_storage_denial_regressions.md`
+- `logics/backlog/item_236_req052_add_refresh_token_lifecycle_cleanup_policy_and_backend_coverage.md`
+- `logics/backlog/item_237_req052_resolve_remaining_qs_advisory_and_document_dependency_decision.md`
+
+# Task
+- `logics/tasks/task_118_execute_req052_residual_security_and_cloud_reliability_hardening_across_backlog_items_234_to_237.md`
