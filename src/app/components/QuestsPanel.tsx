@@ -179,7 +179,8 @@ export const QuestsPanel = memo(({
                             </div>
                         ) : (
                             <div className="ts-milestone-empty">
-                                All current milestones are unlocked.
+                                <span className="ts-milestone-empty-title">Milestone track complete</span>
+                                <span className="ts-milestone-empty-subtitle">All current milestones are unlocked.</span>
                             </div>
                         )}
                         {completedMilestones.length > 0 ? (

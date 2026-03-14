@@ -132,11 +132,28 @@
 .ts-milestone-empty {
     margin: 0 var(--m2);
     padding: var(--m3) var(--m4);
-    border: 1px dashed rgba(93, 217, 193, 0.24);
     border-radius: 14px;
+    border: 1px solid rgba(93, 217, 193, 0.16);
+    background:
+        linear-gradient(90deg, rgba(93, 217, 193, 0.08), rgba(12, 18, 32, 0.18)),
+        rgba(12, 18, 32, 0.32);
+    display: flex;
+    align-items: baseline;
+    gap: var(--m3);
+    flex-wrap: wrap;
+}
+
+.ts-milestone-empty-title {
+    color: rgba(184, 243, 228, 0.96);
+    font-size: var(--text-xs-size);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.ts-milestone-empty-subtitle {
     color: var(--color-text-fade);
     font-size: var(--text-xs-size);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 

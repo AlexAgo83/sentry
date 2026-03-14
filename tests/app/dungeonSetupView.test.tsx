@@ -31,7 +31,7 @@ describe("DungeonSetupView", () => {
         );
 
         expect(screen.getByText("Reward T5 · Combat XP x1.40 · Boss gold x1.48")).toBeTruthy();
-        expect(screen.getByText("Pick 4 heroes")).toBeTruthy();
+        expect(screen.getByText("Pick 4 heroes to estimate dungeon readiness.")).toBeTruthy();
         expect(screen.getByText("Rare drops")).toBeTruthy();
     });
 

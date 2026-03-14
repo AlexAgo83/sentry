@@ -227,8 +227,8 @@ describe("App", () => {
 
         expect(screen.getByText("T4 · Skill +3 / Recipe +5")).toBeTruthy();
         expect(screen.getByText("Base reward T4 · Skill XP +2 · Recipe XP +3")).toBeTruthy();
-        expect(screen.getAllByText("Great next step")).toHaveLength(2);
-        expect(screen.getAllByText("High XP")).toHaveLength(2);
+        expect(screen.getByText("Great next step")).toBeTruthy();
+        expect(screen.getByText("High XP")).toBeTruthy();
         expect(screen.getByText("Focus")).toBeTruthy();
     });
 

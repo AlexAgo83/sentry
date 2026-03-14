@@ -52,6 +52,7 @@ export const DungeonSetupView = ({
     inventoryItems
 }: DungeonSetupViewProps) => {
     const unavailablePartyPlayerIdSet = new Set(unavailablePartyPlayerIds ?? []);
+    const hasUnavailablePartyMembers = unavailablePartyPlayerIdSet.size > 0;
     const selectedDungeon = definitions.find((definition) => definition.id === selectedDungeonId) ?? null;
     const lootEntries = selectedDungeon?.lootTable.entries ?? [];
     const totalLootWeight = lootEntries.reduce((sum, entry) => sum + Math.max(0, entry.weight), 0);
@@ -159,6 +160,13 @@ export const DungeonSetupView = ({
 
             <div className="ts-dungeon-card">
                 <h3 className="ts-dungeon-card-title">3. Preparation</h3>
+                {!hasPartySelection ? (
+                    <p className="ts-system-helper">
+                        {hasUnavailablePartyMembers
+                            ? "Current party is busy. Pick 4 available heroes to estimate readiness."
+                            : "Pick 4 heroes to estimate dungeon readiness."}
+                    </p>
+                ) : null}
                 <div className="ts-dungeon-cost-row">
                     <span className="ts-dungeon-cost-label">Party power</span>
                     <span className={`ts-dungeon-cost-pill${hasPartySelection ? " is-ok" : ""}`}>

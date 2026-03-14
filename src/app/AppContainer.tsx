@@ -316,6 +316,9 @@ export const AppContainer = () => {
 
     const handleCloseOfflineSummary = useCallback(() => {
         if (offlineSummary) {
+            if (DEV_FORCE_OFFLINE_SUMMARY_PREVIEW) {
+                setOfflineSummaryPreviewDismissed(true);
+            }
             closeOfflineSummary();
             return;
         }

@@ -41,7 +41,7 @@ export const getDungeonValueCues = (
             }
             return createCue("Underpowered", "danger");
         })()
-        : createCue("Pick 4 heroes", "neutral");
+        : null;
 
     const rewardProfile = resolveDungeonRewardProfile(definition);
     const rewardFocus = definition.tier >= 8

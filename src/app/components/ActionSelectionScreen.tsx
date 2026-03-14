@@ -371,7 +371,8 @@ export const ActionSelectionScreen = memo(({
         setRecipeModalOpen(false);
     };
 
-    const renderRecipeChoiceCardContent = (choice: RecipeChoice) => {
+    const renderRecipeChoiceCardContent = (choice: RecipeChoice, options?: { showValueCues?: boolean }) => {
+        const showValueCues = options?.showValueCues ?? true;
         return (
             <div className="ts-choice-copy">
                 <div className="ts-choice-title ts-choice-title--recipe">
@@ -386,11 +387,13 @@ export const ActionSelectionScreen = memo(({
                     <div className="ts-choice-subtitle">{choice.recipeXpLabel} · Lv {choice.recipeLevel}/{choice.recipeMax}</div>
                 )}
                 <div className="ts-choice-subtitle">{choice.rewardLabel}</div>
-                <div className="ts-choice-cue-row">
-                    {choice.valueCues.map((cue) => (
-                        <span key={cue.label} className={`ts-choice-cue-chip is-${cue.tone}`}>{cue.label}</span>
-                    ))}
-                </div>
+                {showValueCues ? (
+                    <div className="ts-choice-cue-row">
+                        {choice.valueCues.map((cue) => (
+                            <span key={cue.label} className={`ts-choice-cue-chip is-${cue.tone}`}>{cue.label}</span>
+                        ))}
+                    </div>
+                ) : null}
                 <div className="ts-choice-details" aria-hidden="true">
                     <div className="ts-choice-detail-row">
                         <span className="ts-choice-detail-label">
@@ -665,7 +668,7 @@ export const ActionSelectionScreen = memo(({
                                         aria-label="Select recipe"
                                         title="Select recipe"
                                     >
-                                        {renderRecipeChoiceCardContent(selectedRecipeChoice)}
+                                        {renderRecipeChoiceCardContent(selectedRecipeChoice, { showValueCues: false })}
                                         <div className="ts-choice-meta ts-choice-meta--recipe-trigger">
                                             <div className="ts-choice-xp">{unlockedRecipeCount}/{recipeChoices.length} unlocked</div>
                                             <div className="ts-choice-subtitle">Open selector</div>
