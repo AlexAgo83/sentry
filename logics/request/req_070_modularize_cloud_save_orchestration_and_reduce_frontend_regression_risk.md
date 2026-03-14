@@ -1,8 +1,8 @@
 ## req_070_modularize_cloud_save_orchestration_and_reduce_frontend_regression_risk - Modularize cloud save orchestration and reduce frontend regression risk
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 96%
-> Confidence: 93%
+> Status: Done
+> Understanding: 100%
+> Confidence: 97%
 > Complexity: Medium
 > Theme: Frontend / Cloud / Maintainability / Reliability
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
@@ -134,3 +134,12 @@
 
 # Task
 - `logics/tasks/task_121_execute_req070_cloud_orchestration_modularization_across_backlog_items_246_to_249.md`
+
+# Completion notes
+- `useCloudSave.tsx` now delegates most cloud orchestration to dedicated internal modules:
+  - `cloudSaveModel.ts`
+  - `cloudSaveActions.ts`
+  - `cloudSaveAutosync.ts`
+  - `cloudSaveBridge.ts`
+- The public `CloudSaveController` surface remains stable while auth/profile, warmup-aware operations, autosync/conflict behavior, and E2E wiring are separated into explicit seams.
+- Targeted regression coverage now locks the extracted bridge and autosync seams in addition to the existing cloud integration tests.

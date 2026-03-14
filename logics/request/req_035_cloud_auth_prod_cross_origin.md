@@ -1,7 +1,7 @@
 ## req_035_cloud_auth_prod_cross_origin - Fix cloud auth refresh in prod (Render subdomains)
 > From version: 0.9.11
 > Status: Done
-> Understanding: 78%
+> Understanding: 100%
 > Confidence: 74%
 
 # Needs
@@ -38,6 +38,9 @@
 - `backend/server.js` (cookies, CORS, CSRF handling)
 - `src/app/api/cloudClient.ts` (refresh flow + error handling)
 - `src/app/hooks/useCloudSave.ts` (unauthorized handling + UI state)
+
+# Backlog
+- `logics/backlog/item_152_cloud_auth_memory_only_access_token_and_silent_refresh_autologin.md`
 - `readme.md` or `.env` docs (prod domain setup notes if needed)
 
 # Acceptance criteria

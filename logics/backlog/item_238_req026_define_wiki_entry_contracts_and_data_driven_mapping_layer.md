@@ -1,9 +1,9 @@
 ## item_238_req026_define_wiki_entry_contracts_and_data_driven_mapping_layer - req026 define wiki entry contracts and data-driven mapping layer
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 96%
-> Confidence: 93%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 100%
+> Progress: 100%
 > Complexity: High
 > Theme: Architecture / Data / Selectors
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.

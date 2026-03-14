@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { gameRuntime, gameStore } from "./game";
 import { useGameStore } from "./hooks/useGameStore";
 import { useCrashReportsState } from "./hooks/useCrashReportsState";
@@ -17,6 +17,8 @@ import { useGameRuntimeLifecycle } from "./hooks/useGameRuntimeLifecycle";
 import { useInventoryNewBadges } from "./hooks/useInventoryNewBadges";
 import { generateUniqueEnglishHeroNames } from "./ui/heroNames";
 import { StartupSplashScreen } from "./components/StartupSplashScreen";
+import { OnboardingHintCard } from "./components/OnboardingHintCard";
+import { OnboardingIntroModal } from "./components/OnboardingIntroModal";
 import { startSilentBackendWarmup } from "./backendWarmup";
 import { resolveAutoDungeonOpenDecision } from "./autoDungeonOpen";
 import { useCloudSave } from "./hooks/useCloudSave";
@@ -25,6 +27,7 @@ import {
     resolveActiveDungeonRunIdForPlayer,
     resolveRosterSelectionDungeonNavigation
 } from "./rosterSelectionNavigation";
+import { resolveOnboardingSurface } from "./onboarding";
 
 const DEV_FORCE_OFFLINE_SUMMARY_PREVIEW = shouldForceOfflineSummaryPreview(import.meta.env);
 
@@ -46,6 +49,8 @@ export const AppContainer = () => {
     const dungeonOnboardingRequired = useGameStore((state) => state.dungeon.onboardingRequired);
     const persistence = useGameStore((state) => state.persistence);
     const cloudLoginPromptDisabled = useGameStore((state) => Boolean(state.ui.cloud.loginPromptDisabled));
+    const onboardingState = useGameStore((state) => state.ui.onboarding);
+    const completedQuestCount = useGameStore((state) => Object.values(state.quests.completed).filter(Boolean).length);
     const cloud = useCloudSave();
 
     const {
@@ -59,6 +64,10 @@ export const AppContainer = () => {
         showEquipmentPanel,
         showShopPanel,
         showQuestsPanel,
+        openWikiScreen,
+        closeWikiScreen,
+        setWikiRoute,
+        wikiRoute,
         isSystemOpen,
         openSystem,
         closeSystem,
@@ -356,6 +365,31 @@ export const AppContainer = () => {
         || isBootstrapOverlayOpen
     );
 
+    const onboardingSurface = useMemo(() => resolveOnboardingSurface({
+        onboarding: onboardingState,
+        activeScreen,
+        activeSidePanel,
+        playerCount,
+        hasCompletedQuest: completedQuestCount > 0,
+        isBlocked: Boolean(
+            isAnyBlockingModalOpen
+            || isCloudLoginPromptOpen
+            || activeScreen === "actionSelection"
+            || activeScreen === "roster"
+        )
+    }), [
+        activeScreen,
+        activeSidePanel,
+        completedQuestCount,
+        isAnyBlockingModalOpen,
+        isCloudLoginPromptOpen,
+        onboardingState,
+        playerCount
+    ]);
+
+    const hasIntroOnboardingOpen = onboardingSurface?.kind === "intro";
+    const hasHintOnboardingOpen = onboardingSurface?.kind === "hint";
+
     useEffect(() => {
         if (!hasContinued) {
             return;
@@ -404,7 +438,7 @@ export const AppContainer = () => {
     }, [cloud.accessToken, isCloudLoginPromptOpen]);
 
     return (
-        <div className={`app-shell${isAnyModalOpen ? " is-modal-open" : ""}`}>
+        <div className={`app-shell${(isAnyModalOpen || hasIntroOnboardingOpen) ? " is-modal-open" : ""}`}>
             <EnsureSelectedRecipeEffect />
             {isBootstrapOverlayOpen ? (
                 <StartupSplashScreen
@@ -473,6 +507,9 @@ export const AppContainer = () => {
                 getSkillLabel={getSkillLabelStrict}
                 getRecipeLabel={getRecipeLabel}
                 getRecipeLabelNonNull={getRecipeLabelNonNull}
+                wikiRoute={wikiRoute}
+                onChangeWikiRoute={setWikiRoute}
+                onCloseWiki={closeWikiScreen}
             />
             <AppModalsContainer
                 version={version}
@@ -486,6 +523,13 @@ export const AppContainer = () => {
                 onSimulateOfflineHour={handleSimulateOfflineHour}
                 onSimulateOfflineDay={handleSimulateOfflineDay}
                 onResetSave={resetSave}
+                onSetOnboardingEnabled={(enabled) => {
+                    gameStore.dispatch({ type: "uiOnboardingSetEnabled", enabled });
+                }}
+                onResetOnboarding={() => {
+                    gameStore.dispatch({ type: "uiOnboardingReset" });
+                }}
+                onOpenWiki={openWikiScreen}
                 onCloseSystem={closeSystem}
                 isLocalSaveOpen={isLocalSaveOpen}
                 onCloseLocalSave={closeLocalSave}
@@ -536,6 +580,29 @@ export const AppContainer = () => {
                 onRenameHero={renameHero}
                 onCloseRename={closeRename}
             />
+            {hasIntroOnboardingOpen ? (
+                <OnboardingIntroModal
+                    title={onboardingSurface.title}
+                    body={onboardingSurface.body}
+                    primaryLabel={onboardingSurface.primaryLabel}
+                    secondaryLabel={onboardingSurface.secondaryLabel}
+                    onAdvance={() => {
+                        gameStore.dispatch({ type: "uiOnboardingAdvanceIntro" });
+                    }}
+                    onSkip={() => {
+                        gameStore.dispatch({ type: "uiOnboardingSetEnabled", enabled: false });
+                    }}
+                />
+            ) : null}
+            {hasHintOnboardingOpen ? (
+                <OnboardingHintCard
+                    title={onboardingSurface.title}
+                    body={onboardingSurface.body}
+                    onDismiss={() => {
+                        gameStore.dispatch({ type: "uiOnboardingDismissHint", hintId: onboardingSurface.id });
+                    }}
+                />
+            ) : null}
         </div>
     );
 };

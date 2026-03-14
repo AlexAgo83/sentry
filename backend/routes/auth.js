@@ -23,6 +23,7 @@ const registerAuthRoutes = (app, deps) => {
 
     const cookieSameSite = config.isProduction ? "none" : "lax";
     const cookieSecure = config.isProduction;
+    const refreshTokenCleanupBatchSize = Math.max(1, Number(config.REFRESH_TOKEN_CLEANUP_BATCH_SIZE ?? 25));
 
     const setRefreshCookie = (reply, token) => {
         reply.setCookie(refreshCookieName, token, {
@@ -48,7 +49,35 @@ const registerAuthRoutes = (app, deps) => {
     const generateTokenId = () => (crypto.randomUUID ? crypto.randomUUID() : crypto.randomBytes(16).toString("hex"));
     const generateCsrfToken = () => crypto.randomBytes(16).toString("hex");
 
+    const cleanupRefreshTokens = async () => {
+        const now = new Date();
+        const staleRecords = await prisma.refreshToken.findMany({
+            where: {
+                OR: [
+                    { revokedAt: { not: null } },
+                    { expiresAt: { lte: now } }
+                ]
+            },
+            orderBy: { createdAt: "asc" },
+            take: refreshTokenCleanupBatchSize
+        });
+        if (!Array.isArray(staleRecords) || staleRecords.length === 0) {
+            return 0;
+        }
+        const staleIds = staleRecords
+            .map((entry) => entry?.id)
+            .filter((value) => typeof value === "string" && value.trim().length > 0);
+        if (staleIds.length === 0) {
+            return 0;
+        }
+        const result = await prisma.refreshToken.deleteMany({
+            where: { id: { in: staleIds } }
+        });
+        return Number(result?.count ?? 0);
+    };
+
     const issueRefreshToken = async (userId) => {
+        await cleanupRefreshTokens();
         const tokenId = generateTokenId();
         const refreshToken = signRefreshToken(userId, tokenId);
         const expiresAt = new Date(Date.now() + config.REFRESH_TTL_DAYS * 24 * 60 * 60 * 1000);
@@ -183,4 +212,3 @@ const registerAuthRoutes = (app, deps) => {
 };
 
 module.exports = { registerAuthRoutes };
-

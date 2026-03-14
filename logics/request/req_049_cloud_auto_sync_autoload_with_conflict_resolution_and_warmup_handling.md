@@ -1,6 +1,6 @@
 ## req_049_cloud_auto_sync_autoload_with_conflict_resolution_and_warmup_handling - Add optional cloud auto-save/auto-load with conflict detection and warmup resilience
 > From version: 0.9.31
-> Understanding: 93%
+> Understanding: 100%
 > Confidence: 86%
 > Complexity: High
 > Theme: Feature / Reliability
@@ -38,6 +38,13 @@
 - Background sync using platform-specific APIs (v1 uses in-app runtime triggers only).
 
 # Locked decisions (v1)
+
+# Backlog
+- `logics/backlog/item_164_req049_backend_concurrency_token_and_conflict_responses_for_saves_latest.md`
+- `logics/backlog/item_165_req049_frontend_cloud_autosync_toggle_and_orchestrator_state_machine.md`
+- `logics/backlog/item_166_req049_conflict_detection_ui_and_user_resolution_actions.md`
+- `logics/backlog/item_167_req049_autosync_triggers_rate_limits_and_warmup_backoff_integration.md`
+- `logics/backlog/item_168_req049_regression_coverage_and_full_validation_battery.md`
 ## Toggle and defaults
 - Cloud auto-sync is a Cloud Save option (switch) and defaults to **OFF** for all users.
 - The toggle is only available when the user is logged in and cloud is configured.

@@ -1,9 +1,9 @@
 ## item_245_req051_add_settings_controls_and_regression_coverage_for_one_shot_onboarding_behavior - req051 add Settings controls and regression coverage for one-shot onboarding behavior
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 95%
-> Confidence: 92%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 100%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Settings / Testing / UX reliability
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.

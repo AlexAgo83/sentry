@@ -1,7 +1,7 @@
 ## task_016_app_perf_save_observability - App architecture/perf refactor + save hardening + observability
 > From version: 0.8.0
 > Status: Done
-> Understanding: 95%
+> Understanding: 100%
 > Confidence: 95%
 > Progress: 100%
 
@@ -88,3 +88,5 @@ The app is growing and `src/app/App.tsx` is still a large integration point with
 - 
 
 # Notes
+- Derived from `logics/backlog/item_010_app_architecture_refactor.md`.
+- Derived from `logics/backlog/item_012_app_ui_extractions.md`.

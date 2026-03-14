@@ -1,7 +1,7 @@
 ## task_011_app_architecture_and_ci_hardening - App split, deps hygiene, CI docs
 > From version: 0.6.3
 > Status: Done
-> Understanding: 92%
+> Understanding: 100%
 > Confidence: 90%
 > Progress: 100%
 
@@ -37,3 +37,5 @@ Simplify the app architecture for readability/tests, fix npm vulnerabilities, an
 - 
 
 # Notes
+- Derived from `logics/backlog/item_010_app_architecture_refactor.md`.
+- Derived from `logics/backlog/item_004_project_review_followups.md`.

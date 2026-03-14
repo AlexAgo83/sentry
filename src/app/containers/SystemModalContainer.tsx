@@ -10,6 +10,9 @@ export interface SystemModalContainerProps {
     onExportSave: () => void | Promise<"clipboard" | "prompt">;
     onImportSave: () => void;
     onResetSave: () => void;
+    onSetOnboardingEnabled: (enabled: boolean) => void;
+    onResetOnboarding: () => void;
+    onOpenWiki: () => void;
     onSimulateOffline: () => void;
     onSimulateOfflineHour: () => void;
     onSimulateOfflineDay: () => void;
@@ -22,6 +25,7 @@ export const SystemModalContainer = (props: SystemModalContainerProps) => {
     const loop = useGameStore((state) => state.loop);
     const virtualScore = useGameStore(selectVirtualScore);
     const actionJournal = useGameStore((state) => state.actionJournal);
+    const onboardingEnabled = useGameStore((state) => state.ui.onboarding.enabled);
 
     const tickRate = (1000 / loop.loopInterval).toFixed(1);
     const driftLabel = useMemo(() => {
@@ -46,9 +50,13 @@ export const SystemModalContainer = (props: SystemModalContainerProps) => {
             virtualScore={virtualScore}
             actionJournal={actionJournal}
             crashReports={props.crashReports}
+            onboardingEnabled={onboardingEnabled}
             onExportSave={props.onExportSave}
             onImportSave={props.onImportSave}
             onResetSave={props.onResetSave}
+            onSetOnboardingEnabled={props.onSetOnboardingEnabled}
+            onResetOnboarding={props.onResetOnboarding}
+            onOpenWiki={props.onOpenWiki}
             onSimulateOffline={props.onSimulateOffline}
             onSimulateOfflineHour={props.onSimulateOfflineHour}
             onSimulateOfflineDay={props.onSimulateOfflineDay}

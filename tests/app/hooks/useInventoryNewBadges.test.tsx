@@ -72,6 +72,11 @@ describe("useInventoryNewBadges", () => {
             cloud: {
                 autoSyncEnabled: false,
                 loginPromptDisabled: false
+            },
+            onboarding: {
+                enabled: true,
+                introStepIndex: 0,
+                dismissedHintIds: {}
             }
         };
         gameStore.dispatch({ type: "hydrate", version: "0.9.31", save });

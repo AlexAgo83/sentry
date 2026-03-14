@@ -1,6 +1,6 @@
 ## req_033_dungeon_auto_consumables_toggle - Add auto consumables toggle near auto restart
 > From version: 0.9.10
-> Understanding: 93%
+> Understanding: 100%
 > Confidence: 91%
 > Status: Done
 
@@ -38,6 +38,10 @@
 - Logic:
   - When disabled, skip auto-consume behavior in dungeon combat (including potion auto-use).
   - When enabled, keep current auto-consume behavior.
+
+# Backlog
+- `logics/backlog/item_095_dungeon_auto_consumables_state.md`
+- `logics/backlog/item_096_dungeon_auto_consumables_ui.md`
 
 # Technical references to update
 - `src/core/dungeon.ts` (auto consume logic)

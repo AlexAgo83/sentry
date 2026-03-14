@@ -1,6 +1,6 @@
 ## req_027_weapon_tiers_and_new_components - Add two weapon tiers per weapon
 > From version: 0.9.9
-> Understanding: 85%
+> Understanding: 100%
 > Confidence: 77%
 > Status: Done
 
@@ -38,6 +38,11 @@
 - `src/data/definitions/items.ts`
 - `src/data/definitions/recipes/index.ts`
 - `src/data/definitions/equipment.ts`
+
+# Backlog
+- `logics/backlog/item_082_weapon_tier_definitions_and_recipes.md`
+- `logics/backlog/item_083_weapon_new_components_selection.md`
+- `logics/backlog/item_084_weapon_tier_tooltips_and_ui.md`
 - `src/app/ui/inventoryMeta.ts`
 
 # Acceptance criteria

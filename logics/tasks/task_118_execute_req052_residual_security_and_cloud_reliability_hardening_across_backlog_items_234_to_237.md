@@ -1,9 +1,9 @@
 ## task_118_execute_req052_residual_security_and_cloud_reliability_hardening_across_backlog_items_234_to_237 - Execute req052 residual security and cloud reliability hardening across backlog items 234 to 237
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 97%
-> Confidence: 94%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 98%
+> Progress: 100%
 > Complexity: High
 > Theme: Security / Reliability / Cloud
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc.
@@ -33,20 +33,20 @@ This task finishes the residual hardening scope that remained open after earlier
 - Dependency security follow-up should result in a repository-level recorded decision, not a lingering audit TODO.
 
 # Plan
-- [ ] 1. Execute `item_234` (rate-limit trust boundary):
+- [x] 1. Execute `item_234` (rate-limit trust boundary):
   - Remove default trust in raw `x-forwarded-for`.
   - Add explicit proxy-aware mode only when configured.
   - Lock behavior with backend tests.
-- [ ] 2. Execute `item_235` (CSRF storage write resilience):
+- [x] 2. Execute `item_235` (CSRF storage write resilience):
   - Guard CSRF token writes/removals with safe storage handling.
   - Add regression tests for storage-denied scenarios.
-- [ ] 3. Execute `item_236` (refresh-token cleanup):
+- [x] 3. Execute `item_236` (refresh-token cleanup):
   - Define the cleanup contract and implement bounded cleanup.
   - Add backend coverage to prove cleanup does not break refresh rotation.
-- [ ] 4. Execute `item_237` (dependency advisory decision):
+- [x] 4. Execute `item_237` (dependency advisory decision):
   - Resolve or explicitly document the remaining `qs` advisory path.
   - Update lockfile/config and validation visibility as needed.
-- [ ] FINAL: Update related Logics docs (request/backlog/task alignment)
+- [x] FINAL: Update related Logics docs (request/backlog/task alignment)
 
 # Validation
 Final gate (mandatory at task end):

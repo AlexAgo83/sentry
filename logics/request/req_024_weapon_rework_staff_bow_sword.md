@@ -1,6 +1,6 @@
 ## req_024_weapon_rework_staff_bow_sword - Weapon rework (staff, bow, sword)
 > From version: 0.9.9
-> Understanding: 97%
+> Understanding: 100%
 > Confidence: 94%
 > Status: Done
 
@@ -38,6 +38,10 @@
   - Wearer takes -10% damage received.
 
 # Scope detail (draft)
+
+# Backlog
+- `logics/backlog/item_077_weapon_category_combat_effects.md`
+- `logics/backlog/item_078_weapon_category_tooltips_and_items.md`
 - Data:
   - Map category effects to `WeaponType` (Melee/Ranged/Magic).
   - Add a baton item if needed, but the core behavior is category-driven.

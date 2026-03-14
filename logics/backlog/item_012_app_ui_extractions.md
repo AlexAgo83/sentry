@@ -1,7 +1,7 @@
 ## item_012_app_ui_extractions - Extract modals + hooks from App.tsx
 > From version: 0.7.1
 > Status: Done
-> Understanding: 97%
+> Understanding: 100%
 > Confidence: 93%
 > Progress: 100%
 
@@ -67,3 +67,4 @@ Describe the problem and user impact.
 - Urgency:
 
 # Notes
+- Derived from `logics/request/req_001_project_review.md`.

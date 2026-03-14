@@ -270,6 +270,41 @@ const buildMockPrisma = () => {
                 db.refreshTokens.push(record);
                 return record;
             },
+            findMany: async ({
+                where,
+                orderBy,
+                take
+            }: {
+                where?: {
+                    OR?: Array<{ revokedAt?: { not?: null }; expiresAt?: { lte?: Date } }>;
+                };
+                orderBy?: { createdAt?: "asc" | "desc" };
+                take?: number;
+            }) => {
+                const nowMatches = (entry: (typeof db.refreshTokens)[number]) => {
+                    if (!where?.OR?.length) {
+                        return true;
+                    }
+                    return where.OR.some((clause) => {
+                        if (clause.revokedAt?.not === null) {
+                            return entry.revokedAt !== null;
+                        }
+                        if (clause.expiresAt?.lte instanceof Date) {
+                            return entry.expiresAt <= clause.expiresAt.lte;
+                        }
+                        return false;
+                    });
+                };
+                const sorted = [...db.refreshTokens]
+                    .filter(nowMatches)
+                    .sort((left, right) => {
+                        if (orderBy?.createdAt === "desc") {
+                            return right.createdAt.getTime() - left.createdAt.getTime();
+                        }
+                        return left.createdAt.getTime() - right.createdAt.getTime();
+                    });
+                return sorted.slice(0, take ?? sorted.length);
+            },
             update: async ({ where, data }: { where: { tokenHash?: string; id?: string }; data: { revokedAt?: Date | null } }) => {
                 const record = where.tokenHash
                     ? db.refreshTokens.find((entry) => entry.tokenHash === where.tokenHash)
@@ -281,6 +316,12 @@ const buildMockPrisma = () => {
                     record.revokedAt = data.revokedAt ?? null;
                 }
                 return record;
+            },
+            deleteMany: async ({ where }: { where: { id?: { in?: string[] } } }) => {
+                const ids = new Set(where.id?.in ?? []);
+                const before = db.refreshTokens.length;
+                db.refreshTokens = db.refreshTokens.filter((entry) => !ids.has(entry.id));
+                return { count: before - db.refreshTokens.length };
             }
         },
         rateLimit: {
@@ -327,7 +368,8 @@ const buildMockPrisma = () => {
             }
         },
         $transaction: async (fn: (client: any) => Promise<any>) => fn(prisma),
-        $disconnect: async () => {}
+        $disconnect: async () => {},
+        __db: db
     };
 
     return prisma;
@@ -365,6 +407,8 @@ describe("cloud API", () => {
         process.env.COOKIE_SECRET = "test-secret";
         process.env.ACCESS_TOKEN_TTL_MINUTES = "15";
         process.env.REFRESH_TOKEN_TTL_DAYS = "30";
+        delete process.env.AUTH_RATE_LIMIT_TRUST_PROXY;
+        delete process.env.REFRESH_TOKEN_CLEANUP_BATCH_SIZE;
     });
 
     it("registers, refreshes, and stores latest save", async () => {
@@ -505,6 +549,128 @@ describe("cloud API", () => {
             headers: { cookie: initialCookieHeader, "x-csrf-token": initialCookies.refreshCsrf }
         });
         expect(reused.statusCode).toBe(401);
+
+        const rotatedCookies = getCookiesFromResponse(refreshed);
+        const rotatedHeader = getCookieHeader(refreshed);
+        const rotated = await app.inject({
+            method: "POST",
+            url: "/api/v1/auth/refresh",
+            headers: { cookie: rotatedHeader, "x-csrf-token": rotatedCookies.refreshCsrf }
+        });
+        expect(rotated.statusCode).toBe(200);
+
+        await app.close();
+    });
+
+    it("does not trust spoofed forwarded headers for auth rate limits by default", async () => {
+        const prisma = buildMockPrisma();
+        const { buildServer } = await loadServer();
+        const app = buildServer({ prismaClient: prisma, logger: false });
+
+        let status = 0;
+        for (let i = 0; i < 21; i += 1) {
+            const response = await app.inject({
+                method: "POST",
+                url: "/api/v1/auth/register",
+                remoteAddress: "127.0.0.1",
+                headers: {
+                    "x-forwarded-for": `203.0.113.${i + 1}`
+                },
+                payload: { email: `spoof_${i}@example.com`, password: "password123" }
+            });
+            status = response.statusCode;
+            if (i < 20) {
+                expect(response.statusCode).toBe(200);
+            }
+        }
+
+        expect(status).toBe(429);
+
+        await app.close();
+    });
+
+    it("supports explicit proxy-aware auth rate limits when configured", async () => {
+        process.env.AUTH_RATE_LIMIT_TRUST_PROXY = "1";
+        const prisma = buildMockPrisma();
+        const { buildServer } = await loadServer();
+        const app = buildServer({ prismaClient: prisma, logger: false });
+
+        let status = 0;
+        for (let i = 0; i < 21; i += 1) {
+            const response = await app.inject({
+                method: "POST",
+                url: "/api/v1/auth/register",
+                remoteAddress: `10.0.0.${i + 1}`,
+                headers: {
+                    "x-forwarded-for": "198.51.100.9, 10.0.0.1"
+                },
+                payload: { email: `proxy_${i}@example.com`, password: "password123" }
+            });
+            status = response.statusCode;
+            if (i < 20) {
+                expect(response.statusCode).toBe(200);
+            }
+        }
+
+        expect(status).toBe(429);
+
+        await app.close();
+    });
+
+    it("cleans stale refresh tokens in bounded batches without breaking rotation", async () => {
+        process.env.REFRESH_TOKEN_CLEANUP_BATCH_SIZE = "2";
+        const prisma = buildMockPrisma();
+        const { buildServer } = await loadServer();
+        const app = buildServer({ prismaClient: prisma, logger: false });
+
+        const register = await app.inject({
+            method: "POST",
+            url: "/api/v1/auth/register",
+            payload: { email: "cleanup@example.com", password: "password123" }
+        });
+        expect(register.statusCode).toBe(200);
+        const store = (prisma as typeof prisma & { __db: { refreshTokens: Array<{ id: string; userId: string; tokenHash: string; expiresAt: Date; revokedAt: Date | null; createdAt: Date }> } }).__db;
+        const [activeToken] = store.refreshTokens;
+        const now = Date.now();
+        store.refreshTokens.push(
+            {
+                id: "stale_revoked",
+                userId: activeToken.userId,
+                tokenHash: "stale_revoked_hash",
+                expiresAt: new Date(now + 60_000),
+                revokedAt: new Date(now - 5_000),
+                createdAt: new Date(now - 10_000)
+            },
+            {
+                id: "stale_expired",
+                userId: activeToken.userId,
+                tokenHash: "stale_expired_hash",
+                expiresAt: new Date(now - 60_000),
+                revokedAt: null,
+                createdAt: new Date(now - 9_000)
+            },
+            {
+                id: "stale_extra",
+                userId: activeToken.userId,
+                tokenHash: "stale_extra_hash",
+                expiresAt: new Date(now - 120_000),
+                revokedAt: null,
+                createdAt: new Date(now - 8_000)
+            }
+        );
+
+        const initialCookies = getCookiesFromResponse(register);
+        const initialCookieHeader = getCookieHeader(register);
+        const refreshed = await app.inject({
+            method: "POST",
+            url: "/api/v1/auth/refresh",
+            headers: { cookie: initialCookieHeader, "x-csrf-token": initialCookies.refreshCsrf }
+        });
+
+        expect(refreshed.statusCode).toBe(200);
+        expect(store.refreshTokens.some((entry) => entry.id === "stale_extra")).toBe(true);
+        expect(store.refreshTokens.some((entry) => entry.id === "stale_revoked")).toBe(false);
+        expect(store.refreshTokens.some((entry) => entry.id === "stale_expired")).toBe(false);
 
         const rotatedCookies = getCookiesFromResponse(refreshed);
         const rotatedHeader = getCookieHeader(refreshed);

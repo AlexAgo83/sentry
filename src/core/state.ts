@@ -44,7 +44,7 @@ import {
     normalizeDiscoveredItemIds,
     normalizeInventoryItems
 } from "./inventory";
-import type { CloudUiPreferences, InventoryBadgeState, UiState } from "./types";
+import type { CloudUiPreferences, InventoryBadgeState, OnboardingUiState, UiState } from "./types";
 
 export const createActionProgress = (): ActionProgressState => ({
     currentInterval: 0,
@@ -141,17 +141,35 @@ const normalizeCloudUi = (value: unknown): CloudUiPreferences => {
     };
 };
 
+const normalizeOnboardingUi = (value: unknown): OnboardingUiState => {
+    if (!value || typeof value !== "object") {
+        return {
+            enabled: true,
+            introStepIndex: 0,
+            dismissedHintIds: {}
+        };
+    }
+    const record = value as Record<string, unknown>;
+    return {
+        enabled: normalizeBoolean(record.enabled, true),
+        introStepIndex: Math.max(0, Math.floor(Number(record.introStepIndex) || 0)),
+        dismissedHintIds: normalizeSeenIdRecord(record.dismissedHintIds)
+    };
+};
+
 const normalizeUiState = (value: unknown, inventory: InventoryState): UiState => {
     if (!value || typeof value !== "object") {
         return {
             inventoryBadges: normalizeInventoryBadges(undefined, inventory),
-            cloud: normalizeCloudUi(undefined)
+            cloud: normalizeCloudUi(undefined),
+            onboarding: normalizeOnboardingUi(undefined)
         };
     }
     const record = value as Record<string, unknown>;
     return {
         inventoryBadges: normalizeInventoryBadges(record.inventoryBadges, inventory),
-        cloud: normalizeCloudUi(record.cloud)
+        cloud: normalizeCloudUi(record.cloud),
+        onboarding: normalizeOnboardingUi(record.onboarding)
     };
 };
 

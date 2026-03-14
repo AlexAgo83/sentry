@@ -1,6 +1,6 @@
 ## req_028_dungeon_completion_counter - Track and display dungeon completion count
 > From version: 0.9.9
-> Understanding: 93%
+> Understanding: 100%
 > Confidence: 87%
 > Status: Done
 
@@ -38,6 +38,10 @@
 # Technical references to update
 - `src/core/types.ts`
 - `src/core/dungeon.ts`
+
+# Backlog
+- `logics/backlog/item_085_dungeon_completion_counter_state.md`
+- `logics/backlog/item_086_dungeon_completion_counter_ui.md`
 - `src/core/runtime.ts` (or wherever run completion is finalized)
 - `src/app/components/DungeonScreen.tsx`
 - `src/app/components/dungeon/DungeonArenaRenderer.tsx`

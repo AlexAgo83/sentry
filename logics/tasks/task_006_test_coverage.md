@@ -1,7 +1,7 @@
 ## task_006_test_coverage - Achieve full app test coverage
 > From version: 0.4.0
 > Status: Done
-> Understanding: 90%
+> Understanding: 100%
 > Confidence: 75%
 > Progress: 100%
 
@@ -36,3 +36,4 @@ Create and execute a test plan that covers the full application surface, with st
 - 
 
 # Notes
+- Derived from `logics/backlog/item_004_project_review_followups.md`.

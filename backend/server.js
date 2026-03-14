@@ -24,6 +24,23 @@ const LEADERBOARD_MAX_PER_PAGE = 10;
 const USERNAME_MAX_LENGTH = 16;
 const GITHUB_API_BASE = "https://api.github.com";
 
+const parseBooleanEnv = (value, fallback = false) => {
+    if (value === undefined || value === null) {
+        return fallback;
+    }
+    const normalized = String(value).trim().toLowerCase();
+    if (!normalized) {
+        return fallback;
+    }
+    if (["1", "true", "yes", "on"].includes(normalized)) {
+        return true;
+    }
+    if (["0", "false", "no", "off"].includes(normalized)) {
+        return false;
+    }
+    return fallback;
+};
+
 const parsePositiveInt = (value, fallback) => {
     const parsed = Number.parseInt(String(value ?? ""), 10);
     if (!Number.isFinite(parsed) || parsed < 1) {
@@ -218,9 +235,11 @@ const resolveDisplayName = (user) => {
 const buildConfig = () => {
     const ACCESS_TTL_MINUTES = Number(process.env.ACCESS_TOKEN_TTL_MINUTES ?? 15);
     const REFRESH_TTL_DAYS = Number(process.env.REFRESH_TOKEN_TTL_DAYS ?? 30);
+    const REFRESH_TOKEN_CLEANUP_BATCH_SIZE = parsePositiveInt(process.env.REFRESH_TOKEN_CLEANUP_BATCH_SIZE, 25);
     const JWT_SECRET = process.env.JWT_SECRET;
     const COOKIE_SECRET = process.env.COOKIE_SECRET || JWT_SECRET;
     const isProduction = process.env.NODE_ENV === "production";
+    const trustProxyHeadersForAuthRateLimit = parseBooleanEnv(process.env.AUTH_RATE_LIMIT_TRUST_PROXY, false);
 
     if (!JWT_SECRET) {
         throw new Error("JWT_SECRET is required.");
@@ -229,9 +248,11 @@ const buildConfig = () => {
     return {
         ACCESS_TTL_MINUTES,
         REFRESH_TTL_DAYS,
+        REFRESH_TOKEN_CLEANUP_BATCH_SIZE,
         JWT_SECRET,
         COOKIE_SECRET,
-        isProduction
+        isProduction,
+        trustProxyHeadersForAuthRateLimit
     };
 };
 
@@ -271,8 +292,16 @@ const buildServer = ({ prismaClient, logger = true } = {}) => {
     });
 
     const resolveClientKey = (request) => {
+        if (!config.trustProxyHeadersForAuthRateLimit) {
+            return request.ip || "unknown";
+        }
         const forwardedFor = request.headers["x-forwarded-for"];
-        const forwardedIp = typeof forwardedFor === "string" ? forwardedFor.split(",")[0].trim() : "";
+        const forwardedIp = typeof forwardedFor === "string"
+            ? forwardedFor
+                .split(",")
+                .map((value) => value.trim())
+                .find(Boolean) ?? ""
+            : "";
         return forwardedIp || request.ip || "unknown";
     };
 

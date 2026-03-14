@@ -2,7 +2,7 @@
 > From version: 0.9.11
 > Owner: —
 > Status: Done
-> Understanding: 86%
+> Understanding: 100%
 > Confidence: 82%
 > Progress: 100%
 
@@ -35,3 +35,6 @@ Backend: `https://sentry-backend-1tx5.onrender.com`.
 # Report
 - Status: complete.
 - Notes: Added `csrfToken` to auth responses, client stores it and uses it for refresh, and 401/403 clears auth state with a friendly message.
+
+# Notes
+- Derived from `logics/backlog/item_152_cloud_auth_memory_only_access_token_and_silent_refresh_autologin.md`.

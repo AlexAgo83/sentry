@@ -1,7 +1,7 @@
 ## item_007_inventory_focus_panel - Inventory focus panel + grid layout
 > From version: 0.4.1
 > Status: Done
-> Understanding: 96%
+> Understanding: 100%
 > Confidence: 92%
 > Progress: 100%
 
@@ -62,3 +62,4 @@ Describe the problem and user impact.
 - Urgency:
 
 # Notes
+- Derived from `logics/request/req_002_inventory.md`.

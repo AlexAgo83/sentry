@@ -1,7 +1,7 @@
 ## item_002_ui_redesign - Modern fantasy UI redesign
 > From version: 0.2.0
 > Status: Done
-> Understanding: 92%
+> Understanding: 100%
 > Confidence: 90%
 > Progress: 100%
 
@@ -51,3 +51,4 @@ Describe the problem and user impact.
 - Urgency:
 
 # Notes
+- Derived from `logics/request/req_001_project_review.md`.

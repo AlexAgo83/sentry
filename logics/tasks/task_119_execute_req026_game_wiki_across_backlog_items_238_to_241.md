@@ -1,9 +1,9 @@
 ## task_119_execute_req026_game_wiki_across_backlog_items_238_to_241 - Execute req026 game wiki across backlog items 238 to 241
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 97%
-> Confidence: 94%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 100%
+> Progress: 100%
 > Complexity: High
 > Theme: UX / Navigation / Data-driven reference surface
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc.
@@ -49,20 +49,20 @@ This task delivers the first in-game wiki as a canonical `/wiki` surface reachab
 - Regression coverage protects mapping, navigation, and responsive usage.
 
 # Plan
-- [ ] 1. Execute `item_238` (wiki contracts and mapping layer):
+- [x] 1. Execute `item_238` (wiki contracts and mapping layer):
   - Define normalized entry/view-model contracts.
   - Derive factual content from game data and controlled helper mappings.
-- [ ] 2. Execute `item_239` (route and Settings access):
+- [x] 2. Execute `item_239` (route and Settings access):
   - Add `/wiki`.
   - Add the Settings entry point.
   - Wire section/entry route state where practical.
-- [ ] 3. Execute `item_240` (wiki UI):
+- [x] 3. Execute `item_240` (wiki UI):
   - Build the mobile-ready `list + detail` surface.
   - Ship the four v1 sections with the agreed organization rules.
-- [ ] 4. Execute `item_241` (regression coverage):
+- [x] 4. Execute `item_241` (regression coverage):
   - Add tests for mapping, access, and responsive navigation.
   - Ensure the surface remains data-driven and navigable.
-- [ ] FINAL: Update related Logics docs (request/backlog/task alignment)
+- [x] FINAL: Update related Logics docs (request/backlog/task alignment)
 
 # Validation
 Final gate (mandatory at task end):

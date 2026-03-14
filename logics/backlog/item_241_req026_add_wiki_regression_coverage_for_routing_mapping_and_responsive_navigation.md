@@ -1,9 +1,9 @@
 ## item_241_req026_add_wiki_regression_coverage_for_routing_mapping_and_responsive_navigation - req026 add wiki regression coverage for routing, mapping, and responsive navigation
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 94%
-> Confidence: 92%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 100%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Testing / Regression coverage
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.

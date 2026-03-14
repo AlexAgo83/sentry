@@ -1,7 +1,7 @@
 ## item_016_mobile_bottom_action_bar - App bars (desktop top + mobile top/bottom)
 > From version: 0.8.4
 > Status: Done
-> Understanding: 96%
+> Understanding: 100%
 > Confidence: 92%
 > Progress: 100%
 
@@ -100,3 +100,4 @@ Describe the problem and user impact.
 - Urgency:
 
 # Notes
+- Derived from `logics/request/req_004_polish.md`.

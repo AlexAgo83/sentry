@@ -1,9 +1,9 @@
 ## task_121_execute_req070_cloud_orchestration_modularization_across_backlog_items_246_to_249 - Execute req070 cloud orchestration modularization across backlog items 246 to 249
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 96%
-> Confidence: 93%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 97%
+> Progress: 100%
 > Complexity: High
 > Theme: Frontend / Cloud / Maintainability / Reliability
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc.
@@ -45,21 +45,21 @@ This task refactors the frontend cloud-save orchestration into clearer internal 
   - conflict escalation and resolution.
 
 # Plan
-- [ ] 1. Execute `item_246` (module boundaries and contracts):
+- [x] 1. Execute `item_246` (module boundaries and contracts):
   - Define the internal module seams.
   - Stabilize the intended public controller contract.
-- [ ] 2. Execute `item_247` (auth/profile and warmup extraction):
+- [x] 2. Execute `item_247` (auth/profile and warmup extraction):
   - Extract auth/profile lifecycle logic.
   - Extract warmup/probe/retry behavior.
   - Preserve status transitions and offline handling.
-- [ ] 3. Execute `item_248` (autosync/conflict extraction):
+- [x] 3. Execute `item_248` (autosync/conflict extraction):
   - Extract autosync bootstrap/push logic.
   - Extract conflict detection/resolution helpers.
   - Isolate sync watermark helpers.
-- [ ] 4. Execute `item_249` (regression coverage):
+- [x] 4. Execute `item_249` (regression coverage):
   - Add/update targeted tests around the new seams.
   - Keep existing compat/e2e confidence intact.
-- [ ] FINAL: Update related Logics docs (request/backlog/task alignment)
+- [x] FINAL: Update related Logics docs (request/backlog/task alignment)
 
 # Validation
 Final gate (mandatory at task end):

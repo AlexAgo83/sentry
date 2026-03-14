@@ -1,6 +1,6 @@
 ## req_031_startup_splashscreen - Startup splashscreen with gated Continue button
 > From version: 0.9.10
-> Understanding: 71%
+> Understanding: 100%
 > Confidence: 63%
 > Status: Done
 
@@ -37,6 +37,10 @@
 - `src/app/App.tsx` or `src/app/AppContainer.tsx` (startup gating)
 - `src/app/hooks` (readiness state)
 - `src/app/styles` (splash styling)
+
+# Backlog
+- `logics/backlog/item_091_startup_splashscreen_state.md`
+- `logics/backlog/item_092_startup_splashscreen_ui.md`
 
 # Acceptance criteria
 - On launch, the splashscreen is visible until user clicks `Continue`.

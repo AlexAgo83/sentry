@@ -11,14 +11,25 @@ describe("DevToolsModal", () => {
 
     it("toggles localStorage flags and exposes renderCounts actions", () => {
         const spy = vi.spyOn(console, "debug").mockImplementation(() => {});
+        const onSetOnboardingEnabled = vi.fn();
+        const onResetOnboarding = vi.fn();
         render(
             <DevToolsModal
+                onboardingEnabled={true}
+                onSetOnboardingEnabled={onSetOnboardingEnabled}
+                onResetOnboarding={onResetOnboarding}
                 onClose={() => {}}
                 onSimulateOffline={() => {}}
                 onSimulateOfflineHour={() => {}}
                 onSimulateOfflineDay={() => {}}
             />
         );
+
+        fireEvent.click(screen.getByRole("button", { name: "Disable onboarding" }));
+        expect(onSetOnboardingEnabled).toHaveBeenCalledWith(false);
+
+        fireEvent.click(screen.getByRole("button", { name: "Reset onboarding" }));
+        expect(onResetOnboarding).toHaveBeenCalledTimes(1);
 
         const printButton = screen.getByRole("button", { name: "Print renderCounts" });
         const resetButton = screen.getByRole("button", { name: "Reset renderCounts" });

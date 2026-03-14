@@ -10,6 +10,7 @@ import { SafeModeModal } from "../components/SafeModeModal";
 import { ServiceWorkerUpdateModal } from "../components/ServiceWorkerUpdateModal";
 import { OnboardingHeroModal } from "../components/OnboardingHeroModal";
 import { CloudLoginPromptModal } from "../components/CloudLoginPromptModal";
+import { useGameStore } from "../hooks/useGameStore";
 
 const LazySystemModalContainer = lazy(async () => {
     const mod = await import("./SystemModalContainer");
@@ -49,6 +50,9 @@ type AppModalsContainerProps = {
     onSimulateOfflineHour: () => void;
     onSimulateOfflineDay: () => void;
     onResetSave: () => void;
+    onSetOnboardingEnabled: (enabled: boolean) => void;
+    onResetOnboarding: () => void;
+    onOpenWiki: () => void;
     onCloseSystem: () => void;
     isLocalSaveOpen: boolean;
     onCloseLocalSave: () => void;
@@ -104,6 +108,9 @@ export const AppModalsContainer = ({
     onSimulateOfflineHour,
     onSimulateOfflineDay,
     onResetSave,
+    onSetOnboardingEnabled,
+    onResetOnboarding,
+    onOpenWiki,
     onCloseSystem,
     isLocalSaveOpen,
     onCloseLocalSave,
@@ -146,6 +153,8 @@ export const AppModalsContainer = ({
     onRenameHero,
     onCloseRename,
 }: AppModalsContainerProps) => {
+    const onboardingEnabled = useGameStore((state) => state.ui.onboarding.enabled);
+
     return (
         <>
             {isCloudLoginPromptOpen ? (
@@ -198,6 +207,9 @@ export const AppModalsContainer = ({
                         onExportSave={onExportSave}
                         onImportSave={onImportSave}
                         onResetSave={onResetSave}
+                        onSetOnboardingEnabled={onSetOnboardingEnabled}
+                        onResetOnboarding={onResetOnboarding}
+                        onOpenWiki={onOpenWiki}
                         onSimulateOffline={onSimulateOffline}
                         onSimulateOfflineHour={onSimulateOfflineHour}
                         onSimulateOfflineDay={onSimulateOfflineDay}
@@ -224,6 +236,9 @@ export const AppModalsContainer = ({
             {import.meta.env.DEV && isDevToolsOpen ? (
                 <Suspense fallback={<LoadingModal onClose={onCloseDevTools} />}>
                     <LazyDevToolsModal
+                        onboardingEnabled={onboardingEnabled}
+                        onSetOnboardingEnabled={onSetOnboardingEnabled}
+                        onResetOnboarding={onResetOnboarding}
                         onClose={onCloseDevTools}
                         onSimulateOffline={onSimulateOffline}
                         onSimulateOfflineHour={onSimulateOfflineHour}

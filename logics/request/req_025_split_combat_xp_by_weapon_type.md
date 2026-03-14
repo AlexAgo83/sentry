@@ -1,6 +1,6 @@
 ## req_025_split_combat_xp_by_weapon_type - Split combat XP by weapon type
 > From version: 0.9.9
-> Understanding: 96%
+> Understanding: 100%
 > Confidence: 93%
 > Status: Done
 
@@ -37,6 +37,11 @@
 - UI:
   - Stats and Dungeon panels display the three combat skills.
   - Action screen does not surface the split.
+
+# Backlog
+- `logics/backlog/item_079_split_combat_skills_and_migration.md`
+- `logics/backlog/item_080_route_dungeon_xp_by_weapon_type.md`
+- `logics/backlog/item_081_ui_combat_skill_split_display.md`
 
 # Technical references to update
 - `src/core/types.ts`

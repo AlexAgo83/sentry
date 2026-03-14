@@ -5,7 +5,7 @@ import { useRenderCount } from "./dev/renderDebug";
 import { useDialogFocusManagement } from "./hooks/useDialogFocusManagement";
 
 export type AppActiveSidePanel = "action" | "stats" | "inventory" | "equipment" | "shop" | "quests";
-export type AppActiveScreen = "main" | "actionSelection" | "dungeon" | "roster";
+export type AppActiveScreen = "main" | "actionSelection" | "dungeon" | "roster" | "wiki";
 
 export interface AppViewProps {
     version: string;
@@ -38,6 +38,7 @@ export interface AppViewProps {
     questsPanel: ReactNode;
     actionSelectionScreen: ReactNode;
     dungeonScreen: ReactNode;
+    wikiScreen?: ReactNode;
 }
 
 export const AppView = (props: AppViewProps) => {
@@ -74,7 +75,8 @@ export const AppView = (props: AppViewProps) => {
         shopPanel,
         questsPanel,
         actionSelectionScreen,
-        dungeonScreen
+        dungeonScreen,
+        wikiScreen
     } = props;
 
     useDialogFocusManagement({
@@ -170,7 +172,7 @@ export const AppView = (props: AppViewProps) => {
         };
     }, [isMobile]);
 
-    const showRoster = !isMobile || activeScreen === "roster";
+    const showRoster = activeScreen !== "wiki" && (!isMobile || activeScreen === "roster");
     const showMainStack = !isMobile || activeScreen !== "roster";
     const isSingleColumnLayout = !showRoster || !showMainStack;
     const isHeroPanel = activeSidePanel === "action" || activeSidePanel === "stats" || activeSidePanel === "equipment";
@@ -278,7 +280,7 @@ export const AppView = (props: AppViewProps) => {
                 {showRoster ? roster : null}
                 {showMainStack ? (
                     <div className="ts-main-stack">
-                        {activeScreen === "dungeon" ? dungeonScreen : (
+                        {activeScreen === "dungeon" ? dungeonScreen : activeScreen === "wiki" ? wikiScreen : (
                             <div className={`ts-main-panel-content${showHeroPanelBookmarks ? " has-bookmarks" : ""}`}>
                                 {showHeroPanelBookmarks ? (
                                     <div className="ts-main-panel-bookmarks" aria-label="Hero panels">

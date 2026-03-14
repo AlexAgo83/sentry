@@ -1,6 +1,6 @@
 ## req_029_dungeon_risk_tier_indicator - Show per-dungeon risk tier based on player power
 > From version: 0.9.10
-> Understanding: 69%
+> Understanding: 100%
 > Confidence: 61%
 > Status: Done
 
@@ -38,6 +38,10 @@
 - `src/app/components/DungeonScreen.tsx`
 - `src/app/components/dungeon/*`
 - `src/app/styles/panels/dungeon.css`
+
+# Backlog
+- `logics/backlog/item_087_dungeon_risk_tier_model.md`
+- `logics/backlog/item_088_dungeon_risk_tier_ui.md`
 
 # Acceptance criteria
 - Each dungeon cell displays a risk tier label based on current power.

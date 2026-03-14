@@ -1,7 +1,7 @@
 ## item_003_ts_rewrite - TypeScript + React remake (PWA-first)
 > From version: 0.2.0
 > Status: Done
-> Understanding: 94%
+> Understanding: 100%
 > Confidence: 90%
 > Progress: 100%
 
@@ -60,3 +60,4 @@ Describe the problem and user impact.
 - Urgency:
 
 # Notes
+- Derived from `logics/request/req_001_project_review.md`.

@@ -1,9 +1,9 @@
 ## item_234_req052_harden_auth_rate_limit_key_trust_boundary_and_proxy_awareness - req052 harden auth rate-limit key trust boundary and proxy awareness
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 97%
-> Confidence: 94%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 98%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Security / Backend
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -39,4 +39,4 @@ The backend still derives auth rate-limit keys from raw `x-forwarded-for` input 
 - Derived from `logics/request/req_052_post_global_review_security_and_cloud_reliability_hardening.md`.
 - Likely touch points:
   - `backend/server.js`
-  - `tests/backend/corsAuth.test.ts`
+  - `tests/backend/cloudApi.test.ts`

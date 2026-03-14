@@ -1,6 +1,6 @@
 ## req_030_recent_action_journal - Add a simple journal of the last 10 actions
 > From version: 0.9.10
-> Understanding: 65%
+> Understanding: 100%
 > Confidence: 59%
 > Status: Done
 
@@ -38,6 +38,10 @@
 - `src/core/types.ts` (state shape)
 - `src/adapters/persistence/saveMigrations.ts` (if persisted)
 - `src/app/components` (journal display)
+
+# Backlog
+- `logics/backlog/item_089_action_journal_state.md`
+- `logics/backlog/item_090_action_journal_ui.md`
 - `src/app/styles` (journal styling)
 
 # Acceptance criteria

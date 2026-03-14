@@ -95,7 +95,7 @@ export interface DungeonBalanceThresholdScanOptions {
     levelStep?: number;
 }
 
-const SIMULATION_VERSION = "0.9.40";
+const SIMULATION_VERSION = "0.9.41";
 const PARTY_IDS: PlayerId[] = ["1", "2", "3", "4"];
 const SIMULATION_STEP_MS = 500;
 const MAX_SIMULATION_STEPS = 20_000;

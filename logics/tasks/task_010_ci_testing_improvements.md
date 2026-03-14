@@ -1,7 +1,7 @@
 ## task_010_ci_testing_improvements - Restore stricter CI and raise coverage confidence
 > From version: 0.6.3
 > Status: Done
-> Understanding: 90%
+> Understanding: 100%
 > Confidence: 84%
 > Progress: 100%
 
@@ -45,3 +45,4 @@ lightweight coverage to critical flows (offline recap).
 - 
 
 # Notes
+- Derived from `logics/backlog/item_004_project_review_followups.md`.

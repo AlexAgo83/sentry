@@ -1,9 +1,9 @@
 ## item_244_req051_ship_compact_intro_modal_and_contextual_hint_surfaces_for_key_screens - req051 ship compact intro modal and contextual hint surfaces for key screens
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 96%
-> Confidence: 93%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 100%
+> Progress: 100%
 > Complexity: High
 > Theme: UX / UI / Onboarding
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
