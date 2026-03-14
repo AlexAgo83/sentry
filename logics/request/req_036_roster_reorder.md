@@ -1,6 +1,6 @@
 ## req_036_roster_reorder - Enable roster drag reordering (desktop + mobile)
 > From version: 0.9.12
-> Understanding: 95%
+> Understanding: 100%
 > Confidence: 93%
 > Status: Done
 
@@ -38,6 +38,10 @@
   - Normalization: remove unknown ids, append missing ids in id order.
 - Logic:
   - New action to move a hero in the roster order.
+
+# Backlog
+- `logics/backlog/item_100_roster_order_state_and_selectors.md`
+- `logics/backlog/item_101_roster_drag_reorder_ui.md`
   - Update selectors to use `rosterOrder` instead of numeric id sort.
 - UI:
   - Roster list becomes draggable with a visual lift/placeholder during drag.

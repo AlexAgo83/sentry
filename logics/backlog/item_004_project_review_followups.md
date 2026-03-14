@@ -1,7 +1,7 @@
 ## item_004_project_review_followups - Review follow-ups (legacy + SW cache)
 > From version: 0.3.0
 > Status: Done
-> Understanding: 92%
+> Understanding: 100%
 > Confidence: 88%
 > Progress: 100%
 
@@ -39,3 +39,4 @@ Describe the problem and user impact.
 - Urgency:
 
 # Notes
+- Derived from `logics/request/req_001_project_review.md`.

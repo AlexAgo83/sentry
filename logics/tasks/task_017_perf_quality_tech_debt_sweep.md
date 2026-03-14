@@ -1,7 +1,7 @@
 ## task_017_perf_quality_tech_debt_sweep - Runtime offline catch-up + UI perf + lint + deps + TS test typecheck
 > From version: 0.8.7
 > Status: Done
-> Understanding: 90%
+> Understanding: 100%
 > Confidence: 90%
 > Progress: 100%
 
@@ -73,3 +73,5 @@ The project review highlighted a small set of technical risks that can compound 
 - 
 
 # Notes
+- Derived from `logics/backlog/item_008_runtime_resilience.md`.
+- Derived from `logics/backlog/item_010_app_architecture_refactor.md`.

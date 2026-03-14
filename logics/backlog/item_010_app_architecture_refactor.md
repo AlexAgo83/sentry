@@ -1,7 +1,7 @@
 ## item_010_app_architecture_refactor - Break up App.tsx + render optimizations
 > From version: 0.5.0
 > Status: Done
-> Understanding: 95%
+> Understanding: 100%
 > Confidence: 92%
 > Progress: 100%
 
@@ -56,3 +56,4 @@ Describe the problem and user impact.
 - Urgency:
 
 # Notes
+- Derived from `logics/request/req_001_project_review.md`.

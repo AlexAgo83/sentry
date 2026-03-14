@@ -1,6 +1,6 @@
 ## req_048_persist_inventory_new_item_badges_in_save - Persist inventory "NEW item" badge state inside the save (not local-only)
 > From version: 0.9.31
-> Understanding: 96%
+> Understanding: 100%
 > Confidence: 89%
 > Complexity: Medium
 > Theme: UX / Persistence
@@ -37,6 +37,11 @@
   - `seenMenuIds` (inventory menu badge)
 - Storage format in save is JSON-serializable and stable:
   - recommended: `Record<ItemId, true>` objects (not `Set`) for O(1) checks and deterministic serialization.
+
+# Backlog
+- `logics/backlog/item_161_req048_add_inventory_badge_state_to_save_contract_and_migrations.md`
+- `logics/backlog/item_162_req048_wire_inventory_new_badges_to_persisted_state_and_remove_localstorage_source_of_truth.md`
+- `logics/backlog/item_163_req048_legacy_badge_state_import_and_regression_tests.md`
 
 # Scope detail (draft)
 ## Save contract changes

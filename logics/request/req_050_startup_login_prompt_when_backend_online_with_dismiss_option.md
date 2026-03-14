@@ -1,6 +1,6 @@
 ## req_050_startup_login_prompt_when_backend_online_with_dismiss_option - Prompt login when backend is online, with user-dismissable option
 > From version: 0.9.31
-> Understanding: 95%
+> Understanding: 100%
 > Confidence: 89%
 > Complexity: Medium
 > Theme: UX / Cloud
@@ -38,6 +38,11 @@
 - The prompt defaults to **enabled** for new users (unless explicitly opted out).
 - User choices:
   - Primary: `Log in` (navigates to Cloud Save login modal/flow)
+
+# Backlog
+- `logics/backlog/item_169_req050_persist_login_prompt_opt_out_preference.md`
+- `logics/backlog/item_170_req050_login_prompt_modal_trigger_and_routing_to_cloud_login.md`
+- `logics/backlog/item_171_req050_prompt_behavior_tests_and_polish.md`
   - Secondary: `Not now` (dismiss for this session only)
   - Tertiary: `Don't ask again` (persistently disables future prompts)
 - Persisted setting:

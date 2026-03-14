@@ -1,7 +1,7 @@
 ## req_064_define_the_next_product_growth_phase_across_meta_progression_choice_clarity_balance_tooling_release_flow_and_logics_hygiene - Define the next product growth phase across meta progression, choice clarity, balance tooling, release flow, and Logics hygiene
 > From version: 0.9.40
 > Understanding: 100%
-> Confidence: 99%
+> Confidence: 100%
 > Complexity: High
 > Theme: Product / Gameplay / Tooling / Release / Operations
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
@@ -39,6 +39,13 @@
 - Introduce safer balancing support through explicit tooling and repeatable diagnostics rather than ad hoc manual tuning only.
 - Improve the release pipeline so maintained changelog artifacts can drive or support release communication more directly.
 - Reduce operational ambiguity in Logics docs so workflow/CI behavior becomes more predictable and less sensitive to legacy drift.
+
+# Backlog
+- `logics/backlog/item_215_req065_define_dungeon_balance_simulator_presets_scenarios_and_reporting_contracts.md`
+- `logics/backlog/item_219_req066_define_meta_progression_state_milestone_taxonomy_and_reward_contracts.md`
+- `logics/backlog/item_223_req067_define_shared_choice_value_view_models_and_formatting_helpers.md`
+- `logics/backlog/item_227_req068_add_release_changelog_resolution_helper_and_version_mapping_contract.md`
+- `logics/backlog/item_230_req069_define_normalized_logics_metadata_contract_and_migration_rules.md`
 
 # Non-goals
 - Delivering all of these tracks in one implementation pass.

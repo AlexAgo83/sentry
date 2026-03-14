@@ -1,7 +1,7 @@
 ## item_094_backend_health_endpoint - Add a lightweight /health endpoint
 > From version: 0.9.10
 > Status: Done
-> Understanding: 94%
+> Understanding: 100%
 > Confidence: 92%
 > Progress: 100%
 > Reminder: Update Understanding/Confidence/Progress when you edit this doc.
@@ -32,3 +32,4 @@ Warmup calls should target a stable, low-cost endpoint. If `/health` is missing,
 
 # Notes
 - Created to support the warmup request in `item_093_warmup_render_backend`.
+- Derived from `logics/request/req_032_warmup_render_backend.md`.

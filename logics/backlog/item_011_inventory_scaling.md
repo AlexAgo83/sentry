@@ -1,7 +1,7 @@
 ## item_011_inventory_scaling - Inventory grid scaling + virtualization
 > From version: 0.5.0
 > Status: Done
-> Understanding: 94%
+> Understanding: 100%
 > Confidence: 90%
 > Progress: 100%
 
@@ -53,3 +53,4 @@ Describe the problem and user impact.
 - Urgency:
 
 # Notes
+- Derived from `logics/request/req_002_inventory.md`.

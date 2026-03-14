@@ -1,6 +1,6 @@
 ## req_032_warmup_render_backend - Non-blocking warmup call on startup
 > From version: 0.9.10
-> Understanding: 73%
+> Understanding: 100%
 > Confidence: 65%
 > Status: Done
 
@@ -38,6 +38,10 @@
 # Acceptance criteria
 - When `PROD_RENDER_API_BASE` is set, a background request is fired on startup.
 - Network failures do not affect gameplay or UI readiness.
+
+# Backlog
+- `logics/backlog/item_093_warmup_render_backend.md`
+- `logics/backlog/item_094_backend_health_endpoint.md`
 - No blocking or visible delays on launch.
 
 # Risks / open points

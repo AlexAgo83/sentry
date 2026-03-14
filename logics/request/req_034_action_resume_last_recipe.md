@@ -1,6 +1,6 @@
 ## req_034_action_resume_last_recipe - Offer a one-tap resume for last non-dungeon action
 > From version: 0.9.10
-> Understanding: 95%
+> Understanding: 100%
 > Confidence: 92%
 > Status: Done
 
@@ -38,6 +38,11 @@
   - Update it when a new non-dungeon action starts or recipe changes.
 - Logic:
   - Validate the recipe is still available before showing/allowing resume.
+
+# Backlog
+- `logics/backlog/item_097_action_resume_last_recipe_state.md`
+- `logics/backlog/item_098_action_resume_last_recipe_header_ui.md`
+- `logics/backlog/item_099_action_selection_reselect_choose_path.md`
   - If validation fails, hide the resume button.
 - UI:
   - In the Action header, replace the inactive `Interrupt` control with a compact resume icon button.

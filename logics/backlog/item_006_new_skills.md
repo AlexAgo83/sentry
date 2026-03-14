@@ -1,7 +1,7 @@
 ## item_006_new_skills - New skills (alchemy, herbalism, tailoring, fishing, carpentry, leatherworking)
 > From version: 0.4.0
 > Status: Done
-> Understanding: 96%
+> Understanding: 100%
 > Confidence: 92%
 > Progress: 100%
 
@@ -66,3 +66,4 @@ Describe the problem and user impact.
 - Urgency:
 
 # Notes
+- Derived from `logics/request/req_001_project_review.md`.
