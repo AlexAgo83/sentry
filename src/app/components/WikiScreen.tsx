@@ -63,6 +63,7 @@ export const WikiScreen = memo(({
                             type="button"
                             className={`ts-chip ts-focusable ts-wiki-section-chip${route.section === sectionId ? " is-active" : ""}`}
                             onClick={() => onSelectSection(sectionId)}
+                            title={SECTION_LABELS[sectionId]}
                         >
                             {SECTION_LABELS[sectionId]}
                         </button>
@@ -75,6 +76,7 @@ export const WikiScreen = memo(({
                             type="button"
                             className={`ts-chip ts-focusable ts-wiki-section-chip${activeFilter === "all" ? " is-active" : ""}`}
                             onClick={() => onSelectFilter?.("all")}
+                            title="All items"
                         >
                             All items
                         </button>
@@ -84,6 +86,7 @@ export const WikiScreen = memo(({
                                 type="button"
                                 className={`ts-chip ts-focusable ts-wiki-section-chip${activeFilter === filter ? " is-active" : ""}`}
                                 onClick={() => onSelectFilter?.(filter)}
+                                title={filter}
                             >
                                 {filter}
                             </button>
@@ -102,6 +105,7 @@ export const WikiScreen = memo(({
                                             type="button"
                                             className={`ts-wiki-entry-button ts-focusable${activeEntry?.id === entry.id ? " is-active" : ""}`}
                                             onClick={() => onSelectEntry(entry.id)}
+                                            title={`${entry.title} - ${entry.subtitle}`}
                                         >
                                             <span className="ts-wiki-entry-title">{entry.title}</span>
                                             <span className="ts-wiki-entry-subtitle">{entry.subtitle}</span>

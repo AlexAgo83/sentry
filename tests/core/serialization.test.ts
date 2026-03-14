@@ -127,6 +127,11 @@ describe("serialization", () => {
             cloud: {
                 autoSyncEnabled: false,
                 loginPromptDisabled: false
+            },
+            onboarding: {
+                enabled: true,
+                introStepIndex: 0,
+                dismissedHintIds: {}
             }
         };
 

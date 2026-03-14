@@ -27,6 +27,7 @@ vi.mock("../../src/app/game", () => ({
 const buildState = () => {
     const state = createInitialGameState("0.4.0", { seedHero: true });
     state.appReady = true;
+    state.ui.onboarding.enabled = false;
     state.players["2"] = createPlayerState("2", "Mara");
     state.inventory.items.meat = 2;
     state.inventory.items.bones = 1;
@@ -66,7 +67,7 @@ describe("Tooltip coverage", () => {
 
     it("ensures all clickable controls expose hover titles (and icon buttons have aria-label)", () => {
         renderApp();
-        expect(screen.getByText("Roster")).toBeTruthy();
+        expect(screen.getByRole("tab", { name: "Hero" })).toBeTruthy();
         assertTooltipCoverage();
     });
 

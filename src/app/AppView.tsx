@@ -38,7 +38,7 @@ export interface AppViewProps {
     questsPanel: ReactNode;
     actionSelectionScreen: ReactNode;
     dungeonScreen: ReactNode;
-    wikiScreen: ReactNode;
+    wikiScreen?: ReactNode;
 }
 
 export const AppView = (props: AppViewProps) => {

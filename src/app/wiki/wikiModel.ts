@@ -61,7 +61,7 @@ export const parseWikiLocation = (locationLike: Pick<Location, "pathname" | "sea
     const trimmedPath = locationLike.pathname.endsWith("/") && locationLike.pathname !== "/"
         ? locationLike.pathname.slice(0, -1)
         : locationLike.pathname;
-    const wikiPath = `${basePath}/wiki` || "/wiki";
+    const wikiPath = basePath ? `${basePath}/wiki` : "/wiki";
     const isWiki = trimmedPath === wikiPath;
     const params = new URLSearchParams(locationLike.search);
     const sectionParam = params.get("section");
