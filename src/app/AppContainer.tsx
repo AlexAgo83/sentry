@@ -64,6 +64,9 @@ export const AppContainer = () => {
         showEquipmentPanel,
         showShopPanel,
         showQuestsPanel,
+        openWikiScreen,
+        setWikiRoute,
+        wikiRoute,
         isSystemOpen,
         openSystem,
         closeSystem,
@@ -503,6 +506,8 @@ export const AppContainer = () => {
                 getSkillLabel={getSkillLabelStrict}
                 getRecipeLabel={getRecipeLabel}
                 getRecipeLabelNonNull={getRecipeLabelNonNull}
+                wikiRoute={wikiRoute}
+                onChangeWikiRoute={setWikiRoute}
             />
             <AppModalsContainer
                 version={version}
@@ -522,7 +527,7 @@ export const AppContainer = () => {
                 onResetOnboarding={() => {
                     gameStore.dispatch({ type: "uiOnboardingReset" });
                 }}
-                onOpenWiki={() => undefined}
+                onOpenWiki={openWikiScreen}
                 onCloseSystem={closeSystem}
                 isLocalSaveOpen={isLocalSaveOpen}
                 onCloseLocalSave={closeLocalSave}

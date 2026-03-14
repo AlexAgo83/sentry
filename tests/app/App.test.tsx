@@ -57,8 +57,10 @@ const renderApp = (options?: {
     seedHero?: boolean;
     addSecondHero?: boolean;
     enableOnboarding?: boolean;
+    path?: string;
 }) => {
     Object.defineProperty(window, "innerWidth", { value: 1200, writable: true });
+    window.history.replaceState({}, "", options?.path ?? "/");
     testStore = createGameStore(buildState(options));
     testRuntime = {
         start: vi.fn(),
@@ -528,5 +530,24 @@ describe("App", () => {
         expect(within(telemetryDialog).getByText("Loop")).toBeTruthy();
         expect(within(telemetryDialog).getByText("Backend")).toBeTruthy();
         expect(within(telemetryDialog).getByText("Response time")).toBeTruthy();
+    });
+
+    it("renders the wiki screen when opened from the /wiki route", () => {
+        renderApp({ path: "/wiki?section=dungeons&entry=dungeon_sanctuaire_noir" });
+        expect(screen.getByRole("heading", { name: "Wiki" })).toBeTruthy();
+        expect(screen.getByRole("heading", { name: "Black Sanctuary" })).toBeTruthy();
+        expect(screen.getByText("Loot identity")).toBeTruthy();
+    });
+
+    it("opens the wiki from settings", async () => {
+        const { user } = renderApp();
+        await user.click(screen.getAllByRole("button", { name: "Open settings" })[0]);
+        const systemDialog = (await screen.findAllByRole("dialog")).at(-1);
+        expect(systemDialog).toBeTruthy();
+        if (!systemDialog) {
+            throw new Error("System dialog not found");
+        }
+        await user.click(within(systemDialog).getByRole("button", { name: "Wiki" }));
+        expect(await screen.findByRole("heading", { name: "Wiki" })).toBeTruthy();
     });
 });

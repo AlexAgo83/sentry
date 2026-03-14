@@ -1,9 +1,9 @@
 ## item_240_req026_build_mobile_ready_list_detail_wiki_ui_for_core_sections - req026 build mobile-ready list/detail wiki UI for core sections
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 97%
-> Confidence: 94%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 100%
+> Progress: 100%
 > Complexity: High
 > Theme: UI / UX / Information architecture
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.

@@ -9,7 +9,9 @@ import { RosterContainer } from "./RosterContainer";
 import { ShopPanelContainer } from "./ShopPanelContainer";
 import { StatsPanelContainer } from "./StatsPanelContainer";
 import { QuestsPanelContainer } from "./QuestsPanelContainer";
+import { WikiScreenContainer } from "./WikiScreenContainer";
 import { DevProfiler } from "../dev/renderDebug";
+import type { WikiRouteState } from "../wiki/wikiModel";
 
 type AppViewContainerProps = {
     version: string;
@@ -42,6 +44,8 @@ type AppViewContainerProps = {
     getSkillLabel: (skillId: SkillId) => string;
     getRecipeLabel: (skillId: SkillId, recipeId: string | null) => string;
     getRecipeLabelNonNull: (skillId: SkillId, recipeId: string) => string;
+    wikiRoute: WikiRouteState;
+    onChangeWikiRoute: (route: WikiRouteState) => void;
 };
 
 export const AppViewContainer = ({
@@ -75,6 +79,8 @@ export const AppViewContainer = ({
     getSkillLabel,
     getRecipeLabel,
     getRecipeLabelNonNull,
+    wikiRoute,
+    onChangeWikiRoute,
 }: AppViewContainerProps) => {
     return (
         <DevProfiler id="AppView">
@@ -175,6 +181,11 @@ export const AppViewContainer = ({
                 dungeonScreen={(
                     <DevProfiler id="DungeonScreen">
                         <DungeonScreenContainer />
+                    </DevProfiler>
+                )}
+                wikiScreen={(
+                    <DevProfiler id="WikiScreen">
+                        <WikiScreenContainer route={wikiRoute} onChangeRoute={onChangeWikiRoute} />
                     </DevProfiler>
                 )}
             />

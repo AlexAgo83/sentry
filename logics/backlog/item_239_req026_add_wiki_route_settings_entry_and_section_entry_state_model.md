@@ -1,9 +1,9 @@
 ## item_239_req026_add_wiki_route_settings_entry_and_section_entry_state_model - req026 add wiki route, settings entry, and section/entry state model
 > From version: 0.9.40
-> Status: Ready
-> Understanding: 95%
-> Confidence: 92%
-> Progress: 0%
+> Status: Done
+> Understanding: 100%
+> Confidence: 100%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Navigation / Routing / UX
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.

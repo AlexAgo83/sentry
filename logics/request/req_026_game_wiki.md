@@ -1,8 +1,8 @@
 ## req_026_game_wiki - In-game wiki at /wiki
 > From version: 0.9.40
-> Status: Ready
+> Status: Done
 > Understanding: 100%
-> Confidence: 99%
+> Confidence: 100%
 
 # Needs
 - Add an in-game wiki accessible at `/wiki`.
