@@ -6,10 +6,11 @@
 
 .ts-onboarding-hint {
     position: fixed;
-    left: max(var(--m6), env(safe-area-inset-left));
-    bottom: max(var(--m6), env(safe-area-inset-bottom));
-    z-index: 55;
+    left: max(var(--m4), env(safe-area-inset-left));
+    bottom: max(var(--m4), env(safe-area-inset-bottom));
+    z-index: 90;
     width: min(360px, calc(100vw - var(--m8)));
+    margin: 0;
     padding: var(--m4);
     border-radius: 18px;
     border: 1px solid rgba(93, 217, 193, 0.26);

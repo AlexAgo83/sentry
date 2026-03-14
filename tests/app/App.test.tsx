@@ -158,7 +158,8 @@ describe("App", () => {
         const { user } = renderApp();
 
         await user.click(screen.getByRole("button", { name: "Open settings" }));
-        await user.click(screen.getByRole("button", { name: "Wiki" }));
+        const settingsDialog = await screen.findByRole("dialog", { name: "Settings" });
+        await user.click(within(settingsDialog).getByRole("button", { name: "Wiki" }));
 
         expect(await screen.findByRole("heading", { name: "Wiki" })).toBeTruthy();
         await user.click(screen.getByRole("button", { name: "Back" }));
