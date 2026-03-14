@@ -140,7 +140,9 @@ describe("Tooltip coverage", () => {
         assertTooltipCoverage();
 
         await user.click(screen.getByTestId("open-cloud-save"));
-        expect(await screen.findByTestId("cloud-login")).toBeTruthy();
+        expect(
+            await screen.findByText(/Sign in to sync this save across devices\.|Cloud sync unavailable|Cloud backend is waking up/i)
+        ).toBeTruthy();
         assertTooltipCoverage();
         await user.click(screen.getByRole("button", { name: "Back" }));
         expect(screen.getByRole("heading", { name: "Save" })).toBeTruthy();
