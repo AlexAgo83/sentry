@@ -1,7 +1,7 @@
 ## req_064_define_the_next_product_growth_phase_across_meta_progression_choice_clarity_balance_tooling_release_flow_and_logics_hygiene - Define the next product growth phase across meta progression, choice clarity, balance tooling, release flow, and Logics hygiene
-> From version: 0.9.39
+> From version: 0.9.40
 > Understanding: 100%
-> Confidence: 98%
+> Confidence: 99%
 > Complexity: High
 > Theme: Product / Gameplay / Tooling / Release / Operations
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
@@ -179,3 +179,6 @@
   - `logics/request/req_068_align_github_release_generation_with_curated_repository_changelogs.md`
   - `logics/request/req_069_normalize_legacy_logics_metadata_and_reduce_workflow_drift.md`
 - Follow-up execution completed through tasks `113` to `117`.
+
+# Used by
+- `logics/tasks/task_114_execute_req066_meta_progression_across_backlog_items_219_to_222.md`
