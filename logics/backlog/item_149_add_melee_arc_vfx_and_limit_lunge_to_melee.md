@@ -1,5 +1,6 @@
 ## item_149_add_melee_arc_vfx_and_limit_lunge_to_melee - Add melee arc VFX and limit lunge to melee
 > From version: 0.9.30
+> Status: Done
 > Understanding: 90%
 > Confidence: 86%
 > Progress: 100%

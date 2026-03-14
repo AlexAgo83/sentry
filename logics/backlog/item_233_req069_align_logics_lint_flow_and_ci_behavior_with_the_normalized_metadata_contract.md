@@ -1,8 +1,9 @@
 ## item_233_req069_align_logics_lint_flow_and_ci_behavior_with_the_normalized_metadata_contract - req069 align Logics lint, flow, and CI behavior with the normalized metadata contract
 > From version: 0.9.39
-> Understanding: 95%
-> Confidence: 94%
-> Progress: 0%
+> Status: Done
+> Understanding: 97%
+> Confidence: 96%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Logics / CI / Tooling alignment
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -35,4 +36,3 @@ Metadata cleanup alone is not sufficient if Logics lint, flow tooling, and CI be
   - `logics/skills/logics-flow-manager/*`
   - `scripts/ci/*`
   - `.github/workflows/*`
-

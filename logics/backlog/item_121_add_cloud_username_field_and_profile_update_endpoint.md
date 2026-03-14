@@ -1,5 +1,6 @@
 ## item_121_add_cloud_username_field_and_profile_update_endpoint - Add cloud username field and profile update endpoint
 > From version: 0.9.26
+> Status: Done
 > Understanding: 97%
 > Confidence: 95%
 > Progress: 100%

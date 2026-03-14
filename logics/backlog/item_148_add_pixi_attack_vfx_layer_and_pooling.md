@@ -1,5 +1,6 @@
 ## item_148_add_pixi_attack_vfx_layer_and_pooling - Add Pixi attack VFX layer and pooling
 > From version: 0.9.30
+> Status: Done
 > Understanding: 90%
 > Confidence: 86%
 > Progress: 100%

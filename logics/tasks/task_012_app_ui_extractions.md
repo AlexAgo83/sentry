@@ -1,5 +1,6 @@
 ## task_012_app_ui_extractions - Execute backlog item 012
 > From version: 0.7.2
+> Status: Done
 > Understanding: 96%
 > Confidence: 90%
 > Progress: 100%

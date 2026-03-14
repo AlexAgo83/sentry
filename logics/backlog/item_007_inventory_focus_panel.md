@@ -1,5 +1,6 @@
 ## item_007_inventory_focus_panel - Inventory focus panel + grid layout
 > From version: 0.4.1
+> Status: Done
 > Understanding: 96%
 > Confidence: 92%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_218_req065_add_dungeon_balance_simulator_regression_coverage_and_non_blocking_repo_entrypoints - req065 add dungeon balance simulator regression coverage and non-blocking repo entrypoints
 > From version: 0.9.39
+> Status: Done
 > Understanding: 100%
 > Confidence: 96%
 > Progress: 100%

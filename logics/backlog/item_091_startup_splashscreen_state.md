@@ -1,5 +1,6 @@
 ## item_091_startup_splashscreen_state - Track readiness and continue gating
 > From version: 0.9.10
+> Status: Done
 > Understanding: 95%
 > Confidence: 93%
 > Progress: 100%

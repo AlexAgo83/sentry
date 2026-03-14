@@ -1,5 +1,6 @@
 ## item_208_req062_define_explicit_test_lane_contract_and_segmented_execution_commands - req062 define an explicit test lane contract and segmented execution commands
 > From version: 0.9.38
+> Status: Done
 > Understanding: 96%
 > Confidence: 94%
 > Progress: 100%

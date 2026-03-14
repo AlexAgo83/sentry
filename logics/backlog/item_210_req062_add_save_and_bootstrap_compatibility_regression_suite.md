@@ -1,5 +1,6 @@
 ## item_210_req062_add_save_and_bootstrap_compatibility_regression_suite - req062 add a save and bootstrap compatibility regression suite
 > From version: 0.9.38
+> Status: Done
 > Understanding: 97%
 > Confidence: 95%
 > Progress: 100%

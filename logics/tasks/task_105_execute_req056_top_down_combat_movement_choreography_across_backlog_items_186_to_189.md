@@ -1,5 +1,6 @@
 ## task_105_execute_req056_top_down_combat_movement_choreography_across_backlog_items_186_to_189 - Execute req056 top-down combat movement choreography across backlog items 186 to 189
 > From version: 0.9.38
+> Status: Done
 > Understanding: 98%
 > Confidence: 94%
 > Progress: 100%

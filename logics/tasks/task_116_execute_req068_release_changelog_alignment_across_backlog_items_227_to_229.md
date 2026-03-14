@@ -1,5 +1,6 @@
 ## task_116_execute_req068_release_changelog_alignment_across_backlog_items_227_to_229 - Execute req068 release/changelog alignment across backlog items 227 to 229
 > From version: 0.9.39
+> Status: Done
 > Understanding: 97%
 > Confidence: 95%
 > Progress: 100%

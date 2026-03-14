@@ -1,5 +1,6 @@
 ## item_049_shop_screen_entry_and_placeholder_tiles - Shop Screen Entry & Placeholder Tiles
 > From version: 0.8.11
+> Status: Done
 > Understanding: 70%
 > Confidence: 70%
 > Progress: 100%

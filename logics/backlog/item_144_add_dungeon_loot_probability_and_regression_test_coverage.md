@@ -1,5 +1,6 @@
 ## item_144_add_dungeon_loot_probability_and_regression_test_coverage - Add dungeon loot probability and regression test coverage
 > From version: 0.9.28
+> Status: Done
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## task_033_surface_persistence_failures_to_the_user - Surface persistence failures to the user
 > From version: 0.8.17
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

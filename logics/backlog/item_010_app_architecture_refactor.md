@@ -1,5 +1,6 @@
 ## item_010_app_architecture_refactor - Break up App.tsx + render optimizations
 > From version: 0.5.0
+> Status: Done
 > Understanding: 95%
 > Confidence: 92%
 > Progress: 100%

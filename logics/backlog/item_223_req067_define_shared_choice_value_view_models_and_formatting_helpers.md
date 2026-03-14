@@ -1,5 +1,6 @@
 ## item_223_req067_define_shared_choice_value_view_models_and_formatting_helpers - req067 define shared choice-value view-models and formatting helpers
 > From version: 0.9.39
+> Status: Done
 > Understanding: 100%
 > Confidence: 97%
 > Progress: 100%

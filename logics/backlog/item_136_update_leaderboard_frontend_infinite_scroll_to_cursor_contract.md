@@ -1,5 +1,6 @@
 ## item_136_update_leaderboard_frontend_infinite_scroll_to_cursor_contract - Update leaderboard frontend infinite scroll to cursor contract
 > From version: 0.9.28
+> Status: Done
 > Understanding: 97%
 > Confidence: 95%
 > Progress: 100%

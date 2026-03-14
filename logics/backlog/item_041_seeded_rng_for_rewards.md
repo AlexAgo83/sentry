@@ -1,5 +1,6 @@
 ## item_041_seeded_rng_for_rewards - Deterministic RNG for rare rewards
 > From version: 0.8.17
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

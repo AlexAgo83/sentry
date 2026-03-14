@@ -1,5 +1,6 @@
 ## item_111_split_applydungeontick_into_phased_dungeon_tick_engine_module - Split applyDungeonTick into phased dungeon tick engine module
 > From version: 0.9.24
+> Status: Done
 > Understanding: 96%
 > Confidence: 90%
 > Progress: 100%

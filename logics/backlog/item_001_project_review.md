@@ -1,5 +1,6 @@
 ## item_001_project_review - Review project
 > From version: 0.2.0
+> Status: Done
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%

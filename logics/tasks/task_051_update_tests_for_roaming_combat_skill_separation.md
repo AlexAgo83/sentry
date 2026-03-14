@@ -1,5 +1,6 @@
 ## task_051_update_tests_for_roaming_combat_skill_separation - Update tests for roaming/combat skill separation
 > From version: 0.9.2
+> Status: Done
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%

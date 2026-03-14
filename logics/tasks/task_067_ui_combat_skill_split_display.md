@@ -1,5 +1,6 @@
 ## task_067_ui_combat_skill_split_display - UI display for split combat skills
 > From version: 0.9.9
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_118_add_changelogs_feature_tests_frontend_backend_and_optional_e2e - Add changelogs feature tests frontend backend and optional e2e
 > From version: 0.9.24
+> Status: Done
 > Understanding: 96%
 > Confidence: 95%
 > Progress: 100%

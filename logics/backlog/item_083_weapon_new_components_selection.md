@@ -1,5 +1,6 @@
 ## item_083_weapon_new_components_selection - Choose new components for weapon tiers
 > From version: 0.9.9
+> Status: Done
 > Understanding: 94%
 > Confidence: 90%
 > Progress: 100%

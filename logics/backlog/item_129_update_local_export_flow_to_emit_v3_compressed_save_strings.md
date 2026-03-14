@@ -1,5 +1,6 @@
 ## item_129_update_local_export_flow_to_emit_v3_compressed_save_strings - Update local export flow to emit v3 compressed save strings
 > From version: 0.9.28
+> Status: Done
 > Understanding: 97%
 > Confidence: 95%
 > Progress: 100%

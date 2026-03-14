@@ -1,5 +1,6 @@
 ## item_077_weapon_category_combat_effects - Weapon category combat effects
 > From version: 0.9.9
+> Status: Done
 > Understanding: 96%
 > Confidence: 93%
 > Progress: 100%

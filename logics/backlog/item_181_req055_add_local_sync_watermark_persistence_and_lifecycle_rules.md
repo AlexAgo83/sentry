@@ -1,5 +1,6 @@
 ## item_181_req055_add_local_sync_watermark_persistence_and_lifecycle_rules - req055 add device-local sync watermark persistence and lifecycle rules
 > From version: 0.9.36
+> Status: Done
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%

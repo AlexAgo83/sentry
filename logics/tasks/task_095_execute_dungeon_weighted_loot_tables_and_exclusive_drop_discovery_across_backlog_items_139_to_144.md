@@ -1,5 +1,6 @@
 ## task_095_execute_dungeon_weighted_loot_tables_and_exclusive_drop_discovery_across_backlog_items_139_to_144 - Execute dungeon weighted loot tables and exclusive drop discovery across backlog items 139 to 144
 > From version: 0.9.28
+> Status: Done
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_128_define_save_envelope_v3_with_compressed_payload_and_sha256_integrity - Define save envelope v3 with compressed payload and sha256 integrity
 > From version: 0.9.28
+> Status: Done
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%

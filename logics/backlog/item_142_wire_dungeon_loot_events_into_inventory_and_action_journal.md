@@ -1,5 +1,6 @@
 ## item_142_wire_dungeon_loot_events_into_inventory_and_action_journal - Wire dungeon loot events into inventory, discovery state, and action journal
 > From version: 0.9.28
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

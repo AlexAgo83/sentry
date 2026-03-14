@@ -1,5 +1,6 @@
 ## item_094_backend_health_endpoint - Add a lightweight /health endpoint
 > From version: 0.9.10
+> Status: Done
 > Understanding: 94%
 > Confidence: 92%
 > Progress: 100%

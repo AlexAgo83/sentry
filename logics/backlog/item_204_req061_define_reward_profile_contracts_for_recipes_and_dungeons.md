@@ -1,5 +1,6 @@
 ## item_204_req061_define_reward_profile_contracts_for_recipes_and_dungeons - req061 define reward profile contracts for recipes and dungeons
 > From version: 0.9.38
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

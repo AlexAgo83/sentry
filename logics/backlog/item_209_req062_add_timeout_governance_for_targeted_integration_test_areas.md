@@ -1,5 +1,6 @@
 ## item_209_req062_add_timeout_governance_for_targeted_integration_test_areas - req062 add timeout governance for targeted integration test areas
 > From version: 0.9.38
+> Status: Done
 > Understanding: 95%
 > Confidence: 93%
 > Progress: 100%

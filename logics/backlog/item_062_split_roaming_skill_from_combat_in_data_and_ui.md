@@ -1,5 +1,6 @@
 ## item_062_split_roaming_skill_from_combat_in_data_and_ui - Split roaming skill from combat in data and UI
 > From version: 0.9.2
+> Status: Done
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_050_onboarding_hero_creation - Onboarding Hero Creation
 > From version: 0.8.14
+> Status: Done
 > Understanding: 70%
 > Confidence: 60%
 > Progress: 100%

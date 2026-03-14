@@ -1,5 +1,6 @@
 ## item_106_add_dungeon_refactor_regression_and_non_regression_test_coverage - Add dungeon refactor regression and non-regression test coverage
 > From version: 0.9.24
+> Status: Done
 > Understanding: 95%
 > Confidence: 93%
 > Progress: 100%

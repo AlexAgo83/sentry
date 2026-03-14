@@ -1,5 +1,6 @@
 ## item_147_add_regression_tests_for_tooltip_coverage - Add regression tests for tooltip coverage
 > From version: 0.9.30
+> Status: Done
 > Understanding: 92%
 > Confidence: 88%
 > Progress: 100%

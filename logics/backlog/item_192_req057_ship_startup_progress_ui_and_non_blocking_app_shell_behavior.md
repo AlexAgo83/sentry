@@ -1,5 +1,6 @@
 ## item_192_req057_ship_startup_progress_ui_and_non_blocking_app_shell_behavior - req057 ship startup progress UI and non-blocking app shell behavior
 > From version: 0.9.38
+> Status: Done
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%

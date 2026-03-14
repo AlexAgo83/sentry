@@ -1,5 +1,6 @@
 ## item_124_add_leaderboard_and_username_feature_test_coverage_frontend_backend - Add leaderboard and username feature test coverage frontend backend
 > From version: 0.9.26
+> Status: Done
 > Understanding: 97%
 > Confidence: 95%
 > Progress: 100%

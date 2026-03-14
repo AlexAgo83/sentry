@@ -1,8 +1,9 @@
 ## item_230_req069_define_normalized_logics_metadata_contract_and_migration_rules - req069 define the normalized Logics metadata contract and migration rules
 > From version: 0.9.39
-> Understanding: 96%
-> Confidence: 95%
-> Progress: 0%
+> Status: Done
+> Understanding: 98%
+> Confidence: 97%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Logics / Process / Tooling
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -32,4 +33,3 @@ Legacy Logics docs still mix older implicit conventions with newer explicit stat
 - Likely touch points:
   - `logics/*`
   - linter/flow tooling docs
-

@@ -1,5 +1,6 @@
 ## item_186_req056_define_dungeon_combat_movement_state_and_snapshot_contract - req056 define deterministic movement state and arena snapshot contract for top-down combat
 > From version: 0.9.38
+> Status: Done
 > Understanding: 97%
 > Confidence: 93%
 > Progress: 100%

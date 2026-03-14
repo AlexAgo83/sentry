@@ -1,5 +1,6 @@
 ## item_027_compact_number_formatting - Compact number formatting across UI
 > From version: 0.8.13
+> Status: Done
 > Understanding: 85%
 > Confidence: 75%
 > Progress: 100%

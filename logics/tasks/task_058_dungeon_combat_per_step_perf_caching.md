@@ -1,5 +1,6 @@
 ## task_058_dungeon_combat_per_step_perf_caching - Dungeon combat per-step perf caching
 > From version: 0.9.8
+> Status: Done
 > Understanding: 95%
 > Confidence: 94%
 > Progress: 100%

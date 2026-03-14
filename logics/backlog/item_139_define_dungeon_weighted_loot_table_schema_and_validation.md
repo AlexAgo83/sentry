@@ -1,5 +1,6 @@
 ## item_139_define_dungeon_weighted_loot_table_schema_and_validation - Define dungeon weighted loot table schema and validation
 > From version: 0.9.28
+> Status: Done
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%

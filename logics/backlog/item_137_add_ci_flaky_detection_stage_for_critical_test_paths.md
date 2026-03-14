@@ -1,5 +1,6 @@
 ## item_137_add_ci_flaky_detection_stage_for_critical_test_paths - Add CI flaky detection stage for critical test paths
 > From version: 0.9.28
+> Status: Done
 > Understanding: 97%
 > Confidence: 95%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_189_req056_add_movement_determinism_performance_and_regression_coverage - req056 add determinism/performance guardrails and regression coverage for top-down movement choreography
 > From version: 0.9.38
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

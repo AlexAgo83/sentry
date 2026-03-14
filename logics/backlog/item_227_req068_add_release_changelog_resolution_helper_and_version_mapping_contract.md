@@ -1,5 +1,6 @@
 ## item_227_req068_add_release_changelog_resolution_helper_and_version_mapping_contract - req068 add a release changelog resolution helper and version-mapping contract
 > From version: 0.9.39
+> Status: Done
 > Understanding: 97%
 > Confidence: 95%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## task_091_execute_settings_leaderboard_and_cloud_username_feature_across_backlog_items_119_to_124 - Execute settings leaderboard and cloud username feature across backlog items 119 to 124
 > From version: 0.9.26
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

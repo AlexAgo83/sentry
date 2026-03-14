@@ -1,5 +1,6 @@
 ## task_016_app_perf_save_observability - App architecture/perf refactor + save hardening + observability
 > From version: 0.8.0
+> Status: Done
 > Understanding: 95%
 > Confidence: 95%
 > Progress: 100%

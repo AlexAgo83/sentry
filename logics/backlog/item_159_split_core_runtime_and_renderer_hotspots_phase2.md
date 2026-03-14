@@ -1,5 +1,6 @@
 ## item_159_split_core_runtime_and_renderer_hotspots_phase2 - Split core runtime/renderer hotspots into smaller modules (phase 2)
 > From version: 0.9.31
+> Status: Done
 > Understanding: 90%
 > Confidence: 84%
 > Progress: 100%

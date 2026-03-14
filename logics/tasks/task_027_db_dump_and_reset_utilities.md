@@ -1,5 +1,6 @@
 ## task_027_db_dump_and_reset_utilities - DB dump and reset utilities
 > From version: 0.8.11
+> Status: Done
 > Understanding: 93%
 > Confidence: 88%
 > Progress: 100%

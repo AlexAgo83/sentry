@@ -1,5 +1,6 @@
 ## item_169_req050_persist_login_prompt_opt_out_preference - Persist login prompt opt-out preference (and migrate safely)
 > From version: 0.9.31
+> Status: Done
 > Understanding: 94%
 > Confidence: 90%
 > Progress: 100%

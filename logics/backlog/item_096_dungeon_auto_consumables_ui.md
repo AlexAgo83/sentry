@@ -1,5 +1,6 @@
 ## item_096_dungeon_auto_consumables_ui - Add auto-consumables toggle next to auto restart
 > From version: 0.9.10
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

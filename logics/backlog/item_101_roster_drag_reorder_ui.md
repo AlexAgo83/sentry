@@ -1,5 +1,6 @@
 ## item_101_roster_drag_reorder_ui - Drag-and-drop roster reordering (desktop + mobile)
 > From version: 0.9.12
+> Status: Done
 > Understanding: 94%
 > Confidence: 92%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_196_req058_add_atomic_startup_persistence_regression_coverage - req058 add atomic startup persistence regression coverage
 > From version: 0.9.38
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## task_089_execute_dungeon_core_split_across_backlog_items_107_to_113 - Execute dungeon core split across backlog items 107 to 113
 > From version: 0.9.24
+> Status: Done
 > Understanding: 95%
 > Confidence: 92%
 > Progress: 100%

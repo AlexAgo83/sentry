@@ -1,5 +1,6 @@
 ## item_198_req059_add_origin_aware_bootstrap_state_and_shared_loading_surface_behavior - req059 add origin-aware bootstrap state and shared loading surface behavior
 > From version: 0.9.38
+> Status: Done
 > Understanding: 95%
 > Confidence: 91%
 > Progress: 100%

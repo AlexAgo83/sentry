@@ -1,5 +1,6 @@
 ## item_170_req050_login_prompt_modal_trigger_and_routing_to_cloud_login - Add startup login prompt modal and route to Cloud Save login flow
 > From version: 0.9.31
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_017_action_selection_screen - Replace action selection modal with a dedicated screen
 > From version: 0.8.9
+> Status: Done
 > Understanding: 90%
 > Confidence: 80%
 > Progress: 100%

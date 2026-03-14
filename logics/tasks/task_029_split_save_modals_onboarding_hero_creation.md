@@ -1,5 +1,6 @@
 ## task_029_split_save_modals_onboarding_hero_creation - Split save modals + onboarding hero creation
 > From version: 0.8.14
+> Status: Done
 > Understanding: 90%
 > Confidence: 85%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_055_dungeon_party_setup_and_run_preparation - Dungeon party setup and run preparation
 > From version: 0.8.22
+> Status: Done
 > Understanding: 96%
 > Confidence: 92%
 > Progress: 100%

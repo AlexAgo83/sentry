@@ -1,5 +1,6 @@
 ## task_043_dungeon_foundation_entry_and_party_setup - Dungeon foundation entry and party setup
 > From version: 0.8.22
+> Status: Done
 > Understanding: 95%
 > Confidence: 91%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_146_add_titles_and_aria_labels_across_all_clickable_controls - Add titles and aria-labels across all clickable controls
 > From version: 0.9.30
+> Status: Done
 > Understanding: 92%
 > Confidence: 88%
 > Progress: 100%

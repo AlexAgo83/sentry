@@ -1,5 +1,6 @@
 ## task_006_test_coverage - Achieve full app test coverage
 > From version: 0.4.0
+> Status: Done
 > Understanding: 90%
 > Confidence: 75%
 > Progress: 100%

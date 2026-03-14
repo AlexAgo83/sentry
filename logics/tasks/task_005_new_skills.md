@@ -1,5 +1,6 @@
 ## task_005_new_skills - Execute backlog item 006
 > From version: 0.4.0
+> Status: Done
 > Understanding: 96%
 > Confidence: 92%
 > Progress: 100%

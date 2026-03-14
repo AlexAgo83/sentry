@@ -1,5 +1,6 @@
 ## item_097_action_resume_last_recipe_state - Track last non-dungeon action + recipe
 > From version: 0.9.10
+> Status: Done
 > Understanding: 94%
 > Confidence: 91%
 > Progress: 100%

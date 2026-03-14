@@ -1,5 +1,6 @@
 ## item_109_extract_dungeon_state_factories_normalization_and_selectors - Extract dungeon state factories normalization and selectors
 > From version: 0.9.24
+> Status: Done
 > Understanding: 96%
 > Confidence: 93%
 > Progress: 100%

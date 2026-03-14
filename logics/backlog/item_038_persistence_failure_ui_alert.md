@@ -1,5 +1,6 @@
 ## item_038_persistence_failure_ui_alert - Surface persistence failures to the user
 > From version: 0.8.17
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

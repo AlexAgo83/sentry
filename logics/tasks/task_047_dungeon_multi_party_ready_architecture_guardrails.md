@@ -1,5 +1,6 @@
 ## task_047_dungeon_multi_party_ready_architecture_guardrails - Dungeon multi-party ready architecture guardrails
 > From version: 0.8.22
+> Status: Done
 > Understanding: 91%
 > Confidence: 84%
 > Progress: 100%

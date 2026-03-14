@@ -1,5 +1,6 @@
 ## task_042_stats_dashboard_progression_tracking - Stats dashboard progression tracking
 > From version: 0.8.18
+> Status: Done
 > Understanding: 94%
 > Confidence: 92%
 > Progress: 100%

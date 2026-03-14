@@ -1,5 +1,6 @@
 ## item_195_req058_block_startup_interrupt_persistence_and_finalize_single_commit_write - req058 block startup interrupt persistence and finalize a single durable write on success
 > From version: 0.9.38
+> Status: Done
 > Understanding: 95%
 > Confidence: 91%
 > Progress: 100%

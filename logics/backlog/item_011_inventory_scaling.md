@@ -1,5 +1,6 @@
 ## item_011_inventory_scaling - Inventory grid scaling + virtualization
 > From version: 0.5.0
+> Status: Done
 > Understanding: 94%
 > Confidence: 90%
 > Progress: 100%

@@ -1,11 +1,11 @@
 ## req_069_normalize_legacy_logics_metadata_and_reduce_workflow_drift - Normalize legacy Logics metadata and reduce workflow drift
 > From version: 0.9.39
-> Understanding: 96%
-> Confidence: 95%
+> Understanding: 98%
+> Confidence: 97%
 > Complexity: Medium
 > Theme: Process / Logics / CI hygiene
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
-> Status: Ready
+> Status: Done
 
 # Needs
 - The project still carries a large amount of legacy Logics metadata drift, especially older backlog/task docs without normalized `Status` indicators.

@@ -1,5 +1,6 @@
 ## item_008_runtime_resilience - Tick timing accuracy + persistence safety
 > From version: 0.5.0
+> Status: Done
 > Understanding: 96%
 > Confidence: 92%
 > Progress: 100%

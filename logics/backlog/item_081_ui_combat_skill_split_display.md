@@ -1,5 +1,6 @@
 ## item_081_ui_combat_skill_split_display - UI display for split combat skills
 > From version: 0.9.9
+> Status: Done
 > Understanding: 94%
 > Confidence: 90%
 > Progress: 100%

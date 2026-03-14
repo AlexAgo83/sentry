@@ -1,5 +1,6 @@
 ## item_084_weapon_tier_tooltips_and_ui - Expose new weapon tiers in UI
 > From version: 0.9.9
+> Status: Done
 > Understanding: 93%
 > Confidence: 88%
 > Progress: 100%

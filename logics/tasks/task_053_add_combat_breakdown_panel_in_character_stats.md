@@ -1,5 +1,6 @@
 ## task_053_add_combat_breakdown_panel_in_character_stats - Add combat breakdown panel in character stats
 > From version: 0.9.5
+> Status: Done
 > Understanding: 94%
 > Confidence: 90%
 > Progress: 100%

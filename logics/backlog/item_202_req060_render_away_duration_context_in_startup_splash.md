@@ -1,5 +1,6 @@
 ## item_202_req060_render_away_duration_context_in_startup_splash - req060 render away-duration context in the startup splash
 > From version: 0.9.38
+> Status: Done
 > Understanding: 97%
 > Confidence: 93%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## task_090_execute_settings_changelogs_feature_across_backlog_items_114_to_118 - Execute settings changelogs feature across backlog items 114 to 118
 > From version: 0.9.24
+> Status: Done
 > Understanding: 96%
 > Confidence: 94%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_155_pwa_service_worker_update_activation_safety_and_reload_policy - Prevent mixed-version runtime by hardening SW update flow
 > From version: 0.9.31
+> Status: Done
 > Understanding: 92%
 > Confidence: 88%
 > Progress: 100%

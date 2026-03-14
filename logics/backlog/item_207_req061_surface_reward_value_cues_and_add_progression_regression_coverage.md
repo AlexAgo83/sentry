@@ -1,5 +1,6 @@
 ## item_207_req061_surface_reward_value_cues_and_add_progression_regression_coverage - req061 surface reward-value cues and add progression regression coverage
 > From version: 0.9.38
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

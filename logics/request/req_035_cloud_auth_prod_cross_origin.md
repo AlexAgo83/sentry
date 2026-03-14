@@ -1,7 +1,8 @@
 ## req_035_cloud_auth_prod_cross_origin - Fix cloud auth refresh in prod (Render subdomains)
 > From version: 0.9.11
-> Understanding: 74%
-> Confidence: 62%
+> Status: Done
+> Understanding: 78%
+> Confidence: 74%
 
 # Needs
 - Production cloud auth must work when the frontend and backend run on different Render subdomains.

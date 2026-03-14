@@ -1,5 +1,6 @@
 ## task_020_req_006_action_selection_skill_recipe_pickers - req_006 — Action Selection skill & recipe pickers
 > From version: 0.8.9
+> Status: Done
 > Understanding: 90%
 > Confidence: 90%
 > Progress: 100%

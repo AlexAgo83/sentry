@@ -1,5 +1,6 @@
 ## item_133_split_heavy_optional_ui_paths_with_lazy_loading_and_chunk_reduction - Split heavy optional UI paths with lazy loading and chunk reduction
 > From version: 0.9.28
+> Status: Done
 > Understanding: 97%
 > Confidence: 95%
 > Progress: 100%

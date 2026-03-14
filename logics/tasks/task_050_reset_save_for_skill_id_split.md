@@ -1,5 +1,6 @@
 ## task_050_reset_save_for_skill_id_split - Reset save for skill ID split
 > From version: 0.9.2
+> Status: Done
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%

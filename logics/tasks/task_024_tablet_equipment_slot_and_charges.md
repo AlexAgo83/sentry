@@ -1,5 +1,6 @@
 ## task_024_tablet_equipment_slot_and_charges - Tablet equipment slot and charges
 > From version: 0.8.11
+> Status: Done
 > Understanding: 95%
 > Confidence: 92%
 > Progress: 100%

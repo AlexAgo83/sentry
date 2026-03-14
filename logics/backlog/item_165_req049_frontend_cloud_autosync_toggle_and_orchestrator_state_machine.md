@@ -1,5 +1,6 @@
 ## item_165_req049_frontend_cloud_autosync_toggle_and_orchestrator_state_machine - Add Auto Sync toggle and orchestration layer (auto-load + auto-save decisions)
 > From version: 0.9.31
+> Status: Done
 > Understanding: 92%
 > Confidence: 88%
 > Progress: 100%

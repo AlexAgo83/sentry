@@ -1,5 +1,6 @@
 ## item_125_add_initial_food_to_new_game_inventory_state - Add initial food to new game inventory state
 > From version: 0.9.26
+> Status: Done
 > Understanding: 97%
 > Confidence: 95%
 > Progress: 100%

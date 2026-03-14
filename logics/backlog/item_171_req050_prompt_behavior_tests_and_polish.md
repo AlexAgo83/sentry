@@ -1,5 +1,6 @@
 ## item_171_req050_prompt_behavior_tests_and_polish - Add tests for login prompt show/hide and opt-out behavior
 > From version: 0.9.31
+> Status: Done
 > Understanding: 90%
 > Confidence: 90%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## task_010_ci_testing_improvements - Restore stricter CI and raise coverage confidence
 > From version: 0.6.3
+> Status: Done
 > Understanding: 90%
 > Confidence: 84%
 > Progress: 100%

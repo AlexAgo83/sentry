@@ -1,5 +1,6 @@
 ## item_187_req056_implement_top_down_steering_approach_orbit_and_separation - req056 implement deterministic top-down steering with approach/orbit/recover/reposition and separation
 > From version: 0.9.38
+> Status: Done
 > Understanding: 96%
 > Confidence: 91%
 > Progress: 100%

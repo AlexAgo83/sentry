@@ -1,5 +1,6 @@
 ## item_043_bundle_perf_budgets - Add bundle size and perf budgets
 > From version: 0.8.17
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

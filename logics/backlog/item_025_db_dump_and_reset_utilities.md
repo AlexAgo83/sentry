@@ -1,5 +1,6 @@
 ## item_025_db_dump_and_reset_utilities - DB dump and reset utilities
 > From version: 0.8.11
+> Status: Done
 > Understanding: 92%
 > Confidence: 86%
 > Progress: 100%

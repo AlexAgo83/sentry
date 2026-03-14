@@ -1,5 +1,6 @@
 ## task_022_offline_catch_up_cap_to_7_days - Offline catch-up cap to 7 days
 > From version: 0.8.11
+> Status: Done
 > Understanding: 96%
 > Confidence: 94%
 > Progress: 100%

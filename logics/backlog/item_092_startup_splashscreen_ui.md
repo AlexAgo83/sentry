@@ -1,5 +1,6 @@
 ## item_092_startup_splashscreen_ui - Add startup splashscreen UI
 > From version: 0.9.10
+> Status: Done
 > Understanding: 95%
 > Confidence: 93%
 > Progress: 100%

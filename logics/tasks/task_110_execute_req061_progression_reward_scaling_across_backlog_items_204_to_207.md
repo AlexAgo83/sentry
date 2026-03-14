@@ -1,5 +1,6 @@
 ## task_110_execute_req061_progression_reward_scaling_across_backlog_items_204_to_207 - Execute req061 progression reward scaling across backlog items 204 to 207
 > From version: 0.9.38
+> Status: Done
 > Understanding: 96%
 > Confidence: 93%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_009_ui_quality_sweep - Accessibility + UI perf + inventory UX
 > From version: 0.5.0
+> Status: Done
 > Understanding: 96%
 > Confidence: 92%
 > Progress: 100%

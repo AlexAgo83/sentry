@@ -1,5 +1,6 @@
 ## item_200_req059_add_regression_coverage_for_shared_bootstrap_origins - req059 add regression coverage for shared bootstrap origins
 > From version: 0.9.38
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_035_quests_screen - Quests screen + milestone quests
 > From version: 0.8.17
+> Status: Done
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%

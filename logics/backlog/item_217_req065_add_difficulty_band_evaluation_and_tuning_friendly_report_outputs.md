@@ -1,5 +1,6 @@
 ## item_217_req065_add_difficulty_band_evaluation_and_tuning_friendly_report_outputs - req065 add difficulty-band evaluation and tuning-friendly report outputs
 > From version: 0.9.39
+> Status: Done
 > Understanding: 100%
 > Confidence: 96%
 > Progress: 100%

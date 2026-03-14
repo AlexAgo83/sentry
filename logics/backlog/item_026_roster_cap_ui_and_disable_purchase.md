@@ -1,5 +1,6 @@
 ## item_026_roster_cap_ui_and_disable_purchase - Roster cap UI + disable purchase
 > From version: 0.8.13
+> Status: Done
 > Understanding: 85%
 > Confidence: 75%
 > Progress: 100%

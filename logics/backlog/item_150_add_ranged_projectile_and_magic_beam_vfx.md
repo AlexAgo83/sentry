@@ -1,5 +1,6 @@
 ## item_150_add_ranged_projectile_and_magic_beam_vfx - Add ranged projectile and magic beam VFX
 > From version: 0.9.30
+> Status: Done
 > Understanding: 90%
 > Confidence: 85%
 > Progress: 100%

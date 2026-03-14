@@ -1,8 +1,9 @@
 ## item_231_req069_normalize_recent_tasks_and_backlog_docs_missing_status - req069 normalize recent tasks and backlog docs that are missing Status
 > From version: 0.9.39
-> Understanding: 95%
-> Confidence: 94%
-> Progress: 0%
+> Status: Done
+> Understanding: 97%
+> Confidence: 96%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Logics / Cleanup / Workflow hygiene
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -32,4 +33,3 @@ The most operationally relevant metadata drift currently lives in more recent ta
 - Likely touch points:
   - `logics/backlog/*`
   - `logics/tasks/*`
-

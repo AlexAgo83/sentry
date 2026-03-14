@@ -1,5 +1,6 @@
 ## item_134_add_bundle_observability_and_budget_guardrails_for_split_strategy - Add bundle observability and budget guardrails for split strategy
 > From version: 0.9.28
+> Status: Done
 > Understanding: 96%
 > Confidence: 95%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_095_dungeon_auto_consumables_state - Persist auto-consumables toggle and gate consumption logic
 > From version: 0.9.10
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

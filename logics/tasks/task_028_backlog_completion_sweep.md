@@ -1,5 +1,6 @@
 ## task_028_backlog_completion_sweep - Complete remaining backlog items
 > From version: 0.8.14
+> Status: Done
 > Understanding: 85%
 > Confidence: 75%
 > Progress: 100%

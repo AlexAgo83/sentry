@@ -1,5 +1,6 @@
 ## item_056_headless_dungeon_combat_simulation_core - Headless dungeon combat simulation core
 > From version: 0.8.22
+> Status: Done
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%

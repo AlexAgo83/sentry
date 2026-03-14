@@ -1,5 +1,6 @@
 ## item_163_req048_legacy_badge_state_import_and_regression_tests - Import legacy localStorage badge state once and add regression tests
 > From version: 0.9.31
+> Status: Done
 > Understanding: 90%
 > Confidence: 88%
 > Progress: 100%

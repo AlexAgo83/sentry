@@ -1,5 +1,6 @@
 ## item_197_req059_extract_shared_runtime_bootstrap_pipeline_for_save_application - req059 extract a shared runtime bootstrap pipeline for save application
 > From version: 0.9.38
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

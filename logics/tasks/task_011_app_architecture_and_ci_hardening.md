@@ -1,5 +1,6 @@
 ## task_011_app_architecture_and_ci_hardening - App split, deps hygiene, CI docs
 > From version: 0.6.3
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

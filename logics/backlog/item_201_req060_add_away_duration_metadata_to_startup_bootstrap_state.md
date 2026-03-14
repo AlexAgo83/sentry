@@ -1,5 +1,6 @@
 ## item_201_req060_add_away_duration_metadata_to_startup_bootstrap_state - req060 add away-duration metadata to startup bootstrap state
 > From version: 0.9.38
+> Status: Done
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_119_add_settings_leaderboard_entry_and_modal_navigation - Add Settings leaderboard entry and modal navigation
 > From version: 0.9.26
+> Status: Done
 > Understanding: 97%
 > Confidence: 95%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_226_req067_add_regression_coverage_for_shared_choice_value_cues - req067 add regression coverage for shared choice value cues
 > From version: 0.9.39
+> Status: Done
 > Understanding: 100%
 > Confidence: 96%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## task_031_harden_cloud_auth_rate_limiting - Harden cloud auth + rate limiting
 > From version: 0.8.17
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

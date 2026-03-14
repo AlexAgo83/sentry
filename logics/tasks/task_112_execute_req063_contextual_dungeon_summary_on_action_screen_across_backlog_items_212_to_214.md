@@ -1,5 +1,6 @@
 ## task_112_execute_req063_contextual_dungeon_summary_on_action_screen_across_backlog_items_212_to_214 - Execute req063 contextual dungeon summary on the action screen across backlog items 212 to 214
 > From version: 0.9.39
+> Status: Done
 > Understanding: 96%
 > Confidence: 94%
 > Progress: 100%

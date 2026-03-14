@@ -1,5 +1,6 @@
 ## item_052_quests_screen - Quests Screen with Craft/Skill Milestones
 > From version: 0.8.17
+> Status: Done
 > Understanding: 90%
 > Confidence: 85%
 > Progress: 100%

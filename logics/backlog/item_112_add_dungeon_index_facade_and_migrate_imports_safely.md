@@ -1,5 +1,6 @@
 ## item_112_add_dungeon_index_facade_and_migrate_imports_safely - Add dungeon index facade and migrate imports safely
 > From version: 0.9.24
+> Status: Done
 > Understanding: 94%
 > Confidence: 92%
 > Progress: 100%

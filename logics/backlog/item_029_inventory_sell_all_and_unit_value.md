@@ -1,5 +1,6 @@
 ## item_029_inventory_sell_all_and_unit_value - Sell all + unit value
 > From version: 0.8.13
+> Status: Done
 > Understanding: 85%
 > Confidence: 75%
 > Progress: 100%

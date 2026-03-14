@@ -1,5 +1,6 @@
 ## item_194_req058_gate_runtime_persistence_while_startup_bootstrap_is_running - req058 gate runtime persistence while startup bootstrap is running
 > From version: 0.9.38
+> Status: Done
 > Understanding: 96%
 > Confidence: 93%
 > Progress: 100%

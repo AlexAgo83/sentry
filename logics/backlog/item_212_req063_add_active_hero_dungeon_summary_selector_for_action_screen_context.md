@@ -1,5 +1,6 @@
 ## item_212_req063_add_active_hero_dungeon_summary_selector_for_action_screen_context - req063 add an active-hero dungeon summary selector for action-screen context
 > From version: 0.9.39
+> Status: Done
 > Understanding: 97%
 > Confidence: 95%
 > Progress: 100%

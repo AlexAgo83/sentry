@@ -1,5 +1,6 @@
 ## item_031_new_badges_for_menus_and_items - “New” badges
 > From version: 0.8.13
+> Status: Done
 > Understanding: 80%
 > Confidence: 70%
 > Progress: 100%

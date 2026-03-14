@@ -1,5 +1,6 @@
 ## item_225_req067_add_action_and_recipe_expected_gain_and_progression_fit_cues - req067 add action and recipe expected-gain and progression-fit cues
 > From version: 0.9.39
+> Status: Done
 > Understanding: 100%
 > Confidence: 96%
 > Progress: 100%

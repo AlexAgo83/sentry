@@ -1,5 +1,6 @@
 ## item_040_split_recipes_and_panel_css - Split monolithic recipes and panel CSS
 > From version: 0.8.17
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_015_player_equipment_inventory - Add per-player equipment inventory with fixed slots
 > From version: 0.8.0
+> Status: Done
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%

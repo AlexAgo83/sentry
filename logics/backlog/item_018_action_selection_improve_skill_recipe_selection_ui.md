@@ -1,5 +1,6 @@
 ## item_018_action_selection_improve_skill_recipe_selection_ui - Action Selection — Improve skill & recipe selection UI
 > From version: 0.8.9
+> Status: Done
 > Understanding: 90%
 > Confidence: 90%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## task_014_player_characteristics - Execute backlog item 014
 > From version: 0.8.0
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

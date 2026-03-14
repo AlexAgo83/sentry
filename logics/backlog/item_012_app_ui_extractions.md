@@ -1,5 +1,6 @@
 ## item_012_app_ui_extractions - Extract modals + hooks from App.tsx
 > From version: 0.7.1
+> Status: Done
 > Understanding: 97%
 > Confidence: 93%
 > Progress: 100%

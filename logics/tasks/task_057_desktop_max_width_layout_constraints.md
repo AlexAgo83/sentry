@@ -1,5 +1,6 @@
 ## task_057_desktop_max_width_layout_constraints - Desktop max-width layout + centered header
 > From version: 0.9.6
+> Status: Done
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%

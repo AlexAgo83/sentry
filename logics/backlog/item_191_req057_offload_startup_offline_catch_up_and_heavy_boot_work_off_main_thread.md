@@ -1,5 +1,6 @@
 ## item_191_req057_offload_startup_offline_catch_up_and_heavy_boot_work_off_main_thread - req057 offload startup offline catch-up and heavy boot work off main thread
 > From version: 0.9.38
+> Status: Done
 > Understanding: 98%
 > Confidence: 94%
 > Progress: 100%

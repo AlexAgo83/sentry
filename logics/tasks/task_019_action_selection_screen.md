@@ -1,5 +1,6 @@
 ## task_019_action_selection_screen - Replace Loadout modal with a dedicated Action Selection screen
 > From version: 0.8.9
+> Status: Done
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%

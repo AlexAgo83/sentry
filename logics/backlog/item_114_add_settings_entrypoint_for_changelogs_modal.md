@@ -1,5 +1,6 @@
 ## item_114_add_settings_entrypoint_for_changelogs_modal - Add Settings entrypoint for changelogs modal
 > From version: 0.9.24
+> Status: Done
 > Understanding: 96%
 > Confidence: 94%
 > Progress: 100%

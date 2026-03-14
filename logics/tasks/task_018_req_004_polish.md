@@ -1,5 +1,6 @@
 ## task_018_req_004_polish - Close remaining UX backlog + gameplay polish + release hardening
 > From version: 0.8.8
+> Status: Done
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%

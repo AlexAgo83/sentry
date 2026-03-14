@@ -1,5 +1,6 @@
 ## item_120_implement_backend_leaderboard_endpoint_sorted_by_virtual_score - Implement backend leaderboard endpoint sorted by virtual score
 > From version: 0.9.26
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

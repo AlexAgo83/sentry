@@ -1,5 +1,6 @@
 ## task_037_add_e2e_smoke_tests_for_critical_flows - Add E2E smoke tests for critical flows
 > From version: 0.8.17
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

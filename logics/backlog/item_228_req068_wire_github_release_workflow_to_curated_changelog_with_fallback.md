@@ -1,5 +1,6 @@
 ## item_228_req068_wire_github_release_workflow_to_curated_changelog_with_fallback - req068 wire the GitHub release workflow to curated changelog content with fallback
 > From version: 0.9.39
+> Status: Done
 > Understanding: 97%
 > Confidence: 95%
 > Progress: 100%

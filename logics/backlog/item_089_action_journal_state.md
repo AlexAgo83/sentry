@@ -1,5 +1,6 @@
 ## item_089_action_journal_state - Capture last 10 actions in state
 > From version: 0.9.10
+> Status: Done
 > Understanding: 94%
 > Confidence: 92%
 > Progress: 100%

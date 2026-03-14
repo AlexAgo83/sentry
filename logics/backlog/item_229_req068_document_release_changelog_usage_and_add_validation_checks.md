@@ -1,5 +1,6 @@
 ## item_229_req068_document_release_changelog_usage_and_add_validation_checks - req068 document release changelog usage and add validation checks
 > From version: 0.9.39
+> Status: Done
 > Understanding: 96%
 > Confidence: 94%
 > Progress: 100%

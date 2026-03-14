@@ -1,5 +1,6 @@
 ## item_141_integrate_floor_and_boss_loot_rolls_into_dungeon_runtime - Integrate loot rolls into dungeon runtime with single-clear reward rule
 > From version: 0.9.28
+> Status: Done
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%

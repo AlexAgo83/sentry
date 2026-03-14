@@ -1,5 +1,6 @@
 ## item_143_tune_drop_weights_and_balance_for_existing_and_exclusive_items - Tune drop weights and balance for existing and exclusive items
 > From version: 0.9.28
+> Status: Done
 > Understanding: 97%
 > Confidence: 93%
 > Progress: 100%

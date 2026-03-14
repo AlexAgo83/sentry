@@ -1,5 +1,6 @@
 ## item_006_new_skills - New skills (alchemy, herbalism, tailoring, fishing, carpentry, leatherworking)
 > From version: 0.4.0
+> Status: Done
 > Understanding: 96%
 > Confidence: 92%
 > Progress: 100%

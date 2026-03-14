@@ -1,5 +1,6 @@
 ## item_135_migrate_leaderboard_backend_to_indexed_cursor_pagination - Migrate leaderboard backend to indexed cursor pagination
 > From version: 0.9.28
+> Status: Done
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%

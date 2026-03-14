@@ -1,5 +1,6 @@
 ## item_161_req048_add_inventory_badge_state_to_save_contract_and_migrations - Persist inventory NEW badge state inside the save contract (schema + migrations)
 > From version: 0.9.31
+> Status: Done
 > Understanding: 95%
 > Confidence: 92%
 > Progress: 100%

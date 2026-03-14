@@ -1,5 +1,6 @@
 ## item_059_dungeon_persistence_offline_catch_up_and_latest_run_replay - Dungeon persistence offline catch-up and latest run replay
 > From version: 0.8.22
+> Status: Done
 > Understanding: 94%
 > Confidence: 88%
 > Progress: 100%

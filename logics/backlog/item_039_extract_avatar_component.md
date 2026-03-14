@@ -1,5 +1,6 @@
 ## item_039_extract_avatar_component - Extract shared Avatar component
 > From version: 0.8.17
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## task_096_execute_tooltip_coverage_across_backlog_items_145_to_147 - Execute tooltip coverage across backlog items 145 to 147
 > From version: 0.9.30
+> Status: Done
 > Understanding: 96%
 > Confidence: 92%
 > Progress: 100%

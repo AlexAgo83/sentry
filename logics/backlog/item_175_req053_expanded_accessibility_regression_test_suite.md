@@ -1,5 +1,6 @@
 ## item_175_req053_expanded_accessibility_regression_test_suite - req053 expanded accessibility regression test suite
 > From version: 0.9.36
+> Status: Done
 > Understanding: 98%
 > Confidence: 96%
 > Progress: 100%

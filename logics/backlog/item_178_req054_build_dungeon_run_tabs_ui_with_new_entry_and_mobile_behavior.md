@@ -1,5 +1,6 @@
 ## item_178_req054_build_dungeon_run_tabs_ui_with_new_entry_and_mobile_behavior - req054 build dungeon run tabs UI with New entry and mobile behavior
 > From version: 0.9.36
+> Status: Done
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%

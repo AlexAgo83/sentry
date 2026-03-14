@@ -1,5 +1,6 @@
 ## item_221_req066_ship_initial_meta_progression_ui_and_goal_communication_surfaces - req066 ship initial meta progression UI and goal communication surfaces
 > From version: 0.9.39
+> Status: Done
 > Understanding: 94%
 > Confidence: 92%
 > Progress: 100%

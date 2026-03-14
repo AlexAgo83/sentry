@@ -1,5 +1,6 @@
 ## task_039_logics_doc_hygiene_cleanup - Logics doc hygiene cleanup
 > From version: 0.8.17
+> Status: Done
 > Understanding: 93%
 > Confidence: 92%
 > Progress: 100%

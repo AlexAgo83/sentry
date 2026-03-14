@@ -1,5 +1,6 @@
 ## item_054_dungeon_cta_entry_and_dedicated_screen_flow - Dungeon CTA entry and dedicated screen flow
 > From version: 0.8.22
+> Status: Done
 > Understanding: 97%
 > Confidence: 93%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_157_ci_audit_policy_make_builds_deterministic - Adjust CI audit policy to avoid non-deterministic red builds
 > From version: 0.9.31
+> Status: Done
 > Understanding: 94%
 > Confidence: 93%
 > Progress: 100%

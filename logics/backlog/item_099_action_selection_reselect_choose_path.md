@@ -1,5 +1,6 @@
 ## item_099_action_selection_reselect_choose_path - Re-select button on "Choose a path"
 > From version: 0.9.10
+> Status: Done
 > Understanding: 93%
 > Confidence: 90%
 > Progress: 100%

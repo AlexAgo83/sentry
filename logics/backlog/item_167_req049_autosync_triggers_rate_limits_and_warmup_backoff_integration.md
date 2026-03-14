@@ -1,5 +1,6 @@
 ## item_167_req049_autosync_triggers_rate_limits_and_warmup_backoff_integration - Add rate-limited auto-save triggers and robust warmup/offline retry behavior
 > From version: 0.9.31
+> Status: Done
 > Understanding: 90%
 > Confidence: 86%
 > Progress: 100%

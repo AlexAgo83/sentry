@@ -1,5 +1,6 @@
 ## item_173_req053_tabs_aria_semantics_and_keyboard_consistency - req053 tabs aria semantics and keyboard consistency
 > From version: 0.9.36
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

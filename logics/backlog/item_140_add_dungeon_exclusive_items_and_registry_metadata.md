@@ -1,5 +1,6 @@
 ## item_140_add_dungeon_exclusive_items_and_registry_metadata - Add dungeon-exclusive items and registry metadata
 > From version: 0.9.28
+> Status: Done
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%

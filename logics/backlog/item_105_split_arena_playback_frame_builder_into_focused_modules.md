@@ -1,5 +1,6 @@
 ## item_105_split_arena_playback_frame_builder_into_focused_modules - Split arena playback frame builder into focused modules
 > From version: 0.9.24
+> Status: Done
 > Understanding: 93%
 > Confidence: 90%
 > Progress: 100%

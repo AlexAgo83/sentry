@@ -1,5 +1,6 @@
 ## item_116_build_changelogs_modal_ui_with_scroll_and_pagination - Build changelogs modal UI with scroll and pagination
 > From version: 0.9.24
+> Status: Done
 > Understanding: 95%
 > Confidence: 93%
 > Progress: 100%

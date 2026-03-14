@@ -1,5 +1,6 @@
 ## item_131_update_local_save_modal_guidance_for_compressed_hashed_format - Update local save modal guidance for compressed hashed format
 > From version: 0.9.28
+> Status: Done
 > Understanding: 95%
 > Confidence: 93%
 > Progress: 100%

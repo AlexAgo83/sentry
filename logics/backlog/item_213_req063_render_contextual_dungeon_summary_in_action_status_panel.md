@@ -1,5 +1,6 @@
 ## item_213_req063_render_contextual_dungeon_summary_in_action_status_panel - req063 render a contextual dungeon summary in the action status panel
 > From version: 0.9.39
+> Status: Done
 > Understanding: 96%
 > Confidence: 94%
 > Progress: 100%

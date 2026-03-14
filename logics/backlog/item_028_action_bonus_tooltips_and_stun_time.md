@@ -1,5 +1,6 @@
 ## item_028_action_bonus_tooltips_and_stun_time - Action bonus tooltips + stun time
 > From version: 0.8.13
+> Status: Done
 > Understanding: 85%
 > Confidence: 75%
 > Progress: 100%

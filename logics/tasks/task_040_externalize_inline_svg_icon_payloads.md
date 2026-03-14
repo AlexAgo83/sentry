@@ -1,5 +1,6 @@
 ## task_040_externalize_inline_svg_icon_payloads - Externalize inline SVG icon payloads
 > From version: 0.8.18
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

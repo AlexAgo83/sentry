@@ -1,5 +1,6 @@
 ## item_036_harden_cloud_auth_rate_limiting - Harden cloud auth + rate limiting
 > From version: 0.8.17
+> Status: Done
 > Understanding: 93%
 > Confidence: 91%
 > Progress: 100%

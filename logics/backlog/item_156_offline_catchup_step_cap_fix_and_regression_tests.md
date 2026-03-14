@@ -1,5 +1,6 @@
 ## item_156_offline_catchup_step_cap_fix_and_regression_tests - Fix offline catch-up stepping semantics and validate with tests
 > From version: 0.9.31
+> Status: Done
 > Understanding: 90%
 > Confidence: 88%
 > Progress: 100%

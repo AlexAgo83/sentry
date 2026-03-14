@@ -1,5 +1,6 @@
 ## item_180_req054_expand_core_and_ui_regression_tests_for_multi_dungeon_navigation - req054 expand core and UI regression tests for multi-dungeon navigation
 > From version: 0.9.36
+> Status: Done
 > Understanding: 96%
 > Confidence: 91%
 > Progress: 100%

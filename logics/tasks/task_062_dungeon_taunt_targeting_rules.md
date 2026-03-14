@@ -1,5 +1,6 @@
 ## task_062_dungeon_taunt_targeting_rules - Dungeon taunt + targeting rules
 > From version: 0.9.8
+> Status: Done
 > Understanding: 95%
 > Confidence: 93%
 > Progress: 100%

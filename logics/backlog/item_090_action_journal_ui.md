@@ -1,5 +1,6 @@
 ## item_090_action_journal_ui - Display the last 10 actions
 > From version: 0.9.10
+> Status: Done
 > Understanding: 94%
 > Confidence: 92%
 > Progress: 100%

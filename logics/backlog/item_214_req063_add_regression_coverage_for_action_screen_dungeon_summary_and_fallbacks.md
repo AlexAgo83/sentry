@@ -1,5 +1,6 @@
 ## item_214_req063_add_regression_coverage_for_action_screen_dungeon_summary_and_fallbacks - req063 add regression coverage for the action-screen dungeon summary and fallbacks
 > From version: 0.9.39
+> Status: Done
 > Understanding: 97%
 > Confidence: 95%
 > Progress: 100%

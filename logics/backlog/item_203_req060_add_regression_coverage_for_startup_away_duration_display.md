@@ -1,5 +1,6 @@
 ## item_203_req060_add_regression_coverage_for_startup_away_duration_display - req060 add regression coverage for startup away-duration display
 > From version: 0.9.38
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

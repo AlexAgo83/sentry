@@ -1,5 +1,6 @@
 ## task_059_dungeon_replay_global_event_cap - Dungeon replay global event cap
 > From version: 0.9.8
+> Status: Done
 > Understanding: 95%
 > Confidence: 94%
 > Progress: 100%

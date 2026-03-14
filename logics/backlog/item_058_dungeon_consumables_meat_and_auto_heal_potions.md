@@ -1,5 +1,6 @@
 ## item_058_dungeon_consumables_meat_and_auto_heal_potions - Dungeon consumables meat and auto-heal potions
 > From version: 0.8.22
+> Status: Done
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%

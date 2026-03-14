@@ -1,5 +1,6 @@
 ## item_100_roster_order_state_and_selectors - Persist roster order and selectors
 > From version: 0.9.12
+> Status: Done
 > Understanding: 94%
 > Confidence: 92%
 > Progress: 100%

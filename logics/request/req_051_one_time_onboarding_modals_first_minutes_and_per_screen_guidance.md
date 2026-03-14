@@ -1,7 +1,8 @@
 ## req_051_one_time_onboarding_modals_first_minutes_and_per_screen_guidance - Add one-time onboarding modals for first minutes and per-screen guidance
 > From version: 0.9.31
+> Status: Ready
 > Understanding: 92%
-> Confidence: 84%
+> Confidence: 86%
 > Complexity: High
 > Theme: UX / Onboarding
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
@@ -143,4 +144,3 @@
 
 # Backlog
 - Backlog items should be generated next (state model + migrations, orchestrator, modal UI, settings controls, tests).
-

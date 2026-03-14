@@ -1,5 +1,6 @@
 ## item_004_project_review_followups - Review follow-ups (legacy + SW cache)
 > From version: 0.3.0
+> Status: Done
 > Understanding: 92%
 > Confidence: 88%
 > Progress: 100%

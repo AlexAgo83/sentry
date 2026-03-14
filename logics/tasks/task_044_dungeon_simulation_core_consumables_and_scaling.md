@@ -1,5 +1,6 @@
 ## task_044_dungeon_simulation_core_consumables_and_scaling - Dungeon simulation core consumables and scaling
 > From version: 0.8.22
+> Status: Done
 > Understanding: 94%
 > Confidence: 89%
 > Progress: 100%

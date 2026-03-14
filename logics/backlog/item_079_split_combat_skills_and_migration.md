@@ -1,5 +1,6 @@
 ## item_079_split_combat_skills_and_migration - Split combat skills and migrate saves
 > From version: 0.9.9
+> Status: Done
 > Understanding: 95%
 > Confidence: 92%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_117_wire_frontend_changelog_data_client_and_modal_state - Wire frontend changelog data client and modal state
 > From version: 0.9.24
+> Status: Done
 > Understanding: 96%
 > Confidence: 94%
 > Progress: 100%

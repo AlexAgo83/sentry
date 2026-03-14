@@ -1,5 +1,6 @@
 ## item_086_dungeon_completion_counter_ui - Show completion badges in dungeon UI
 > From version: 0.9.9
+> Status: Done
 > Understanding: 94%
 > Confidence: 90%
 > Progress: 100%

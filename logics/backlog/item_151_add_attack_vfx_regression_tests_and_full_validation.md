@@ -1,5 +1,6 @@
 ## item_151_add_attack_vfx_regression_tests_and_full_validation - Add attack VFX regression tests and full validation
 > From version: 0.9.30
+> Status: Done
 > Understanding: 90%
 > Confidence: 84%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_023_virtual_score_in_setup_modal - Virtual score in setup modal
 > From version: 0.8.11
+> Status: Done
 > Understanding: 94%
 > Confidence: 92%
 > Progress: 100%

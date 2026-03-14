@@ -1,5 +1,6 @@
 ## item_061_dungeon_multi_party_ready_architecture - Dungeon multi-party ready architecture
 > From version: 0.8.22
+> Status: Done
 > Understanding: 92%
 > Confidence: 85%
 > Progress: 100%

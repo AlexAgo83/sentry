@@ -1,5 +1,6 @@
 ## item_179_req054_wire_new_tab_to_setup_flow_with_concurrent_limit_guardrails - req054 wire New tab to setup flow and party selection guardrails
 > From version: 0.9.36
+> Status: Done
 > Understanding: 95%
 > Confidence: 89%
 > Progress: 100%

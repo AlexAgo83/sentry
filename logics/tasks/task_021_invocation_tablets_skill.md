@@ -1,5 +1,6 @@
 ## task_021_invocation_tablets_skill - Invocation Tablets skill
 > From version: 0.8.10
+> Status: Done
 > Understanding: 90%
 > Confidence: 90%
 > Progress: 100%

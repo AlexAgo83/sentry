@@ -1,5 +1,6 @@
 ## item_224_req067_add_dungeon_readiness_and_risk_reward_value_cues - req067 add dungeon readiness and risk/reward value cues
 > From version: 0.9.39
+> Status: Done
 > Understanding: 100%
 > Confidence: 97%
 > Progress: 100%

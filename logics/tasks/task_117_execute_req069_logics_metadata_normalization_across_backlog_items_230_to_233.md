@@ -1,8 +1,9 @@
 ## task_117_execute_req069_logics_metadata_normalization_across_backlog_items_230_to_233 - Execute req069 Logics metadata normalization across backlog items 230 to 233
 > From version: 0.9.39
-> Understanding: 96%
-> Confidence: 95%
-> Progress: 0%
+> Status: Done
+> Understanding: 98%
+> Confidence: 97%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Logics / CI / Process hygiene
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc.
@@ -32,19 +33,19 @@ This task normalizes the remaining relevant legacy Logics metadata so repository
 - Lint/flow/CI behavior is aligned with the contract so the cleanup becomes durable rather than symbolic.
 
 # Plan
-- [ ] 1. Execute `item_230` (metadata contract + migration rules):
+- [x] 1. Execute `item_230` (metadata contract + migration rules):
   - Define the canonical Logics metadata contract and migration semantics.
   - Clarify the role of `Status` versus transitional indicators.
-- [ ] 2. Execute `item_231` (recent relevant cleanup):
+- [x] 2. Execute `item_231` (recent relevant cleanup):
   - Normalize recent/high-value task and backlog docs missing `Status`.
   - Keep edits narrow, mechanical, and reviewable.
-- [ ] 3. Execute `item_232` (remaining priority legacy cleanup):
+- [x] 3. Execute `item_232` (remaining priority legacy cleanup):
   - Normalize additional priority legacy docs in controlled batches.
   - Move the repo materially closer to eliminating relevant `MISSING Status` drift.
-- [ ] 4. Execute `item_233` (tooling/CI alignment):
+- [x] 4. Execute `item_233` (tooling/CI alignment):
   - Align lint, flow, and CI behavior with the normalized metadata contract.
   - Keep transitional compatibility explicit where still needed.
-- [ ] FINAL: Update related Logics docs (request/backlog/task alignment)
+- [x] FINAL: Update related Logics docs (request/backlog/task alignment)
 
 # Validation
 Final gate (mandatory at task end):
@@ -53,4 +54,3 @@ Final gate (mandatory at task end):
 - `npm run lint`
 - `npm run typecheck`
 - `npm run typecheck:tests`
-

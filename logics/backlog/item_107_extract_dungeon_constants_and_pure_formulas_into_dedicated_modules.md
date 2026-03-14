@@ -1,5 +1,6 @@
 ## item_107_extract_dungeon_constants_and_pure_formulas_into_dedicated_modules - Extract dungeon constants and pure formulas into dedicated modules
 > From version: 0.9.24
+> Status: Done
 > Understanding: 95%
 > Confidence: 92%
 > Progress: 100%

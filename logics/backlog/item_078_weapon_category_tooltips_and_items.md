@@ -1,5 +1,6 @@
 ## item_078_weapon_category_tooltips_and_items - Weapon category tooltips and items
 > From version: 0.9.9
+> Status: Done
 > Understanding: 94%
 > Confidence: 91%
 > Progress: 100%

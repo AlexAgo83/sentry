@@ -1,5 +1,6 @@
 ## item_172_req053_modal_and_dialog_accessibility_contract_hardening - req053 modal and dialog accessibility contract hardening
 > From version: 0.9.36
+> Status: Done
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%

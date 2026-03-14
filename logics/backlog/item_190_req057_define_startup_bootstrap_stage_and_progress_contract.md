@@ -1,5 +1,6 @@
 ## item_190_req057_define_startup_bootstrap_stage_and_progress_contract - req057 define startup bootstrap stage and progress contract
 > From version: 0.9.38
+> Status: Done
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%

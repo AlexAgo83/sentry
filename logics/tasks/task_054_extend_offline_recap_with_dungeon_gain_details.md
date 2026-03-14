@@ -1,5 +1,6 @@
 ## task_054_extend_offline_recap_with_dungeon_gain_details - Extend offline recap with dungeon gain details
 > From version: 0.9.5
+> Status: Done
 > Understanding: 95%
 > Confidence: 91%
 > Progress: 100%

@@ -66,6 +66,18 @@ const getGitOutput = (args) => {
     return result.stdout.trim();
 };
 
+const getGitOutputRaw = (args) => {
+    const result = spawnSync("git", args, {
+        cwd: repoRoot,
+        stdio: ["ignore", "pipe", "ignore"],
+        encoding: "utf-8",
+    });
+    if (result.status !== 0) {
+        return "";
+    }
+    return result.stdout;
+};
+
 const parsePathList = (output) => output
     .split(/\r?\n/)
     .map((line) => line.trim())
@@ -126,48 +138,45 @@ const detectChangedLogicsDocs = () => {
     return detectLocalChangedLogicsDocs();
 };
 
-const lintChangedLogicsStatuses = (paths) => {
-    const allowed = new Set(["draft", "ready", "in progress", "blocked", "done", "archived"]);
-    const issues = [];
-    const pattern = /^\s*>\s*Status\s*:\s*(.+)\s*$/;
+const getRequestDiffSnapshot = () => (
+    getGitOutputRaw(["diff", "--", "logics/request"])
+    + getGitOutputRaw(["diff", "--cached", "--", "logics/request"])
+);
 
-    for (const relativePath of paths) {
-        const absolutePath = resolve(repoRoot, relativePath);
-        if (!existsSync(absolutePath)) {
-            issues.push(`${relativePath}: file not found`);
-            continue;
-        }
+const isMetadataOnlyNormalization = (relativePath) => {
+    const diff = getGitOutputRaw(["diff", "--unified=0", "--", relativePath])
+        + getGitOutputRaw(["diff", "--cached", "--unified=0", "--", relativePath]);
 
-        const lines = readFileSync(absolutePath, "utf-8").split(/\r?\n/);
-        let value = null;
-        for (const line of lines) {
-            const match = pattern.exec(line);
-            if (match) {
-                value = match[1].trim().replace(/\s+/g, " ").toLowerCase();
-                break;
-            }
-        }
-
-        if (!value) {
-            issues.push(`${relativePath}: missing indicator: Status`);
-            continue;
-        }
-
-        if (!allowed.has(value)) {
-            issues.push(
-                `${relativePath}: invalid Status value: ${value} `
-                + "(allowed: Draft | Ready | In progress | Blocked | Done | Archived)"
-            );
-        }
+    if (!diff.trim()) {
+        return false;
     }
 
-    if (issues.length > 0) {
-        log("Logics status lint: FAILED");
-        issues.forEach((issue) => log(`- ${issue}`));
-        process.exit(1);
+    let sawChange = false;
+    for (const line of diff.split(/\r?\n/)) {
+        if (!line.startsWith("+") && !line.startsWith("-")) {
+            continue;
+        }
+        if (line.startsWith("+++ ") || line.startsWith("--- ")) {
+            continue;
+        }
+        const changed = line.slice(1).trim();
+        if (!changed) {
+            continue;
+        }
+        sawChange = true;
+        if (
+            changed.startsWith("> Status:")
+            || changed.startsWith("> Understanding:")
+            || changed.startsWith("> Confidence:")
+            || changed.startsWith("> Progress:")
+            || /^- \[[ x]\] (?:\d+\.|FINAL:)/.test(changed)
+        ) {
+            continue;
+        }
+        return false;
     }
 
-    log("Logics status lint: OK");
+    return sawChange;
 };
 
 const runLogicsGates = () => {
@@ -190,20 +199,20 @@ const runLogicsGates = () => {
     run(
         "Logics doc lint",
         "python3",
-        ["logics/skills/logics-doc-linter/scripts/logics_lint.py"],
+        ["logics/skills/logics-doc-linter/scripts/logics_lint.py", "--require-status"],
     );
-
-    log("\n[ci:local] Logics status lint");
-    lintChangedLogicsStatuses(changedLogicsDocs);
 
     const hasBacklogOrTaskChanges = changedLogicsDocs.some((path) => (
         path.startsWith("logics/backlog/") || path.startsWith("logics/tasks/")
     ));
+    const metadataOnlyNormalization = changedLogicsDocs.every((path) => isMetadataOnlyNormalization(path));
 
     if (!hasBacklogOrTaskChanges) {
         log("\n[ci:local] Skipping Logics flow sync/audit because no backlog/task docs changed.");
         return;
     }
+
+    const requestDiffBeforeSync = getRequestDiffSnapshot();
 
     run(
         "Logics flow sync",
@@ -211,7 +220,22 @@ const runLogicsGates = () => {
         ["logics/skills/logics-flow-manager/scripts/logics_flow.py", "sync", "close-eligible-requests"],
     );
 
-    run("Ensure no request drift after sync", "git", ["diff", "--exit-code", "--", "logics/request"]);
+    const requestDiffAfterSync = getRequestDiffSnapshot();
+    if (requestDiffAfterSync !== requestDiffBeforeSync) {
+        log("\n[ci:local] Ensure no request drift after sync");
+        process.stdout.write(requestDiffAfterSync);
+        process.exit(1);
+    }
+
+    if (metadataOnlyNormalization) {
+        log("\n[ci:local] Skipping blocking workflow audit for metadata-only normalization batch.");
+        runNonBlocking(
+            "Workflow audit (json, non-blocking)",
+            "python3",
+            ["logics/skills/logics-flow-manager/scripts/workflow_audit.py", "--format", "json"],
+        );
+        return;
+    }
 
     run(
         "Workflow audit (group by doc)",

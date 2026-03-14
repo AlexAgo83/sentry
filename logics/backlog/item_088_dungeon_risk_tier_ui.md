@@ -1,5 +1,6 @@
 ## item_088_dungeon_risk_tier_ui - Display risk tiers in dungeon UI
 > From version: 0.9.10
+> Status: Done
 > Understanding: 95%
 > Confidence: 93%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_153_backend_cors_allowlist_and_auth_middleware_short_circuit - Restrict CORS and ensure auth middleware stops execution
 > From version: 0.9.31
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

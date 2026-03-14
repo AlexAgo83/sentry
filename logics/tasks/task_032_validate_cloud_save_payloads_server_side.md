@@ -1,5 +1,6 @@
 ## task_032_validate_cloud_save_payloads_server_side - Validate cloud save payloads server-side
 > From version: 0.8.17
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_206_req061_rebalance_dungeon_progression_rewards_with_clear_tier_payoff - req061 rebalance dungeon progression rewards with clear tier payoff
 > From version: 0.9.38
+> Status: Done
 > Understanding: 96%
 > Confidence: 92%
 > Progress: 100%

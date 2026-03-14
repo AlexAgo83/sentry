@@ -1,5 +1,6 @@
 ## item_046_reduce_recipes_payload_in_initial_bundle - Reduce recipes payload in initial bundle
 > From version: 0.8.18
+> Status: Done
 > Understanding: 90%
 > Confidence: 88%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## item_219_req066_define_meta_progression_state_milestone_taxonomy_and_reward_contracts - req066 define meta progression state, milestone taxonomy, and reward contracts
 > From version: 0.9.39
+> Status: Done
 > Understanding: 95%
 > Confidence: 93%
 > Progress: 100%

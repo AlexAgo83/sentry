@@ -1,5 +1,6 @@
 ## item_085_dungeon_completion_counter_state - Track completions per dungeon ID
 > From version: 0.9.9
+> Status: Done
 > Understanding: 95%
 > Confidence: 91%
 > Progress: 100%

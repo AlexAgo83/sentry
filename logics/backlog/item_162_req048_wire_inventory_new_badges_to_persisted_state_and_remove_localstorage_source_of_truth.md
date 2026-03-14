@@ -1,5 +1,6 @@
 ## item_162_req048_wire_inventory_new_badges_to_persisted_state_and_remove_localstorage_source_of_truth - Make NEW badges derive from persisted save state (not localStorage)
 > From version: 0.9.31
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

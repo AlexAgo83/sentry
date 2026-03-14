@@ -1,5 +1,6 @@
 ## item_152_cloud_auth_memory_only_access_token_and_silent_refresh_autologin - Keep auto-login while removing persistent access token storage
 > From version: 0.9.31
+> Status: Done
 > Understanding: 97%
 > Confidence: 92%
 > Progress: 100%

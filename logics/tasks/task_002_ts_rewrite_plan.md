@@ -1,5 +1,6 @@
 ## task_002_ts_rewrite_plan - Plan and bootstrap TS + React remake
 > From version: 0.2.0
+> Status: Done
 > Understanding: 92%
 > Confidence: 88%
 > Progress: 100%

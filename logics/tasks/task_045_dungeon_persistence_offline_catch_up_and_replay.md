@@ -1,5 +1,6 @@
 ## task_045_dungeon_persistence_offline_catch_up_and_replay - Dungeon persistence offline catch-up and replay
 > From version: 0.8.22
+> Status: Done
 > Understanding: 93%
 > Confidence: 88%
 > Progress: 100%

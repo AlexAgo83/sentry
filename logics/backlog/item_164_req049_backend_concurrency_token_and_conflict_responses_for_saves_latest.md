@@ -1,5 +1,6 @@
 ## item_164_req049_backend_concurrency_token_and_conflict_responses_for_saves_latest - Add save concurrency token and 409 conflict support for auto-sync
 > From version: 0.9.31
+> Status: Done
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%

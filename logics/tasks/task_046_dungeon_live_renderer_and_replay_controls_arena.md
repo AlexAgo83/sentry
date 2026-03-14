@@ -1,5 +1,6 @@
 ## task_046_dungeon_live_renderer_and_replay_controls_arena - Dungeon live renderer and replay controls arena
 > From version: 0.8.22
+> Status: Done
 > Understanding: 96%
 > Confidence: 91%
 > Progress: 100%

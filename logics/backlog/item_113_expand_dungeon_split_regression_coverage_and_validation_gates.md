@@ -1,5 +1,6 @@
 ## item_113_expand_dungeon_split_regression_coverage_and_validation_gates - Expand dungeon split regression coverage and validation gates
 > From version: 0.9.24
+> Status: Done
 > Understanding: 96%
 > Confidence: 94%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## task_109_execute_req060_startup_away_duration_display_across_backlog_items_201_to_203 - Execute req060 startup away-duration display across backlog items 201 to 203
 > From version: 0.9.38
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

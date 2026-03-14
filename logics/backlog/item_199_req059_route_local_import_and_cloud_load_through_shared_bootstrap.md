@@ -1,5 +1,6 @@
 ## item_199_req059_route_local_import_and_cloud_load_through_shared_bootstrap - req059 route local import and cloud load through the shared bootstrap pipeline
 > From version: 0.9.38
+> Status: Done
 > Understanding: 96%
 > Confidence: 92%
 > Progress: 100%

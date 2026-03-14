@@ -1,5 +1,6 @@
 ## item_166_req049_conflict_detection_ui_and_user_resolution_actions - Add conflict UX and explicit resolution actions for auto-sync
 > From version: 0.9.31
+> Status: Done
 > Understanding: 90%
 > Confidence: 88%
 > Progress: 100%

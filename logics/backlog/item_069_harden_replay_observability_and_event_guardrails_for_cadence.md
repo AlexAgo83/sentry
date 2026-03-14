@@ -1,5 +1,6 @@
 ## item_069_harden_replay_observability_and_event_guardrails_for_cadence - Harden replay observability and event guardrails for cadence
 > From version: 0.9.5
+> Status: Done
 > Understanding: 93%
 > Confidence: 88%
 > Progress: 100%

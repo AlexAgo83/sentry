@@ -1,5 +1,6 @@
 ## item_053_dungeon_onboarding_roster_gate_and_fourth_hero_naming - Dungeon onboarding roster gate and fourth hero naming
 > From version: 0.8.22
+> Status: Done
 > Understanding: 96%
 > Confidence: 92%
 > Progress: 100%

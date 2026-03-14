@@ -1,5 +1,6 @@
 ## item_122_build_leaderboard_modal_ui_with_loading_empty_error_states - Build leaderboard modal UI with loading empty error states
 > From version: 0.9.26
+> Status: Done
 > Understanding: 96%
 > Confidence: 94%
 > Progress: 100%

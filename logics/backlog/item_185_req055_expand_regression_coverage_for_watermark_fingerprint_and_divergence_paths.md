@@ -1,5 +1,6 @@
 ## item_185_req055_expand_regression_coverage_for_watermark_fingerprint_and_divergence_paths - req055 expand regression coverage for watermark, fingerprint, and causal divergence paths
 > From version: 0.9.36
+> Status: Done
 > Understanding: 95%
 > Confidence: 91%
 > Progress: 100%

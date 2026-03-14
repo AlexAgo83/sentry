@@ -1,5 +1,6 @@
 ## item_093_warmup_render_backend - Fire best-effort warmup request on startup
 > From version: 0.9.10
+> Status: Done
 > Understanding: 94%
 > Confidence: 92%
 > Progress: 100%

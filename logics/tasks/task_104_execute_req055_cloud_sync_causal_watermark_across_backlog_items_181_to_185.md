@@ -1,5 +1,6 @@
 ## task_104_execute_req055_cloud_sync_causal_watermark_across_backlog_items_181_to_185 - Execute req055 cloud sync causal watermark across backlog items 181 to 185
 > From version: 0.9.36
+> Status: Done
 > Understanding: 96%
 > Confidence: 92%
 > Progress: 100%

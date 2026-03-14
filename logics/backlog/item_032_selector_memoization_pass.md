@@ -1,5 +1,6 @@
 ## item_032_selector_memoization_pass - Selector memoization pass
 > From version: 0.8.13
+> Status: Done
 > Understanding: 80%
 > Confidence: 70%
 > Progress: 100%

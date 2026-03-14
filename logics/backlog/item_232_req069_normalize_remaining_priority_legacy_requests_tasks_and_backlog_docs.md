@@ -1,8 +1,9 @@
 ## item_232_req069_normalize_remaining_priority_legacy_requests_tasks_and_backlog_docs - req069 normalize remaining priority legacy requests, tasks, and backlog docs
 > From version: 0.9.39
-> Understanding: 95%
-> Confidence: 93%
-> Progress: 0%
+> Status: Done
+> Understanding: 97%
+> Confidence: 95%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Logics / Cleanup / Backlog hygiene
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -33,4 +34,3 @@ After the recent/high-value cleanup, the repository will still contain older pri
   - `logics/request/*`
   - `logics/backlog/*`
   - `logics/tasks/*`
-

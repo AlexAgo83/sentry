@@ -1,5 +1,6 @@
 ## item_005_inventory - Inventory
 > From version: 0.3.1
+> Status: Done
 > Understanding: 92%
 > Confidence: 88%
 > Progress: 100%

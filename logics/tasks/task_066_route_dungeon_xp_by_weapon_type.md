@@ -1,5 +1,6 @@
 ## task_066_route_dungeon_xp_by_weapon_type - Route dungeon XP by weapon type
 > From version: 0.9.9
+> Status: Done
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%

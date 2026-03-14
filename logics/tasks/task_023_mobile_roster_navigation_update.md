@@ -1,5 +1,6 @@
 ## task_023_mobile_roster_navigation_update - Mobile roster navigation update
 > From version: 0.8.11
+> Status: Done
 > Understanding: 96%
 > Confidence: 94%
 > Progress: 100%

@@ -1,5 +1,6 @@
 ## task_026_cloud_save_backend_and_conflict_ui - Cloud save backend and conflict UI
 > From version: 0.8.11
+> Status: Done
 > Understanding: 94%
 > Confidence: 88%
 > Progress: 100%
