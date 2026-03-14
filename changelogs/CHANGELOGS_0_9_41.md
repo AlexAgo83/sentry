@@ -29,6 +29,7 @@
 ### Quality and follow-up polish
 
 - Stabilized CI after the wiki/onboarding rollout and kept the full local CI mirror green on the feature branch.
+- Normalized legacy Logics cross-references so the blocking release CI workflow stays aligned with the current request/backlog/task graph.
 - Updated the internal dungeon balance simulator version baseline to match the current app version.
 - Polished wiki and onboarding panel flows after implementation based on desktop feedback.
 
