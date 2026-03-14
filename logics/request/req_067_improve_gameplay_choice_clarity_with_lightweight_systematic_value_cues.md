@@ -1,11 +1,11 @@
 ## req_067_improve_gameplay_choice_clarity_with_lightweight_systematic_value_cues - Improve gameplay choice clarity with lightweight systematic value cues
 > From version: 0.9.39
-> Understanding: 96%
-> Confidence: 94%
+> Understanding: 100%
+> Confidence: 97%
 > Complexity: Medium
 > Theme: UX / Gameplay readability / Decision support
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
-> Status: Ready
+> Status: Done
 
 # Needs
 - Players still need clearer signals about why one action, recipe, dungeon, or activity is worth choosing over another.
@@ -102,6 +102,17 @@
 - Important gameplay choice surfaces expose clearer value cues.
 - The UI remains readable and does not regress into noise.
 - Value cues are derived consistently rather than invented ad hoc per component.
+
+# Outcome
+- Added shared helper contracts in `src/app/selectors/choiceValueCues.ts` for:
+  - dungeon readiness/reward cues,
+  - recipe progression-fit/reward cues.
+- Applied lightweight chips to:
+  - dungeon setup cards,
+  - action/recipe selection cards,
+  - action summary value row.
+- Added regression coverage for both selector derivation and rendered surfaces.
+- Kept the rollout intentionally narrow and lightweight rather than turning decision screens into analytics dashboards.
 
 # Test expectations
 - Follow-up execution should expect:

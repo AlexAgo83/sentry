@@ -183,6 +183,50 @@
     color: rgba(208, 219, 240, 0.85);
 }
 
+.ts-dungeon-cue-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.ts-dungeon-cue-chip {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    border: 1px solid rgba(93, 217, 193, 0.28);
+    padding: 2px 8px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(226, 240, 238, 0.92);
+    background: rgba(12, 18, 32, 0.72);
+}
+
+.ts-dungeon-cue-chip.is-good {
+    border-color: rgba(110, 220, 150, 0.5);
+    color: rgba(180, 244, 204, 0.95);
+    background: rgba(110, 220, 150, 0.12);
+}
+
+.ts-dungeon-cue-chip.is-neutral {
+    border-color: rgba(120, 170, 255, 0.48);
+    color: rgba(196, 218, 255, 0.95);
+    background: rgba(120, 170, 255, 0.12);
+}
+
+.ts-dungeon-cue-chip.is-warn {
+    border-color: rgba(242, 193, 78, 0.5);
+    color: rgba(242, 193, 78, 0.95);
+    background: rgba(242, 193, 78, 0.14);
+}
+
+.ts-dungeon-cue-chip.is-danger {
+    border-color: rgba(239, 77, 67, 0.55);
+    color: rgba(255, 176, 168, 0.95);
+    background: rgba(239, 77, 67, 0.18);
+}
+
 .ts-dungeon-live-entity.is-dead {
     opacity: 0.55;
     filter: grayscale(0.15);

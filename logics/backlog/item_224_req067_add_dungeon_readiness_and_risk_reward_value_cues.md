@@ -1,8 +1,8 @@
 ## item_224_req067_add_dungeon_readiness_and_risk_reward_value_cues - req067 add dungeon readiness and risk/reward value cues
 > From version: 0.9.39
-> Understanding: 96%
-> Confidence: 94%
-> Progress: 0%
+> Understanding: 100%
+> Confidence: 97%
+> Progress: 100%
 > Complexity: Medium
 > Theme: UX / Dungeon / Decision support
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc. When you update backlog indicators, review and update any linked tasks as well.
@@ -35,6 +35,5 @@ Dungeon selection is one of the highest-cost decisions in the game, yet readines
 - Derived from `logics/request/req_067_improve_gameplay_choice_clarity_with_lightweight_systematic_value_cues.md`.
 - Likely touch points:
   - `src/app/components/dungeon*`
-  - `src/app/selectors/*`
+  - `src/app/selectors/choiceValueCues.ts`
   - `tests/app/*dungeon*`
-

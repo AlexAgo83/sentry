@@ -1,8 +1,8 @@
 ## task_115_execute_req067_choice_clarity_value_cues_across_backlog_items_223_to_226 - Execute req067 choice-clarity value cues across backlog items 223 to 226
 > From version: 0.9.39
-> Understanding: 96%
-> Confidence: 94%
-> Progress: 0%
+> Understanding: 100%
+> Confidence: 97%
+> Progress: 100%
 > Complexity: Medium
 > Theme: UX / Gameplay readability / Decision support
 > Reminder: Update Understanding/Confidence/Progress and dependencies/references when you edit this doc.
@@ -40,19 +40,19 @@ This task improves player decision readability by introducing shared lightweight
 - Regression coverage protects both shared derivation logic and the most important rendered surfaces.
 
 # Plan
-- [ ] 1. Execute `item_223` (shared view-models/helpers):
+- [x] 1. Execute `item_223` (shared view-models/helpers):
   - Define the shared cue derivation and formatting helpers.
   - Keep the contract small and reusable.
-- [ ] 2. Execute `item_224` (dungeon cues first):
+- [x] 2. Execute `item_224` (dungeon cues first):
   - Add readiness and risk/reward communication to dungeon-facing decision surfaces.
   - Preserve readability and avoid clutter.
-- [ ] 3. Execute `item_225` (action/recipe cues):
+- [x] 3. Execute `item_225` (action/recipe cues):
   - Add expected-gain and progression-fit cues to action/recipe surfaces.
   - Keep them consistent with the shared cue model.
-- [ ] 4. Execute `item_226` (regression coverage):
+- [x] 4. Execute `item_226` (regression coverage):
   - Add tests for shared cue derivation and key rendered surfaces.
   - Lock the lightweight/systematic behavior into the repo.
-- [ ] FINAL: Update related Logics docs (request/backlog/task alignment)
+- [x] FINAL: Update related Logics docs (request/backlog/task alignment)
 
 # Validation
 Final gate (mandatory at task end):
@@ -60,4 +60,3 @@ Final gate (mandatory at task end):
 - `npm run typecheck`
 - `npm run typecheck:tests`
 - `npm run test:ci`
-

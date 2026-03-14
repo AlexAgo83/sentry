@@ -3,6 +3,7 @@ import type { ActionId, ItemId, PlayerState, RecipeDefinition, SkillDefinition, 
 import { getRecipeUnlockLevel, getRecipesForSkill, isRecipeUnlocked, ITEM_DEFINITIONS } from "../../data/definitions";
 import { getEquipmentDefinition } from "../../data/equipment";
 import { RECIPE_MAX_LEVEL, SKILL_MAX_LEVEL } from "../../core/constants";
+import { getRecipeValueCues, type ChoiceValueCue } from "../selectors/choiceValueCues";
 import { StartActionIcon } from "../ui/startActionIcon";
 import { InterruptIcon } from "../ui/interruptIcon";
 import { BackIcon } from "../ui/backIcon";
@@ -40,6 +41,7 @@ type RecipeChoice = {
     ownedLabel: string;
     ownedFullLabel: string;
     rewardLabel: string;
+    valueCues: [ChoiceValueCue, ChoiceValueCue];
 };
 
 type SkillChoice = {
@@ -306,6 +308,7 @@ export const ActionSelectionScreen = memo(({
                 const rewardLabel = rewardProfile
                     ? `Reward T${rewardProfile.tier} · Skill XP +${rewardProfile.skillXpBonus} · Recipe XP +${rewardProfile.recipeXpBonus}`
                     : "Reward T1";
+                const valueCueModel = getRecipeValueCues(recipeDef, pendingSkill.level, unlocked, Boolean(equipableItemId));
                 return {
                     recipeDef,
                     unlockLevel,
@@ -325,7 +328,8 @@ export const ActionSelectionScreen = memo(({
                     ownedEntries,
                     ownedLabel,
                     ownedFullLabel,
-                    rewardLabel
+                    rewardLabel,
+                    valueCues: [valueCueModel.progressionFit, valueCueModel.rewardFocus]
                 };
             });
     }, [inventoryItems, pendingSkill, pendingSkillId]);
@@ -382,6 +386,11 @@ export const ActionSelectionScreen = memo(({
                     <div className="ts-choice-subtitle">{choice.recipeXpLabel} · Lv {choice.recipeLevel}/{choice.recipeMax}</div>
                 )}
                 <div className="ts-choice-subtitle">{choice.rewardLabel}</div>
+                <div className="ts-choice-cue-row">
+                    {choice.valueCues.map((cue) => (
+                        <span key={cue.label} className={`ts-choice-cue-chip is-${cue.tone}`}>{cue.label}</span>
+                    ))}
+                </div>
                 <div className="ts-choice-details" aria-hidden="true">
                     <div className="ts-choice-detail-row">
                         <span className="ts-choice-detail-label">
@@ -537,6 +546,14 @@ export const ActionSelectionScreen = memo(({
                                     <span className="ts-action-summary-label">XP per action</span>
                                     <span className="ts-action-summary-value">{formatSummaryValue(pendingActionXpLabel)}</span>
                                 </div>
+                                {selectedRecipeChoice ? (
+                                    <div className="ts-action-summary-row">
+                                        <span className="ts-action-summary-label">Value</span>
+                                        <span className="ts-action-summary-value">
+                                            {selectedRecipeChoice.valueCues.map((cue) => cue.label).join(" · ")}
+                                        </span>
+                                    </div>
+                                ) : null}
                                 <div className="ts-action-summary-row">
                                     <span className="ts-action-summary-label">XP bonus</span>
                                     <span className="ts-action-summary-value" title={pendingXpBonusTooltip}>

@@ -31,5 +31,36 @@ describe("DungeonSetupView", () => {
         );
 
         expect(screen.getByText("Reward T5 · Combat XP x1.40 · Boss gold x1.48")).toBeTruthy();
+        expect(screen.getByText("Rare drops + XP")).toBeTruthy();
+    });
+
+    it("shows readiness cues when party power is available", () => {
+        render(
+            <DungeonSetupView
+                definitions={[DUNGEON_DEFINITIONS[3]!]}
+                selectedDungeonId={DUNGEON_DEFINITIONS[3]!.id}
+                safeCompletionCounts={{}}
+                usesPartyPower
+                currentPower={24}
+                riskTooltip="Risk"
+                onSelectDungeon={() => {}}
+                canEnterDungeon={false}
+                sortedPlayers={[]}
+                selectedPartyPlayerIds={[]}
+                unavailablePartyPlayerIds={[]}
+                combatLabelBySkillId={{}}
+                onTogglePartyPlayer={() => {}}
+                hasPartySelection={false}
+                safeRequiredFoodForStart={1}
+                safeFoodCount={0}
+                hasEnoughFood={false}
+                itemNameById={{}}
+                discoveredItemIds={{}}
+                inventoryItems={{}}
+            />
+        );
+
+        expect(screen.getByText("Stretch clear")).toBeTruthy();
+        expect(screen.getByText("Combat XP")).toBeTruthy();
     });
 });

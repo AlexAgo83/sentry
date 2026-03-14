@@ -1,6 +1,7 @@
 import { resolveDungeonRiskTier } from "../../../../core/dungeon";
 import { getCombatSkillIdForWeaponType, getEquippedWeaponType } from "../../../../data/equipment";
 import type { DungeonDefinition, DungeonId, PlayerId, PlayerState } from "../../../../core/types";
+import { getDungeonValueCues } from "../../../selectors/choiceValueCues";
 import { SkillIcon } from "../../../ui/skillIcons";
 import { getSkillIconColor } from "../../../ui/skillColors";
 import { InventoryIcon, type InventoryIconId } from "../../../ui/inventoryIcons";
@@ -70,6 +71,7 @@ export const DungeonSetupView = ({
                             ? resolveDungeonRiskTier(currentPower, recommendedPower)
                             : null;
                         const riskTone = riskTier ? riskTier.toLowerCase() : "medium";
+                        const valueCues = getDungeonValueCues(definition, currentPower, usesPartyPower);
                         return (
                             <button
                                 key={definition.id}
@@ -98,6 +100,16 @@ export const DungeonSetupView = ({
                                     {" · "}
                                     Boss gold {formatRewardMultiplier(definition.rewardProfile?.bossGoldMultiplier)}
                                 </span>
+                                <div className="ts-dungeon-cue-row">
+                                    {valueCues.readiness ? (
+                                        <span className={`ts-dungeon-cue-chip is-${valueCues.readiness.tone}`}>
+                                            {valueCues.readiness.label}
+                                        </span>
+                                    ) : null}
+                                    <span className={`ts-dungeon-cue-chip is-${valueCues.rewardFocus.tone}`}>
+                                        {valueCues.rewardFocus.label}
+                                    </span>
+                                </div>
                                 {completionCount > 0 ? (
                                     <span className="ts-dungeon-completion-badge">x{completionCount}</span>
                                 ) : null}
