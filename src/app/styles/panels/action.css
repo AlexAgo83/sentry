@@ -23,13 +23,6 @@
     gap: var(--m4);
 }
 
-.ts-action-summary-row--stacked {
-    align-items: flex-start;
-    flex-direction: column;
-    grid-column: 1 / -1;
-    gap: var(--m2);
-}
-
 .ts-action-summary-label {
     font-size: var(--text-xs-size);
     text-transform: uppercase;
@@ -48,6 +41,26 @@
     flex-wrap: wrap;
     gap: 8px;
     justify-content: flex-start;
+}
+
+.ts-action-summary-focus-panel {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    flex-wrap: wrap;
+    gap: var(--m3);
+    padding: 0;
+    margin-left: var(--m1);
+    margin-right: var(--m1);
+    margin-top: var(--m3);
+}
+
+.ts-action-summary-focus-kicker {
+    color: var(--color-text-fade);
+    font-size: var(--text-xs-size);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    flex: 0 0 auto;
 }
 
 .ts-progress-row {
@@ -344,9 +357,18 @@
 }
 
 .ts-choice-title--recipe {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--m3);
+    flex-wrap: wrap;
+}
+
+.ts-choice-title-cluster {
     display: inline-flex;
     align-items: center;
     gap: var(--m2);
+    min-width: 0;
 }
 
 .ts-choice-title--recipe .ts-item-icon {
@@ -511,6 +533,12 @@
     margin-top: 2px;
 }
 
+.ts-choice-cue-row--inline {
+    margin-top: 0;
+    justify-content: flex-start;
+    row-gap: 4px;
+}
+
 .ts-choice-cue-chip {
     display: inline-flex;
     align-items: center;
@@ -522,6 +550,12 @@
     text-transform: uppercase;
     color: rgba(226, 240, 238, 0.92);
     background: rgba(12, 18, 32, 0.72);
+}
+
+.ts-choice-cue-chip--compact {
+    padding: 1px 8px;
+    font-size: 9px;
+    letter-spacing: 0.14em;
 }
 
 .ts-choice-cue-chip.is-good {

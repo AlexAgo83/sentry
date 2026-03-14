@@ -376,9 +376,18 @@ export const ActionSelectionScreen = memo(({
         return (
             <div className="ts-choice-copy">
                 <div className="ts-choice-title ts-choice-title--recipe">
-                    <span className="ts-choice-title-text">{choice.recipeDef.name}</span>
-                    {choice.equipableItemId ? (
-                        <ItemIcon itemId={choice.equipableItemId} tone="produce" size={14} />
+                    <span className="ts-choice-title-cluster">
+                        <span className="ts-choice-title-text">{choice.recipeDef.name}</span>
+                        {choice.equipableItemId ? (
+                            <ItemIcon itemId={choice.equipableItemId} tone="produce" size={14} />
+                        ) : null}
+                    </span>
+                    {showValueCues ? (
+                        <span className="ts-choice-cue-row ts-choice-cue-row--inline">
+                            {choice.valueCues.map((cue) => (
+                                <span key={cue.label} className={`ts-choice-cue-chip ts-choice-cue-chip--compact is-${cue.tone}`}>{cue.label}</span>
+                            ))}
+                        </span>
                     ) : null}
                 </div>
                 {!choice.unlocked ? (
@@ -387,13 +396,6 @@ export const ActionSelectionScreen = memo(({
                     <div className="ts-choice-subtitle">{choice.recipeXpLabel} · Lv {choice.recipeLevel}/{choice.recipeMax}</div>
                 )}
                 <div className="ts-choice-subtitle">{choice.rewardLabel}</div>
-                {showValueCues ? (
-                    <div className="ts-choice-cue-row">
-                        {choice.valueCues.map((cue) => (
-                            <span key={cue.label} className={`ts-choice-cue-chip is-${cue.tone}`}>{cue.label}</span>
-                        ))}
-                    </div>
-                ) : null}
                 <div className="ts-choice-details" aria-hidden="true">
                     <div className="ts-choice-detail-row">
                         <span className="ts-choice-detail-label">
@@ -549,18 +551,6 @@ export const ActionSelectionScreen = memo(({
                                     <span className="ts-action-summary-label">Effective XP</span>
                                     <span className="ts-action-summary-value">{formatSummaryValue(pendingActionXpLabel)}</span>
                                 </div>
-                                {selectedRecipeChoice ? (
-                                    <div className="ts-action-summary-row ts-action-summary-row--stacked">
-                                        <span className="ts-action-summary-label">Focus</span>
-                                        <span className="ts-action-summary-chip-row">
-                                            {selectedRecipeChoice.valueCues.map((cue) => (
-                                                <span key={cue.label} className={`ts-choice-cue-chip is-${cue.tone}`}>
-                                                    {cue.label}
-                                                </span>
-                                            ))}
-                                        </span>
-                                    </div>
-                                ) : null}
                                 <div className="ts-action-summary-row">
                                     <span className="ts-action-summary-label">XP bonus</span>
                                     <span className="ts-action-summary-value" title={pendingXpBonusTooltip}>
@@ -602,6 +592,18 @@ export const ActionSelectionScreen = memo(({
                                     </span>
                                 </div>
                             </div>
+                            {selectedRecipeChoice ? (
+                                <div className="ts-action-summary-focus-panel">
+                                    <span className="ts-action-summary-focus-kicker">Focus:</span>
+                                    <span className="ts-action-summary-chip-row">
+                                        {selectedRecipeChoice.valueCues.map((cue) => (
+                                            <span key={cue.label} className={`ts-choice-cue-chip is-${cue.tone}`}>
+                                                {cue.label}
+                                            </span>
+                                        ))}
+                                    </span>
+                                </div>
+                            ) : null}
                             {missingItemsLabel ? (
                                 <div className="ts-missing-hint">{missingItemsLabel}</div>
                             ) : null}

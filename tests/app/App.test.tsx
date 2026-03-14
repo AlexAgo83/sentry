@@ -229,7 +229,7 @@ describe("App", () => {
         expect(screen.getByText("Base reward T4 · Skill XP +2 · Recipe XP +3")).toBeTruthy();
         expect(screen.getByText("Great next step")).toBeTruthy();
         expect(screen.getByText("High XP")).toBeTruthy();
-        expect(screen.getByText("Focus")).toBeTruthy();
+        expect(screen.getByText("Focus:")).toBeTruthy();
     });
 
     it("shows a dungeon summary on the action screen when the active hero is in a dungeon", async () => {

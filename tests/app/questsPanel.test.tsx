@@ -92,4 +92,22 @@ describe("QuestsPanel", () => {
         expect(completedTile).toBeTruthy();
         expect(screen.getByText("Town Charter")).toBeTruthy();
     });
+
+    it("skips the milestone empty banner when all milestones are unlocked", () => {
+        render(<QuestsPanel
+            {...baseProps}
+            completedMilestoneCount={2}
+            totalMilestoneCount={2}
+            milestones={baseProps.milestones.map((milestone) => ({
+                ...milestone,
+                isCompleted: true,
+                progressLabel: "Unlocked",
+                progressPct: 100
+            }))}
+        />);
+
+        expect(screen.getByText("Unlocked milestones")).toBeTruthy();
+        expect(screen.queryByText("Milestone track complete")).toBeNull();
+        expect(screen.queryByText("All current milestones are unlocked.")).toBeNull();
+    });
 });
