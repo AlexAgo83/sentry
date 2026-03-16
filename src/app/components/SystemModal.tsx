@@ -406,7 +406,7 @@ export const SystemModal = memo(({
                         <button
                             type="button"
                             className="generic-field button ts-devtools-button ts-focusable"
-                            onClick={() => window.open("https://github.com/AlexAgo83/Sentry", "_blank", "noopener,noreferrer")}
+                            onClick={() => window.open("https://github.com/AlexAgo83/sentry", "_blank", "noopener,noreferrer")}
                             data-testid="open-about-link"
                             title="About"
                         >

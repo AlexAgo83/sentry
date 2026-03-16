@@ -140,7 +140,7 @@ describe("SystemModal", () => {
                             message: "Latest commit",
                             author: "Alex",
                             committedAt: Date.parse("2026-02-14T12:00:00.000Z"),
-                            url: "https://github.com/AlexAgo83/Sentry/commit/abcdef1234567890"
+                            url: "https://github.com/AlexAgo83/sentry/commit/abcdef1234567890"
                         }
                     ],
                     page: 1,
@@ -252,7 +252,7 @@ describe("SystemModal", () => {
 
         fireEvent.click(screen.getByRole("button", { name: "About" }));
         expect(openSpy).toHaveBeenCalledWith(
-            "https://github.com/AlexAgo83/Sentry",
+            "https://github.com/AlexAgo83/sentry",
             "_blank",
             "noopener,noreferrer"
         );

@@ -8,7 +8,7 @@ const loadServer = async () => {
 
 const buildCommit = (id: number) => ({
     sha: `abcdef${id}1234567890`,
-    html_url: `https://github.com/AlexAgo83/Sentry/commit/abcdef${id}`,
+    html_url: `https://github.com/AlexAgo83/sentry/commit/abcdef${id}`,
     commit: {
         message: `Commit ${id}\n\nBody`,
         author: {
@@ -28,7 +28,7 @@ describe("changelog API", () => {
         process.env.ACCESS_TOKEN_TTL_MINUTES = "15";
         process.env.REFRESH_TOKEN_TTL_DAYS = "30";
         process.env.GITHUB_OWNER = "AlexAgo83";
-        process.env.GITHUB_REPO = "Sentry";
+        process.env.GITHUB_REPO = "sentry";
         process.env.GITHUB_TOKEN = "";
     });
 
@@ -63,7 +63,7 @@ describe("changelog API", () => {
         expect(response.statusCode).toBe(200);
         expect(fetchMock).toHaveBeenCalledTimes(1);
         const [url, options] = fetchMock.mock.calls[0] as [string, { method: string; headers: Record<string, string> }];
-        expect(url).toContain("/repos/AlexAgo83/Sentry/commits");
+        expect(url).toContain("/repos/AlexAgo83/sentry/commits");
         expect(url).toContain("page=2");
         expect(url).toContain("per_page=10");
         expect(options.method).toBe("GET");
@@ -135,7 +135,7 @@ describe("changelog API", () => {
         await app.close();
 
         process.env.GITHUB_OWNER = "AlexAgo83";
-        process.env.GITHUB_REPO = "Sentry";
+        process.env.GITHUB_REPO = "sentry";
         const fetchMock = vi.fn().mockRejectedValue(new Error("network down"));
         vi.stubGlobal("fetch", fetchMock);
 

@@ -26,7 +26,7 @@ describe("ChangelogsModal", () => {
                         message: "First commit",
                         author: "Alice",
                         committedAt: Date.parse("2026-02-14T10:00:00.000Z"),
-                        url: "https://github.com/AlexAgo83/Sentry/commit/abcdef1234567890"
+                        url: "https://github.com/AlexAgo83/sentry/commit/abcdef1234567890"
                     }
                 ],
                 page: 1,

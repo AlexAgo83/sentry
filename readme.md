@@ -2,8 +2,8 @@
 
 Sentry is a TypeScript + React idle RPG focused on roster progression, dungeon runs, and offline continuity.
 
-[![CI](https://github.com/AlexAgo83/Sentry/actions/workflows/ci.yml/badge.svg)](https://github.com/AlexAgo83/Sentry/actions/workflows/ci.yml)
-[![License](https://img.shields.io/github/license/AlexAgo83/Sentry)](LICENSE)
+[![CI](https://github.com/AlexAgo83/sentry/actions/workflows/ci.yml/badge.svg)](https://github.com/AlexAgo83/sentry/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/AlexAgo83/sentry)](LICENSE)
 [![Live Demo](https://img.shields.io/badge/live%20demo-Render-46E3B7?logo=render&logoColor=white)](https://sentry-idle.onrender.com/)
 ![Version](https://img.shields.io/badge/version-v0.9.41-4C8BF5)
 ![Vite](https://img.shields.io/badge/Vite-7.3.1-646CFF?logo=vite&logoColor=white)
@@ -140,7 +140,7 @@ flowchart LR
 ## Getting Started (Frontend only)
 
 1. Clone:
-   - `git clone https://github.com/AlexAgo83/Sentry.git`
+   - `git clone https://github.com/AlexAgo83/sentry.git`
 2. Initialize submodules (needed for logics tooling used in CI):
    - `git submodule update --init --recursive`
 3. Install dependencies:

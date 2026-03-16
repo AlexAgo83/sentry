@@ -43,7 +43,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlexAgo83/Sentry.git"
+    "url": "git+https://github.com/AlexAgo83/sentry.git"
   },
   "keywords": [
     "sentry",
@@ -77,9 +77,9 @@
   "author": "a.agostini.fr@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AlexAgo83/Sentry/issues"
+    "url": "https://github.com/AlexAgo83/sentry/issues"
   },
-  "homepage": "https://github.com/AlexAgo83/Sentry#readme",
+  "homepage": "https://github.com/AlexAgo83/sentry#readme",
   "dependencies": {
     "@fastify/cookie": "^11.0.2",
     "@fastify/cors": "^11.0.0",
