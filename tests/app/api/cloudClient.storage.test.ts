@@ -38,6 +38,33 @@ const buildThrowingStorage = (storedCsrfToken: string | null = null): ThrowingSt
     } as unknown as ThrowingStorage;
 };
 
+const buildStorage = (storedCsrfToken: string | null = null): Storage => {
+    let csrfValue = storedCsrfToken;
+    return {
+        length: csrfValue ? 1 : 0,
+        clear: vi.fn(() => {
+            csrfValue = null;
+        }),
+        getItem: vi.fn((key: string) => {
+            if (key === "sentry.cloud.csrfToken") {
+                return csrfValue;
+            }
+            return null;
+        }),
+        key: vi.fn(() => null),
+        removeItem: vi.fn((key: string) => {
+            if (key === "sentry.cloud.csrfToken") {
+                csrfValue = null;
+            }
+        }),
+        setItem: vi.fn((key: string, value: string) => {
+            if (key === "sentry.cloud.csrfToken") {
+                csrfValue = value;
+            }
+        })
+    } as unknown as Storage;
+};
+
 describe("cloudClient storage hardening", () => {
     beforeEach(() => {
         vi.resetModules();
@@ -80,6 +107,34 @@ describe("cloudClient storage hardening", () => {
 
         await expect(cloudClient.refresh()).resolves.toBe("refresh-token");
         expect(cloudClient.loadAccessToken()).toBe("refresh-token");
+    });
+
+    it("clears stored auth markers after unauthorized refresh", async () => {
+        const storage = buildStorage();
+        installStorage(storage);
+        vi.stubGlobal("fetch", vi.fn()
+            .mockResolvedValueOnce(new Response(JSON.stringify({
+                accessToken: "login-token",
+                csrfToken: "csrf-login"
+            }), {
+                status: 200,
+                headers: { "Content-Type": "application/json" }
+            }))
+            .mockResolvedValueOnce(new Response(JSON.stringify({
+                error: "Missing refresh token."
+            }), {
+                status: 401,
+                headers: { "Content-Type": "application/json" }
+            })));
+
+        const { cloudClient } = await import("../../../src/app/api/cloudClient");
+
+        await expect(cloudClient.login("test@example.com", "password123")).resolves.toBe("login-token");
+        expect(storage.getItem("sentry.cloud.csrfToken")).toBe("csrf-login");
+
+        await expect(cloudClient.refresh()).rejects.toMatchObject({ status: 401 });
+        expect(cloudClient.loadAccessToken()).toBeNull();
+        expect(storage.getItem("sentry.cloud.csrfToken")).toBeNull();
     });
 
     it("swallows csrf cleanup failures", async () => {

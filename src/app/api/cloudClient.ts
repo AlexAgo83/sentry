@@ -209,12 +209,20 @@ const login = async (email: string, password: string): Promise<string> => {
 
 const refresh = async (): Promise<string> => {
     const csrfToken = loadCsrfToken();
-    const data = await requestJson<CloudAuthResponse>("/api/v1/auth/refresh", {
-        method: "POST",
-        headers: csrfToken ? { "x-csrf-token": csrfToken } : undefined
-    });
-    persistAuthResponse(data);
-    return data.accessToken;
+    try {
+        const data = await requestJson<CloudAuthResponse>("/api/v1/auth/refresh", {
+            method: "POST",
+            headers: csrfToken ? { "x-csrf-token": csrfToken } : undefined
+        });
+        persistAuthResponse(data);
+        return data.accessToken;
+    } catch (err) {
+        if (err instanceof CloudApiError && [401, 403].includes(err.status)) {
+            clearAccessToken();
+            clearCsrfToken();
+        }
+        throw err;
+    }
 };
 
 const getLatestSave = async (accessToken: string | null): Promise<CloudSaveResponse | null> => {
