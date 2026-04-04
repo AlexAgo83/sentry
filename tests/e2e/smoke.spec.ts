@@ -45,13 +45,18 @@ const ensureHero = async (page: import("@playwright/test").Page) => {
     }
 };
 
-const dismissStartupCloudPrompt = async (page: import("@playwright/test").Page) => {
+const dismissStartupCloudPrompt = async (
+    page: import("@playwright/test").Page,
+    timeout = 3000
+) => {
     const deferCloudPrompt = page.getByRole("button", { name: "Not now" });
-    const promptVisible = await deferCloudPrompt.waitFor({ state: "visible", timeout: 3000 })
+    const promptVisible = await deferCloudPrompt.waitFor({ state: "visible", timeout })
         .then(() => true)
         .catch(() => false);
     if (promptVisible) {
         await deferCloudPrompt.click();
+        await expect(deferCloudPrompt).toBeHidden();
+        await expect(page.locator(".ts-modal-backdrop")).toHaveCount(0);
     }
 };
 
@@ -61,7 +66,7 @@ test.beforeEach(async ({ page }) => {
     });
     await page.goto("/");
     await ensureHero(page);
-    await dismissStartupCloudPrompt(page);
+    await dismissStartupCloudPrompt(page, 10000);
 });
 
 test("new game onboarding", async ({ page }) => {
