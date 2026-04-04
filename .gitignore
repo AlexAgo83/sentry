@@ -7,3 +7,12 @@ test-results
 output/playwright
 scripts/db/dumps
 perf-trace-*.json
+
+# Generated Logics runtime artifacts
+.env.local
+logics/.cache/
+logics/.cache/hybrid_assist_audit.jsonl
+logics/.cache/hybrid_assist_measurements.jsonl
+logics/hybrid_assist_audit.jsonl
+logics/hybrid_assist_measurements.jsonl
+logics/mutation_audit.jsonl
