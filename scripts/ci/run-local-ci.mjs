@@ -280,7 +280,7 @@ const runFullChecks = () => {
     run("Playwright browsers", npxCmd, playwrightInstallArgs);
 
     run("E2E smoke tests", npmCmd, ["run", "test:e2e"], {
-        env: process.env.GITHUB_ACTIONS === "true" ? {} : {
+        env: {
             PLAYWRIGHT_WEB_HOST: "127.0.0.1",
             PLAYWRIGHT_WEB_PORT: localPlaywrightPort,
         },

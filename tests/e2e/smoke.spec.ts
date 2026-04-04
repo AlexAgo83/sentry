@@ -1,7 +1,9 @@
 import { test, expect } from "@playwright/test";
 
 const HERO_NAME = "E2E Hero";
-const E2E_ORIGIN = `http://127.0.0.1:${process.env.PLAYWRIGHT_WEB_PORT ?? "4173"}`;
+const PLAYWRIGHT_WEB_PORT = process.env.PLAYWRIGHT_WEB_PORT ?? "5173";
+const STARTUP_CLOUD_PROMPT_TIMEOUT_MS = 10_000;
+const E2E_ORIGIN = `http://127.0.0.1:${PLAYWRIGHT_WEB_PORT}`;
 
 const corsHeadersFor = (route: import("@playwright/test").Route) => {
     return {
@@ -47,7 +49,7 @@ const ensureHero = async (page: import("@playwright/test").Page) => {
 
 const dismissStartupCloudPrompt = async (
     page: import("@playwright/test").Page,
-    timeout = 3000
+    timeout = STARTUP_CLOUD_PROMPT_TIMEOUT_MS
 ) => {
     const deferCloudPrompt = page.getByRole("button", { name: "Not now" });
     const promptVisible = await deferCloudPrompt.waitFor({ state: "visible", timeout })
@@ -56,8 +58,8 @@ const dismissStartupCloudPrompt = async (
     if (promptVisible) {
         await deferCloudPrompt.click();
         await expect(deferCloudPrompt).toBeHidden();
-        await expect(page.locator(".ts-modal-backdrop")).toHaveCount(0);
     }
+    await expect(page.locator(".ts-modal-backdrop")).toHaveCount(0);
 };
 
 test.beforeEach(async ({ page }) => {
@@ -66,7 +68,7 @@ test.beforeEach(async ({ page }) => {
     });
     await page.goto("/");
     await ensureHero(page);
-    await dismissStartupCloudPrompt(page, 10000);
+    await dismissStartupCloudPrompt(page);
 });
 
 test("new game onboarding", async ({ page }) => {
