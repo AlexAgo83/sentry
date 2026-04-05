@@ -77,8 +77,13 @@ const dismissStartupCloudPrompt = async (
 };
 
 const dismissBlockingStartupOverlays = async (page: import("@playwright/test").Page) => {
-    await dismissIntroOnboarding(page);
-    await dismissStartupCloudPrompt(page);
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+        await dismissStartupCloudPrompt(page, 2_500);
+        await dismissIntroOnboarding(page, 2_500);
+        if (await page.locator(".ts-modal-backdrop").count() === 0) {
+            return;
+        }
+    }
     await expect(page.locator(".ts-modal-backdrop")).toHaveCount(0);
 };
 
