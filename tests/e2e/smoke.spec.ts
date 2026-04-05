@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 
 const HERO_NAME = "E2E Hero";
 const PLAYWRIGHT_WEB_PORT = process.env.PLAYWRIGHT_WEB_PORT ?? "5173";
+const INTRO_ONBOARDING_TIMEOUT_MS = 1_500;
 const STARTUP_CLOUD_PROMPT_TIMEOUT_MS = 10_000;
 const E2E_ORIGIN = `http://127.0.0.1:${PLAYWRIGHT_WEB_PORT}`;
 
@@ -47,6 +48,20 @@ const ensureHero = async (page: import("@playwright/test").Page) => {
     }
 };
 
+const dismissIntroOnboarding = async (
+    page: import("@playwright/test").Page,
+    timeout = INTRO_ONBOARDING_TIMEOUT_MS
+) => {
+    const skipTips = page.getByRole("button", { name: "Skip tips" });
+    const introVisible = await skipTips.waitFor({ state: "visible", timeout })
+        .then(() => true)
+        .catch(() => false);
+    if (introVisible) {
+        await skipTips.click();
+        await expect(skipTips).toBeHidden();
+    }
+};
+
 const dismissStartupCloudPrompt = async (
     page: import("@playwright/test").Page,
     timeout = STARTUP_CLOUD_PROMPT_TIMEOUT_MS
@@ -59,6 +74,11 @@ const dismissStartupCloudPrompt = async (
         await deferCloudPrompt.click();
         await expect(deferCloudPrompt).toBeHidden();
     }
+};
+
+const dismissBlockingStartupOverlays = async (page: import("@playwright/test").Page) => {
+    await dismissIntroOnboarding(page);
+    await dismissStartupCloudPrompt(page);
     await expect(page.locator(".ts-modal-backdrop")).toHaveCount(0);
 };
 
@@ -68,7 +88,7 @@ test.beforeEach(async ({ page }) => {
     });
     await page.goto("/");
     await ensureHero(page);
-    await dismissStartupCloudPrompt(page);
+    await dismissBlockingStartupOverlays(page);
 });
 
 test("new game onboarding", async ({ page }) => {
@@ -177,7 +197,7 @@ test("cloud auth, upload, download, conflict", async ({ page }) => {
 
     await page.goto("/");
     await ensureHero(page);
-    await dismissStartupCloudPrompt(page);
+    await dismissBlockingStartupOverlays(page);
 
     savePayload = await page.evaluate(() => {
         const api = (window as unknown as { __E2E__?: { getSavePayload?: () => unknown } }).__E2E__;
