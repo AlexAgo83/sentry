@@ -264,10 +264,12 @@ Local parity commands:
 
 - `npm run ci:local:fast`: fast repo gate for day-to-day checks.
 - `npm run ci:local`: full blocking mirror, including Logics gates, lane validation, compatibility coverage, Playwright, audit, build, bundle budgets, and offline recap smoke.
+- `npm run audit:prod:ci`: production dependency audit gate with a narrow allowlist for upstream advisories that currently have no published fix.
 
 Security note:
 
 - PR/push CI fails only on `high` (or above) `npm audit` findings to avoid non-deterministic red builds from newly published moderate advisories.
+- The blocking audit gate is curated: known high/critical advisories with no upstream fix stay explicitly allowlisted in `scripts/ci/npm-audit.allowlist.json` until a real upgrade path exists.
 - A scheduled workflow (`Security audit`) runs `npm audit --audit-level=moderate` in report-only mode.
 
 ## Notes

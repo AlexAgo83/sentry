@@ -1,0 +1,14 @@
+{
+  "advisories": [
+    {
+      "id": 1115824,
+      "package": "fast-jwt",
+      "reason": "No upstream fix is published yet; @fastify/jwt@10.0.0 still depends on fast-jwt^6.0.2 as of 2026-04-05."
+    },
+    {
+      "id": 1115959,
+      "package": "fast-jwt",
+      "reason": "No upstream fix is published yet; @fastify/jwt@10.0.0 still depends on fast-jwt^6.0.2 as of 2026-04-05."
+    }
+  ]
+}

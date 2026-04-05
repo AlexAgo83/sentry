@@ -8,10 +8,10 @@
 - Coverage (local config): `npm run coverage`
 - Tests (CI config): `npm run test:ci`
 - Coverage (CI config): `npm run coverage:ci`
-- Audit: `npm audit --audit-level=moderate`
+- Audit: `npm run audit:prod:ci`
 
 ## CI workflow
-- GitHub Actions runs on each push/PR to `main`: lint, `test:ci`, `coverage:ci`, audit (fail on moderate+), preview build, and smoke (offline recap) against the preview build.
+- GitHub Actions runs on each push/PR to `main`: lint, `test:ci`, `coverage:ci`, curated production audit gate (block on actionable high+ advisories), preview build, and smoke (offline recap) against the preview build.
 
 ## Branch/PR
 - Prefer focused PRs, keep App behavior unchanged unless explicitly stated.

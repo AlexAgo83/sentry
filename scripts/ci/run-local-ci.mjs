@@ -12,6 +12,7 @@ const isFastMode = rawArgs.has("--fast");
 
 const npmCmd = process.platform === "win32" ? "npm.cmd" : "npm";
 const npxCmd = process.platform === "win32" ? "npx.cmd" : "npx";
+const nodeCmd = process.execPath;
 const localPlaywrightPort = process.env.LOCAL_CI_PLAYWRIGHT_PORT ?? "4173";
 
 const baseEnv = {
@@ -285,7 +286,7 @@ const runFullChecks = () => {
             PLAYWRIGHT_WEB_PORT: localPlaywrightPort,
         },
     });
-    run("Audit production deps", npmCmd, ["audit", "--omit=dev", "--audit-level=high"]);
+    run("Audit production deps", nodeCmd, ["scripts/ci/check-production-audit.mjs"]);
     run("Preview build", npmCmd, ["run", "build"]);
     run("Bundle budgets", npmCmd, ["run", "bundle:check"]);
     run("Smoke (offline recap)", npmCmd, ["run", "test:ci", "--", "tests/app/offlineRecapModal.test.tsx"]);
