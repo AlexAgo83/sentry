@@ -1,6 +1,6 @@
 ## req_072_improve_wiki_mobile_navigation_layout - Improve wiki mobile navigation layout
 > From version: 0.9.41
-> Status: Ready
+> Status: Done
 > Understanding: 95%
 > Confidence: 95%
 > Complexity: Medium

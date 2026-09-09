@@ -1,9 +1,9 @@
 ## item_253_add_regression_coverage_for_normalized_and_mobile_wiki_navigation - Add regression coverage for normalized and mobile wiki navigation
 > From version: 0.9.41
-> Status: Ready
+> Status: Done
 > Understanding: 95%
 > Confidence: 95%
-> Progress: 0%
+> Progress: 100%
 > Complexity: Medium
 > Theme: Testing / UI regression / Responsive navigation
 > Reminder: Update status/understanding/confidence/progress and linked task references when you edit this doc.
@@ -74,3 +74,4 @@ flowchart LR
   - `tests/app/wikiScreen.test.tsx`
   - `tests/app/wikiEntries.test.ts`
   - `tests/app/App.test.tsx`
+- Task `task_122_execute_wiki_navigation_normalization_and_mobile_layout_across_backlog_items_250_to_253` was finished via `logics-manager flow finish task` on 2026-09-09.

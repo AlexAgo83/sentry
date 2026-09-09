@@ -1,9 +1,9 @@
 ## task_122_execute_wiki_navigation_normalization_and_mobile_layout_across_backlog_items_250_to_253 - Execute wiki navigation normalization and mobile layout across backlog items 250 to 253
 > From version: 0.9.41
-> Status: Ready
+> Status: Done
 > Understanding: 95%
 > Confidence: 95%
-> Progress: 0%
+> Progress: 100%
 > Complexity: High
 > Theme: UX / Navigation / Responsive UI
 > Reminder: Update status/understanding/confidence/progress and dependencies/references when you edit this doc.
@@ -82,11 +82,16 @@ flowchart LR
 - Recommended if wiki interactions or layout behavior change significantly:
   - `npm run test:e2e`
   - `npm run ci:local:fast`
+- Finish workflow executed on 2026-09-09.
+- Linked backlog/request close verification passed.
 
 # Definition of Done (DoD)
-- [ ] Scope implemented and acceptance criteria covered.
-- [ ] Validation commands executed and results captured.
-- [ ] Linked request/backlog/task docs updated.
-- [ ] Status is `Done` and progress is `100%`.
+- [x] Scope implemented and acceptance criteria covered.
+- [x] Validation commands executed and results captured.
+- [x] Linked request/backlog/task docs updated.
+- [x] Status is `Done` and progress is `100%`.
 
 # Report
+- Finished on 2026-09-09.
+- Linked backlog item(s): `item_250_define_shared_wiki_secondary_navigation_contracts_and_state_behavior`, `item_251_implement_skills_and_recipes_two_level_wiki_navigation_ui`, `item_252_build_mobile_first_wiki_navigation_layout_and_adaptive_secondary_controls`, `item_253_add_regression_coverage_for_normalized_and_mobile_wiki_navigation`
+- Related request(s): `req_071_normalize_wiki_two_level_navigation`, `req_072_improve_wiki_mobile_navigation_layout`

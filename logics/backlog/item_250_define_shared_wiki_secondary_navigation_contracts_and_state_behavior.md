@@ -1,9 +1,9 @@
 ## item_250_define_shared_wiki_secondary_navigation_contracts_and_state_behavior - Define shared wiki secondary navigation contracts and state behavior
 > From version: 0.9.41
-> Status: Ready
+> Status: Done
 > Understanding: 95%
 > Confidence: 95%
-> Progress: 0%
+> Progress: 100%
 > Complexity: Medium
 > Theme: UX / Navigation / State modeling
 > Reminder: Update status/understanding/confidence/progress and linked task references when you edit this doc.
@@ -80,3 +80,4 @@ flowchart LR
   - `src/app/wiki/wikiModel.ts`
   - `src/app/wiki/wikiEntries.ts`
   - `src/app/containers/WikiScreenContainer.tsx`
+- Task `task_122_execute_wiki_navigation_normalization_and_mobile_layout_across_backlog_items_250_to_253` was finished via `logics-manager flow finish task` on 2026-09-09.

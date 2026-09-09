@@ -1,6 +1,6 @@
 ## req_071_normalize_wiki_two_level_navigation - Normalize wiki two-level navigation
 > From version: 0.9.41
-> Status: Ready
+> Status: Done
 > Understanding: 95%
 > Confidence: 95%
 > Complexity: Medium
