@@ -264,6 +264,10 @@ const runLogicsGates = () => {
 };
 
 const runFullChecks = () => {
+    // Sub-second and blocking, so it runs before the slow lanes. Behind them it
+    // only ever reports on the runs that got that far: it sat second-to-last
+    // while CI died early, and production advisories went unseen for months.
+    run("Audit production deps", nodeCmd, ["scripts/ci/check-production-audit.mjs"]);
     run("Lint", npmCmd, ["run", "lint"]);
     run("Typecheck", npmCmd, ["run", "typecheck"]);
     run("Typecheck (tests)", npmCmd, ["run", "typecheck:tests"]);
@@ -292,7 +296,6 @@ const runFullChecks = () => {
             PLAYWRIGHT_WEB_PORT: localPlaywrightPort,
         },
     });
-    run("Audit production deps", nodeCmd, ["scripts/ci/check-production-audit.mjs"]);
     run("Preview build", npmCmd, ["run", "build"]);
     run("Bundle budgets", npmCmd, ["run", "bundle:check"]);
     run("Smoke (offline recap)", npmCmd, ["run", "test:ci", "--", "tests/app/offlineRecapModal.test.tsx"]);
