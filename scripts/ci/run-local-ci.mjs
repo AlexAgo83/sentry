@@ -13,6 +13,13 @@ const isFastMode = rawArgs.has("--fast");
 const npmCmd = process.platform === "win32" ? "npm.cmd" : "npm";
 const npxCmd = process.platform === "win32" ? "npx.cmd" : "npx";
 const nodeCmd = process.execPath;
+const logicsManagerBin = resolve(
+    repoRoot,
+    "node_modules",
+    ".bin",
+    process.platform === "win32" ? "logics-manager.cmd" : "logics-manager",
+);
+const logicsManagerCmd = existsSync(logicsManagerBin) ? logicsManagerBin : "logics-manager";
 const localPlaywrightPort = process.env.LOCAL_CI_PLAYWRIGHT_PORT ?? "4173";
 
 const baseEnv = {
@@ -199,8 +206,8 @@ const runLogicsGates = () => {
 
     run(
         "Logics doc lint",
-        "python3",
-        ["logics/skills/logics-doc-linter/scripts/logics_lint.py", "--require-status"],
+        logicsManagerCmd,
+        ["lint", "--require-status"],
     );
 
     const hasBacklogOrTaskChanges = changedLogicsDocs.some((path) => (
@@ -217,8 +224,8 @@ const runLogicsGates = () => {
 
     run(
         "Logics flow sync",
-        "python3",
-        ["logics/skills/logics-flow-manager/scripts/logics_flow.py", "sync", "close-eligible-requests"],
+        logicsManagerCmd,
+        ["sync", "close-eligible-requests"],
     );
 
     const requestDiffAfterSync = getRequestDiffSnapshot();
@@ -232,17 +239,17 @@ const runLogicsGates = () => {
         log("\n[ci:local] Skipping blocking workflow audit for metadata-only normalization batch.");
         runNonBlocking(
             "Workflow audit (json, non-blocking)",
-            "python3",
-            ["logics/skills/logics-flow-manager/scripts/workflow_audit.py", "--format", "json"],
+            logicsManagerCmd,
+            ["audit", "--format", "json"],
         );
         return;
     }
 
     run(
         "Workflow audit (group by doc)",
-        "python3",
+        logicsManagerCmd,
         [
-            "logics/skills/logics-flow-manager/scripts/workflow_audit.py",
+            "audit",
             "--legacy-cutoff-version",
             "1.1.0",
             "--group-by-doc",
@@ -251,13 +258,12 @@ const runLogicsGates = () => {
 
     runNonBlocking(
         "Workflow audit (json, non-blocking)",
-        "python3",
-        ["logics/skills/logics-flow-manager/scripts/workflow_audit.py", "--format", "json"],
+        logicsManagerCmd,
+        ["audit", "--format", "json"],
     );
 };
 
 const runFullChecks = () => {
-    run("Logics kit Python tests", "python3", ["-m", "unittest", "discover", "-s", "logics/skills/tests", "-p", "test_*.py", "-v"]);
     run("Lint", npmCmd, ["run", "lint"]);
     run("Typecheck", npmCmd, ["run", "typecheck"]);
     run("Typecheck (tests)", npmCmd, ["run", "typecheck:tests"]);

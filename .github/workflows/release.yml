@@ -14,9 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
 
+      - name: Use Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
@@ -29,7 +31,7 @@ jobs:
       - name: Lint
         run: npm run lint
       - name: Logics doc lint
-        run: python3 logics/skills/logics-doc-linter/scripts/logics_lint.py
+        run: npx logics-manager lint
 
       - name: Typecheck
         run: npm run typecheck
