@@ -62,7 +62,7 @@ describe("item usage map (mocked branches)", () => {
         const appleUsedBySet = new Set(ITEM_USAGE_MAP.apple.usedBy);
         expect(appleUsedBySet.size).toBe(ITEM_USAGE_MAP.apple.usedBy.length);
 
-        vi.unmock("../../src/data/definitions");
-        vi.unmock("../../src/data/definitions.ts");
+        vi.doUnmock("../../src/data/definitions");
+        vi.doUnmock("../../src/data/definitions.ts");
     });
 });
