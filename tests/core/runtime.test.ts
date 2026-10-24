@@ -132,7 +132,7 @@ describe("GameRuntime", () => {
         const runtime = new GameRuntime(store, persistence, "0.4.0");
         runtimes.push(runtime);
         vi.spyOn(Date, "now").mockReturnValue(10000);
-        vi.spyOn(runtime as never, "runOfflineCatchUpChunked" as never).mockImplementation(() => (
+        vi.spyOn(runtime as unknown as Record<string, (...args: never[]) => unknown>, "runOfflineCatchUpChunked").mockImplementation(() => (
             new Promise((resolve) => {
                 resolveCatchUp = resolve;
             })
@@ -176,7 +176,7 @@ describe("GameRuntime", () => {
         const runtime = new GameRuntime(store, persistence, "0.4.0");
         runtimes.push(runtime);
         vi.spyOn(Date, "now").mockReturnValue(10000);
-        vi.spyOn(runtime as never, "runOfflineCatchUpChunked" as never).mockImplementation(() => new Promise(() => {}));
+        vi.spyOn(runtime as unknown as Record<string, (...args: never[]) => unknown>, "runOfflineCatchUpChunked").mockImplementation(() => new Promise(() => {}));
 
         runtime.start({ nonBlockingStartup: true });
 
@@ -197,7 +197,7 @@ describe("GameRuntime", () => {
         const runtime = new GameRuntime(store, persistence, "0.4.0");
         runtimes.push(runtime);
         vi.spyOn(Date, "now").mockReturnValue(10000);
-        vi.spyOn(runtime as never, "runOfflineCatchUpChunked" as never).mockImplementation(() => new Promise(() => {}));
+        vi.spyOn(runtime as unknown as Record<string, (...args: never[]) => unknown>, "runOfflineCatchUpChunked").mockImplementation(() => new Promise(() => {}));
 
         runtime.start({ nonBlockingStartup: true });
 
@@ -224,7 +224,7 @@ describe("GameRuntime", () => {
 
         const importedSave = toGameSave(initial);
         importedSave.lastTick = 1000;
-        vi.spyOn(runtime as never, "runOfflineCatchUpChunked" as never).mockImplementation(() => (
+        vi.spyOn(runtime as unknown as Record<string, (...args: never[]) => unknown>, "runOfflineCatchUpChunked").mockImplementation(() => (
             new Promise((resolve) => {
                 resolveCatchUp = resolve;
             })
