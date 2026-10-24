@@ -61,7 +61,7 @@ describe("save/bootstrap compatibility", () => {
         const interruptedStore = createGameStore(base);
         const interruptedPersistence = buildPersistence(durableSave);
         const interruptedRuntime = new GameRuntime(interruptedStore, interruptedPersistence, "0.9.39");
-        vi.spyOn(interruptedRuntime as never, "runOfflineCatchUpChunked" as never).mockImplementation(() => (
+        vi.spyOn(interruptedRuntime as unknown as Record<string, (...args: never[]) => unknown>, "runOfflineCatchUpChunked").mockImplementation(() => (
             new Promise((resolve) => {
                 resolveCatchUp = resolve;
             })
@@ -100,7 +100,7 @@ describe("save/bootstrap compatibility", () => {
         const runtime = new GameRuntime(store, persistence, "0.9.39");
         runtime.start();
 
-        vi.spyOn(runtime as never, "runOfflineCatchUpChunked" as never).mockImplementation(() => (
+        vi.spyOn(runtime as unknown as Record<string, (...args: never[]) => unknown>, "runOfflineCatchUpChunked").mockImplementation(() => (
             new Promise((resolve) => {
                 resolveCatchUp = resolve;
             })
