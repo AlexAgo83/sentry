@@ -40,7 +40,8 @@ export default defineConfig({
             ],
             thresholds: {
                 lines: 75,
-                branches: 75,
+                // same tests: vitest 3 measured 77% of branches, vitest 5 measures 66% (2026-10-24)
+                branches: 65,
                 functions: 75,
                 statements: 75
             }
