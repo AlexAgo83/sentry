@@ -84,7 +84,7 @@ export default defineConfig(({ mode }) => {
                     }
                     : undefined,
                 coverage: {
-                    include: ["src/**", "public/sw.js"],
+                    include: ["src/**/*.{ts,tsx,js,jsx}", "public/sw.js"],
                     exclude: [
                         "**/*.d.ts",
                         "src/core/types.ts",
