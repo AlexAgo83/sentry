@@ -84,7 +84,7 @@ export default defineConfig(({ mode }) => {
                     }
                     : undefined,
                 coverage: {
-                    include: ["src/**", "public/sw.js"],
+                    include: ["src/**/*.{ts,tsx,js,jsx}", "public/sw.js"],
                     exclude: [
                         "**/*.d.ts",
                         "src/core/types.ts",
@@ -94,7 +94,8 @@ export default defineConfig(({ mode }) => {
                     ],
                     thresholds: {
                         lines: 75,
-                        branches: 75,
+                        // same tests: vitest 3 measured 77% of branches, vitest 5 measures 66% (2026-10-24)
+                        branches: 65,
                         functions: 75,
                         statements: 75
                     }
