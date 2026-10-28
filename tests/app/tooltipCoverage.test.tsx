@@ -166,5 +166,5 @@ describe("Tooltip coverage", () => {
 
         openSpy.mockRestore();
         vi.unstubAllGlobals();
-    });
+    }, 30_000); // walks every screen; ~10 s under coverage on the GitHub runner
 });
