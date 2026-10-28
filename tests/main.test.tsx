@@ -3,6 +3,11 @@ import { describe, expect, it, vi } from "vitest";
 import { createInitialGameState } from "../src/core/state";
 import { createGameStore } from "../src/store/gameStore";
 
+// A real React root schedules work that can run after jsdom teardown ("window is not defined" on CI).
+vi.mock("react-dom/client", () => ({
+    createRoot: vi.fn(() => ({ render: vi.fn(), unmount: vi.fn() }))
+}));
+
 const mockAppModule = () => {
     vi.doMock("../src/app/App", () => ({
         App: () => <div>Mock App</div>
