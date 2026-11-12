@@ -1,6 +1,7 @@
 ## task_010_ci_testing_improvements - Restore stricter CI and raise coverage confidence
 > From version: 0.6.3
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 100%
 > Confidence: 84%
 > Progress: 100%
@@ -46,3 +47,8 @@ lightweight coverage to critical flows (offline recap).
 
 # Notes
 - Derived from `logics/backlog/item_004_project_review_followups.md`.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

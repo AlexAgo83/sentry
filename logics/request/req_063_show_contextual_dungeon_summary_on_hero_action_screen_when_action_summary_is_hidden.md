@@ -6,6 +6,7 @@
 > Theme: UX / Dungeon / Hero actions
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - The hero `ACTION` screen currently feels sparse when the selected hero is engaged in a dungeon run.
@@ -114,3 +115,8 @@
 - `logics/backlog/item_212_req063_add_active_hero_dungeon_summary_selector_for_action_screen_context.md`
 - `logics/backlog/item_213_req063_render_contextual_dungeon_summary_in_action_status_panel.md`
 - `logics/backlog/item_214_req063_add_regression_coverage_for_action_screen_dungeon_summary_and_fallbacks.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

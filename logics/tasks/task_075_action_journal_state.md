@@ -2,6 +2,7 @@
 > From version: 0.9.10
 > Owner: —
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 94%
 > Confidence: 92%
 > Progress: 100%
@@ -28,3 +29,8 @@ Add a session-only rolling journal of the last 10 action events.
 - Journal captures and keeps only the last 10 events.
 - New events append without performance impact.
 - Entries include label + timestamp.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

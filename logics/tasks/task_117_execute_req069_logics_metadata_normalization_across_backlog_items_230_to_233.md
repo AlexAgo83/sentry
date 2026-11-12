@@ -1,6 +1,7 @@
 ## task_117_execute_req069_logics_metadata_normalization_across_backlog_items_230_to_233 - Execute req069 Logics metadata normalization across backlog items 230 to 233
 > From version: 0.9.39
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 98%
 > Confidence: 97%
 > Progress: 100%
@@ -54,3 +55,8 @@ Final gate (mandatory at task end):
 - `npm run lint`
 - `npm run typecheck`
 - `npm run typecheck:tests`
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

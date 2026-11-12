@@ -1,6 +1,6 @@
 ## adr_002_bundle_size_budgets_with_ci_enforcement - Bundle size budgets with CI enforcement
 > Date: 2026-01-31
-> Status: Proposed
+> Status: Accepted
 > Drivers: Bundle growth guardrails, CI-enforced performance budgets, reproducible asset reporting, release-time visibility
 > Related request: logics/request/req_043_bundle_performance_leaderboard_scalability_and_ci_flaky_hardening.md
 > Related backlog: logics/backlog/item_043_bundle_perf_budgets.md
@@ -47,3 +47,6 @@ Add build‑time bundle reporting + CI budgets:
 # Follow-up work
 - Revisit thresholds when large optional surfaces are lazily split.
 - Consider per-chunk budget visibility if future regressions become harder to localize.
+
+# Cleanup verification
+Accepted during operator cleanup on 2026-11-12: vite.config.mjs generates the bundle report; scripts/check-bundle-size.js enforces scripts/bundle-budgets.json in the CI mirror and release workflow. Delivery is recorded in commit bdeaf18; later budget calibration is recorded in a11ee1f. No follow-up work is planned.

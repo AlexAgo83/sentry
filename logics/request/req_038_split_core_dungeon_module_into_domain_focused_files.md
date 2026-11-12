@@ -6,6 +6,7 @@
 > Theme: Architecture
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Split `src/core/dungeon.ts` into smaller domain-focused files to reduce complexity and regression risk.
@@ -108,3 +109,8 @@
 - `logics/backlog/item_111_split_applydungeontick_into_phased_dungeon_tick_engine_module.md`
 - `logics/backlog/item_112_add_dungeon_index_facade_and_migrate_imports_safely.md`
 - `logics/backlog/item_113_expand_dungeon_split_regression_coverage_and_validation_gates.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

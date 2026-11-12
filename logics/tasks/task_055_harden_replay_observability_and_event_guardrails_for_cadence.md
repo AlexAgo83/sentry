@@ -1,6 +1,7 @@
 ## task_055_harden_replay_observability_and_event_guardrails_for_cadence - Harden replay observability and event guardrails for cadence
 > From version: 0.9.5
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 93%
 > Confidence: 88%
 > Progress: 100%
@@ -50,3 +51,8 @@ This task ensures cadence changes remain debuggable and bounded by replay/event 
 - Kept per-hero attack caps aligned with cadence runtime guardrails.
 - Preserved replay determinism and truncation behavior under higher event density.
 
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

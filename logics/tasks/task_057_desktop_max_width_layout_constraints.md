@@ -1,6 +1,7 @@
 ## task_057_desktop_max_width_layout_constraints - Desktop max-width layout + centered header
 > From version: 0.9.6
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%
@@ -52,3 +53,8 @@ This task introduces a desktop max-width layout constraint (1200px) and aligns t
 - Kept full-bleed backgrounds and preserved mobile/bottom bar behavior.
 - Updated topbar label breakpoint to 1100px and limited header rounding to bottom corners only.
 - Throttled dungeon screen cursor updates to ~30fps to reduce dev console violations.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

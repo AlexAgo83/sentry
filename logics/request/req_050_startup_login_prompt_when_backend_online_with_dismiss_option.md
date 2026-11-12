@@ -6,6 +6,7 @@
 > Theme: UX / Cloud
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - When the backend is reachable (online) and the user is **not logged in**, prompt the user with a modal suggesting to log in.
@@ -111,3 +112,8 @@
 
 # Backlog
 - Backlog items should be generated next (preference persistence, modal, routing wiring, tests).
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

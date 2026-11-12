@@ -6,6 +6,7 @@
 > Theme: Accessibility / UX quality
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Resolve accessibility gaps identified in the latest UI accessibility review.
@@ -110,3 +111,8 @@
 - `logics/backlog/item_173_req053_tabs_aria_semantics_and_keyboard_consistency.md`
 - `logics/backlog/item_174_req053_dungeon_replay_log_semantic_control_cleanup.md`
 - `logics/backlog/item_175_req053_expanded_accessibility_regression_test_suite.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

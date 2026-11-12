@@ -1,6 +1,6 @@
 ## adr_001_server_side_save_payload_validation_minimal_schema - Server-side save payload validation (minimal schema)
 > Date: 2026-01-31
-> Status: Proposed
+> Status: Accepted
 > Drivers: Cloud save data integrity, malformed payload rejection, forward-compatible validation, low-maintenance schema enforcement
 > Related request: logics/request/req_015_technical_review.md
 > Related backlog: logics/backlog/item_037_validate_cloud_save_payloads.md
@@ -47,3 +47,6 @@ Implement a minimal, shallow save schema validation on the server:
 # Follow-up work
 - Revisit whether additional top-level fields should become required in future schema versions.
 - Add structured diagnostics if validation failure volume becomes operationally relevant.
+
+# Cleanup verification
+Accepted during operator cleanup on 2026-11-12: backend/saveSchema.js validates required and optional top-level fields while allowing unknown fields; backend/routes/saves.js rejects invalid uploads with HTTP 400 and logs failures. Delivery is recorded in commit bdeaf18. No follow-up work is planned.

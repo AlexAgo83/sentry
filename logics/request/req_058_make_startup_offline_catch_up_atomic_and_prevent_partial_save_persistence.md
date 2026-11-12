@@ -6,6 +6,7 @@
 > Theme: Reliability / Persistence
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Startup offline catch-up must not partially overwrite the persisted save while replaying missed ticks.
@@ -111,3 +112,8 @@
   - `logics/backlog/item_194_req058_gate_runtime_persistence_while_startup_bootstrap_is_running.md`
   - `logics/backlog/item_195_req058_block_startup_interrupt_persistence_and_finalize_single_commit_write.md`
   - `logics/backlog/item_196_req058_add_atomic_startup_persistence_regression_coverage.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

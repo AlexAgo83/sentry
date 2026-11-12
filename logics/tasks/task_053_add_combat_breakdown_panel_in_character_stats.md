@@ -1,6 +1,7 @@
 ## task_053_add_combat_breakdown_panel_in_character_stats - Add combat breakdown panel in character stats
 > From version: 0.9.5
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 94%
 > Confidence: 90%
 > Progress: 100%
@@ -51,3 +52,8 @@ This task adds a dedicated Combat block in hero stats to expose Combat level, at
 - Updated stats panel styles for aligned combat columns and responsive layout.
 - Added UI tests to assert Combat breakdown rows and values render as expected.
 
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

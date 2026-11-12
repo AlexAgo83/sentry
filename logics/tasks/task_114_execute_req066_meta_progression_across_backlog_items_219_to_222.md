@@ -1,6 +1,7 @@
 ## task_114_execute_req066_meta_progression_across_backlog_items_219_to_222 - Execute req066 meta progression across backlog items 219 to 222
 > From version: 0.9.39
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 93%
 > Progress: 100%
@@ -63,3 +64,8 @@ Final gate (mandatory at task end):
 - `npm run typecheck`
 - `npm run typecheck:tests`
 - `npm run test:ci`
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

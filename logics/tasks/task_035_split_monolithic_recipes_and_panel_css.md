@@ -1,6 +1,7 @@
 ## task_035_split_monolithic_recipes_and_panel_css - Split monolithic recipes and panel CSS
 > From version: 0.8.17
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%
@@ -26,3 +27,8 @@ Split recipes by skill and CSS by panel, keeping a stable import facade and orde
 - Notes: Recipes split into per-skill modules with an index facade; stats/action CSS now imports panel-specific files in a fixed order.
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

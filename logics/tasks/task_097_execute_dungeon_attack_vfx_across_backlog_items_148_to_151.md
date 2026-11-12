@@ -1,6 +1,7 @@
 ## task_097_execute_dungeon_attack_vfx_across_backlog_items_148_to_151 - Execute dungeon attack VFX across backlog items 148 to 151
 > From version: 0.9.30
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 94%
 > Confidence: 90%
 > Progress: 100%
@@ -54,3 +55,8 @@ Final gate (mandatory at task end):
 - `npm run coverage:ci`
 - `npm run build`
 - `npm run test:e2e`
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -6,6 +6,7 @@
 > Theme: Reliability / Data integrity
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Prevent false "local is newer" or "cloud is newer" decisions caused by delayed backend wakeup and heuristic comparisons.
@@ -134,3 +135,8 @@
 - `logics/backlog/item_183_req055_replace_bootstrap_autosync_heuristics_with_causal_decision_matrix.md`
 - `logics/backlog/item_184_req055_ship_non_blocking_conflict_resolution_ux_in_cloud_save_surface.md`
 - `logics/backlog/item_185_req055_expand_regression_coverage_for_watermark_fingerprint_and_divergence_paths.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

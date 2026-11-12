@@ -1,6 +1,6 @@
 ## adr_000_cloud_auth_hardening_refresh_rotation_db_rate_limits - Cloud auth hardening (refresh rotation + DB rate limits)
 > Date: 2026-01-31
-> Status: Proposed
+> Status: Accepted
 > Drivers: Multi-instance-safe auth hardening, refresh abuse protection, persistent rate-limit correctness, CSRF refresh protection
 > Related request: logics/request/req_047_security_pwa_offline_ci_hardening_and_maintainability.md
 > Related backlog: logics/backlog/item_036_harden_cloud_auth_rate_limiting.md
@@ -51,3 +51,6 @@ This keeps the existing client auth flow while making it multi‑instance safe.
 # Follow-up work
 - Add bounded cleanup for expired/revoked refresh token rows.
 - Revisit trust boundaries for rate-limit key derivation behind proxies.
+
+# Cleanup verification
+Accepted during operator cleanup on 2026-11-12: backend/routes/auth.js implements refresh rotation and CSRF checks; backend/server.js persists per-IP/per-route rate limits through Prisma. Delivery is recorded in commit bdeaf18; later hardening is recorded in c7df643. No follow-up work is planned.

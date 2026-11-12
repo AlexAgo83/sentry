@@ -3,6 +3,7 @@
 > Understanding: 70%
 > Confidence: 70%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 QA give me those feedbacks :
@@ -17,7 +18,12 @@ QA give me those feedbacks :
 8. dans l'inventaire ; si il n'y a qu'une page ; pas la peine d'afficher le controleur de pagination.
 
 # Context
-Add context and constraints.
+Historical request closed as Done. The documented needs and linked delivery remain the reference; no additional work is planned after operator cleanup 2026-11-12.
 
 # Backlog
 - `logics/backlog/item_013_qa_feedback_sweep.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -1,6 +1,7 @@
 ## req_070_modularize_cloud_save_orchestration_and_reduce_frontend_regression_risk - Modularize cloud save orchestration and reduce frontend regression risk
 > From version: 0.9.40
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 100%
 > Confidence: 97%
 > Complexity: Medium
@@ -143,3 +144,8 @@
   - `cloudSaveBridge.ts`
 - The public `CloudSaveController` surface remains stable while auth/profile, warmup-aware operations, autosync/conflict behavior, and E2E wiring are separated into explicit seams.
 - Targeted regression coverage now locks the extracted bridge and autosync seams in addition to the existing cloud integration tests.
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

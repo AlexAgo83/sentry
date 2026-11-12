@@ -6,6 +6,7 @@
 > Theme: Release / Tooling / Changelog
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - The repository now maintains versioned changelog artifacts in `changelogs/`, but GitHub releases are still generated separately.
@@ -99,3 +100,8 @@
 
 # Implemented in
 - `logics/tasks/task_116_execute_req068_release_changelog_alignment_across_backlog_items_227_to_229.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

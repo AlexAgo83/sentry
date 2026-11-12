@@ -6,6 +6,7 @@
 > Theme: Process / Logics / CI hygiene
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - The project still carries a large amount of legacy Logics metadata drift, especially older backlog/task docs without normalized `Status` indicators.
@@ -101,3 +102,8 @@
 - `logics/backlog/item_231_req069_normalize_recent_tasks_and_backlog_docs_missing_status.md`
 - `logics/backlog/item_232_req069_normalize_remaining_priority_legacy_requests_tasks_and_backlog_docs.md`
 - `logics/backlog/item_233_req069_align_logics_lint_flow_and_ci_behavior_with_the_normalized_metadata_contract.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

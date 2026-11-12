@@ -1,6 +1,7 @@
 ## task_032_validate_cloud_save_payloads_server_side - Validate cloud save payloads server-side
 > From version: 0.8.17
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%
@@ -25,3 +26,8 @@ Shallow validation: version + top-level fields. Unknown fields allowed. Invalid 
 - Notes: Added a minimal schema + validator with warning logs and backend coverage for invalid payloads.
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -3,6 +3,7 @@
 > Understanding: 93%
 > Confidence: 90%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Progress: 100%
 > Reminder: Update Understanding/Confidence/Status when you edit this doc.
 
@@ -40,3 +41,8 @@ Persist `lastNonDungeonAction` (skillId + recipeId) when a non-dungeon skill act
 
 # Follow-ups
 - Update backlog item progress and references.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

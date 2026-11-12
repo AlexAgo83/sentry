@@ -3,6 +3,7 @@
 > Understanding: 100%
 > Confidence: 94%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Apply the new modifiers primarily at the weapon category level (Melee/Ranged/Magic).
@@ -76,3 +77,8 @@
 
 # Backlog
 - Triage into items after approval.
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

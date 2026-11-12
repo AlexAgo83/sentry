@@ -1,6 +1,7 @@
 ## task_052_add_agility_based_attack_cadence_runtime - Add agility-based attack cadence runtime
 > From version: 0.9.5
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 91%
 > Progress: 100%
@@ -60,3 +61,8 @@ This task replaces the fixed dungeon attack rhythm with per-hero cooldown cadenc
 - Reworked hero attack loop to cooldown + multi-proc with per-hero cap and deterministic targeting.
 - Preserved fixed enemy cadence and added cadence snapshot data for replay/observability.
 
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -1,6 +1,7 @@
 ## task_103_execute_req054_multi_dungeon_parallel_runs_across_backlog_items_176_to_180 - Execute req054 multi-dungeon parallel runs across backlog items 176 to 180
 > From version: 0.9.36
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 96%
 > Confidence: 92%
 > Progress: 100%
@@ -81,3 +82,8 @@ Track final delivery with:
 - dungeon tab and setup flow behavior changes,
 - tests added/updated,
 - validation results and residual risks.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

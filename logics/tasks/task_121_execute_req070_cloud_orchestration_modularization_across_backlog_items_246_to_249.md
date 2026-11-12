@@ -1,6 +1,7 @@
 ## task_121_execute_req070_cloud_orchestration_modularization_across_backlog_items_246_to_249 - Execute req070 cloud orchestration modularization across backlog items 246 to 249
 > From version: 0.9.40
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 100%
 > Confidence: 97%
 > Progress: 100%
@@ -69,3 +70,8 @@ Final gate (mandatory at task end):
 - `npm run test:ci`
 - `npm run coverage:ci`
 - `npm run test:e2e`
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -6,6 +6,7 @@
 > Theme: Refactor
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Reduce initial app payload and remove recurring `chunks > 500kb` warning pressure.
@@ -95,3 +96,8 @@
 - `logics/backlog/item_136_update_leaderboard_frontend_infinite_scroll_to_cursor_contract.md`
 - `logics/backlog/item_137_add_ci_flaky_detection_stage_for_critical_test_paths.md`
 - `logics/backlog/item_138_add_regression_coverage_and_full_battery_validation_for_request_043.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

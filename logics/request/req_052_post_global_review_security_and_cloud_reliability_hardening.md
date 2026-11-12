@@ -1,6 +1,7 @@
 ## req_052_post_global_review_security_and_cloud_reliability_hardening - Post global review security and cloud reliability hardening
 > From version: 0.9.40
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 100%
 > Confidence: 98%
 > Complexity: Medium
@@ -111,3 +112,8 @@
 - CSRF token persistence/removal is now best-effort on write paths as well as read paths, with dedicated storage-denial regressions.
 - Refresh-token lifecycle cleanup is implemented as a bounded stale-row cleanup during token issuance.
 - The historical `qs` advisory is considered resolved in the current dependency graph and was re-validated during this task with a clean production audit.
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

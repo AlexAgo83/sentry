@@ -1,6 +1,7 @@
 ## task_118_execute_req052_residual_security_and_cloud_reliability_hardening_across_backlog_items_234_to_237 - Execute req052 residual security and cloud reliability hardening across backlog items 234 to 237
 > From version: 0.9.40
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 100%
 > Confidence: 98%
 > Progress: 100%
@@ -59,3 +60,8 @@ Recommended:
 - `npm run coverage:ci`
 - `npm run build`
 - `npm run test:e2e`
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -3,6 +3,7 @@
 > Understanding: 86%
 > Confidence: 76%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Add two new modals: **Local Save** and **Cloud Save**.
@@ -66,3 +67,8 @@
 # Backlog
 - `logics/backlog/item_033_split_local_cloud_save_modals.md`
 - `logics/backlog/item_051_split_local_cloud_save_modals.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

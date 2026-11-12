@@ -3,6 +3,7 @@
 > Understanding: 91%
 > Confidence: 91%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - The Action Selection screen should offer a more visual, scannable way to pick:
@@ -79,3 +80,8 @@
 
 # Backlog
 - `logics/backlog/item_018_action_selection_improve_skill_recipe_selection_ui.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

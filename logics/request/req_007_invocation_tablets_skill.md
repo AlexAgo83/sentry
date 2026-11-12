@@ -3,6 +3,7 @@
 > Understanding: 86%
 > Confidence: 76%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Add a new skill (action) dedicated to crafting **Invocation Tablets** (tablettes d'invocation).
@@ -28,3 +29,8 @@
 
 # Backlog
 - `logics/backlog/item_019_invocation_tablets_skill.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

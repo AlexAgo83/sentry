@@ -1,6 +1,7 @@
 ## task_067_ui_combat_skill_split_display - UI display for split combat skills
 > From version: 0.9.9
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%
@@ -29,3 +30,8 @@ Derived from `logics/backlog/item_081_ui_combat_skill_split_display.md`
 # Report
 - Surfaced melee/ranged/magic combat skills in Stats with a single Combat section and new icons/colors.
 - Updated dungeon party selection to show a compact combat skill mini-stack.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -3,6 +3,7 @@
 > Understanding: 98%
 > Confidence: 96%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Reduce CPU cost and memory growth in the dungeon combat loop, especially during offline catch-up.
@@ -74,3 +75,8 @@
 - `logics/backlog/item_072_dungeon_combat_step_perf_cache.md`
 - `logics/backlog/item_073_dungeon_replay_event_cap.md`
 - `logics/backlog/item_074_dungeon_progression_parity_tests.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -1,6 +1,7 @@
 ## task_058_dungeon_combat_per_step_perf_caching - Dungeon combat per-step perf caching
 > From version: 0.9.8
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 94%
 > Progress: 100%
@@ -26,3 +27,8 @@ Derived from `logics/backlog/item_072_dungeon_combat_step_perf_cache.md`
 
 # Report
 - Added per-step hero stat caching and party indexing in `src/core/dungeon.ts` to reduce repeated computations.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

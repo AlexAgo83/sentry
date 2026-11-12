@@ -1,6 +1,7 @@
 ## task_120_execute_req051_one_time_onboarding_across_backlog_items_242_to_245 - Execute req051 one-time onboarding across backlog items 242 to 245
 > From version: 0.9.40
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 100%
 > Confidence: 100%
 > Progress: 100%
@@ -66,3 +67,8 @@ Final gate (mandatory at task end):
 - `npm run typecheck:tests`
 - `npm run test:ci`
 - `npm run coverage:ci`
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

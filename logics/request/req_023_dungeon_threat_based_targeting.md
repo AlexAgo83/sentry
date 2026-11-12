@@ -3,6 +3,7 @@
 > Understanding: 98%
 > Confidence: 95%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Replace the current “lowest HP then first hero” targeting with a more natural, readable enemy targeting model.
@@ -73,3 +74,8 @@
 # Backlog
 - `logics/backlog/item_075_dungeon_threat_model.md`
 - `logics/backlog/item_076_dungeon_taunt_targeting_rules.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

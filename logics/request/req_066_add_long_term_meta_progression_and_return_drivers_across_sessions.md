@@ -6,6 +6,7 @@
 > Theme: Product / Progression / Retention
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - The game loop is increasingly solid at the moment-to-moment level, but it still needs stronger reasons for players to return across multiple sessions.
@@ -128,3 +129,8 @@
 
 # Implemented in
 - `logics/tasks/task_114_execute_req066_meta_progression_across_backlog_items_219_to_222.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

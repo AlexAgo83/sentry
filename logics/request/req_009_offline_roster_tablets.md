@@ -3,6 +3,7 @@
 > Understanding: 95%
 > Confidence: 86%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Increase the offline time limit to 7 days across all platforms (cap the processed window; keep recap messaging for capped time).
@@ -87,3 +88,8 @@
 - `logics/backlog/item_023_virtual_score_in_setup_modal.md`
 - `logics/backlog/item_024_cloud_save_backend_and_conflict_ui.md`
 - `logics/backlog/item_025_db_dump_and_reset_utilities.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

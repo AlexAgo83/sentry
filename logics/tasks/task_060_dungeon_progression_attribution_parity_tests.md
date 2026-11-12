@@ -1,6 +1,7 @@
 ## task_060_dungeon_progression_attribution_parity_tests - Dungeon progression attribution + parity tests
 > From version: 0.9.8
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 94%
 > Confidence: 93%
 > Progress: 100%
@@ -26,3 +27,8 @@ Derived from `logics/backlog/item_074_dungeon_progression_parity_tests.md`
 
 # Report
 - Updated combat active attribution to use step-start survivors and expanded parity assertions in tests.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

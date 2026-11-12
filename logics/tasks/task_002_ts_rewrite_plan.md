@@ -1,6 +1,7 @@
 ## task_002_ts_rewrite_plan - Plan and bootstrap TS + React remake
 > From version: 0.2.0
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 92%
 > Confidence: 88%
 > Progress: 100%
@@ -66,3 +67,8 @@ Decisions / direction
 - npm run lint
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

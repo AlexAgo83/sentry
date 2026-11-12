@@ -1,6 +1,7 @@
 ## task_102_execute_req053_accessibility_hardening_across_backlog_items_172_to_175 - execute req053 accessibility hardening across backlog items 172 to 175
 > From version: 0.9.36
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 99%
 > Confidence: 96%
 > Progress: 100%
@@ -102,3 +103,8 @@ Track final delivery with:
 
 ## Residual Risks
 - `SidePanelSwitcher` remains a hybrid tab/menu control; semantics are improved and keyboard-tested, but future UI changes should preserve this interaction contract to avoid regressions.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

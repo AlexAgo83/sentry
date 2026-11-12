@@ -2,6 +2,7 @@
 > From version: 0.9.10
 > Owner: —
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 94%
 > Progress: 100%
@@ -33,3 +34,8 @@ Persist an auto-consumables toggle and make dungeon auto-use respect it.
 - Auto-consume logic respects `autoConsumables`.
 - Toggle persists across reloads like auto-restart.
 - No auto-use occurs when toggle is off.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -6,6 +6,7 @@
 > Theme: UX / Accessibility
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Any clickable control in the app must expose a short description on hover.
@@ -95,3 +96,8 @@
 - `logics/backlog/item_145_define_tooltip_conventions_and_shared_helper.md`
 - `logics/backlog/item_146_add_titles_and_aria_labels_across_all_clickable_controls.md`
 - `logics/backlog/item_147_add_regression_tests_for_tooltip_coverage.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

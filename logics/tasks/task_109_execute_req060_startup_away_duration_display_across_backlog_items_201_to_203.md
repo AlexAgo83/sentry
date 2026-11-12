@@ -1,6 +1,7 @@
 ## task_109_execute_req060_startup_away_duration_display_across_backlog_items_201_to_203 - Execute req060 startup away-duration display across backlog items 201 to 203
 > From version: 0.9.38
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 97%
 > Confidence: 94%
 > Progress: 100%
@@ -49,3 +50,8 @@ Final gate (mandatory at task end):
 - `npm run typecheck`
 - `npm run typecheck:tests`
 - `npm run test:ci`
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

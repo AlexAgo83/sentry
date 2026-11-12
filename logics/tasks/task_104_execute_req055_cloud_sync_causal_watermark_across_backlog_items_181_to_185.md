@@ -1,6 +1,7 @@
 ## task_104_execute_req055_cloud_sync_causal_watermark_across_backlog_items_181_to_185 - Execute req055 cloud sync causal watermark across backlog items 181 to 185
 > From version: 0.9.36
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 96%
 > Confidence: 92%
 > Progress: 100%
@@ -87,3 +88,8 @@ Track final delivery with:
 - conflict UX behavior and resolution flow,
 - tests added/updated,
 - validation results and residual risks.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -1,6 +1,7 @@
 ## task_028_backlog_completion_sweep - Complete remaining backlog items
 > From version: 0.8.14
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 100%
 > Confidence: 75%
 > Progress: 100%
@@ -45,3 +46,8 @@ Sweep task to complete all backlog items that are not yet at 100%.
 - Derived from `logics/backlog/item_030_cloud_last_sync_and_meta_diff.md`.
 - Derived from `logics/backlog/item_031_new_badges_for_menus_and_items.md`.
 - Derived from `logics/backlog/item_032_selector_memoization_pass.md`.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

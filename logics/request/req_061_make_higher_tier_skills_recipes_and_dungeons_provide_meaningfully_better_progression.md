@@ -6,6 +6,7 @@
 > Theme: Balance / Progression / Architecture
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Higher-level recipes and harder dungeons should provide a clear gameplay benefit versus lower-tier content.
@@ -149,3 +150,8 @@
 - `logics/backlog/item_205_req061_route_action_and_recipe_progression_through_tiered_reward_calculators.md`
 - `logics/backlog/item_206_req061_rebalance_dungeon_progression_rewards_with_clear_tier_payoff.md`
 - `logics/backlog/item_207_req061_surface_reward_value_cues_and_add_progression_regression_coverage.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

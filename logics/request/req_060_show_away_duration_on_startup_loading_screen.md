@@ -6,6 +6,7 @@
 > Theme: UX / Startup
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - The startup loading screen should explain why offline catch-up is happening.
@@ -104,3 +105,8 @@
 - `logics/backlog/item_201_req060_add_away_duration_metadata_to_startup_bootstrap_state.md`
 - `logics/backlog/item_202_req060_render_away_duration_context_in_startup_splash.md`
 - `logics/backlog/item_203_req060_add_regression_coverage_for_startup_away_duration_display.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

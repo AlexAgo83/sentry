@@ -3,6 +3,7 @@
 > Understanding: 76%
 > Confidence: 66%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Reduce the static bundle size driven by large recipe data and inline SVG icon payloads.
@@ -18,3 +19,8 @@
 # Backlog
 - `logics/backlog/item_045_externalize_inline_svg_icon_payloads.md`
 - `logics/backlog/item_046_reduce_recipes_payload_in_initial_bundle.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

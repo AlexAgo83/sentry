@@ -1,6 +1,7 @@
 ## task_100_execute_cloud_auto_sync_across_backlog_items_164_to_168 - Execute cloud auto-sync (auto-save/auto-load) across backlog items 164 to 168
 > From version: 0.9.31
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%
@@ -60,3 +61,8 @@ Final gate (mandatory at task end):
 - `npm run coverage:ci`
 - `npm run build`
 - `npm run test:e2e`
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

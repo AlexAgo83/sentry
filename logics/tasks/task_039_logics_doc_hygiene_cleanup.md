@@ -1,6 +1,7 @@
 ## task_039_logics_doc_hygiene_cleanup - Logics doc hygiene cleanup
 > From version: 0.8.17
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 93%
 > Confidence: 92%
 > Progress: 100%
@@ -26,3 +27,8 @@ Move example docs to `logics/external/` and ensure doc linting is clean, with CI
 - `logics-doc-linter` passes cleanly.
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

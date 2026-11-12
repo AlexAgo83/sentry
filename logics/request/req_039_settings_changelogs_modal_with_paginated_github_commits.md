@@ -6,6 +6,7 @@
 > Theme: Feature
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Add a `Changelogs` entry in `Settings`.
@@ -130,3 +131,8 @@
 - `logics/backlog/item_116_build_changelogs_modal_ui_with_scroll_and_pagination.md`
 - `logics/backlog/item_117_wire_frontend_changelog_data_client_and_modal_state.md`
 - `logics/backlog/item_118_add_changelogs_feature_tests_frontend_backend_and_optional_e2e.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

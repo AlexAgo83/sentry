@@ -1,6 +1,7 @@
 ## task_043_dungeon_foundation_entry_and_party_setup - Dungeon foundation entry and party setup
 > From version: 0.8.22
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 91%
 > Progress: 100%
@@ -30,3 +31,8 @@ This task delivers the player entry funnel before combat simulation: onboarding 
 
 # Report
 - Completed in code: onboarding gate + 3 starter heroes generation (empty roster only), Dungeon CTA integration desktop/mobile, dedicated dungeon screen routing, setup validation for 4-hero party, and related test updates.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

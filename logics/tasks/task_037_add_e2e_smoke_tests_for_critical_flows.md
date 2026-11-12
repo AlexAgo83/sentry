@@ -1,6 +1,7 @@
 ## task_037_add_e2e_smoke_tests_for_critical_flows - Add E2E smoke tests for critical flows
 > From version: 0.8.17
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%
@@ -25,3 +26,8 @@ Use Playwright with mocked backend for determinism; target a 3–5 minute runtim
 - Validation: Not run (suggest `npm run test:e2e`).
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -6,6 +6,7 @@
 > Theme: Performance / Startup UX
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Startup must stay responsive when the app shows "Preparing your save and assets...".
@@ -113,3 +114,8 @@
 - `logics/backlog/item_191_req057_offload_startup_offline_catch_up_and_heavy_boot_work_off_main_thread.md`
 - `logics/backlog/item_192_req057_ship_startup_progress_ui_and_non_blocking_app_shell_behavior.md`
 - `logics/backlog/item_193_req057_add_startup_responsiveness_regression_coverage_and_perf_guardrails.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

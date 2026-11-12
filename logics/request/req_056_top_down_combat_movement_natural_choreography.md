@@ -6,6 +6,7 @@
 > Theme: UX / Combat Feel
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Improve dungeon combat movement so heroes and enemies feel like they are actively dueling in a top-down arena, instead of mostly static units with short hit motions.
@@ -128,3 +129,8 @@
 - `logics/backlog/item_187_req056_implement_top_down_steering_approach_orbit_and_separation.md`
 - `logics/backlog/item_188_req056_integrate_renderer_facing_strafe_and_motion_phase_feedback.md`
 - `logics/backlog/item_189_req056_add_movement_determinism_performance_and_regression_coverage.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

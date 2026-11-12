@@ -3,6 +3,7 @@
 > Understanding: 71%
 > Confidence: 61%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Replace the default auto-created hero on first launch with a lightweight onboarding/tutorial.
@@ -28,3 +29,8 @@
 # Backlog
 - `logics/backlog/item_034_onboarding_hero_creation.md`
 - `logics/backlog/item_050_onboarding_hero_creation.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

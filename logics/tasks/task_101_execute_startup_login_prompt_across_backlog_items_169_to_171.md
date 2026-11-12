@@ -1,6 +1,7 @@
 ## task_101_execute_startup_login_prompt_across_backlog_items_169_to_171 - Execute startup login prompt across backlog items 169 to 171
 > From version: 0.9.31
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 94%
 > Confidence: 90%
 > Progress: 100%
@@ -48,3 +49,8 @@ Final gate (mandatory at task end):
 - `npm run typecheck`
 - `npm run typecheck:tests`
 - `npm run test:ci`
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

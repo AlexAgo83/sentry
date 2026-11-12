@@ -1,6 +1,7 @@
 ## req_062_strengthen_sentry_test_governance_with_explicit_lanes_timeout_policy_and_save_flow_compatibility - Strengthen Sentry test governance with explicit lanes, timeout policy, and save-flow compatibility coverage
 > From version: 0.9.38
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 94%
 > Complexity: Medium
@@ -189,3 +190,8 @@
 - `logics/backlog/item_209_req062_add_timeout_governance_for_targeted_integration_test_areas.md`
 - `logics/backlog/item_210_req062_add_save_and_bootstrap_compatibility_regression_suite.md`
 - `logics/backlog/item_211_req062_integrate_lane_validation_timeout_policy_and_suite_health_reporting_into_ci.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

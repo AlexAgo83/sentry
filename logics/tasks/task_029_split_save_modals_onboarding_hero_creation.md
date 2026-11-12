@@ -1,6 +1,7 @@
 ## task_029_split_save_modals_onboarding_hero_creation - Split save modals + onboarding hero creation
 > From version: 0.8.14
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 90%
 > Confidence: 85%
 > Progress: 100%
@@ -31,3 +32,8 @@
 - Tests: npm run tests, npm run lint
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

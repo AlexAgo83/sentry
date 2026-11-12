@@ -1,6 +1,7 @@
 ## task_001_review_and_ui_redesign - Execute backlog items 001-002
 > From version: 0.2.0
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%
@@ -33,3 +34,8 @@ This task executes `item_001_project_review` and `item_002_ui_redesign`.
 - npm run lint
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

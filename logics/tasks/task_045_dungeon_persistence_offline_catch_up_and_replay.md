@@ -1,6 +1,7 @@
 ## task_045_dungeon_persistence_offline_catch_up_and_replay - Dungeon persistence offline catch-up and replay
 > From version: 0.8.22
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 93%
 > Confidence: 88%
 > Progress: 100%
@@ -29,3 +30,8 @@ This task ensures dungeon state integrity across local/cloud persistence, offlin
 # Report
 - Completed in code: save model/migrations/serialization for dungeon, offline catch-up integration, replay caps/fallback, auto-open live dungeon screen on resume, and explicit active-run warning in cloud conflict UI with newest-save guidance.
 - Added/updated tests for dungeon save round-trip serialization, offline deterministic parity (split vs bulk tick), replay cap fallback behavior, and cloud conflict warning rendering.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -2,6 +2,7 @@
 > From version: 0.9.10
 > Owner: —
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 94%
 > Confidence: 92%
 > Progress: 100%
@@ -28,3 +29,8 @@ Expose the last 10 action entries in the System/Settings area.
 - The list shows the last 10 entries.
 - Entries update live as new actions occur.
 - Layout is readable on desktop and mobile.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -6,6 +6,7 @@
 > Theme: Feature
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Add a probable/weighted loot table for each dungeon.
@@ -144,3 +145,8 @@
 - `logics/backlog/item_142_wire_dungeon_loot_events_into_inventory_and_action_journal.md`
 - `logics/backlog/item_143_tune_drop_weights_and_balance_for_existing_and_exclusive_items.md`
 - `logics/backlog/item_144_add_dungeon_loot_probability_and_regression_test_coverage.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.
