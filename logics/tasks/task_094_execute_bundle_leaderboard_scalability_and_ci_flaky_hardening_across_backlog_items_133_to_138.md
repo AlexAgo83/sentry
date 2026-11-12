@@ -1,6 +1,7 @@
 ## task_094_execute_bundle_leaderboard_scalability_and_ci_flaky_hardening_across_backlog_items_133_to_138 - Execute bundle, leaderboard scalability, and CI flaky hardening across backlog items 133 to 138
 > From version: 0.9.28
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%
@@ -76,3 +77,8 @@ Final gate (mandatory at task end):
 - Bundle guardrails: tightened `scripts/bundle-budgets.json` max JS chunk to 500KB and added `manualChunks` split to keep chunks under the warning threshold.
 - CI: added a flaky gate running the save envelope test multiple times.
 - Full battery validated via `npm run test:full`.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

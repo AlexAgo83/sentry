@@ -6,6 +6,7 @@
 > Theme: Architecture / UX / Reliability
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Loading a save from local import or cloud load should be able to show the same loading/bootstrap UI as app startup when offline catch-up is required.
@@ -138,3 +139,8 @@
 - `logics/backlog/item_198_req059_add_origin_aware_bootstrap_state_and_shared_loading_surface_behavior.md`
 - `logics/backlog/item_199_req059_route_local_import_and_cloud_load_through_shared_bootstrap.md`
 - `logics/backlog/item_200_req059_add_regression_coverage_for_shared_bootstrap_origins.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

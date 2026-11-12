@@ -2,6 +2,7 @@
 > From version: 0.9.11
 > Owner: —
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 100%
 > Confidence: 82%
 > Progress: 100%
@@ -38,3 +39,8 @@ Backend: `https://sentry-backend-1tx5.onrender.com`.
 
 # Notes
 - Derived from `logics/backlog/item_152_cloud_auth_memory_only_access_token_and_silent_refresh_autologin.md`.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

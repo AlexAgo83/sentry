@@ -1,6 +1,7 @@
 ## task_047_dungeon_multi_party_ready_architecture_guardrails - Dungeon multi-party ready architecture guardrails
 > From version: 0.8.22
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 91%
 > Confidence: 84%
 > Progress: 100%
@@ -32,3 +33,8 @@ This task is an architecture hardening pass so v1 (single active party) does not
   - Isolated singleton coupling in runtime paths by using collection-based player locking and active-run assignment checks.
   - Preserved run collection state for compatibility (finalized runs remain representable in `dungeon.runs`).
   - Added tests for v1 single-run enforcement and multi-run-shaped selector compatibility.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

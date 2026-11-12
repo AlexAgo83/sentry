@@ -6,6 +6,7 @@
 > Theme: Gameplay / Balance / Dungeon / Tooling
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Dungeon difficulty currently has to be judged mostly through manual playtesting and anecdotal runs.
@@ -195,3 +196,8 @@
 - `logics/backlog/item_216_req065_build_headless_dungeon_balance_runner_using_real_runtime_logic.md`
 - `logics/backlog/item_217_req065_add_difficulty_band_evaluation_and_tuning_friendly_report_outputs.md`
 - `logics/backlog/item_218_req065_add_dungeon_balance_simulator_regression_coverage_and_non_blocking_repo_entrypoints.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

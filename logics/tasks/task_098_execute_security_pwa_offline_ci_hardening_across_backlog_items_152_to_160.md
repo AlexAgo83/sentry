@@ -1,6 +1,7 @@
 ## task_098_execute_security_pwa_offline_ci_hardening_across_backlog_items_152_to_160 - Execute security, PWA, offline, and CI hardening across backlog items 152 to 160
 > From version: 0.9.31
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 97%
 > Confidence: 92%
 > Progress: 100%
@@ -95,3 +96,8 @@ Final gate (mandatory at task end):
 - `npm run test:e2e`
 
 Status: all commands above executed successfully (2026-02-15).
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

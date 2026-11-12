@@ -6,6 +6,7 @@
 > Theme: Feature
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Add a `Leaderboard` button in `Settings`.
@@ -147,3 +148,8 @@
 - `logics/backlog/item_122_build_leaderboard_modal_ui_with_loading_empty_error_states.md`
 - `logics/backlog/item_123_add_cloud_save_username_edit_flow_with_email_fallback.md`
 - `logics/backlog/item_124_add_leaderboard_and_username_feature_test_coverage_frontend_backend.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

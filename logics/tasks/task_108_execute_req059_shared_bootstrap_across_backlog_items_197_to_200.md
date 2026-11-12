@@ -1,6 +1,7 @@
 ## task_108_execute_req059_shared_bootstrap_across_backlog_items_197_to_200 - Execute req059 shared bootstrap across backlog items 197 to 200
 > From version: 0.9.38
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 96%
 > Confidence: 93%
 > Progress: 100%
@@ -59,3 +60,8 @@ Final gate (mandatory at task end):
 - `npm run typecheck`
 - `npm run typecheck:tests`
 - `npm run test:ci`
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

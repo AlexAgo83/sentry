@@ -6,6 +6,7 @@
 > Theme: Gameplay / UX
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Support running multiple dungeons at the same time.
@@ -130,3 +131,8 @@
 - `logics/backlog/item_178_req054_build_dungeon_run_tabs_ui_with_new_entry_and_mobile_behavior.md`
 - `logics/backlog/item_179_req054_wire_new_tab_to_setup_flow_with_concurrent_limit_guardrails.md`
 - `logics/backlog/item_180_req054_expand_core_and_ui_regression_tests_for_multi_dungeon_navigation.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

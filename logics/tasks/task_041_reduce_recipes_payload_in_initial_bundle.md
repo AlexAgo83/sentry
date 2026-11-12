@@ -1,6 +1,7 @@
 ## task_041_reduce_recipes_payload_in_initial_bundle - Reduce recipes payload in initial bundle
 > From version: 0.8.18
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 90%
 > Confidence: 88%
 > Progress: 100%
@@ -28,3 +29,8 @@ Current state: recipes are bundled statically (see `src/data/definitions/recipes
 - Validation: Not run (suggest `npm run lint`, `npm run test:ci`, `npm run build`, `npm run bundle:check`).
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -1,6 +1,7 @@
 ## task_033_surface_persistence_failures_to_the_user - Surface persistence failures to the user
 > From version: 0.8.17
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%
@@ -25,3 +26,8 @@ Show a persistent banner when persistence is disabled, with retry and export act
 - Notes: Added persistence status to game state, runtime backoff + retry handler, and a sticky banner with retry/export actions. Added recovery coverage in runtime tests.
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -1,6 +1,7 @@
 ## task_089_execute_dungeon_core_split_across_backlog_items_107_to_113 - Execute dungeon core split across backlog items 107 to 113
 > From version: 0.9.24
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 92%
 > Progress: 100%
@@ -90,3 +91,8 @@ Final gate (mandatory at task end):
   - `npm run test:ci`
   - `npm run coverage`
   - `npm run build`
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

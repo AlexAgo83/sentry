@@ -1,6 +1,7 @@
 ## task_095_execute_dungeon_weighted_loot_tables_and_exclusive_drop_discovery_across_backlog_items_139_to_144 - Execute dungeon weighted loot tables and exclusive drop discovery across backlog items 139 to 144
 > From version: 0.9.28
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%
@@ -75,3 +76,8 @@ Final gate (mandatory at task end):
 - Tuned loot pools to include shared and rare-exclusive entries with tier-based power progression.
 - Added regression coverage for runtime rules, loot table integrity, exclusivity constraints, and setup masking UI.
 - Full validation battery passed (`lint`, `typecheck`, `typecheck:tests`, `test:ci`, `coverage:ci`, `build`, `test:e2e`).
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

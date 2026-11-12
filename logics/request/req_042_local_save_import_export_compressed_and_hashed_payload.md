@@ -6,6 +6,7 @@
 > Theme: Feature
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - When users export local save, the generated text must be compressed and hashed.
@@ -106,3 +107,8 @@
 - `logics/backlog/item_130_enforce_v3_only_local_import_with_decompression_and_hash_validation.md`
 - `logics/backlog/item_131_update_local_save_modal_guidance_for_compressed_hashed_format.md`
 - `logics/backlog/item_132_add_v3_save_import_export_regression_tests_and_validation_gates.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

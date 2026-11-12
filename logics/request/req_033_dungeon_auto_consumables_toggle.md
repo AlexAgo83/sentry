@@ -3,6 +3,7 @@
 > Understanding: 100%
 > Confidence: 91%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Add an "Auto consumables" toggle next to the dungeon auto-restart toggle.
@@ -62,3 +63,8 @@
 
 # Backlog
 - To be split after approval.
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

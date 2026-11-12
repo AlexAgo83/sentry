@@ -1,6 +1,7 @@
 ## task_007_inventory_focus_panel - Execute backlog item 007
 > From version: 0.4.1
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 96%
 > Confidence: 92%
 > Progress: 100%
@@ -28,3 +29,8 @@ This task executes `item_007_inventory_focus_panel`.
 - npm run lint
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

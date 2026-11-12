@@ -6,6 +6,7 @@
 > Theme: Security / Reliability / Refactor
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Reduce account-compromise risk in Cloud Save auth flows (token storage, CORS, auth middleware correctness).
@@ -230,3 +231,8 @@
 - `logics/backlog/item_158_split_backend_server_into_domain_route_modules_phase2.md`
 - `logics/backlog/item_159_split_core_runtime_and_renderer_hotspots_phase2.md`
 - `logics/backlog/item_160_req047_regression_coverage_and_full_validation_battery.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

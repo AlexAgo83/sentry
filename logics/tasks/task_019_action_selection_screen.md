@@ -1,6 +1,7 @@
 ## task_019_action_selection_screen - Replace Loadout modal with a dedicated Action Selection screen
 > From version: 0.8.9
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%
@@ -87,3 +88,8 @@ Replace the modal-based action selection UX with a screen-based UX that feels li
 - npm run lint
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

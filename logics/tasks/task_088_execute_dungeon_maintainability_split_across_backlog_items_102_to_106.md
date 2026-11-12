@@ -1,6 +1,7 @@
 ## task_088_execute_dungeon_maintainability_split_across_backlog_items_102_to_106 - Execute dungeon maintainability split across backlog items 102 to 106
 > From version: 0.9.24
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 92%
 > Progress: 100%
@@ -85,3 +86,8 @@ This task orchestrates the full dungeon maintainability refactor as one executio
   - `npm run typecheck` passed
   - `npm run tests` passed
   - `npm run build` passed
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

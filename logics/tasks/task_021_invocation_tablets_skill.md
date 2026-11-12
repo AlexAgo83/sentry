@@ -1,6 +1,7 @@
 ## task_021_invocation_tablets_skill - Invocation Tablets skill
 > From version: 0.8.10
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 90%
 > Confidence: 90%
 > Progress: 100%
@@ -28,3 +29,8 @@ Derived from `logics/backlog/item_019_invocation_tablets_skill.md`.
 4. Confirmed lint, typecheck, and test suite all pass.
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

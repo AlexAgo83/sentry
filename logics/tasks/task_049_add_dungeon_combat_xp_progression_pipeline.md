@@ -1,6 +1,7 @@
 ## task_049_add_dungeon_combat_xp_progression_pipeline - Add dungeon combat XP progression pipeline
 > From version: 0.9.2
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%
@@ -36,3 +37,8 @@ This task implements the first complete dungeon Combat XP loop with deterministi
 - Kept grants milestone-based (batched), without per-hit progression writes.
 - Reused the same dungeon tick/catch-up flow so offline progression applies identical Combat XP rules.
 - Added tests for boss/floor XP attribution and non-regression behavior.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

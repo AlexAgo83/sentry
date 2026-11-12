@@ -6,6 +6,7 @@
 > Theme: Feature / Reliability
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Add an **optional** cloud auto-sync mode (auto-save + auto-load) that can be enabled/disabled in Cloud Save options.
@@ -180,3 +181,8 @@
 
 # Backlog
 - Backlog items should be generated next (backend token+409, frontend toggle+orchestrator, conflict UX, tests).
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

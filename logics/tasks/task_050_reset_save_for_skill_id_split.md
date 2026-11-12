@@ -1,6 +1,7 @@
 ## task_050_reset_save_for_skill_id_split - Reset save for skill ID split
 > From version: 0.9.2
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%
@@ -35,3 +36,8 @@ Locked approach for v1: clean save reset (no transitional migration logic) to av
   - preserve all other player/system data.
 - Added legacy action remap (`Combat` -> `Roaming`) during hydration.
 - Added dedicated serialization/hydration tests for the split transition path.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

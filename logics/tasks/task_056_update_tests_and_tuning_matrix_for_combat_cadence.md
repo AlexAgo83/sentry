@@ -1,6 +1,7 @@
 ## task_056_update_tests_and_tuning_matrix_for_combat_cadence - Update tests and tuning matrix for combat cadence
 > From version: 0.9.5
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%
@@ -52,3 +53,8 @@ This task secures the cadence rollout with automated coverage and a reproducible
 - Created a tuning matrix template in `logics/tuning/combat_cadence_matrix.md`.
 - Ran the tuning matrix (12 fixed seeds; Damp Ruins tier 1) and filled the results/bounds in `logics/tuning/combat_cadence_matrix.md`.
 
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

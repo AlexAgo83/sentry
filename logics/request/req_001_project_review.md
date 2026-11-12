@@ -3,6 +3,7 @@
 > Understanding: 96%
 > Confidence: 91%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 Review the project and provide a structured assessment.
@@ -55,3 +56,8 @@ This is a JavaScript idle game engine using Vite and npm. The goal is to assess 
 
 # Backlog
 - `logics/backlog/item_001_project_review.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

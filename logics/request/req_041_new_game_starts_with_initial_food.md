@@ -3,6 +3,7 @@
 > Understanding: 98%
 > Confidence: 96%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - New games should start with `10` units of `food`.
@@ -52,3 +53,8 @@
 - `logics/backlog/item_125_add_initial_food_to_new_game_inventory_state.md`
 - `logics/backlog/item_126_apply_initial_food_grant_to_reset_fresh_save_flow.md`
 - `logics/backlog/item_127_add_initial_food_starting_state_regression_tests_and_validation.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

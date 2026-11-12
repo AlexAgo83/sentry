@@ -1,6 +1,7 @@
 ## task_048_split_roaming_skill_from_combat_in_data_and_ui - Split roaming skill from combat in data and UI
 > From version: 0.9.2
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%
@@ -41,3 +42,8 @@ This task establishes a clean domain split:
 - Migrated roaming recipes/actions to `Roaming` and removed roaming wiring from `Combat`.
 - Updated UI mappings and roster behavior so dungeon-assigned heroes surface `Combat` progression context.
 - Added dedicated assets and mappings for `Combat`/`Roaming`.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

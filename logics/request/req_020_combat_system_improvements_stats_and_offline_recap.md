@@ -3,6 +3,7 @@
 > Understanding: 99%
 > Confidence: 95%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Improve combat system readability for players, especially around combat progression and effective combat power.
@@ -135,3 +136,8 @@
 - `logics/backlog/item_068_extend_offline_recap_with_dungeon_gain_details.md`
 - `logics/backlog/item_069_harden_replay_observability_and_event_guardrails_for_cadence.md`
 - `logics/backlog/item_070_update_tests_and_tuning_matrix_for_combat_cadence.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -3,6 +3,7 @@
 > Understanding: 99%
 > Confidence: 94%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Heroes must gain **Combat** XP during dungeon runs.
@@ -89,3 +90,8 @@
 - `logics/backlog/item_063_add_dungeon_combat_xp_progression_pipeline.md`
 - `logics/backlog/item_064_migrate_or_reset_save_for_skill_id_split.md`
 - `logics/backlog/item_065_update_tests_for_roaming_combat_skill_separation.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

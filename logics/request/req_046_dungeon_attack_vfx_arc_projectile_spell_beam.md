@@ -6,6 +6,7 @@
 > Theme: UX / Visuals
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Add a visual effect for each attack in the dungeon arena renderer:
@@ -124,3 +125,8 @@
 - `logics/backlog/item_149_add_melee_arc_vfx_and_limit_lunge_to_melee.md`
 - `logics/backlog/item_150_add_ranged_projectile_and_magic_beam_vfx.md`
 - `logics/backlog/item_151_add_attack_vfx_regression_tests_and_full_validation.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

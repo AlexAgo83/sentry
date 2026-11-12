@@ -1,6 +1,7 @@
 ## task_025_virtual_score_in_setup_modal - Virtual score in setup modal
 > From version: 0.8.11
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 93%
 > Progress: 100%
@@ -40,3 +41,8 @@ Derived from `logics/backlog/item_023_virtual_score_in_setup_modal.md`.
   - Migration/rollback risk: low.
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

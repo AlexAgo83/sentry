@@ -1,6 +1,7 @@
 ## task_059_dungeon_replay_global_event_cap - Dungeon replay global event cap
 > From version: 0.9.8
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 94%
 > Progress: 100%
@@ -27,3 +28,8 @@ Derived from `logics/backlog/item_073_dungeon_replay_event_cap.md`
 
 # Report
 - Added a global non-critical event cap with critical-only fallback and coverage for cap behavior.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

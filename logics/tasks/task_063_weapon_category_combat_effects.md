@@ -1,6 +1,7 @@
 ## task_063_weapon_category_combat_effects - Weapon category combat effects
 > From version: 0.9.9
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 98%
 > Confidence: 96%
 > Progress: 100%
@@ -34,3 +35,8 @@ Derived from `logics/backlog/item_077_weapon_category_combat_effects.md`
 # Report
 - Applied weapon category effects in dungeon combat: magic ally heals with cooldown/threshold, ranged attack speed multiplier, melee threat bonus, and per-category damage taken modifiers.
 - Added per-hero magic heal cooldown state with deterministic targeting and replay-safe events.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

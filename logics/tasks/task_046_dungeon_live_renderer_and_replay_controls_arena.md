@@ -1,6 +1,7 @@
 ## task_046_dungeon_live_renderer_and_replay_controls_arena - Dungeon live renderer and replay controls arena
 > From version: 0.8.22
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 96%
 > Confidence: 91%
 > Progress: 100%
@@ -33,3 +34,8 @@ This task delivers the player-facing live/replay visual layer using a top-down a
 - Added live controls (pause/resume + x1/x2/x4 + focus boss) and replay controls (play/pause, speed, timeline scrub, skip first death, skip wipe/end).
 - Added guardrails: bounded floating FX pool and capped replay log rendering in UI.
 - Added tests for playback reconstruction and control surface rendering; validation passed with lint/typecheck/tests/build.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

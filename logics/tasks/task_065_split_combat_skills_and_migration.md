@@ -1,6 +1,7 @@
 ## task_065_split_combat_skills_and_migration - Split combat skills and migrate saves
 > From version: 0.9.9
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 98%
 > Confidence: 95%
 > Progress: 100%
@@ -29,3 +30,8 @@ Derived from `logics/backlog/item_079_split_combat_skills_and_migration.md`
 # Report
 - Added CombatMelee/CombatRanged/CombatMagic skill IDs and definitions, removed Combat from active progression.
 - Implemented save migration to split legacy Combat progress across the three skills with xpNext recomputation.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -1,6 +1,7 @@
 ## task_112_execute_req063_contextual_dungeon_summary_on_action_screen_across_backlog_items_212_to_214 - Execute req063 contextual dungeon summary on the action screen across backlog items 212 to 214
 > From version: 0.9.39
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 96%
 > Confidence: 94%
 > Progress: 100%
@@ -57,3 +58,8 @@ Final gate (mandatory at task end):
 - `npm run test:ci`
 
 Validation completed successfully during implementation.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

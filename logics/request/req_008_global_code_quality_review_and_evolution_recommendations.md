@@ -3,6 +3,7 @@
 > Understanding: 61%
 > Confidence: 61%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Produce a global review of the project (code + Logics docs) with actionable quality recommendations.
@@ -18,3 +19,8 @@
 
 # Backlog
 - `logics/backlog/item_048_code_quality_review_and_evolution.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

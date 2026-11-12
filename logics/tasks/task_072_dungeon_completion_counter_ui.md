@@ -2,6 +2,7 @@
 > From version: 0.9.9
 > Owner: —
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%
@@ -27,3 +28,8 @@ Display `xN` completion badges in the dungeon selection list and run/replay view
 # Acceptance criteria
 - Selection list shows badge for dungeons with count > 0.
 - Run/replay view shows badge for the active dungeon when count > 0.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

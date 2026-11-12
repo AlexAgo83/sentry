@@ -3,6 +3,7 @@
 > Understanding: 100%
 > Confidence: 92%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Remember the last non-dungeon action (skill + recipe) when no action is running.
@@ -68,3 +69,8 @@
 
 # Backlog
 - To be split after approval.
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

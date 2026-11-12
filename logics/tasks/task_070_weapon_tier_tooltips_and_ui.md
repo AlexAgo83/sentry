@@ -2,6 +2,7 @@
 > From version: 0.9.9
 > Owner: —
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%
@@ -25,3 +26,8 @@ Expose new weapon tiers in the crafting UI and item tooltips, including the new 
 # Acceptance criteria
 - Crafting list shows the new tiers in unlock order.
 - Tooltip includes the new component line.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

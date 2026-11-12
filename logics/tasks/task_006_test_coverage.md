@@ -1,6 +1,7 @@
 ## task_006_test_coverage - Achieve full app test coverage
 > From version: 0.4.0
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 100%
 > Confidence: 75%
 > Progress: 100%
@@ -37,3 +38,8 @@ Create and execute a test plan that covers the full application surface, with st
 
 # Notes
 - Derived from `logics/backlog/item_004_project_review_followups.md`.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

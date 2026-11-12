@@ -3,6 +3,7 @@
 > Understanding: 99%
 > Confidence: 96%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Add a new gameplay loop based on **party-based idle dungeon combat**.
@@ -242,3 +243,8 @@
 - `logics/backlog/item_059_dungeon_persistence_offline_catch_up_and_latest_run_replay.md`
 - `logics/backlog/item_060_dungeon_live_render_and_replay_viewer_arena.md`
 - `logics/backlog/item_061_dungeon_multi_party_ready_architecture.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

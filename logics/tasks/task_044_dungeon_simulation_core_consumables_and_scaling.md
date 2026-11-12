@@ -1,6 +1,7 @@
 ## task_044_dungeon_simulation_core_consumables_and_scaling - Dungeon simulation core consumables and scaling
 > From version: 0.8.22
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 94%
 > Confidence: 89%
 > Progress: 100%
@@ -31,3 +32,8 @@ This task ships the simulation-authoritative dungeon runtime and the first playa
 
 # Report
 - Completed in code: headless dungeon simulation core, v1 5-dungeon data pack, boss mechanics, consumables behavior, deterministic event timeline, and dedicated dungeon runtime tests.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

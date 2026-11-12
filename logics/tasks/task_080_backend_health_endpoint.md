@@ -2,6 +2,7 @@
 > From version: 0.9.10
 > Owner: —
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 94%
 > Confidence: 92%
 > Progress: 100%
@@ -26,3 +27,8 @@ Add a lightweight backend `/health` endpoint for warmup checks.
 # Acceptance criteria
 - `/health` responds quickly with the expected JSON.
 - Route is reachable in dev and prod.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

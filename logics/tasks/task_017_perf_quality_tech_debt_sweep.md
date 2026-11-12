@@ -1,6 +1,7 @@
 ## task_017_perf_quality_tech_debt_sweep - Runtime offline catch-up + UI perf + lint + deps + TS test typecheck
 > From version: 0.8.7
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 100%
 > Confidence: 90%
 > Progress: 100%
@@ -75,3 +76,8 @@ The project review highlighted a small set of technical risks that can compound 
 # Notes
 - Derived from `logics/backlog/item_008_runtime_resilience.md`.
 - Derived from `logics/backlog/item_010_app_architecture_refactor.md`.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

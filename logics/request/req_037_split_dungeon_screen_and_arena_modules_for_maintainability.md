@@ -6,6 +6,7 @@
 > Theme: Architecture
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Split oversized dungeon UI/renderer files into smaller, focused modules.
@@ -89,3 +90,8 @@
 - `logics/backlog/item_104_modularize_dungeonarenarenderer_pixi_runtime_and_drawing_pipeline.md`
 - `logics/backlog/item_105_split_arena_playback_frame_builder_into_focused_modules.md`
 - `logics/backlog/item_106_add_dungeon_refactor_regression_and_non_regression_test_coverage.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

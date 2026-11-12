@@ -1,6 +1,7 @@
 ## task_034_extract_shared_avatar_component - Extract shared Avatar component
 > From version: 0.8.17
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%
@@ -28,3 +29,8 @@ Normalize avatar rendering everywhere it appears using a shared component.
 - Validation: `npm run test:ci -- tests/app/avatar.test.tsx`.
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

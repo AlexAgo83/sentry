@@ -3,6 +3,7 @@
 > Understanding: 93%
 > Confidence: 81%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 Produce a deep technical review of the project and capture all findings as a prioritized improvement list. The output should be actionable for follow-up backlog/tasks.
@@ -141,3 +142,8 @@ Produce a deep technical review of the project and capture all findings as a pri
 - `logics/backlog/item_042_e2e_smoke_suite.md`
 - `logics/backlog/item_043_bundle_perf_budgets.md`
 - `logics/backlog/item_044_logics_hygiene_cleanup.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

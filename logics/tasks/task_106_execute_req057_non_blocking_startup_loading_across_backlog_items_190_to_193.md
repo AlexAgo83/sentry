@@ -1,6 +1,7 @@
 ## task_106_execute_req057_non_blocking_startup_loading_across_backlog_items_190_to_193 - Execute req057 non-blocking startup loading across backlog items 190 to 193
 > From version: 0.9.38
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 99%
 > Confidence: 95%
 > Progress: 100%
@@ -95,3 +96,8 @@ Validation results:
 Residual notes:
 - v1 currently relies on cooperative chunking with main-thread yields for deterministic state-mutating work.
 - Dedicated worker execution for startup compute-heavy pure tasks remains a possible follow-up optimization.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

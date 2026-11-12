@@ -1,6 +1,7 @@
 ## task_105_execute_req056_top_down_combat_movement_choreography_across_backlog_items_186_to_189 - Execute req056 top-down combat movement choreography across backlog items 186 to 189
 > From version: 0.9.38
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 98%
 > Confidence: 94%
 > Progress: 100%
@@ -83,3 +84,8 @@ Validation results:
 - `npm run typecheck:tests` ✅
 - `npm run test:ci` ✅
 - `npm run build` ✅
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

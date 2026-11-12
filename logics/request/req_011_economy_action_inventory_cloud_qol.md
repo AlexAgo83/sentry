@@ -3,6 +3,7 @@
 > Understanding: 93%
 > Confidence: 89%
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Goals (best suggestions)
 ## Economy / Shop
@@ -57,7 +58,7 @@
 - Save schema changes.
 
 # Needs
-- Describe the need
+- Historical scope is recorded above; no additional needs are planned after operator cleanup 2026-11-12.
 
 # Backlog
 - `logics/backlog/item_026_roster_cap_ui_and_disable_purchase.md`
@@ -67,3 +68,8 @@
 - `logics/backlog/item_030_cloud_last_sync_and_meta_diff.md`
 - `logics/backlog/item_031_new_badges_for_menus_and_items.md`
 - `logics/backlog/item_032_selector_memoization_pass.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

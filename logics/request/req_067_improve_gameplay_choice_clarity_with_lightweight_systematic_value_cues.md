@@ -6,6 +6,7 @@
 > Theme: UX / Gameplay readability / Decision support
 > Reminder: Update Understanding/Confidence and dependencies/references when you edit this doc.
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 
 # Needs
 - Players still need clearer signals about why one action, recipe, dungeon, or activity is worth choosing over another.
@@ -136,3 +137,8 @@
 - `logics/backlog/item_224_req067_add_dungeon_readiness_and_risk_reward_value_cues.md`
 - `logics/backlog/item_225_req067_add_action_and_recipe_expected_gain_and_progression_fit_cues.md`
 - `logics/backlog/item_226_req067_add_regression_coverage_for_shared_choice_value_cues.md`
+
+# Definition of Ready (DoR)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

@@ -1,6 +1,7 @@
 ## task_016_app_perf_save_observability - App architecture/perf refactor + save hardening + observability
 > From version: 0.8.0
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 100%
 > Confidence: 95%
 > Progress: 100%
@@ -90,3 +91,8 @@ The app is growing and `src/app/App.tsx` is still a large integration point with
 # Notes
 - Derived from `logics/backlog/item_010_app_architecture_refactor.md`.
 - Derived from `logics/backlog/item_012_app_ui_extractions.md`.
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

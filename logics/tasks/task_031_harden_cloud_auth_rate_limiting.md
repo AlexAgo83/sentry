@@ -1,6 +1,7 @@
 ## task_031_harden_cloud_auth_rate_limiting - Harden cloud auth + rate limiting
 > From version: 0.8.17
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 92%
 > Confidence: 90%
 > Progress: 100%
@@ -26,3 +27,8 @@ Serverless on Render, no external store. Use Postgres for rotation/revocation an
 - Notes: Added refresh token rotation + DB-backed rate limiting, CSRF double-submit cookie validation, and backend tests for rotation + limits.
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

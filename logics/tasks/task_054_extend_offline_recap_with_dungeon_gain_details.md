@@ -1,6 +1,7 @@
 ## task_054_extend_offline_recap_with_dungeon_gain_details - Extend offline recap with dungeon gain details
 > From version: 0.9.5
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 91%
 > Progress: 100%
@@ -53,3 +54,8 @@ This task upgrades the offline recap model/UI so dungeon gains are explicitly vi
 - Rendered `Dungeon gains` in the offline recap modal when any dungeon delta is non-zero.
 - Added regression tests covering dungeon gains and mixed action+dungeon sessions.
 
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.

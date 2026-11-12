@@ -1,6 +1,7 @@
 ## task_018_req_004_polish - Close remaining UX backlog + gameplay polish + release hardening
 > From version: 0.8.8
 > Status: Done
+> Non-semantic edit: Add the missing legacy closure checklist for operator cleanup 2026-11-12.
 > Understanding: 95%
 > Confidence: 90%
 > Progress: 100%
@@ -122,3 +123,8 @@ It focuses on:
 - npm run lint
 
 # Notes
+
+# Definition of Done (DoD)
+- [x] Historical `Done` status retained; no further work is planned (operator decision 2026-11-12).
+
+Legacy metadata migration only: this records the existing terminal state, not a retrospective assessment of delivery criteria. Original scope, validation evidence, and completion reports remain authoritative.
